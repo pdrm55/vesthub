@@ -1,0 +1,462 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+  /* Override Bootstrap Primary Color to match VestHub Blue */
+  /* This color is from your logo's "Hub" text */
+  --bs-primary: #00b0f0; 
+  --bs-primary-rgb: 0, 176, 240;
+  
+  /* Define a dark background for the hero */
+  --vh-dark-blue: #0d253f;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ---------------------------------- */
+/* --      General Site Styles     -- */
+/* ---------------------------------- */
+
+/* Section 1: Header */
+/* UPDATED: Enforce 60px height for logo everywhere */
+.navbar-logo {
+    height: 60px !important;
+    width: auto; /* Maintain aspect ratio */
+}
+
+
+/* Section 2: Hero Section */
+.hero-section {
+  /* Make sure you have an image named 'hero_background.png' inside your 'static/images/' folder. */
+  background-image: 
+    linear-gradient(rgba(13, 37, 63, 0.85), rgba(13, 37, 63, 0.85)), 
+    url('../images/hero_background.png');
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 0;
+}
+
+.hero-section .display-3 {
+  font-weight: 700;
+}
+
+.hero-section .btn-primary {
+    padding: 0.75rem 1.5rem;
+}
+
+.hero-section .btn-outline-light {
+    padding: 0.75rem 1.5rem;
+}
+
+/* Section 4: Trust Bar */
+.trust-bar-icon {
+  font-size: 2.5rem;
+  color: var(--bs-primary);
+  margin-bottom: 1rem;
+}
+
+/* Section 5: Core Features */
+.feature-icon {
+  font-size: 3rem;
+  color: var(--bs-primary);
+  margin-bottom: 1rem;
+}
+
+/* Section 7: Footer */
+.footer-links a:hover {
+  text-decoration: underline !important;
+  color: var(--bs-white) !important;
+}
+
+/* ---------------------------------- */
+/* --   Bootstrap Overrides        -- */
+/* ---------------------------------- */
+.btn-primary {
+  --bs-btn-hover-bg: #0099d1; /* A slightly darker blue for hover */
+  --bs-btn-hover-border-color: #0099d1;
+}
+
+.btn-outline-primary {
+    --bs-btn-hover-bg: var(--bs-primary);
+    --bs-btn-hover-color: var(--bs-dark);
+}
+
+.bg-dark-subtle {
+    /* Make the bg-dark-subtle a bit darker for better contrast */
+    background-color: #222 !important;
+}
+
+/* Card headers in dashboard */
+.card-header {
+    background-color: #2c2c2c;
+}
+
+/* Code blocks in dashboard */
+code {
+    background-color: #2c2c2c;
+    color: #f1f1f1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Learn.html Page -- */
+/* ---------------------------------- */
+
+/* This controls the size of the 4 benefit icons */
+.feature-icon-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain; /* Prevents image from stretching */
+    flex-shrink: 0; /* Prevents image from shrinking in its flex container */
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for About.html Page -- */
+/* ---------------------------------- */
+
+/* This styles the 2 "Pillar" icons (side-by-side) */
+.about-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* This styles the 6 smaller icons in the grids */
+.about-icon-small {
+    width: 64px; 
+    height: 64px; 
+    object-fit: contain; 
+    margin-bottom: 1rem;
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Auth Pages    -- */
+/* ---------------------------------- */
+
+.auth-body {
+    /* Full-screen gradient background for auth pages */
+    background: linear-gradient(-45deg, #0d253f, #1a1a1a, #0d253f);
+    background-size: 400% 400%;
+    animation: authGradient 15s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes authGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+}
+
+.auth-card-wrapper {
+    width: 100%;
+    max-width: 500px; /* Max width for the login form */
+}
+
+.auth-card {
+    background-color: rgba(33, 37, 41, 0.9); /* Translucent dark card */
+    backdrop-filter: blur(10px);
+    border: 1px solid #444;
+}
+
+.social-login-btn {
+    --bs-btn-hover-bg: #333;
+}
+
+.divider-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.divider-text hr {
+    border-color: #444;
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Dashboard     -- */
+/* ---------------------------------- */
+
+.dashboard-body {
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- Desktop Sidebar --- */
+.sidebar {
+    width: 280px;
+    background-color: #212529; /* Bootstrap bg-dark */
+    min-height: 100vh;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #333;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--bs-primary);
+}
+
+.sidebar-footer {
+    border-top: 1px solid #444;
+}
+
+/* --- Main Content Area --- */
+.main-content-wrapper {
+    width: 100%;
+}
+
+.top-bar {
+    background-color: #212529;
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 991.98px) {
+    .sidebar {
+        display: none !important; /* Hide desktop sidebar on mobile */
+    }
+}
+@media (min-width: 992px) {
+    .top-bar {
+        display: none !important; /* Hide mobile top bar on desktop */
+    }
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Invest Plans Page -- */
+/* ---------------------------------- */
+
+.plan-card {
+    border: 1px solid #444;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 176, 240, 0.15) !important;
+}
+
+.plan-card-best-value {
+    border: 2px solid var(--bs-primary);
+    position: relative;
+    overflow: hidden; /* Needed for the ribbon */
+}
+
+/* Stylish ribbon for "Best Value" plan */
+.best-value-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background-color: var(--bs-primary);
+    color: #1a1a1a;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(0, 176, 240, 0.5);
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Pending Investment Page -- */
+/* ---------------------------------- */
+
+.payment-info-box {
+    border: 1px solid #444;
+    border-radius: 0.5rem;
+}
+
+.payment-info-box .form-control {
+    border: none;
+    background: transparent !important;
+}
+.payment-info-box .form-control:focus {
+    box-shadow: none;
+    background: transparent;
+}
+
+.payment-info-box .list-group-item {
+    background-color: transparent;
+    border-color: #444;
+}
+
+.payment-info-box .list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Settings Page -- */
+/* ---------------------------------- */
+
+.settings-nav .nav-link {
+    color: var(--bs-body-color);
+    font-weight: 500;
+}
+
+.settings-nav .nav-link.active {
+    background-color: var(--bs-primary);
+    color: #1a1a1a;
+}
+
+.settings-nav .nav-link:hover {
+    background-color: #333;
+    color: var(--bs-body-color);
+}
+
+/* ---------------------------------- */
+/* -- NEW STYLES for Risk Assessment -- */
+/* ---------------------------------- */
+
+.risk-stepper {
+    gap: 0.5rem;
+}
+.step {
+    display: flex;
+    align-items: center;
+    color: var(--bs-secondary-color);
+    transition: color 0.3s ease;
+}
+.step-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.step-line {
+    height: 2px;
+    background-color: #333;
+    flex-grow: 1;
+}
+
+/* Active/Completed Step Styles */
+.step.active .step-circle {
+    background-color: var(--bs-primary);
+    color: #1a1a1a;
+}
+.step.active {
+    color: var(--bs-primary);
+}
+.step.completed .step-circle {
+    background-color: #28a745; /* Green for completed */
+    color: white;
+}
+.step.completed {
+    color: var(--bs-body-color);
+}
+
+/* Form Styles */
+.risk-question-group {
+    display: none; /* Hide all steps by default */
+}
+.risk-question-group.active {
+    display: block; /* Show only the active step */
+}
+
+/* UPDATED: Make question titles yellow */
+.risk-question-group .form-label {
+    color: var(--bs-warning); /* Make question titles stand out */
+}
+
+/* Custom Radio Button Group */
+.btn-group-vertical .btn-outline-secondary {
+    border-color: #777; 
+    color: #dee2e6; /* Lighter text color for readability */
+    text-align: left;
+}
+.btn-group-vertical .btn-outline-secondary:hover {
+    background-color: #333;
+}
+.btn-check:checked + .btn-outline-secondary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: #1a1a1a;
+    box-shadow: 0 0 10px rgba(0, 176, 240, 0.3);
+}
+/* ---------------------------------- */
+/* -- NEW STYLES for Admin Portal  -- */
+/* ---------------------------------- */
+
+/* Make admin sidebar slightly different color */
+.admin-sidebar {
+    background-color: #111 !important; /* Darker than client sidebar */
+}
+
+.admin-sidebar .nav-link:hover {
+    background-color: #222;
+}
+
+.admin-sidebar .nav-link.active {
+    background-color: var(--bs-primary);
+}
+/* --- NEW: Admin User Table Status Badges --- */
+.status-verified {
+    background-color: var(--bs-success-bg-subtle);
+    color: var(--bs-success-text-emphasis);
+    border: 1px solid var(--bs-success-border-subtle);
+}
+.status-pending,
+.status-not-assessed {
+    background-color: var(--bs-warning-bg-subtle);
+    color: var(--bs-warning-text-emphasis);
+    border: 1px solid var(--bs-warning-border-subtle);
+}
+.status-not-submitted {
+    background-color: var(--bs-secondary-bg-subtle);
+    color: var(--bs-secondary-text-emphasis);
+    border: 1px solid var(--bs-secondary-border-subtle);
+}
+.status-balanced {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary-text-emphasis);
+    border: 1px solid var(--bs-primary-border-subtle);
+}
+.status-aggressive {
+    background-color: var(--bs-danger-bg-subtle);
+    color: var(--bs-danger-text-emphasis);
+    border: 1px solid var(--bs-danger-border-subtle);
+}
+.status-conservative {
+    background-color: var(--bs-info-bg-subtle);
+    color: var(--bs-info-text-emphasis);
+    border: 1px solid var(--bs-info-border-subtle);
+}
+/* --- NEW: Admin Payment Tabs --- */
+.nav-tabs .nav-link {
+    color: var(--bs-body-secondary);
+}
+.nav-tabs .nav-link.active {
+    color: var(--bs-body-color);
+    background-color: #2c2c2c; /* Card header color */
+    border-color: #2c2c2c #2c2c2c var(--bs-body-color);
+}
+.tab-content {
+    border: 1px solid #2c2c2c;
+    border-top: 0;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+/* --- NEW: Marketplace Page Styles --- */
+.table-bordered {
+    border-color: #555; /* Lighter border for dark table */
+}

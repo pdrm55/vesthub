@@ -1,0 +1,89 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}User Management{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 fw-bold mb-0">User Management</h1>
+    <button class="btn btn-primary">
+        <i class="bi bi-person-plus-fill me-2"></i> Add New User
+    </button>
+</div>
+
+<div class="card shadow-sm rounded-4 mt-4">
+    <div class="card-header bg-dark-subtle p-3">
+        <h5 class="fw-bold mb-0">All Users</h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped mb-0 align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Current Role</th>
+                        <th>KYC</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>VH-{{ user.id }}</td>
+                        <td>
+                            {{ user.email }}<br>
+                            <small class="text-muted">{{ user.first_name }} {{ user.last_name }}</small>
+                        </td>
+                        <td>
+                            <span class="badge {% if user.role.name=='Admin' %}bg-danger{% elif user.role.name=='Support' %}bg-info text-dark{% else %}bg-secondary{% endif %}">
+                                {{ user.role.name }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if user.kyc_status == 'verified' %}
+                                <span class="badge bg-success-subtle text-success-emphasis">Verified</span>
+                            {% else %}
+                                <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ user.kyc_status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#roleModal{{ user.id }}">
+                                <i class="bi bi-person-gear"></i> Change Role
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Change Role Modal -->
+                    <div class="modal fade" id="roleModal{{ user.id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark text-white">
+                                <div class="modal-header border-secondary">
+                                    <h5 class="modal-title">Change Role for {{ user.first_name }}</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form method="POST" action="{{ url_for('admin_change_role', user_id=user.id) }}">
+                                    <div class="modal-body">
+                                        <p>Select a new role for this user:</p>
+                                        <select class="form-select" name="new_role_id">
+                                            {% for role in roles %}
+                                                <option value="{{ role.id }}" {% if user.role_id == role.id %}selected{% endif %}>
+                                                    {{ role.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer border-secondary">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

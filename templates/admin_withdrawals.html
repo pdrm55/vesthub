@@ -1,0 +1,114 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Withdrawal Requests{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 fw-bold mb-0">Withdrawal Requests</h1>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<!-- Tabs for Pending/Completed -->
+<ul class="nav nav-tabs" id="withdrawalTabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#pending">
+            Pending Requests 
+            {% if requests|length > 0 %}
+            <span class="badge bg-warning text-dark rounded-pill">{{ requests|length }}</span>
+            {% endif %}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#completed">History</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <!-- Pending Tab -->
+    <div class="tab-pane fade show active" id="pending">
+        <div class="card shadow-sm rounded-4 rounded-top-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped mb-0 align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Amount</th>
+                                <!-- UPDATED: Added Wallet Column -->
+                                <th scope="col">Payout Wallet</th> 
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for req in requests %}
+                            <tr>
+                                <td>{{ req.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    {{ req.user.email }}<br>
+                                    <small class="text-body-secondary">{{ req.user.first_name }} {{ req.user.last_name }}</small>
+                                </td>
+                                <td class="fw-semibold text-danger">-${{ "{:,.2f}".format(req.amount) }}</td>
+                                
+                                <!-- UPDATED: Display Network and Address -->
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span class="badge bg-light text-dark border mb-1" style="width: fit-content;">
+                                            {{ req.user.wallet_network if req.user.wallet_network else 'Unknown Network' }}
+                                        </span>
+                                        <code class="text-break small" style="max-width: 250px;">
+                                            {{ req.user.wallet_address if req.user.wallet_address else 'No Address Set' }}
+                                        </code>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <form action="{{ url_for('approve_withdrawal', tx_id=req.id) }}" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-success" title="Approve">
+                                                <i class="bi bi-check-lg"></i>
+                                            </button>
+                                        </form>
+                                        <form action="{{ url_for('reject_withdrawal', tx_id=req.id) }}" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-danger" title="Reject">
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-body-secondary">
+                                    No pending withdrawal requests.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Completed Tab -->
+    <div class="tab-pane fade" id="completed">
+         <div class="card shadow-sm rounded-4 rounded-top-0">
+            <div class="card-body p-4 text-center text-body-secondary">
+                Check the <a href="{{ url_for('admin_accounting') }}">Accounting Ledger</a> for history.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

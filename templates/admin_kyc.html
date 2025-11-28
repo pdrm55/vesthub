@@ -1,0 +1,151 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}KYC Review{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 fw-bold mb-0">Identity Verification (KYC)</h1>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<!-- Tabs for Pending/Completed -->
+<ul class="nav nav-tabs" id="kycTabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#pending">
+            Pending Review 
+            {% if pending|length > 0 %}
+            <span class="badge bg-warning text-dark rounded-pill">{{ pending|length }}</span>
+            {% endif %}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#approved">History</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <!-- Pending Tab -->
+    <div class="tab-pane fade show active" id="pending">
+        <div class="card shadow-sm rounded-4 rounded-top-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped mb-0 align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date Submitted</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Documents</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- UPDATED: Iterate over 'pending' list -->
+                            {% for req in pending %}
+                            <tr>
+                                <td>{{ req.submitted_at.strftime('%Y-%m-%d') }}</td>
+                                <td>
+                                    {{ req.user.email }}<br>
+                                    <small class="text-body-secondary">{{ req.user.first_name }} {{ req.user.last_name }}</small>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ url_for('static', filename='uploads/' ~ req.id_document_url) }}" class="btn btn-sm btn-outline-info" target="_blank">
+                                            <i class="bi bi-file-earmark-person"></i> View ID
+                                        </a>
+                                        <a href="{{ url_for('static', filename='uploads/' ~ req.address_document_url) }}" class="btn btn-sm btn-outline-info" target="_blank">
+                                            <i class="bi bi-file-earmark-text"></i> View Address
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <form action="{{ url_for('approve_kyc', req_id=req.id) }}" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                        </form>
+                                        <form action="{{ url_for('reject_kyc', req_id=req.id) }}" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center py-5 text-body-secondary">
+                                    No pending KYC applications.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- History Tab -->
+    <div class="tab-pane fade" id="approved">
+         <div class="card shadow-sm rounded-4 rounded-top-0">
+            <div class="card-body p-0">
+                <!-- UPDATED: New Table for History -->
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped mb-0 align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date Decided</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Documents</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for req in history %}
+                            <tr>
+                                <td>{{ req.submitted_at.strftime('%Y-%m-%d') }}</td>
+                                <td>
+                                    {{ req.user.email }}<br>
+                                    <small class="text-body-secondary">{{ req.user.first_name }} {{ req.user.last_name }}</small>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ url_for('static', filename='uploads/' ~ req.id_document_url) }}" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                            View ID
+                                        </a>
+                                        <a href="{{ url_for('static', filename='uploads/' ~ req.address_document_url) }}" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                            View Address
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if req.status == 'approved' %}
+                                        <span class="badge bg-success-subtle text-success-emphasis">Approved</span>
+                                    {% else %}
+                                        <span class="badge bg-danger-subtle text-danger-emphasis">Rejected</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center py-5 text-body-secondary">
+                                    No KYC history found.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

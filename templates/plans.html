@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Investment Plans - VestHub{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+            <h1 class="display-4 fw-bold mb-3">Our Investment Plans</h1>
+            <p class="lead text-body-secondary mb-5">Select a plan that matches your financial goals. Returns are annualized. Find a plan you like? <a href="{{ url_for('signup') }}">Sign up free</a> to get started.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for plan in plans %}
+        <div class="col-md-6 col-lg-4">
+            <!-- Updated Card Style matching invest-plans.html -->
+            <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative">
+                
+                <!-- Risk Badges -->
+                {% if plan.risk_level == 'low' %}
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-info-subtle text-info-emphasis">Low Risk</span>
+                    </div>
+                {% elif plan.risk_level == 'medium' %}
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-warning-subtle text-warning-emphasis">Medium Risk</span>
+                    </div>
+                {% else %}
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-danger-subtle text-danger-emphasis">High Risk</span>
+                    </div>
+                {% endif %}
+
+                <div class="card-body p-4 d-flex flex-column">
+                    <h3 class="fw-semibold">{{ plan.name }}</h3>
+                    <p class="text-body-secondary mb-4" style="min-height: 48px;">{{ plan.description }}</p>
+                    
+                    <div class="mb-4">
+                        <h1 class="fw-bold display-4 text-primary">{{ plan.annual_return_rate|int }}%</h1>
+                        <h5 class="text-body-secondary">Annual Return</h5>
+                        <h6 class="fw-normal text-white-50">{{ plan.duration_months }} Months Duration</h6>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <!-- Public Button -> Redirects to Signup -->
+                        <a href="{{ url_for('signup') }}" class="btn btn-primary w-100 btn-lg">
+                            Choose Plan & Sign Up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 text-center py-5">
+            <h4 class="text-muted">No investment plans available at the moment.</h4>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

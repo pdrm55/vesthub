@@ -1,0 +1,78 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold mb-4">Admin Dashboard</h1>
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-8">
+        <div class="card shadow-sm rounded-4">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">New User Registrations (Last 7 Days)</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="adminUserChart" style="height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+         <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">Quick Actions</h5></div>
+            <div class="card-body p-4 d-flex flex-column gap-3">
+                 <a href="{{ url_for('admin_payments') }}" class="btn btn-lg btn-outline-warning"><i class="bi bi-box-arrow-in-down me-2"></i> Review Payments</a>
+                 <a href="{{ url_for('admin_withdrawals') }}" class="btn btn-lg btn-outline-danger"><i class="bi bi-box-arrow-up-right me-2"></i> Withdrawals</a>
+                 <a href="{{ url_for('admin_kyc') }}" class="btn btn-lg btn-outline-info"><i class="bi bi-person-check-fill me-2"></i> Review KYC</a>
+                 <a href="{{ url_for('admin_settings') }}" class="btn btn-lg btn-outline-secondary"><i class="bi bi-gear-fill me-2"></i> Settings</a>
+            </div>
+         </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Function to render chart
+    function renderAdminChart(data) {
+        const ctx = document.getElementById('adminUserChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.dates,
+                    datasets: [{
+                        label: 'New Users',
+                        data: data.counts,
+                        backgroundColor: '#00b0f0'
+                    }]
+                },
+                options: { responsive: true }
+            });
+        }
+    }
+
+    // Mock Data for Fallback (Preview Mode)
+    const mockAdminData = {
+        dates: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+        counts: [5, 12, 8, 15, 20, 10, 25]
+    };
+
+    // Attempt to fetch data, fall back to mock if API fails
+    try {
+        fetch('/api/chart/admin-stats')
+        .then(res => {
+            if (!res.ok) throw new Error("API unreachable");
+            return res.json();
+        })
+        .then(data => renderAdminChart(data))
+        .catch(err => {
+            console.warn("Backend API not reachable. Using mock data.", err);
+            renderAdminChart(mockAdminData);
+        });
+    } catch (e) {
+        console.warn("Fetch error. Using mock data.", e);
+        renderAdminChart(mockAdminData);
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends 'trader_layout.html' %}
+
+{% block title %}Trader Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold mb-4">Vetrix 1 Trader Dashboard</h1>
+
+<!-- Stat Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-6 col-xl-4">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-robot text-primary fs-1 me-3"></i>
+                    <div>
+                        <h6 class="text-body-secondary mb-1">Vetrix 1 Status</h6>
+                        <h4 class="fw-bold text-success mb-0">
+                            <i class="bi bi-check-circle-fill me-1"></i> Active
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-graph-up-arrow text-success fs-1 me-3"></i>
+                    <div>
+                        <h6 class="text-body-secondary mb-1">Today's P&L</h6>
+                        <h4 class="fw-bold text-success mb-0">+$450.20</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-xl-4">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-file-earmark-text-fill text-warning fs-1 me-3"></i>
+                    <div>
+                        <h6 class="text-body-secondary mb-1">Subscription</h6>
+                        <h4 class="fw-bold mb-0">Profit-Sharing (Active)</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Row -->
+<div class="row g-4">
+    <!-- Left Column: API Connection -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">Broker API Connection</h5>
+            </div>
+            <div class="card-body p-4">
+                <p>Connect your broker account to allow Vetrix 1 to trade.</p>
+                <div class="alert alert-success d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill fs-4 me-3"></i>
+                    <div>
+                        <strong>NinjaTrader:</strong> Connected
+                    </div>
+                </div>
+                
+                <form>
+                    <div class="mb-3">
+                        <label for="broker" class="form-label">Add New Connection</label>
+                        <select class="form-select" id="broker">
+                            <option selected>Choose broker...</option>
+                            <option value="ninjatrader">NinjaTrader</option>
+                            <option value="amp">AMP Broker</option>
+                            <option value="tradovate">Tradovate</option>
+                            <option value="binance">Binance Futures</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apiKey" class="form-label">API Key</label>
+                        <input type="password" class="form-control" id="apiKey" value="**************">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apiSecret" class="form-label">API Secret</label>
+                        <input type="password" class="form-control" id="apiSecret" value="**************">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Connect New Broker</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Live Performance -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">Live Performance (Vetrix 1 on Your Account)</h5>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-body-secondary">Showing live trade data from your connected NinjaTrader account.</p>
+                <!-- Placeholder for a chart -->
+                <div class="text-center p-5 bg-dark-subtle rounded-3">
+                    <i class="bi bi-bar-chart-line-fill fs-1 text-primary"></i>
+                    <p class="mt-3">Live Performance Chart Will Load Here</p>
+                </div>
+
+                <h6 class="fw-bold mt-4">Recent Trades</h6>
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Time</th>
+                                <th scope="col">Instrument</th>
+                                <th scope="col">Side</th>
+                                <th scope="Ccol">Profit/Loss</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11:30 AM</td>
+                                <td>NQ 12-25 (Nasdaq)</td>
+                                <td><span class="text-success">Buy</span></td>
+                                <td class="text-success fw-semibold">+$210.50</td>
+                            </tr>
+                            <tr>
+                                <td>10:15 AM</td>
+                                <td>NQ 12-25 (Nasdaq)</td>
+                                <td><span class="text-danger">Sell</span></td>
+                                <td class="text-danger fw-semibold">-$50.00</td>
+                            </tr>
+                            <tr>
+                                <td>09:45 AM</td>
+                                <td>NQ 12-25 (Nasdaq)</td>
+                                <td><span class="text-success">Buy</span></td>
+                                <td class="text-success fw-semibold">+$290.20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

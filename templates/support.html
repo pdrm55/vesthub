@@ -1,0 +1,91 @@
+{% extends 'dashboard_layout.html' %}
+
+{% block title %}Support Center{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold mb-4">Support Center</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="row g-4">
+    <!-- Left Column: Create Ticket -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">Submit a New Ticket</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" action="{{ url_for('support') }}">
+                    <div class="mb-3">
+                        <label for="supportSubject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="supportSubject" name="subject" placeholder="Brief summary..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="supportCategory" class="form-label">Category</label>
+                        <select class="form-select" id="supportCategory" name="category">
+                            <option value="investment">Investment</option>
+                            <option value="payment">Payment/Deposit</option>
+                            <option value="withdrawal">Withdrawal</option>
+                            <option value="account">Account/KYC</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="supportMessage" class="form-label">Message</label>
+                        <textarea class="form-control" id="supportMessage" name="message" rows="5" placeholder="Describe your issue..." required></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit Ticket</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: My Tickets -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">My Tickets</h5>
+            </div>
+            <div class="list-group list-group-flush">
+                {% for ticket in tickets %}
+                <a href="{{ url_for('ticket_view', ticket_id=ticket.id) }}" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="d-flex align-items-center mb-1">
+                            <h6 class="mb-0 fw-bold me-2">{{ ticket.subject }}</h6>
+                            <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ ticket.category }}</span>
+                        </div>
+                        <small class="text-body-secondary">ID: #{{ ticket.id }} • Last update: {{ ticket.updated_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                    </div>
+                    <div>
+                        {% if ticket.status == 'open' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif ticket.status == 'admin_replied' %}
+                            <span class="badge bg-primary">Answered</span>
+                        {% else %}
+                            <span class="badge bg-success">Closed</span>
+                        {% endif %}
+                        <i class="bi bi-chevron-right ms-2 text-muted"></i>
+                    </div>
+                </a>
+                {% else %}
+                <div class="text-center py-5 text-muted">
+                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                    No tickets found.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

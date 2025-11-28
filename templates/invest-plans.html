@@ -1,0 +1,118 @@
+{% extends 'dashboard_layout.html' %}
+
+{% block title %}Choose Investment Plan{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold mb-2">Choose Your Investment Plan</h1>
+<p class="lead text-body-secondary mb-4">
+    Based on your <strong>{{ current_user.risk_profile.title() }}</strong> risk profile, we have selected the best plans for you.
+</p>
+
+<div class="row g-4">
+    {% for plan in plans %}
+    <div class="col-md-6 col-lg-4">
+        <!-- Add special styling for high value or recommended plans if needed -->
+        <div class="card plan-card h-100 rounded-4 shadow-sm border-0 bg-dark-subtle position-relative">
+            
+            {% if plan.risk_level == 'low' %}
+                <div class="position-absolute top-0 end-0 m-3">
+                    <span class="badge bg-info-subtle text-info-emphasis">Low Risk</span>
+                </div>
+            {% elif plan.risk_level == 'medium' %}
+                <div class="position-absolute top-0 end-0 m-3">
+                    <span class="badge bg-warning-subtle text-warning-emphasis">Medium Risk</span>
+                </div>
+            {% else %}
+                <div class="position-absolute top-0 end-0 m-3">
+                    <span class="badge bg-danger-subtle text-danger-emphasis">High Risk</span>
+                </div>
+            {% endif %}
+
+            <div class="card-body p-4 d-flex flex-column">
+                <h3 class="fw-semibold">{{ plan.name }}</h3>
+                <p class="text-body-secondary mb-4" style="min-height: 48px;">{{ plan.description }}</p>
+                
+                <div class="mb-4">
+                    <h1 class="fw-bold display-4 text-primary">{{ plan.annual_return_rate|int }}%</h1>
+                    <h5 class="text-body-secondary">Annual Return</h5>
+                    <h6 class="fw-normal text-white-50">{{ plan.duration_months }} Months Duration</h6>
+                </div>
+                
+                <div class="mt-auto">
+                    <button class="btn btn-primary w-100 btn-lg" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#investModal"
+                            data-plan-id="{{ plan.id }}"
+                            data-plan-name="{{ plan.name }} ({{ plan.annual_return_rate|int }}% APY)">
+                        Choose Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center py-5">
+        <h4 class="text-muted">No investment plans available for your risk profile at the moment.</h4>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Investment Confirmation Modal -->
+<div class="modal fade" id="investModal" tabindex="-1" aria-labelledby="investModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5" id="investModalLabel">Start Investment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <form method="POST" action="{{ url_for('create_investment') }}">
+                <div class="modal-body p-4">
+                    <p>You have selected:</p>
+                    <h3 class="fw-bold text-primary mb-3" id="modalPlanName">...</h3>
+                    
+                    <input type="hidden" name="plan_id" id="modalPlanId" value="">
+
+                    <div class="mb-3">
+                        <label for="investAmount" class="form-label">Investment Amount</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" name="amount" id="investAmount" placeholder="1000.00" min="100" required>
+                            <span class="input-group-text">USD</span>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            I understand and agree to the terms of this investment plan.
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Investment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        var investModal = document.getElementById('investModal');
+        investModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var planName = button.getAttribute('data-plan-name');
+            var planId = button.getAttribute('data-plan-id');
+            
+            var modalPlanName = investModal.querySelector('#modalPlanName');
+            var modalPlanId = investModal.querySelector('#modalPlanId');
+            
+            modalPlanName.textContent = planName;
+            modalPlanId.value = planId; 
+        });
+    });
+</script>
+{% endblock %}

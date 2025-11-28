@@ -1,0 +1,81 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Manage Ticket #{{ ticket.id }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 fw-bold mb-0">
+        <a href="{{ url_for('admin_support') }}" class="text-decoration-none text-body"><i class="bi bi-arrow-left me-2"></i></a>
+        Ticket #{{ ticket.id }}
+    </h1>
+    <div>
+        {% if ticket.status != 'closed' %}
+        <form method="POST" action="{{ url_for('admin_ticket_view', ticket_id=ticket.id) }}" class="d-inline">
+            <input type="hidden" name="close_ticket" value="true">
+            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-check-circle"></i> Close Ticket</button>
+        </form>
+        {% else %}
+        <span class="badge bg-success fs-6">Closed</span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-4 h-100">
+    <!-- User Info Sidebar -->
+    <div class="col-lg-3">
+        <div class="card shadow-sm rounded-4 mb-3">
+            <div class="card-header bg-dark-subtle p-3"><h6 class="mb-0 fw-bold">User Details</h6></div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Name:</strong> {{ ticket.user.first_name }} {{ ticket.user.last_name }}</p>
+                <p class="mb-1"><strong>Email:</strong> <a href="mailto:{{ ticket.user.email }}">{{ ticket.user.email }}</a></p>
+                <p class="mb-0"><strong>Category:</strong> {{ ticket.category }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="col-lg-9">
+        <div class="card shadow-sm rounded-4" style="height: 70vh;">
+            <div class="card-body p-0 d-flex flex-column h-100">
+                
+                <div class="flex-grow-1 p-4 overflow-auto" style="background-color: #1a1a1a;">
+                    {% for msg in ticket.messages %}
+                        {% if msg.sender_type == 'admin' %}
+                            <!-- Admin Message (Right) -->
+                            <div class="d-flex justify-content-end mb-3">
+                                <div style="max-width: 75%;">
+                                    <div class="bg-primary text-white p-3 rounded-3 rounded-bottom-end-0">
+                                        {{ msg.message }}
+                                    </div>
+                                    <small class="text-muted d-block text-end mt-1">You • {{ msg.timestamp.strftime('%H:%M | %b %d') }}</small>
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- User Message (Left) -->
+                            <div class="d-flex justify-content-start mb-3">
+                                <div style="max-width: 75%;">
+                                    <div class="bg-dark-subtle text-white p-3 rounded-3 rounded-bottom-start-0 border border-secondary">
+                                        {{ msg.message }}
+                                    </div>
+                                    <small class="text-muted d-block mt-1">User • {{ msg.timestamp.strftime('%H:%M | %b %d') }}</small>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                {% if ticket.status != 'closed' %}
+                <div class="p-3 bg-dark-subtle border-top border-secondary">
+                    <form method="POST" action="{{ url_for('admin_ticket_view', ticket_id=ticket.id) }}">
+                        <div class="input-group">
+                            <textarea class="form-control" name="message" rows="2" placeholder="Type reply to user..." required></textarea>
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> Reply</button>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

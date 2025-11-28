@@ -1,0 +1,65 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Support Tickets{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold mb-4">Support Tickets</h1>
+
+<ul class="nav nav-tabs" id="ticketTabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#open">
+            Open Tickets <span class="badge bg-warning text-dark rounded-pill ms-1">{{ open_tickets|length }}</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#closed">Closed History</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <!-- Open Tickets -->
+    <div class="tab-pane fade show active" id="open">
+        <div class="card shadow-sm rounded-4 rounded-top-0 border-top-0">
+            <div class="list-group list-group-flush">
+                {% for ticket in open_tickets %}
+                <a href="{{ url_for('admin_ticket_view', ticket_id=ticket.id) }}" class="list-group-item list-group-item-action py-3">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1 fw-bold">{{ ticket.subject }} <span class="badge bg-secondary-subtle text-secondary-emphasis ms-2">{{ ticket.category }}</span></h6>
+                        <small>{{ ticket.updated_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                    </div>
+                    <p class="mb-1 text-truncate text-secondary">User: {{ ticket.user.email }}</p>
+                    <small class="text-primary">
+                        {% if ticket.status == 'admin_replied' %}
+                            <i class="bi bi-check-all"></i> Replied
+                        {% else %}
+                            <i class="bi bi-exclamation-circle-fill text-warning"></i> Waiting for reply
+                        {% endif %}
+                    </small>
+                </a>
+                {% else %}
+                <div class="p-5 text-center text-muted">No open tickets.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Closed Tickets -->
+    <div class="tab-pane fade" id="closed">
+        <div class="card shadow-sm rounded-4 rounded-top-0 border-top-0">
+            <div class="list-group list-group-flush">
+                {% for ticket in closed_tickets %}
+                <a href="{{ url_for('admin_ticket_view', ticket_id=ticket.id) }}" class="list-group-item list-group-item-action py-3 opacity-75">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">{{ ticket.subject }}</h6>
+                        <small>Closed: {{ ticket.updated_at.strftime('%Y-%m-%d') }}</small>
+                    </div>
+                    <small class="text-muted">User: {{ ticket.user.email }}</small>
+                </a>
+                {% else %}
+                <div class="p-5 text-center text-muted">No closed tickets.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

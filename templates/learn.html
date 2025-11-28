@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}VestHub - Why Investing is Essential{% endblock %}
+
+{% block content %}
+
+<!-- Section 1: Hero (H1 + Sub-headline + Graphic) -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <!-- H1 / Main Headline -->
+                <h1 class="display-4 fw-bold mb-4">Investing: The Ultimate Insurance for Your Financial Future</h1>
+                <!-- Sub-headline / Opening Paragraph: The Problem -->
+                <p class="lead text-body-secondary mb-3">In a world of economic uncertainty, holding cash in a bank account means your purchasing power is quietly eroding. Saving is an excellent first step, but it isn't enough.</p>
+                <p class="lead">Inflation is the silent, consistent force that diminishes the value of your hard-earned money. Investing is the critical bridge between "saving" and "building wealth." It is an active strategy to protect and grow your future.</p>
+            </div>
+            <div class="col-lg-6">
+                <!-- UPDATED: Placeholder replaced with your new hero graphic -->
+                <img src="{{ url_for('static', filename='images/invest-hero-graphic.png') }}" class="img-fluid rounded-4 shadow-lg" alt="Abstract graphic showing financial security">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: Why Investing Is a Necessity (The 4 Benefits) -->
+<section class="py-5 bg-dark-subtle text-body-emphasis">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Why Investing Is No Longer a Choice, But a Necessity</h2>
+        <p class="lead text-center col-lg-8 mx-auto mb-5">We believe that smart investing is the cornerstone of future financial independence. Here’s why it is essential:</p>
+
+        <div class="row g-4">
+            <!-- Benefit 1: Shield Against Inflation -->
+            <div class="col-md-6">
+                <div class="card h-100 p-4 rounded-4 shadow-sm">
+                    <div class="card-body d-flex align-items-start">
+                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <img src="{{ url_for('static', filename='images/invest-icon-inflation.png') }}" class="feature-icon-img me-4" alt="Inflation Shield Graphic">
+                        <div>
+                            <h3 class="fw-semibold mb-3">1. Your Shield Against Inflation</h3>
+                            <p>This is the most straightforward reason. If your money isn't growing, it's losing. The primary goal of investing is to outpace inflation, ensuring that 10, 20, or 30 years from now, your money has the same—or more—buying power than it does today.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefit 2: Insurance for Unexpected -->
+            <div class="col-md-6">
+                <div class="card h-100 p-4 rounded-4 shadow-sm">
+                    <div class="card-body d-flex align-items-start">
+                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <img src="{{ url_for('static', filename='images/invest-icon-insurance.png') }}" class="feature-icon-img me-4" alt="Safety Net Graphic">
+                        <div>
+                            <h3 class="fw-semibold mb-3">2. Your "Insurance" for the Unexpected</h3>
+                            <p>A strong investment portfolio acts as your financial "insurance policy." It is a far more effective and robust emergency fund that gives you the flexibility to navigate financial challenges without extreme stress or being forced into hasty, poor decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefit 3: Engine for Goals -->
+            <div class="col-md-6">
+                <div class="card h-100 p-4 rounded-4 shadow-sm">
+                    <div class="card-body d-flex align-items-start">
+                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <img src="{{ url_for('static', filename='images/invest-icon-goals.png') }}" class="feature-icon-img me-4" alt="Life Goals Graphic">
+                        <div>
+                            <h3 class="fw-semibold mb-3">3. The Engine for Your Major Goals</h3>
+                            <p>We all have dreams: buying a home, funding a child's education, or enjoying a comfortable retirement. Investing is the engine that puts a realistic timeline on those dreams and transforms "saving" from a passive habit into an active strategy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefit 4: Compound Interest -->
+            <div class="col-md-6">
+                <div class="card h-100 p-4 rounded-4 shadow-sm">
+                    <div class="card-body d-flex align-items-start">
+                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <img src="{{ url_for('static', filename='images/invest-icon-compounding.png') }}" class="feature-icon-img me-4" alt="Compounding Graphic">
+                        <div>
+                            <h3 class="fw-semibold mb-3">4. The Power of Compound Interest</h3>
+                            <p>Albert Einstein called it the "eighth wonder of the world." You don’t just earn returns on your original money; you earn returns *on your returns*. This "snowball" effect is the difference between a small savings pot and significant wealth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3: The Solution ("How it Works") -->
+<section class="py-5">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-3">"But Isn't Investing Complicated and Stressful?"</h2>
+                <p class="lead text-body-secondary mb-4">This is where VestHub comes in. We understand that not everyone has the time, the technical knowledge, or the desire to become a full-time professional trader. That is precisely why we created our Managed Investment Service.</p>
+                <p class="lead">We take the complexity out of the equation. Our expert team and our intelligent algorithms do the heavy lifting for you.</p>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <h2 class="fw-bold mb-5">How it Works: Simple & Secure</h2>
+        
+        <!-- UPDATED: Replaced the 3-column icons with your single infographic -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <img src="{{ url_for('static', filename='images/invest-how-it-works.png') }}" class="img-fluid rounded-4 shadow" alt="How VestHub Managed Investing Works Infographic">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Section 4: Final Call to Action -->
+<section class="py-5 bg-primary text-white text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-3">It is the simplest way to gain all the benefits of investing without any of the stress.</h2>
+                <!-- UPDATED: href changed to public 'plans' route -->
+                <a href="{{ url_for('plans') }}" class="btn btn-light btn-lg fw-bold px-5 mt-3">View Our Managed Investment Plans</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

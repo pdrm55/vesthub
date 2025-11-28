@@ -1,0 +1,39 @@
+{% extends 'auth_layout.html' %}
+
+{% block title %}Admin Portal - VestHub{% endblock %}
+
+{% block content %}
+    <h2 class="text-center fw-bold mb-4">Admin Portal</h2>
+    <p class="text-center text-body-secondary mb-4">Please log in to manage the platform.</p>
+
+    <!-- Flash Messages Area -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Email/Pass Form -->
+    <!-- UPDATED: Added method="POST" and action -->
+    <form method="POST" action="{{ url_for('admin_login') }}">
+        <div class="mb-3">
+            <label for="email" class="form-label">Admin Email</label>
+            <!-- UPDATED: Added name="email" -->
+            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="admin@vesthub.com" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <!-- UPDATED: Added name="password" -->
+            <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+        </div>
+        <div class="d-grid mt-4">
+            <!-- UPDATED: Changed from <a> to <button type="submit"> -->
+            <button type="submit" class="btn btn-primary btn-lg">Log In</button>
+        </div>
+    </form>
+{% endblock %}

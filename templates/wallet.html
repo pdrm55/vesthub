@@ -1,0 +1,90 @@
+{% extends 'dashboard_layout.html' %}
+
+{% block title %}My Payout Wallet{% endblock %}
+
+{% block content %}
+<h1 class="h2 fw-bold mb-4">My Payout Wallet</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="row g-4">
+    <!-- Left Column: Current Wallet & Security Note -->
+    <div class="col-lg-7">
+        <!-- Current Wallet Card -->
+        <div class="card shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">Current Payout Wallet</h5>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-body-secondary">This is the wallet address where all your withdrawals will be sent. Please double-check it for accuracy.</p>
+                
+                <h6 class="text-body-secondary mb-1">Wallet Type:</h6>
+                <!-- UPDATED: Show database value or default message -->
+                <p class="fs-5">{{ current_user.wallet_network if current_user.wallet_network else 'Not Set' }}</p>
+
+                <h6 class="text-body-secondary mb-1">Wallet Address:</h6>
+                <!-- UPDATED: Show database value or default message -->
+                {% if current_user.wallet_address %}
+                    <code class="d-block text-break mb-3 fs-5">{{ current_user.wallet_address }}</code>
+                {% else %}
+                    <p class="text-warning mb-3">No wallet address configured yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Security Note -->
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-shield-lock-fill fs-4 me-3"></i>
+            <div>
+                <strong>Security Policy:</strong> For your protection, all withdrawals will be temporarily disabled for 24 hours after changing your wallet address.
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Update Wallet Form -->
+    <div class="col-lg-5">
+        <div class="card shadow-sm rounded-4">
+            <div class="card-header bg-dark-subtle p-3">
+                <h5 class="fw-bold mb-0">Update Wallet Address</h5>
+            </div>
+            <div class="card-body p-4">
+                <!-- UPDATED: Form Action and Method -->
+                <form method="POST" action="{{ url_for('wallet') }}">
+                    <div class="mb-3">
+                        <label for="walletType" class="form-label">Wallet Type</label>
+                        <!-- UPDATED: Added name attribute & Changed Options -->
+                        <select class="form-select" id="walletType" name="wallet_type">
+                            <option value="TRC-20 (USDT)" selected>USDT (TRC-20)</option>
+                            <option value="ERC-20 (USDT)">USDT (ERC-20)</option>
+                            <!-- Changed Bitcoin to BEP-20 -->
+                            <option value="BEP-20 (USDT)">USDT (BEP-20)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="walletAddress" class="form-label">New Wallet Address</label>
+                        <!-- UPDATED: Added name attribute -->
+                        <input type="text" class="form-control" id="walletAddress" name="wallet_address" required>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <label for="2fa_code" class="form-label">Security Confirmation (2FA Code)</label>
+                        <input type="text" class="form-control" id="2fa_code" name="2fa_code" placeholder="Enter your 6-digit 2FA code" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Save New Wallet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
