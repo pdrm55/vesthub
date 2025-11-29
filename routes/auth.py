@@ -12,6 +12,11 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Handles user login.
+    - Redirects authenticated users to the dashboard.
+    - On POST, validates credentials, checks for email verification and 2FA, then logs the user in.
+    """
     if current_user.is_authenticated: 
         return redirect(url_for('user.dashboard'))
     
@@ -22,19 +27,22 @@ def login():
         
         if user and check_password_hash(user.password, password):
             # 1. Check email verification
+            # If the user's email is not verified, redirect them to the verification page.
             if not user.is_email_verified:
                 session['unverified_user_id'] = user.id
                 return redirect(url_for('auth.verify_email'))
             
             # 2. Check 2FA
+            # If 2FA is enabled, redirect to the 2FA verification page.
             if user.is_2fa_enabled:
                 session['2fa_user_id'] = user.id
                 return redirect(url_for('auth.verify_2fa_login'))
             
-            # Successful login
+            # If all checks pass, log the user in.
             login_user(user)
             log_admin_activity('Login', 'User logged in via standard form')
             
+            # Redirect admins to the admin dashboard, others to the user dashboard.
             if user.role.name == 'Admin' or user.role.permissions:
                 return redirect(url_for('admin.dashboard'))
             return redirect(url_for('user.dashboard'))
@@ -45,6 +53,11 @@ def login():
 
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """
+    Handles user registration.
+    - Redirects authenticated users to the dashboard.
+    - On POST, validates user input, creates a new user, and sends a verification email.
+    """
     if current_user.is_authenticated: 
         return redirect(url_for('user.dashboard'))
     
@@ -55,6 +68,7 @@ def signup():
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         
+        # Validation checks
         if User.query.filter_by(email=email).first():
             flash('Email already exists.', 'warning')
             return redirect(url_for('auth.signup'))
@@ -67,14 +81,14 @@ def signup():
             flash('Password is too weak. (Must include uppercase, number, and special character)', 'danger')
             return redirect(url_for('auth.signup'))
 
-        # Set default role
+        # Assign the default 'Investor' role to the new user.
         role_investor = Role.query.filter_by(name='Investor').first()
         if not role_investor:
             role_investor = None
 
         ver_code = ''.join(random.choices(string.digits, k=6))
         
-        # Check referral code
+        # Handle referral code from form input or session.
         ref_code = request.form.get('referral_code') or session.get('ref_code')
         referrer_id = None
         if ref_code:
@@ -82,6 +96,7 @@ def signup():
             if ref_user: 
                 referrer_id = ref_user.id
 
+        # Create a new User object.
         new_user = User(
             email=email, 
             password=generate_password_hash(password, method='pbkdf2:sha256'),
@@ -95,9 +110,11 @@ def signup():
             email_verification_code=ver_code
         )
         
+        # Add user to the database and send verification email.
         db.session.add(new_user)
         db.session.commit()
         
+        # Store user ID in session to proceed with email verification.
         send_system_email("Verify Account", email, f"Your Code: {ver_code}")
         session['unverified_user_id'] = new_user.id
         return redirect(url_for('auth.verify_email'))
@@ -106,6 +123,11 @@ def signup():
 
 @auth_bp.route('/verify-email', methods=['GET', 'POST'])
 def verify_email():
+    """
+    Handles email verification using a 6-digit code.
+    - Requires 'unverified_user_id' in the session.
+    - On POST, validates the code, marks the user as verified, and logs them in.
+    """
     if 'unverified_user_id' not in session: 
         return redirect(url_for('auth.login'))
     
@@ -123,6 +145,11 @@ def verify_email():
 
 @auth_bp.route('/verify-2fa-login', methods=['GET', 'POST'])
 def verify_2fa_login():
+    """
+    Handles 2FA verification during login.
+    - Requires '2fa_user_id' in the session.
+    - On POST, validates the TOTP code and logs the user in.
+    """
     if '2fa_user_id' not in session: 
         return redirect(url_for('auth.login'))
     
@@ -140,10 +167,12 @@ def verify_2fa_login():
 @auth_bp.route('/logout')
 @login_required
 def logout(): 
+    """Logs the current user out."""
     logout_user()
     flash('You have been logged out successfully.', 'info')
     return redirect(url_for('auth.login'))
 
 @auth_bp.route('/forgot-password')
 def forgot_password(): 
+    """Renders the 'Forgot Password' page (functionality to be implemented)."""
     return render_template('forgot-password.html')

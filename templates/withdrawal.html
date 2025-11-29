@@ -3,8 +3,10 @@
 {% block title %}Request Withdrawal{% endblock %}
 
 {% block content %}
+<!-- Page Header -->
 <h1 class="h2 fw-bold mb-4">Request Withdrawal</h1>
 
+<!-- Flash Messages Area -->
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
@@ -19,13 +21,13 @@
 <div class="row g-4">
     <!-- Left Column: Available Funds -->
     <div class="col-lg-5">
-        <!-- Available Profits -->
+        <!-- Card: Available Profits for Withdrawal -->
         <div class="card shadow-sm rounded-4 mb-4">
             <div class="card-body p-4">
                 <h6 class="text-body-secondary mb-1">Available for Withdrawal (Profits)</h6>
                 <h2 class="fw-bold text-success mb-0">${{ "{:,.2f}".format(available_balance) }}</h2>
                 
-                <!-- DEBUG TOOL FOR DEMO -->
+                <!-- Demo Tool: For testing purposes to add fake profit -->
                 <div class="mt-3 pt-3 border-top">
                     <small class="text-muted d-block mb-2">Demo Tool:</small>
                     <a href="{{ url_for('add_test_profit') }}" class="btn btn-sm btn-outline-secondary">
@@ -35,7 +37,7 @@
             </div>
         </div>
 
-        <!-- Locked Principal -->
+        <!-- Card: Locked Principal in Active Investments -->
         <div class="card shadow-sm rounded-4">
             <div class="card-body p-4">
                 <h6 class="text-body-secondary mb-1">Locked (Active Investments)</h6>
@@ -52,8 +54,10 @@
                 <h5 class="fw-bold mb-0">New Withdrawal Request</h5>
             </div>
             <div class="card-body p-4">
+                <!-- Withdrawal Form -->
                 <form method="POST" action="{{ url_for('user.withdrawal') }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    {{ form.hidden_tag() if form else '<input type="hidden" name="csrf_token" value="' + csrf_token() + '">' | safe }}
+                    <!-- Step 1: Select Fund Type -->
                     <div class="mb-3">
                         <label for="withdrawalType" class="form-label">1. Select Fund Type</label>
                         <select class="form-select" id="withdrawalType" name="type">
@@ -61,6 +65,7 @@
                             <option value="principal" disabled>Withdraw Principal (Contact Support)</option>
                         </select>
                     </div>
+                    <!-- Step 2: Enter Amount -->
                     <div class="mb-3">
                         <label for="withdrawalAmount" class="form-label">2. Enter Amount</label>
                         <div class="input-group">
@@ -69,6 +74,7 @@
                         </div>
                         <div class="form-text">Max available: ${{ "{:,.2f}".format(available_balance) }}</div>
                     </div>
+                    <!-- Step 3: Confirm Payout Wallet -->
                     <div class="mb-3">
                         <label class="form-label">3. Confirm Payout Wallet</label>
                         <div class="alert alert-secondary mb-0">
@@ -76,6 +82,7 @@
                             <a href="{{ url_for('user.wallet') }}" class="small">Manage Wallet</a>
                         </div>
                     </div>
+                    <!-- Submit Button -->
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg" {% if available_balance <= 0 %}disabled{% endif %}>
                             Submit Withdrawal Request
@@ -95,6 +102,7 @@
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-dark table-striped mb-0">
+                <!-- Table Headers -->
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -103,13 +111,16 @@
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
+                <!-- Table Body -->
                 <tbody>
+                    <!-- Loop through withdrawal history records -->
                     {% for tx in history %}
                     <tr>
                         <td>{{ tx.timestamp.strftime('%Y-%m-%d') }}</td>
                         <td class="text-danger fw-semibold">-${{ "{:,.2f}".format(tx.amount) }}</td>
                         <td>Profit</td>
                         <td>
+                            <!-- Display status badge based on transaction status -->
                             {% if tx.status == 'completed' %}
                                 <span class="badge bg-success-subtle text-success-emphasis">Completed</span>
                             {% elif tx.status == 'pending' %}
@@ -119,6 +130,7 @@
                             {% endif %}
                         </td>
                     </tr>
+                    <!-- Message shown if no history is found -->
                     {% else %}
                     <tr>
                         <td colspan="4" class="text-center py-4 text-body-secondary">No withdrawal history found.</td>

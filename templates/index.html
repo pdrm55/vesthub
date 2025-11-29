@@ -2,13 +2,14 @@
 
 {% block content %}
 
-<!-- Section 1: Hero Section -->
+<!-- Hero Section -->
 <header class="hero-section text-white">
     <div class="container text-center py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
                 <h1 class="display-3 fw-bold mb-4">Intelligent Trading. Automated.</h1>
                 <p class="lead mb-4">Access a new generation of trading bots and analytical tools, or let our AI manage your portfolio.</p>
+                <!-- Call to Action Buttons -->
                 <div>
                     <a href="{{ url_for('main.marketplace') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">Explore the Marketplace</a>
                     <!-- Link redirects to plans section or signup -->
@@ -19,7 +20,7 @@
     </div>
 </header>
 
-<!-- Section 2: Investment Plans (Dynamic) -->
+<!-- Investment Plans Section -->
 <section class="py-5">
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -29,12 +30,14 @@
             </div>
         </div>
 
+        <!-- Plans Grid -->
         <div class="row g-4 justify-content-center">
+            <!-- Loop through available investment plans -->
             {% for plan in plans %}
             <div class="col-md-6 col-lg-4">
                 <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative">
                     
-                    <!-- Risk Level Badges -->
+                    <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
                     {% if plan.risk_level == 'low' %}
                         <div class="position-absolute top-0 end-0 m-3">
                             <span class="badge bg-info-subtle text-info-emphasis">Low Risk</span>
@@ -49,6 +52,7 @@
                         </div>
                     {% endif %}
 
+                    <!-- Card Body with Plan Details -->
                     <div class="card-body p-4 d-flex flex-column">
                         <h3 class="fw-semibold">{{ plan.name }}</h3>
                         <p class="text-body-secondary mb-4" style="min-height: 48px;">{{ plan.description }}</p>
@@ -60,7 +64,7 @@
                         </div>
                         
                         <div class="mt-auto">
-                            <!-- Redirects to Signup to start investing -->
+                            <!-- Call to Action Button: Directs users to the signup page -->
                             <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">
                                 Choose Plan & Sign Up
                             </a>
@@ -68,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Fallback message if no plans are available -->
             {% else %}
             <div class="col-12 text-center py-5">
                 <h4 class="text-muted">No investment plans available at the moment.</h4>
@@ -77,7 +82,7 @@
     </div>
 </section>
 
-<!-- Section 3: Product Offering (The 2 Paths) -->
+<!-- Product Offering Section (Two Paths) -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
         <div class="row g-4 align-items-stretch">
@@ -111,7 +116,7 @@
     </div>
 </section>
 
-<!-- Section 4: Trust Bar -->
+<!-- Trust Bar Section -->
 <section class="py-5">
     <div class="container">
         <div class="row text-center g-4">
@@ -134,10 +139,11 @@
     </div>
 </section>
 
-<!-- Section 5: Core Features -->
+<!-- Core Features Section -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">A Platform Built for Performance</h2>
+        <!-- Features Grid -->
         <div class="row g-4">
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
@@ -171,7 +177,7 @@
     </div>
 </section>
 
-<!-- Section 6: Final Call to Action -->
+<!-- Final Call to Action Section -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
         <div class="row justify-content-center">

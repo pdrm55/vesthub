@@ -12,15 +12,21 @@ admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 @admin_bp.route('/dashboard')
 @login_required
 def dashboard():
+    """Renders the main admin dashboard."""
     if not current_user.role: 
         return redirect(url_for('main.home'))
     return render_template('admin_dashboard.html')
 
 # --- Role Management ---
+
 @admin_bp.route('/roles', methods=['GET', 'POST'])
 @login_required
 @permission_required('manage_roles')
 def roles():
+    """
+    Manages user roles and their permissions.
+    - On POST, creates a new role with the selected permissions.
+    """
     PERMISSIONS = {
         'manage_users': 'Manage Users',
         'manage_plans': 'Manage Plans',
@@ -34,6 +40,7 @@ def roles():
         'view_logs': 'View Logs'
     }
     
+    # Handle form submission for creating a new role.
     if request.method == 'POST':
         name = request.form.get('name')
         desc = request.form.get('description')
@@ -52,6 +59,7 @@ def roles():
 @login_required
 @permission_required('manage_roles')
 def edit_role(role_id):
+    """Edits an existing role's name, description, and permissions."""
     role = Role.query.get_or_404(role_id)
     if role.name == 'Admin':
         flash('Super Admin role cannot be edited.', 'warning')
@@ -69,6 +77,7 @@ def edit_role(role_id):
 @login_required
 @permission_required('manage_roles')
 def delete_role(role_id):
+    """Deletes a role if it's not a system role and has no assigned users."""
     role = Role.query.get_or_404(role_id)
     if role.name == 'Admin' or role.users:
         flash('This role cannot be deleted (system role or has users).', 'danger')
@@ -80,16 +89,19 @@ def delete_role(role_id):
     return redirect(url_for('admin.roles'))
 
 # --- User Management ---
+
 @admin_bp.route('/users')
 @login_required
 @permission_required('manage_users')
 def users():
+    """Displays a list of all users for management."""
     return render_template('admin_users.html', users=User.query.all(), roles=Role.query.all())
 
 @admin_bp.route('/users/change-role/<int:user_id>', methods=['POST'])
 @login_required
 @permission_required('manage_users')
 def change_role(user_id):
+    """Changes the role of a specific user."""
     user = User.query.get_or_404(user_id)
     if user.id == current_user.id:
         flash('You cannot change your own role.', 'warning')
@@ -101,16 +113,19 @@ def change_role(user_id):
     return redirect(url_for('admin.users'))
 
 # --- Finance ---
+
 @admin_bp.route('/payments')
 @login_required
 @permission_required('manage_payments')
 def payments():
+    """Displays all deposit transactions for approval or rejection."""
     return render_template('admin_payments.html', payments=Transaction.query.filter_by(type='deposit').order_by(Transaction.timestamp.desc()).all())
 
 @admin_bp.route('/payments/approve/<int:tx_id>', methods=['POST'])
 @login_required
 @permission_required('manage_payments')
 def approve_payment(tx_id):
+    """Approves a pending deposit transaction."""
     tx = db.session.get(Transaction, tx_id)
     if tx and tx.status == 'pending':
         tx.status = 'completed'
@@ -123,6 +138,7 @@ def approve_payment(tx_id):
 @login_required
 @permission_required('manage_payments')
 def reject_payment(tx_id):
+    """Rejects a pending deposit transaction."""
     tx = db.session.get(Transaction, tx_id)
     if tx and tx.status == 'pending':
         tx.status = 'rejected'
@@ -135,12 +151,14 @@ def reject_payment(tx_id):
 @login_required
 @permission_required('manage_withdrawals')
 def withdrawals():
+    """Displays all withdrawal requests for approval or rejection."""
     return render_template('admin_withdrawals.html', requests=Transaction.query.filter_by(type='withdrawal').order_by(Transaction.timestamp.desc()).all())
 
 @admin_bp.route('/withdrawals/approve/<int:tx_id>', methods=['POST'])
 @login_required
 @permission_required('manage_withdrawals')
 def approve_withdrawal(tx_id):
+    """Approves a pending withdrawal request."""
     tx = db.session.get(Transaction, tx_id)
     if tx:
         tx.status = 'completed'
@@ -153,6 +171,7 @@ def approve_withdrawal(tx_id):
 @login_required
 @permission_required('manage_withdrawals')
 def reject_withdrawal(tx_id):
+    """Rejects a pending withdrawal request."""
     tx = db.session.get(Transaction, tx_id)
     if tx:
         tx.status = 'rejected'
@@ -162,10 +181,12 @@ def reject_withdrawal(tx_id):
     return redirect(url_for('admin.withdrawals'))
 
 # --- KYC ---
+
 @admin_bp.route('/kyc')
 @login_required
 @permission_required('manage_kyc')
 def kyc():
+    """Displays pending and historical KYC requests for review."""
     pending = KYCRequest.query.filter_by(status='pending').all()
     history = KYCRequest.query.filter(KYCRequest.status != 'pending').order_by(KYCRequest.submitted_at.desc()).limit(50).all()
     return render_template('admin_kyc.html', pending=pending, history=history)
@@ -174,6 +195,7 @@ def kyc():
 @login_required
 @permission_required('manage_kyc')
 def approve_kyc(req_id):
+    """Approves a KYC request and updates the user's KYC status."""
     req = db.session.get(KYCRequest, req_id)
     req.status = 'approved'
     req.user.kyc_status = 'verified'
@@ -185,6 +207,7 @@ def approve_kyc(req_id):
 @login_required
 @permission_required('manage_kyc')
 def reject_kyc(req_id):
+    """Rejects a KYC request and updates the user's KYC status."""
     req = db.session.get(KYCRequest, req_id)
     req.status = 'rejected'
     req.user.kyc_status = 'rejected'
@@ -193,10 +216,12 @@ def reject_kyc(req_id):
     return redirect(url_for('admin.kyc'))
 
 # --- Support ---
+
 @admin_bp.route('/support')
 @login_required
 @permission_required('manage_tickets')
 def support():
+    """Displays all support tickets for management."""
     tickets = Ticket.query.order_by(Ticket.updated_at.desc()).all()
     return render_template('admin_support.html', open_tickets=tickets, closed_tickets=[])
 
@@ -204,7 +229,9 @@ def support():
 @login_required
 @permission_required('manage_tickets')
 def ticket_view(ticket_id):
+    """Displays a single support ticket and allows an admin to reply."""
     ticket = Ticket.query.get_or_404(ticket_id)
+    # Handle admin's reply to the ticket.
     if request.method == 'POST':
         db.session.add(TicketMessage(
             ticket_id=ticket.id, 
@@ -218,10 +245,12 @@ def ticket_view(ticket_id):
     return render_template('admin_support_view.html', ticket=ticket)
 
 # --- Settings & Plans ---
+
 @admin_bp.route('/settings', methods=['GET', 'POST'])
 @login_required
 @permission_required('manage_settings')
 def settings():
+    """Manages system-wide settings like wallet addresses and referral percentages."""
     if request.method == 'POST':
         for k in ['wallet_trc20', 'bank_details', 'referral_percentage']:
             set_setting(k, request.form.get(k))
@@ -233,8 +262,9 @@ def settings():
 @login_required
 @permission_required('manage_plans')
 def plans():
+    """Manages investment plans (create, edit, activate, deactivate)."""
     if request.method == 'POST':
-        # Using Decimal for rates
+        # Ensure financial rates are handled as Decimal for precision.
         rate = Decimal(request.form.get('rate', 10))
         
         db.session.add(InvestmentPlan(
@@ -253,6 +283,7 @@ def plans():
 @login_required
 @permission_required('manage_plans')
 def deactivate_plan(plan_id):
+    """Deactivates a plan, making it unavailable for new investments."""
     plan = InvestmentPlan.query.get_or_404(plan_id)
     plan.is_active = False
     db.session.commit()
@@ -264,6 +295,7 @@ def deactivate_plan(plan_id):
 @login_required
 @permission_required('manage_plans')
 def activate_plan(plan_id):
+    """Reactivates a previously deactivated plan."""
     plan = InvestmentPlan.query.get_or_404(plan_id)
     plan.is_active = True
     db.session.commit()
@@ -275,6 +307,7 @@ def activate_plan(plan_id):
 @login_required
 @permission_required('manage_plans')
 def delete_plan(plan_id):
+    """Deletes a plan if it has no associated investments."""
     plan = InvestmentPlan.query.get_or_404(plan_id)
     if plan.investments:
         flash('Cannot delete a plan that has active investments. Deactivate it instead.', 'warning')
@@ -289,11 +322,11 @@ def delete_plan(plan_id):
 @login_required
 @permission_required('manage_plans')
 def edit_plan(plan_id):
+    """Edits the details of an existing investment plan."""
     plan = InvestmentPlan.query.get_or_404(plan_id)
     
     plan.name = request.form.get('name')
     plan.duration_months = int(request.form.get('duration'))
-    # Use Decimal
     plan.annual_return_rate = Decimal(request.form.get('rate'))
     plan.description = request.form.get('description')
     plan.risk_level = request.form.get('risk_level')
@@ -304,11 +337,14 @@ def edit_plan(plan_id):
     return redirect(url_for('admin.plans'))
 
 # =========================================
+# --- Auditing and Accounting Routes ---
+# =========================================
 
 @admin_bp.route('/logs')
 @login_required
 @permission_required('view_logs')
 def logs():
+    """Displays the audit log of admin activities."""
     logs = AuditLog.query.order_by(AuditLog.timestamp.desc()).limit(100).all()
     return render_template('admin_logs.html', logs=logs)
 
@@ -316,13 +352,14 @@ def logs():
 @login_required
 @permission_required('view_ledger')
 def accounting():
+    """Displays a ledger of all transactions in the system."""
     return render_template('admin_accounting.html', transactions=Transaction.query.order_by(Transaction.timestamp.desc()).limit(200).all())
 
-# Test Route
 @admin_bp.route('/test/distribute-profit', methods=['POST'])
 @login_required
 @permission_required('manage_settings')
 def distribute_test_profit():
+    """A test route to manually trigger the profit distribution background task."""
     count = run_profit_distribution(current_app._get_current_object())
     log_admin_activity('Distribute Profit', f'Manual run: {count} payouts')
     flash(f'Manual profit distribution completed. {count} payouts.', 'success')

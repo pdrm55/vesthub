@@ -3,6 +3,7 @@
 {% block title %}Investment Plans - VestHub{% endblock %}
 
 {% block content %}
+<!-- Page Header -->
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 text-center">
@@ -11,13 +12,14 @@
         </div>
     </div>
 
+    <!-- Plans Grid -->
     <div class="row g-4">
+        <!-- Loop through available investment plans -->
         {% for plan in plans %}
         <div class="col-md-6 col-lg-4">
-            <!-- Updated Card Style matching invest-plans.html -->
+            <!-- Plan Card -->
             <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative">
-                
-                <!-- Risk Badges -->
+                <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
                 {% if plan.risk_level == 'low' %}
                     <div class="position-absolute top-0 end-0 m-3">
                         <span class="badge bg-info-subtle text-info-emphasis">Low Risk</span>
@@ -32,6 +34,7 @@
                     </div>
                 {% endif %}
 
+                <!-- Card Body with Plan Details -->
                 <div class="card-body p-4 d-flex flex-column">
                     <h3 class="fw-semibold">{{ plan.name }}</h3>
                     <p class="text-body-secondary mb-4" style="min-height: 48px;">{{ plan.description }}</p>
@@ -43,7 +46,7 @@
                     </div>
                     
                     <div class="mt-auto">
-                        <!-- Public Button -> Redirects to Signup -->
+                        <!-- Call to Action Button: Directs users to the signup page -->
                         <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">
                             Choose Plan & Sign Up
                         </a>
@@ -51,6 +54,7 @@
                 </div>
             </div>
         </div>
+        <!-- Fallback message if no plans are available -->
         {% else %}
         <div class="col-12 text-center py-5">
             <h4 class="text-muted">No investment plans available at the moment.</h4>

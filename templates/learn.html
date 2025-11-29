@@ -4,26 +4,26 @@
 
 {% block content %}
 
-<!-- Section 1: Hero (H1 + Sub-headline + Graphic) -->
+<!-- Hero Section -->
 <section class="py-5">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <!-- H1 / Main Headline -->
+                <!-- Main Headline -->
                 <h1 class="display-4 fw-bold mb-4">Investing: The Ultimate Insurance for Your Financial Future</h1>
-                <!-- Sub-headline / Opening Paragraph: The Problem -->
+                <!-- Introductory Paragraph explaining the problem (inflation) -->
                 <p class="lead text-body-secondary mb-3">In a world of economic uncertainty, holding cash in a bank account means your purchasing power is quietly eroding. Saving is an excellent first step, but it isn't enough.</p>
                 <p class="lead">Inflation is the silent, consistent force that diminishes the value of your hard-earned money. Investing is the critical bridge between "saving" and "building wealth." It is an active strategy to protect and grow your future.</p>
             </div>
             <div class="col-lg-6">
-                <!-- UPDATED: Placeholder replaced with your new hero graphic -->
+                <!-- Hero Graphic -->
                 <img src="{{ url_for('static', filename='images/invest-hero-graphic.png') }}" class="img-fluid rounded-4 shadow-lg" alt="Abstract graphic showing financial security">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Section 2: Why Investing Is a Necessity (The 4 Benefits) -->
+<!-- Benefits Section -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">Why Investing Is No Longer a Choice, But a Necessity</h2>
@@ -34,7 +34,7 @@
             <div class="col-md-6">
                 <div class="card h-100 p-4 rounded-4 shadow-sm">
                     <div class="card-body d-flex align-items-start">
-                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <!-- Benefit Icon -->
                         <img src="{{ url_for('static', filename='images/invest-icon-inflation.png') }}" class="feature-icon-img me-4" alt="Inflation Shield Graphic">
                         <div>
                             <h3 class="fw-semibold mb-3">1. Your Shield Against Inflation</h3>
@@ -48,7 +48,7 @@
             <div class="col-md-6">
                 <div class="card h-100 p-4 rounded-4 shadow-sm">
                     <div class="card-body d-flex align-items-start">
-                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <!-- Benefit Icon -->
                         <img src="{{ url_for('static', filename='images/invest-icon-insurance.png') }}" class="feature-icon-img me-4" alt="Safety Net Graphic">
                         <div>
                             <h3 class="fw-semibold mb-3">2. Your "Insurance" for the Unexpected</h3>
@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <div class="card h-100 p-4 rounded-4 shadow-sm">
                     <div class="card-body d-flex align-items-start">
-                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <!-- Benefit Icon -->
                         <img src="{{ url_for('static', filename='images/invest-icon-goals.png') }}" class="feature-icon-img me-4" alt="Life Goals Graphic">
                         <div>
                             <h3 class="fw-semibold mb-3">3. The Engine for Your Major Goals</h3>
@@ -76,7 +76,7 @@
             <div class="col-md-6">
                 <div class="card h-100 p-4 rounded-4 shadow-sm">
                     <div class="card-body d-flex align-items-start">
-                        <!-- UPDATED: Icon replaced with your graphic -->
+                        <!-- Benefit Icon -->
                         <img src="{{ url_for('static', filename='images/invest-icon-compounding.png') }}" class="feature-icon-img me-4" alt="Compounding Graphic">
                         <div>
                             <h3 class="fw-semibold mb-3">4. The Power of Compound Interest</h3>
@@ -89,7 +89,7 @@
     </div>
 </section>
 
-<!-- Section 3: The Solution ("How it Works") -->
+<!-- "How It Works" Section -->
 <section class="py-5">
     <div class="container text-center">
         <div class="row justify-content-center">
@@ -104,7 +104,7 @@
 
         <h2 class="fw-bold mb-5">How it Works: Simple & Secure</h2>
         
-        <!-- UPDATED: Replaced the 3-column icons with your single infographic -->
+        <!-- "How It Works" Infographic -->
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <img src="{{ url_for('static', filename='images/invest-how-it-works.png') }}" class="img-fluid rounded-4 shadow" alt="How VestHub Managed Investing Works Infographic">
@@ -114,13 +114,13 @@
 </section>
 
 
-<!-- Section 4: Final Call to Action -->
+<!-- Final Call to Action Section -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="fw-bold mb-3">It is the simplest way to gain all the benefits of investing without any of the stress.</h2>
-                <!-- UPDATED: href changed to public 'plans' route -->
+                <!-- Button to view investment plans -->
                 <a href="{{ url_for('main.plans') }}" class="btn btn-light btn-lg fw-bold px-5 mt-3">View Our Managed Investment Plans</a>
             </div>
         </div>

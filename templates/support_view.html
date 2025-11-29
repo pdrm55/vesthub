@@ -3,11 +3,13 @@
 {% block title %}Ticket #{{ ticket.id }}{% endblock %}
 
 {% block content %}
+<!-- Page Header: Back button, Ticket Title, and Status Badge -->
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h2 fw-bold mb-0">
         <a href="{{ url_for('user.support') }}" class="text-decoration-none text-body"><i class="bi bi-arrow-left me-2"></i></a>
         Ticket #{{ ticket.id }}: {{ ticket.subject }}
     </h1>
+    <!-- Status badge changes color based on ticket status -->
     <span class="badge {% if ticket.status=='closed' %}bg-success{% else %}bg-warning text-dark{% endif %} fs-6">
         {{ ticket.status.replace('_', ' ').title() }}
     </span>
@@ -16,11 +18,12 @@
 <div class="card shadow-sm rounded-4 h-100">
     <div class="card-body p-0 d-flex flex-column" style="height: 70vh;">
         
-        <!-- Chat Area -->
+        <!-- Chat Messages Area -->
         <div class="flex-grow-1 p-4 overflow-auto" style="background-color: #212529;">
+            <!-- Loop through all messages in the ticket -->
             {% for msg in ticket.messages %}
                 {% if msg.sender_type == 'user' %}
-                    <!-- User Message (Right) -->
+                    <!-- User's Message (aligned to the right) -->
                     <div class="d-flex justify-content-end mb-3">
                         <div style="max-width: 75%;">
                             <div class="bg-primary text-white p-3 rounded-3 rounded-bottom-end-0">
@@ -30,7 +33,7 @@
                         </div>
                     </div>
                 {% else %}
-                    <!-- Admin Message (Left) -->
+                    <!-- Admin/Support Message (aligned to the left) -->
                     <div class="d-flex justify-content-start mb-3">
                         <div style="max-width: 75%;">
                             <div class="bg-dark-subtle text-white p-3 rounded-3 rounded-bottom-start-0 border border-secondary">
@@ -43,15 +46,17 @@
             {% endfor %}
         </div>
 
-        <!-- Reply Area -->
+        <!-- Reply Input Area -->
         <div class="p-3 bg-dark-subtle border-top border-secondary">
+            <!-- If ticket is closed, show a message. Otherwise, show the reply form. -->
             {% if ticket.status == 'closed' %}
                 <div class="alert alert-secondary mb-0 text-center">
                     This ticket is closed. You can create a new ticket if needed.
                 </div>
             {% else %}
+                <!-- Reply Form -->
                 <form method="POST" action="{{ url_for('user.ticket_view', ticket_id=ticket.id) }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    {{ form.hidden_tag() if form else '<input type="hidden" name="csrf_token" value="' + csrf_token() + '">' | safe }}
                     <div class="input-group">
                         <textarea class="form-control" name="message" rows="2" placeholder="Type your reply..." required></textarea>
                         <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> Send</button>

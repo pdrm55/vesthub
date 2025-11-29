@@ -4,8 +4,7 @@
 
 {% block content %}
 
-<!-- Section 1: Hero -->
-<!-- UPDATED: The background-image URL now points to your new custom image -->
+<!-- Hero Section for Vetrix 1 -->
 <header class="hero-section text-white" style="background-image: linear-gradient(rgba(13, 37, 63, 0.9), rgba(13, 37, 63, 0.9)), url('{{ url_for('static', filename='images/vetrix_hero_background.png') }}');">
     <div class="container text-center py-5">
         <div class="row justify-content-center">
@@ -13,6 +12,7 @@
                 <h1 class="display-3 fw-bold mb-4">Meet Vetrix 1</h1>
                 <p class="lead mb-4">The next generation of intelligent trading bots. Built by veteran traders with 12+ years of market experience, for professional traders and institutions.</p>
                 <p class="lead mb-4">Stop using retail toys or overpaying for institutional platforms. Vetrix 1 bridges the gap.</p>
+                <!-- Call to Action Buttons -->
                 <div>
                     <a href="{{ url_for('auth.signup') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">Start Trading Now</a>
                     <a href="#b2b" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">For Institutions</a>
@@ -22,7 +22,7 @@
     </div>
 </header>
 
-<!-- Section 2: Why Vetrix 1? (Competitive Advantage) -->
+<!-- Competitive Advantage Section -->
 <section class="py-5">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">The Vetrix 1 Advantage: Why We Are Different</h2>
@@ -55,7 +55,7 @@
     </div>
 </section>
 
-<!-- Section 3: Competitor Comparison -->
+<!-- Competitor Comparison Table Section -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">How We Compare</h2>
@@ -112,7 +112,7 @@
     </div>
 </section>
 
-<!-- Section 4: Who Is This For? (Audience) -->
+<!-- Target Audience Section -->
 <section class="py-5" id="b2b">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">Built for Professionals</h2>
@@ -153,7 +153,7 @@
     </div>
 </section>
 
-<!-- Section 5: Key Features (from Doc) -->
+<!-- Key Features Section -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">Key Features</h2>
@@ -216,7 +216,7 @@
     </div>
 </section>
 
-<!-- Section 6: Final CTA -->
+<!-- Final Call to Action Section -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
         <div class="row justify-content-center">
