@@ -1,11 +1,3 @@
-"""
-فایل اصلی اپلیکیشن و پیاده‌سازی الگوی Application Factory.
-
-این فایل شامل تابع `create_app` است که مسئولیت ایجاد و پیکربندی
-نمونه اصلی اپلیکیشن Flask را بر عهده دارد. این الگو به ما اجازه می‌دهد
-تا نمونه‌های مختلفی از اپلیکیشن با تنظیمات متفاوت (مثلاً برای توسعه، تست یا پروداکشن) ایجاد کنیم.
-"""
-
 import os
 import atexit
 import logging
@@ -17,71 +9,53 @@ from extensions import db, login_manager, mail, scheduler, csrf
 from tasks import run_profit_distribution
 from utils import has_permission
 
+# Import Blueprints
 from routes.auth import auth_bp
 from routes.main import main_bp
 from routes.user import user_bp
 from routes.admin import admin_bp
 
 def create_app(config_name='default'):
-    """
-    ایجاد و پیکربندی یک نمونه از اپلیکیشن Flask.
-
-    Args:
-        config_name (str): نام تنظیمات مورد نظر (مثلاً 'development' یا 'production').
-
-    Returns:
-        Flask: یک نمونه پیکربندی شده از اپلیکیشن Flask.
-    """
     app = Flask(__name__)
     
-    # 1. بارگذاری تنظیمات از آبجکت کانفیگ
     app.config.from_object(config[config_name])
     
-    # 2. راه‌اندازی و اتصال افزونه‌ها به اپلیکیشن
+    # Init Extensions
     db.init_app(app)
     mail.init_app(app)
     login_manager.init_app(app)
     csrf.init_app(app)
     
-    # 3. ثبت بلوپرینت‌ها برای ماژولار کردن مسیرها (routes)
+    # Register Blueprints
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(admin_bp)
     
-    # 4. افزودن توابع کاربردی به کانتکست Jinja2
-    # این تابع باعث می‌شود `has_permission` در تمام تمپلیت‌ها قابل دسترس باشد.
     @app.context_processor
     def inject_utilities():
         return dict(has_permission=has_permission)
 
-    # 5. تنظیم user_loader برای Flask-Login
-    # این تابع به Flask-Login می‌گوید چگونه کاربر را بر اساس ID از دیتابیس بارگذاری کند.
     from models import User
     @login_manager.user_loader
     def load_user(user_id):
         return db.session.get(User, int(user_id))
     
-    # --- 6. ثبت کنترل‌کننده‌های خطا (Error Handlers) ---
-    
-    # کنترل‌کننده برای خطای 404 (صفحه پیدا نشد)
+    # --- Error Handlers ---
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('base.html', content="<h3>404 - Page Not Found</h3><p>The page you are looking for does not exist.</p>"), 404
 
-    # کنترل‌کننده برای خطای CSRF
     @app.errorhandler(CSRFError)
     def handle_csrf_error(e):
         return render_template('base.html', content=f"<h3>Security Error (400)</h3><p>{e.description}</p>"), 400
 
-    # کنترل‌کننده برای خطای 500 (خطای داخلی سرور)
     @app.errorhandler(500)
     def internal_server_error(e):
-        # ثبت جزئیات خطا در فایل لاگ برای عیب‌یابی در آینده
         app.logger.error(f'Server Error: {e}')
         return render_template('base.html', content="<h3>Internal Server Error (500)</h3><p>We are experiencing technical difficulties. Please try again later.</p>"), 500
 
-    # 7. تنظیمات لاگ‌گیری برای محیط Production
+    # Logging Setup
     if not app.debug:
         if not os.path.exists('logs'):
             os.mkdir('logs')
@@ -93,10 +67,11 @@ def create_app(config_name='default'):
         app.logger.setLevel(logging.INFO)
         app.logger.info('VestHub startup')
 
-    # 8. راه‌اندازی زمان‌بند (Scheduler) برای اجرای وظایف پس‌زمینه
-    # شرط `os.environ.get('WERKZEUG_RUN_MAIN') == 'true'` از اجرای دوباره زمان‌بند در حالت دیباگ جلوگیری می‌کند.
-    if not app.debug or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        if not scheduler.running:
+    # Scheduler Setup (Only runs if not using Gunicorn worker reloading, or manage externally)
+    # Note: In production with multiple Gunicorn workers, usually the scheduler is run as a separate process.
+    # For simplicity on a single server, we keep it here but ensure it runs only once if possible.
+    if os.environ.get('WERKZEUG_RUN_MAIN') == 'true' or not app.debug:
+         if not scheduler.running:
             scheduler.add_job(
                 func=lambda: run_profit_distribution(app), 
                 trigger="cron", 
@@ -105,13 +80,19 @@ def create_app(config_name='default'):
                 id='profit_distribution_job',
                 replace_existing=True
             )
-            scheduler.start()
-            # ثبت یک تابع برای خاموش کردن زمان‌بند هنگام خروج از اپلیکیشن
-            atexit.register(lambda: scheduler.shutdown())
+            try:
+                scheduler.start()
+                atexit.register(lambda: scheduler.shutdown())
+            except:
+                pass
 
     return app
 
-# اجرای اپلیکیشن در حالت توسعه اگر فایل مستقیماً اجرا شود
+# --- اصلاح حیاتی برای Gunicorn ---
+# ما اپلیکیشن را اینجا می‌سازیم تا Gunicorn بتواند آن را ببیند (app:app)
+# از کانفیگ production استفاده می‌کنیم
+app = create_app('production')
+
 if __name__ == '__main__':
-    app = create_app('development')
+    # این قسمت فقط برای تست دستی با python app.py اجرا می‌شود
     app.run(debug=True, host='0.0.0.0', port=5000)
