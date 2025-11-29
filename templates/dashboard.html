@@ -95,7 +95,7 @@
                             <p class="text-body-secondary">Amount: ${{ "{:,.2f}".format(inv.amount) }}</p>
                             {% if inv.status == 'pending_payment' %}
                                 <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Pending Payment</span>
-                                <a href="{{ url_for('investment_pending', investment_id=inv.id) }}" class="btn btn-sm btn-outline-warning ms-2">Complete Payment</a>
+                                <a href="{{ url_for('user.investment_pending', investment_id=inv.id) }}" class="btn btn-sm btn-outline-warning ms-2">Complete Payment</a>
                             {% else %}
                                 <span class="badge bg-success-subtle text-success-emphasis rounded-pill">Active</span>
                             {% endif %}
@@ -106,7 +106,7 @@
                 {% else %}
                     <div class="text-center py-5">
                         <p class="text-body-secondary">You have no active investments yet.</p>
-                        <a href="{{ url_for('invest_plans') }}" class="btn btn-primary">Start Investing</a>
+                        <a href="{{ url_for('user.invest_plans') }}" class="btn btn-primary">Start Investing</a>
                     </div>
                 {% endif %}
             </div>
@@ -118,10 +118,10 @@
                 <i class="bi bi-cash-coin fs-1 text-primary mb-3"></i>
                 <h5 class="fw-bold">Request Withdrawal</h5>
                 {% if user.kyc_status == 'verified' %}
-                    <a href="{{ url_for('withdrawal') }}" class="btn btn-primary w-100">Manage Withdrawals</a>
+                    <a href="{{ url_for('user.withdrawal') }}" class="btn btn-primary w-100">Manage Withdrawals</a>
                 {% else %}
                     <p class="text-warning small mb-2"><i class="bi bi-lock-fill"></i> KYC Required</p>
-                    <a href="{{ url_for('settings') }}" class="btn btn-outline-warning w-100">Verify Identity</a>
+                    <a href="{{ url_for('user.settings') }}" class="btn btn-outline-warning w-100">Verify Identity</a>
                 {% endif %}
             </div>
         </div>

@@ -52,7 +52,8 @@
                 <h5 class="fw-bold mb-0">New Withdrawal Request</h5>
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('withdrawal') }}">
+                <form method="POST" action="{{ url_for('user.withdrawal') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
                         <label for="withdrawalType" class="form-label">1. Select Fund Type</label>
                         <select class="form-select" id="withdrawalType" name="type">
@@ -72,7 +73,7 @@
                         <label class="form-label">3. Confirm Payout Wallet</label>
                         <div class="alert alert-secondary mb-0">
                             <p class="mb-1">Funds will be sent to your registered wallet.</p>
-                            <a href="{{ url_for('wallet') }}" class="small">Manage Wallet</a>
+                            <a href="{{ url_for('user.wallet') }}" class="small">Manage Wallet</a>
                         </div>
                     </div>
                     <div class="d-grid">

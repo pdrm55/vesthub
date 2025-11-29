@@ -22,7 +22,8 @@
     <!-- Section 1: Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary-subtle">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+            <!-- اصلاح لینک: home -> main.home -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="60" class="me-2 navbar-logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,25 +32,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                        <!-- اصلاح لینک: home -> main.home -->
+                        <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('marketplace') }}">Marketplace</a>
+                        <!-- اصلاح لینک: marketplace -> main.marketplace -->
+                        <a class="nav-link" href="{{ url_for('main.marketplace') }}">Marketplace</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('invest') }}">Invest</a>
+                        <!-- اصلاح لینک: invest -> main.invest_learn (نام تابع در routes/main.py تغییر کرد) -->
+                        <a class="nav-link" href="{{ url_for('main.invest_learn') }}">Invest</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('plans') }}">Plans</a>
+                        <!-- اصلاح لینک: plans -> main.plans -->
+                        <a class="nav-link" href="{{ url_for('main.plans') }}">Plans</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                        <!-- اصلاح لینک: about -> main.about -->
+                        <a class="nav-link" href="{{ url_for('main.about') }}">About Us</a>
                     </li>
-                    <!-- REMOVED: "Tools" link has been removed as requested -->
                 </ul>
                 <div class="d-flex">
-                    <a href="{{ url_for('login') }}" class="btn btn-outline-secondary me-2">Log In</a>
-                    <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Free</a>
+                    <!-- اصلاح لینک: login -> auth.login -->
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary me-2">Log In</a>
+                    <!-- اصلاح لینک: signup -> auth.signup -->
+                    <a href="{{ url_for('auth.signup') }}" class="btn btn-primary">Sign Up Free</a>
                 </div>
             </div>
         </div>

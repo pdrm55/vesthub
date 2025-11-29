@@ -24,7 +24,8 @@
                 <h5 class="fw-bold mb-0">Submit a New Ticket</h5>
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('support') }}">
+                <form method="POST" action="{{ url_for('user.support') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
                         <label for="supportSubject" class="form-label">Subject</label>
                         <input type="text" class="form-control" id="supportSubject" name="subject" placeholder="Brief summary..." required>
@@ -59,7 +60,7 @@
             </div>
             <div class="list-group list-group-flush">
                 {% for ticket in tickets %}
-                <a href="{{ url_for('ticket_view', ticket_id=ticket.id) }}" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                <a href="{{ url_for('user.ticket_view', ticket_id=ticket.id) }}" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
                     <div>
                         <div class="d-flex align-items-center mb-1">
                             <h6 class="mb-0 fw-bold me-2">{{ ticket.subject }}</h6>

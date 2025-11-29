@@ -16,7 +16,8 @@
       {% endif %}
     {% endwith %}
 
-    <form method="POST" action="{{ url_for('signup') }}">
+    <form method="POST" action="{{ url_for('auth.signup') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="row g-3">
             <div class="col-md-6">
                 <label for="first-name" class="form-label">First Name</label>
@@ -60,6 +61,6 @@
     </form>
 
     <p class="text-center text-body-secondary mt-4 mb-0">
-        Already have an account? <a href="{{ url_for('login') }}" class="fw-semibold text-decoration-none">Log In</a>
+        Already have an account? <a href="{{ url_for('auth.login') }}" class="fw-semibold text-decoration-none">Log In</a>
     </p>
 {% endblock %}

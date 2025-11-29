@@ -53,12 +53,14 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <form action="{{ url_for('approve_payment', tx_id=tx.id) }}" method="POST">
+                                        <form action="{{ url_for('admin.approve_payment', tx_id=tx.id) }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-sm btn-success" title="Approve">
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
                                         </form>
-                                        <form action="{{ url_for('reject_payment', tx_id=tx.id) }}" method="POST">
+                                        <form action="{{ url_for('admin.reject_payment', tx_id=tx.id) }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-sm btn-danger" title="Reject">
                                                 <i class="bi bi-x-lg"></i>
                                             </button>
@@ -84,7 +86,7 @@
     <div class="tab-pane fade" id="completed">
          <div class="card shadow-sm rounded-4 rounded-top-0">
             <div class="card-body p-4 text-center text-body-secondary">
-                To see completed history, check the <a href="{{ url_for('admin_accounting') }}">Accounting Ledger</a>.
+                To see completed history, check the <a href="{{ url_for('admin.accounting') }}">Accounting Ledger</a>.
             </div>
         </div>
     </div>

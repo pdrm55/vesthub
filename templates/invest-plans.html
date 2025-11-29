@@ -66,7 +66,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             
-            <form method="POST" action="{{ url_for('create_investment') }}">
+            <form method="POST" action="{{ url_for('user.create_investment') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="modal-body p-4">
                     <p>You have selected:</p>
                     <h3 class="fw-bold text-primary mb-3" id="modalPlanName">...</h3>

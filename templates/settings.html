@@ -70,7 +70,8 @@
                                 <div id="qrCodeContainer" class="bg-white p-3 d-inline-block rounded mb-3"></div>
                                 <p class="small text-muted">Or enter manual key: <code id="secretKeyDisplay"></code></p>
                                 
-                                <form method="POST" action="{{ url_for('confirm_2fa') }}" class="col-md-6 mx-auto">
+                                <form method="POST" action="{{ url_for('user.confirm_2fa') }}" class="col-md-6 mx-auto">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control text-center" name="code" placeholder="Enter 6-digit code" required>
                                         <button class="btn btn-primary" type="submit">Verify & Enable</button>
@@ -96,7 +97,8 @@
                         {% elif user.kyc_status == 'pending' %}
                             <div class="alert alert-info"><i class="bi bi-hourglass-split me-2"></i> Under Review</div>
                         {% else %}
-                            <form method="POST" action="{{ url_for('submit_kyc') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url_for('user.submit_kyc') }}" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="mb-4">
                                     <label for="idDoc" class="form-label">1. Identity Document (ID/Passport)</label>
                                     <input class="form-control" type="file" id="idDoc" name="idDoc" required>
@@ -132,7 +134,7 @@
 <script>
 function start2FASetup() {
     // Call backend to generate secret
-    fetch("{{ url_for('enable_2fa') }}", {method: 'POST'})
+    fetch("{{ url_for('user.enable_2fa') }}", {method: 'POST'})
     .then(response => response.json())
     .then(data => {
         document.getElementById('startBtnArea').style.display = 'none';

@@ -82,7 +82,8 @@
                         <div class="text-center py-4">
                             <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
                             <h5>Pay Securely with Gateway</h5>
-                            <form method="POST" action="{{ url_for('process_online_payment', investment_id=investment.id) }}">
+                            <form method="POST" action="{{ url_for('user.process_online_payment', investment_id=investment.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="btn btn-primary btn-lg w-100">Pay Now</button>
                             </form>
                         </div>
@@ -113,10 +114,11 @@
                     <div class="text-center py-5">
                         <h4 class="fw-bold text-white">Proof Submitted!</h4>
                         <p class="text-body-secondary">Transaction ID: <code class="text-break">{{ investment.payment_tx_id }}</code></p>
-                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary w-100">Return to Dashboard</a>
+                        <a href="{{ url_for('user.dashboard') }}" class="btn btn-outline-primary w-100">Return to Dashboard</a>
                     </div>
                 {% else %}
-                    <form method="POST" action="{{ url_for('submit_proof', investment_id=investment.id) }}">
+                    <form method="POST" action="{{ url_for('user.submit_proof', investment_id=investment.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <div class="mb-3">
                             <label for="txnHash" class="form-label">Crypto TxID (or Bank Ref)</label>
                             <input type="text" class="form-control" id="txnHash" name="txnHash" required>

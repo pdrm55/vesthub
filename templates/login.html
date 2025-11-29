@@ -39,7 +39,8 @@
     </div>
 
     <!-- Email/Pass Form -->
-    <form method="POST" action="{{ url_for('login') }}">
+    <form method="POST" action="{{ url_for('auth.login') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <!-- Added name attribute -->
@@ -48,7 +49,7 @@
         <div class="mb-3">
             <div class="d-flex justify-content-between">
                 <label for="password" class="form-label">Password</label>
-                <a href="{{ url_for('forgot_password') }}" class="form-text text-decoration-none">Forgot?</a>
+                <a href="{{ url_for('auth.forgot_password') }}" class="form-text text-decoration-none">Forgot?</a>
             </div>
             <!-- Added name attribute -->
             <input type="password" class="form-control form-control-lg" id="password" name="password" required>
@@ -60,6 +61,6 @@
 
     <!-- Sign Up Link -->
     <p class="text-center text-body-secondary mt-4 mb-0">
-        Don't have an account? <a href="{{ url_for('signup') }}" class="fw-semibold text-decoration-none">Sign Up Free</a>
+        Don't have an account? <a href="{{ url_for('auth.signup') }}" class="fw-semibold text-decoration-none">Sign Up Free</a>
     </p>
 {% endblock %}

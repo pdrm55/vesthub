@@ -20,7 +20,7 @@
 
     <div class="d-flex">
         <nav class="sidebar admin-sidebar d-flex flex-column p-3">
-            <a href="{{ url_for('home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                 <span class="fs-4">Trader Portal</span>
             </a>
@@ -73,14 +73,14 @@
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <!-- FIX: Changed from home to logout -->
-                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Log out</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
                 </ul>
             </div>
         </nav>
 
         <div class="main-content-wrapper flex-grow-1">
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
-                <a href="{{ url_for('home') }}" class="d-flex align-items-center text-white text-decoration-none">
+                <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-white text-decoration-none">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                     <span class="fs-4">Trader Portal</span>
                 </a>
@@ -91,7 +91,7 @@
 
             <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
-                    <a href="{{ url_for('home') }}" class="d-flex align-items-center text-white text-decoration-none">
+                    <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-white text-decoration-none">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                         <span class="fs-4">Trader Portal</span>
                     </a>
@@ -146,7 +146,7 @@
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <!-- FIX: Changed from home to logout -->
-                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Log out</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
                         </ul>
                     </div>
                 </div>

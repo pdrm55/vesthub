@@ -33,7 +33,8 @@
         <div class="card shadow-sm rounded-4">
             <div class="card-body p-4 p-md-5">
                 <!-- Form connects to app.py logic -->
-                <form id="riskForm" method="POST" action="{{ url_for('risk_assessment') }}">
+                <form id="riskForm" method="POST" action="{{ url_for('user.risk_assessment') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     
                     <!-- =========================================
                          STEP 1: FINANCIAL PROFILE

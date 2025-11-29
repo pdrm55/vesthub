@@ -5,12 +5,13 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h2 fw-bold mb-0">
-        <a href="{{ url_for('admin_support') }}" class="text-decoration-none text-body"><i class="bi bi-arrow-left me-2"></i></a>
+        <a href="{{ url_for('admin.support') }}" class="text-decoration-none text-body"><i class="bi bi-arrow-left me-2"></i></a>
         Ticket #{{ ticket.id }}
     </h1>
     <div>
         {% if ticket.status != 'closed' %}
-        <form method="POST" action="{{ url_for('admin_ticket_view', ticket_id=ticket.id) }}" class="d-inline">
+        <form method="POST" action="{{ url_for('admin.ticket_view', ticket_id=ticket.id) }}" class="d-inline">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="close_ticket" value="true">
             <button type="submit" class="btn btn-outline-danger"><i class="bi bi-check-circle"></i> Close Ticket</button>
         </form>
@@ -66,7 +67,8 @@
 
                 {% if ticket.status != 'closed' %}
                 <div class="p-3 bg-dark-subtle border-top border-secondary">
-                    <form method="POST" action="{{ url_for('admin_ticket_view', ticket_id=ticket.id) }}">
+                    <form method="POST" action="{{ url_for('admin.ticket_view', ticket_id=ticket.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <div class="input-group">
                             <textarea class="form-control" name="message" rows="2" placeholder="Type reply to user..." required></textarea>
                             <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> Reply</button>

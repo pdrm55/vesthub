@@ -69,10 +69,12 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <form action="{{ url_for('approve_kyc', req_id=req.id) }}" method="POST">
+                                        <form action="{{ url_for('admin.approve_kyc', req_id=req.id) }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-sm btn-success">Approve</button>
                                         </form>
-                                        <form action="{{ url_for('reject_kyc', req_id=req.id) }}" method="POST">
+                                        <form action="{{ url_for('admin.reject_kyc', req_id=req.id) }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-sm btn-danger">Reject</button>
                                         </form>
                                     </div>

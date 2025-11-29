@@ -24,7 +24,8 @@
                 <h5 class="fw-bold mb-0"><i class="bi bi-plus-circle me-2"></i>Create New Plan</h5>
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('admin_plans') }}">
+                <form method="POST" action="{{ url_for('admin.plans') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
                         <label class="form-label">Plan Name</label>
                         <input type="text" class="form-control" name="name" placeholder="e.g. Gold Plus" required>
@@ -106,14 +107,16 @@
                                     </button>
                                     
                                     <!-- Deactivate Button -->
-                                    <form action="{{ url_for('deactivate_plan', plan_id=plan.id) }}" method="POST" class="d-inline">
+                                    <form action="{{ url_for('admin.deactivate_plan', plan_id=plan.id) }}" method="POST" class="d-inline">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-sm btn-outline-warning me-1" title="Toggle Status">
                                             <i class="bi bi-power"></i>
                                         </button>
                                     </form>
 
                                     <!-- Delete Button (Hard Delete) -->
-                                    <form action="{{ url_for('delete_plan', plan_id=plan.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure? This cannot be undone.');">
+                                    <form action="{{ url_for('admin.delete_plan', plan_id=plan.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure? This cannot be undone.');">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Permanently">
                                             <i class="bi bi-trash"></i>
                                         </button>
@@ -129,7 +132,8 @@
                                             <h5 class="modal-title">Edit Plan: {{ plan.name }}</h5>
                                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form method="POST" action="{{ url_for('edit_plan', plan_id=plan.id) }}">
+                                        <form method="POST" action="{{ url_for('admin.edit_plan', plan_id=plan.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label class="form-label">Plan Name</label>

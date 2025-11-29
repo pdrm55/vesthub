@@ -58,7 +58,8 @@
             </div>
             <div class="card-body p-4">
                 <!-- UPDATED: Form Action and Method -->
-                <form method="POST" action="{{ url_for('wallet') }}">
+                <form method="POST" action="{{ url_for('user.wallet') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
                         <label for="walletType" class="form-label">Wallet Type</label>
                         <!-- UPDATED: Added name attribute & Changed Options -->

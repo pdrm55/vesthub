@@ -25,7 +25,8 @@
                 <h5 class="fw-bold mb-0">Referral Program Configuration</h5>
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('admin_settings') }}">
+                <form method="POST" action="{{ url_for('admin.settings') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
                         <label for="referral_percentage" class="form-label">Referral Bonus Percentage (%)</label>
                         <div class="input-group">
@@ -47,7 +48,8 @@
             </div>
             <div class="card-body p-4">
                 <p class="text-body-secondary">Manually trigger profit distribution.</p>
-                <form method="POST" action="{{ url_for('distribute_test_profit') }}">
+                <form method="POST" action="{{ url_for('admin.distribute_test_profit') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <button type="submit" class="btn btn-warning w-100 fw-bold">
                         <i class="bi bi-cash-coin me-2"></i> Run Profit Distribution
                     </button>
@@ -63,7 +65,8 @@
                 <h5 class="fw-bold mb-0"><i class="bi bi-wallet2 me-2"></i>Company Payment Details</h5>
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('admin_settings') }}">
+                <form method="POST" action="{{ url_for('admin.settings') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <h6 class="text-primary fw-bold mb-3">Tether (USDT) Wallets</h6>
                     <div class="mb-3">
                         <label class="form-label">TRC20 Address</label>

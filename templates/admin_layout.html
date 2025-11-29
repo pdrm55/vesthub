@@ -25,7 +25,7 @@
         <!-- Admin Sidebar (Desktop) -->
         <nav class="sidebar admin-sidebar d-flex flex-column p-3">
             <!-- Sidebar Header -->
-            <a href="{{ url_for('admin_dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                 <span class="fs-4">Admin Panel</span>
             </a>
@@ -33,7 +33,7 @@
             <!-- Sidebar Navigation -->
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="{{ url_for('admin_dashboard') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.dashboard') }}" class="nav-link text-white">
                         <i class="bi bi-grid-fill me-2"></i>
                         Dashboard
                     </a>
@@ -43,7 +43,7 @@
                 
                 {% if has_permission('manage_users') %}
                 <li class="nav-item">
-                    <a href="{{ url_for('admin_users') }}" class="nav-link text-white"> 
+                    <a href="{{ url_for('admin.users') }}" class="nav-link text-white"> 
                         <i class="bi bi-people-fill me-2"></i>
                         User Management
                     </a>
@@ -52,7 +52,7 @@
                 
                 {% if has_permission('manage_roles') %}
                 <li>
-                    <a href="{{ url_for('admin_roles') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.roles') }}" class="nav-link text-white">
                         <i class="bi bi-shield-lock-fill me-2"></i>
                         Roles & Permissions
                     </a>
@@ -61,7 +61,7 @@
 
                 {% if has_permission('manage_plans') %}
                 <li>
-                    <a href="{{ url_for('admin_plans') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.plans') }}" class="nav-link text-white">
                         <i class="bi bi-collection-fill me-2"></i>
                         Investment Plans
                     </a>
@@ -70,7 +70,7 @@
                 
                 {% if has_permission('view_ledger') %}
                 <li>
-                    <a href="{{ url_for('admin_accounting') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.accounting') }}" class="nav-link text-white">
                         <i class="bi bi-journal-album me-2"></i>
                         Accounting (Ledger)
                     </a>
@@ -79,7 +79,7 @@
                 
                 {% if has_permission('manage_payments') %}
                 <li>
-                    <a href="{{ url_for('admin_payments') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.payments') }}" class="nav-link text-white">
                         <i class="bi bi-box-arrow-in-down me-2"></i>
                         Payment Confirmations
                     </a>
@@ -88,7 +88,7 @@
                 
                 {% if has_permission('manage_withdrawals') %}
                 <li>
-                    <a href="{{ url_for('admin_withdrawals') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.withdrawals') }}" class="nav-link text-white">
                         <i class="bi bi-box-arrow-up-right me-2"></i>
                         Withdrawal Requests
                     </a>
@@ -97,7 +97,7 @@
                 
                 {% if has_permission('manage_tickets') %}
                 <li>
-                    <a href="{{ url_for('admin_support') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.support') }}" class="nav-link text-white">
                         <i class="bi bi-envelope-paper-fill me-2"></i>
                         Support Tickets
                     </a>
@@ -106,7 +106,7 @@
                 
                 {% if has_permission('manage_kyc') %}
                 <li>
-                    <a href="{{ url_for('admin_kyc') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.kyc') }}" class="nav-link text-white">
                         <i class="bi bi-person-check-fill me-2"></i>
                         KYC Review
                     </a>
@@ -115,7 +115,7 @@
                 
                 {% if has_permission('manage_settings') %}
                 <li>
-                    <a href="{{ url_for('admin_settings') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.settings') }}" class="nav-link text-white">
                         <i class="bi bi-gear-fill me-2"></i>
                         Settings & Config
                     </a>
@@ -124,7 +124,7 @@
                 
                 {% if has_permission('view_logs') %}
                 <li>
-                    <a href="{{ url_for('admin_logs') }}" class="nav-link text-white">
+                    <a href="{{ url_for('admin.logs') }}" class="nav-link text-white">
                         <i class="bi bi-activity me-2"></i>
                         Activity Logs
                     </a>
@@ -139,7 +139,7 @@
                     <strong>{{ current_user.first_name }}</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Log out</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
                 </ul>
             </div>
         </nav>
@@ -148,7 +148,7 @@
         <div class="main-content-wrapper flex-grow-1">
             <!-- Top Bar -->
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
-                <a href="{{ url_for('admin_dashboard') }}" class="d-flex align-items-center text-white text-decoration-none">
+                <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-white text-decoration-none">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                     <span class="fs-4">Admin Panel</span>
                 </a>
@@ -160,7 +160,7 @@
             <!-- Offcanvas Sidebar (Mobile) -->
             <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
-                     <a href="{{ url_for('admin_dashboard') }}" class="d-flex align-items-center text-white text-decoration-none">
+                     <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-white text-decoration-none">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                         <span class="fs-4">Admin Panel</span>
                     </a>
@@ -169,22 +169,22 @@
                 <div class="offcanvas-body">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="{{ url_for('admin_dashboard') }}" class="nav-link text-white">
+                            <a href="{{ url_for('admin.dashboard') }}" class="nav-link text-white">
                                 <i class="bi bi-grid-fill me-2"></i> Dashboard
                             </a>
                         </li>
                         <!-- تکرار شرط‌های بالا برای موبایل -->
                         {% if has_permission('manage_users') %}
-                        <li><a href="{{ url_for('admin_users') }}" class="nav-link text-white">Users</a></li>
+                        <li><a href="{{ url_for('admin.users') }}" class="nav-link text-white">Users</a></li>
                         {% endif %}
                         
                         {% if has_permission('manage_payments') %}
-                        <li><a href="{{ url_for('admin_payments') }}" class="nav-link text-white">Payments</a></li>
+                        <li><a href="{{ url_for('admin.payments') }}" class="nav-link text-white">Payments</a></li>
                         {% endif %}
                         
                         <!-- ... سایر لینک‌ها ... -->
                         
-                        <li><a href="{{ url_for('logout') }}" class="nav-link text-white">Log out</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}" class="nav-link text-white">Log out</a></li>
                     </ul>
                 </div>
             </div>

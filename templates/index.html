@@ -10,9 +10,9 @@
                 <h1 class="display-3 fw-bold mb-4">Intelligent Trading. Automated.</h1>
                 <p class="lead mb-4">Access a new generation of trading bots and analytical tools, or let our AI manage your portfolio.</p>
                 <div>
-                    <a href="{{ url_for('marketplace') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">Explore the Marketplace</a>
+                    <a href="{{ url_for('main.marketplace') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">Explore the Marketplace</a>
                     <!-- Link redirects to plans section or signup -->
-                    <a href="{{ url_for('plans') }}" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">Start Investing</a>
+                    <a href="{{ url_for('main.plans') }}" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">Start Investing</a>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                         
                         <div class="mt-auto">
                             <!-- Redirects to Signup to start investing -->
-                            <a href="{{ url_for('signup') }}" class="btn btn-primary w-100 btn-lg">
+                            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">
                                 Choose Plan & Sign Up
                             </a>
                         </div>
@@ -90,7 +90,7 @@
                         </div>
                         <h3 class="card-title fw-bold mb-3">The Bot & Tool Marketplace</h3>
                         <p class="card-text">Browse, backtest, and deploy hundreds of bots from top developers. Or build your own strategies with our powerful, low-latency APIs.</p>
-                        <a href="{{ url_for('marketplace') }}" class="btn btn-outline-primary mt-3">Go to Marketplace</a>
+                        <a href="{{ url_for('main.marketplace') }}" class="btn btn-outline-primary mt-3">Go to Marketplace</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                         </div>
                         <h3 class="card-title fw-bold mb-3">VestHub Managed Portfolios</h3>
                         <p class="card-text">Don't have time to trade? Our top-performing AI bots will trade for you. We manage the risk, you track the returns.</p>
-                        <a href="{{ url_for('invest') }}" class="btn btn-outline-success mt-3">Learn About Investing</a>
+                        <a href="{{ url_for('main.invest_learn') }}" class="btn btn-outline-success mt-3">Learn About Investing</a>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
             <div class="col-lg-8">
                 <h2 class="fw-bold mb-3">Join the Future of Automated Trading.</h2>
                 <p class="lead mb-4">Sign up for free and get access to your new trading dashboard.</p>
-                <a href="{{ url_for('signup') }}" class="btn btn-light btn-lg fw-bold px-5">Sign Up Free</a>
+                <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">Sign Up Free</a>
             </div>
         </div>
     </div>
