@@ -4,6 +4,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template
 from flask_wtf.csrf import CSRFError
+# Add ProxyFix import
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 from config import config
 from extensions import db, login_manager, mail, scheduler, csrf
 from tasks import run_profit_distribution
@@ -89,13 +92,13 @@ def create_app(config_name='default'):
     return app
 
 # --- اصلاح نهایی برای HTTPS ---
+# Create the app instance for Gunicorn
 app = create_app('production')
 
-# اضافه کردن ProxyFix:
-# این خط به فلاسک می‌گوید که به هدرهایی که از Nginx می‌آید (مثل X-Forwarded-Proto: https) اعتماد کند
+# Add ProxyFix for HTTPS support
+# This tells Flask to trust headers from Nginx (like X-Forwarded-Proto: https)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
-
 if __name__ == '__main__':
-    # این قسمت فقط برای تست دستی با python app.py اجرا می‌شود
+    # This part runs only when executing `python app.py` directly for testing
     app.run(debug=True, host='0.0.0.0', port=5000)
