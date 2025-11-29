@@ -88,10 +88,13 @@ def create_app(config_name='default'):
 
     return app
 
-# --- اصلاح حیاتی برای Gunicorn ---
-# ما اپلیکیشن را اینجا می‌سازیم تا Gunicorn بتواند آن را ببیند (app:app)
-# از کانفیگ production استفاده می‌کنیم
+# --- اصلاح نهایی برای HTTPS ---
 app = create_app('production')
+
+# اضافه کردن ProxyFix:
+# این خط به فلاسک می‌گوید که به هدرهایی که از Nginx می‌آید (مثل X-Forwarded-Proto: https) اعتماد کند
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
 
 if __name__ == '__main__':
     # این قسمت فقط برای تست دستی با python app.py اجرا می‌شود
