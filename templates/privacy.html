@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy - VestHub{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1 class="mb-4">Privacy Policy</h1>
+            <p class="text-muted">Last Updated: November 2025</p>
+            <hr>
+
+            <div class="mb-4">
+                <h4>1. Information We Collect</h4>
+                <p>We collect information you provide directly to us, such as when you create an account, complete KYC verification, make a deposit, or communicate with support. This may include:</p>
+                <ul>
+                    <li>Personal identification information (Name, email address, phone number).</li>
+                    <li>Identity verification documents (Passport, ID card, utility bills).</li>
+                    <li>Financial information (Wallet addresses, transaction history).</li>
+                </ul>
+            </div>
+
+            <div class="mb-4">
+                <h4>2. How We Use Your Information</h4>
+                <p>We use the collected information to:</p>
+                <ul>
+                    <li>Provide, maintain, and improve our services.</li>
+                    <li>Process transactions and send related notifications.</li>
+                    <li>Verify your identity and prevent fraud.</li>
+                    <li>Comply with legal obligations.</li>
+                </ul>
+            </div>
+
+            <div class="mb-4">
+                <h4>3. Data Security</h4>
+                <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. This includes encryption, two-factor authentication (2FA) support, and secure server infrastructure.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>4. Sharing of Information</h4>
+                <p>We do not sell your personal data. We may share your information with third-party service providers (e.g., email delivery services) only to the extent necessary to provide our services, or when required by law.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>5. Cookies</h4>
+                <p>We use cookies to improve your experience on our site. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>6. Contact Us</h4>
+                <p>If you have any questions about this Privacy Policy, please contact us at support@vesthub.org.</p>
+            </div>
+
+            <div class="mt-5">
+                <a href="{{ url_for('main.home') }}" class="btn btn-outline-primary">&larr; Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

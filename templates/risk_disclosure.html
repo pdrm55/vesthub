@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Risk Disclosure - VestHub{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1 class="mb-4 text-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>Risk Disclosure Statement</h1>
+            <hr>
+
+            <div class="alert alert-secondary mb-4">
+                <strong>Important Notice:</strong> Trading and investing in financial markets involve a significant level of risk and may not be suitable for all investors. You should carefully consider your investment objectives, level of experience, and risk appetite before deciding to invest.
+            </div>
+
+            <div class="mb-4">
+                <h4>1. General Risk Warning</h4>
+                <p>There is a possibility that you may sustain a loss of some or all of your initial investment and therefore you should not invest money that you cannot afford to lose. You should be aware of all the risks associated with trading and seek advice from an independent financial advisor if you have any doubts.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>2. Market Volatility</h4>
+                <p>Cryptocurrency and financial markets are highly volatile. Prices can fluctuate significantly in a short period due to various factors including regulatory changes, market sentiment, and technical issues. VestHub cannot guarantee profits or freedom from loss.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>3. Technology Risk</h4>
+                <p>While VestHub employs advanced security measures, there are inherent risks associated with using internet-based trading systems, including, but not limited to, the failure of hardware, software, and internet connections.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>4. No Financial Advice</h4>
+                <p>The content provided on the VestHub website, including investment plans and market data, is for informational purposes only and does not constitute financial advice. All investment decisions are made at your own risk.</p>
+            </div>
+
+            <div class="mt-5">
+                <a href="{{ url_for('main.home') }}" class="btn btn-outline-primary">&larr; Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

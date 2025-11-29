@@ -30,3 +30,17 @@ def marketplace():
 @main_bp.route('/invest')
 def invest_learn():
     return render_template('learn.html')
+
+# --- اضافه شدن روت‌های حقوقی ---
+
+@main_bp.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+@main_bp.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
+@main_bp.route('/risk-disclosure')
+def risk_disclosure():
+    return render_template('risk_disclosure.html')

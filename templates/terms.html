@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Terms and Conditions - VestHub{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1 class="mb-4">Terms and Conditions</h1>
+            <p class="text-muted">Last Updated: November 2025</p>
+            <hr>
+
+            <div class="mb-4">
+                <h4>1. Introduction</h4>
+                <p>Welcome to VestHub. By accessing our website and using our services, you agree to be bound by these Terms and Conditions. Please read them carefully.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>2. Eligibility</h4>
+                <p>To use our services, you must be at least 18 years old and capable of forming a binding contract. You must not be a resident of any jurisdiction where accessing or using our services is prohibited.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>3. Account Registration and Security</h4>
+                <p>You agree to provide accurate and complete information during the registration process. You are responsible for maintaining the confidentiality of your account credentials, including your password and 2FA codes. VestHub is not liable for any loss or damage arising from your failure to protect your account information.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>4. Identity Verification (KYC)</h4>
+                <p>To comply with anti-money laundering (AML) regulations, VestHub requires all users to complete Identity Verification (KYC) before withdrawing funds. We reserve the right to request additional documents or suspend accounts that fail to provide satisfactory proof of identity.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>5. Investment Services</h4>
+                <p>VestHub provides automated trading and investment plans. While we strive for accuracy, past performance is not indicative of future results. You acknowledge that all investments carry risk, and you are solely responsible for your investment decisions.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>6. Deposits and Withdrawals</h4>
+                <p>Deposits must be made using the supported payment methods. Withdrawals are processed according to our withdrawal policy and may be subject to security checks. You agree not to deposit funds originating from illegal activities.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>7. Limitation of Liability</h4>
+                <p>VestHub shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the services.</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>8. Changes to Terms</h4>
+                <p>We reserve the right to modify these terms at any time. We will notify users of any significant changes via email or a notice on our website.</p>
+            </div>
+
+            <div class="mt-5">
+                <a href="{{ url_for('main.home') }}" class="btn btn-outline-primary">&larr; Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
