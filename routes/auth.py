@@ -1,22 +1,22 @@
 import random
 import string
 import pyotp
-from flask import Blueprint, render_template, redirect, url_for, flash, request, session
+from flask import Blueprint, render_template, redirect, url_for, flash, request, session, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from extensions import db
 from models import User, Role
 from utils import is_strong_password, generate_referral_code, send_system_email, log_admin_activity
 
 auth_bp = Blueprint('auth', __name__)
 
+# --- Helper for Password Reset Token ---
+def get_serializer():
+    return URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    """
-    Handles user login.
-    - Redirects authenticated users to the dashboard.
-    - On POST, validates credentials, checks for email verification and 2FA, then logs the user in.
-    """
     if current_user.is_authenticated: 
         return redirect(url_for('user.dashboard'))
     
@@ -26,23 +26,17 @@ def login():
         user = User.query.filter_by(email=email).first()
         
         if user and check_password_hash(user.password, password):
-            # 1. Check email verification
-            # If the user's email is not verified, redirect them to the verification page.
             if not user.is_email_verified:
                 session['unverified_user_id'] = user.id
                 return redirect(url_for('auth.verify_email'))
             
-            # 2. Check 2FA
-            # If 2FA is enabled, redirect to the 2FA verification page.
             if user.is_2fa_enabled:
                 session['2fa_user_id'] = user.id
                 return redirect(url_for('auth.verify_2fa_login'))
             
-            # If all checks pass, log the user in.
             login_user(user)
             log_admin_activity('Login', 'User logged in via standard form')
             
-            # Redirect admins to the admin dashboard, others to the user dashboard.
             if user.role.name == 'Admin' or user.role.permissions:
                 return redirect(url_for('admin.dashboard'))
             return redirect(url_for('user.dashboard'))
@@ -53,11 +47,6 @@ def login():
 
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
-    """
-    Handles user registration.
-    - Redirects authenticated users to the dashboard.
-    - On POST, validates user input, creates a new user, and sends a verification email.
-    """
     if current_user.is_authenticated: 
         return redirect(url_for('user.dashboard'))
     
@@ -68,7 +57,6 @@ def signup():
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         
-        # Validation checks
         if User.query.filter_by(email=email).first():
             flash('Email already exists.', 'warning')
             return redirect(url_for('auth.signup'))
@@ -81,22 +69,17 @@ def signup():
             flash('Password is too weak. (Must include uppercase, number, and special character)', 'danger')
             return redirect(url_for('auth.signup'))
 
-        # Assign the default 'Investor' role to the new user.
         role_investor = Role.query.filter_by(name='Investor').first()
-        if not role_investor:
-            role_investor = None
+        if not role_investor: role_investor = None
 
         ver_code = ''.join(random.choices(string.digits, k=6))
         
-        # Handle referral code from form input or session.
         ref_code = request.form.get('referral_code') or session.get('ref_code')
         referrer_id = None
         if ref_code:
             ref_user = User.query.filter_by(referral_code=ref_code).first()
-            if ref_user: 
-                referrer_id = ref_user.id
+            if ref_user: referrer_id = ref_user.id
 
-        # Create a new User object.
         new_user = User(
             email=email, 
             password=generate_password_hash(password, method='pbkdf2:sha256'),
@@ -110,11 +93,9 @@ def signup():
             email_verification_code=ver_code
         )
         
-        # Add user to the database and send verification email.
         db.session.add(new_user)
         db.session.commit()
         
-        # Store user ID in session to proceed with email verification.
         send_system_email("Verify Account", email, f"Your Code: {ver_code}")
         session['unverified_user_id'] = new_user.id
         return redirect(url_for('auth.verify_email'))
@@ -123,11 +104,6 @@ def signup():
 
 @auth_bp.route('/verify-email', methods=['GET', 'POST'])
 def verify_email():
-    """
-    Handles email verification using a 6-digit code.
-    - Requires 'unverified_user_id' in the session.
-    - On POST, validates the code, marks the user as verified, and logs them in.
-    """
     if 'unverified_user_id' not in session: 
         return redirect(url_for('auth.login'))
     
@@ -145,11 +121,6 @@ def verify_email():
 
 @auth_bp.route('/verify-2fa-login', methods=['GET', 'POST'])
 def verify_2fa_login():
-    """
-    Handles 2FA verification during login.
-    - Requires '2fa_user_id' in the session.
-    - On POST, validates the TOTP code and logs the user in.
-    """
     if '2fa_user_id' not in session: 
         return redirect(url_for('auth.login'))
     
@@ -167,12 +138,71 @@ def verify_2fa_login():
 @auth_bp.route('/logout')
 @login_required
 def logout(): 
-    """Logs the current user out."""
     logout_user()
     flash('You have been logged out successfully.', 'info')
     return redirect(url_for('auth.login'))
 
-@auth_bp.route('/forgot-password')
-def forgot_password(): 
-    """Renders the 'Forgot Password' page (functionality to be implemented)."""
+# --- Password Reset Logic (Added) ---
+
+@auth_bp.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        
+        # ما حتی اگر ایمیل پیدا نشود، پیام موفقیت نشان می‌دهیم تا هکرها نتوانند ایمیل‌ها را چک کنند
+        if user:
+            s = get_serializer()
+            # ایجاد توکن امن با ایمیل کاربر
+            token = s.dumps(user.email, salt='password-reset-salt')
+            
+            # ساخت لینک بازیابی (آدرس کامل دامین)
+            reset_link = url_for('auth.reset_password', token=token, _external=True)
+            
+            # ارسال ایمیل
+            email_body = f"""
+            <p>You requested a password reset for your VestHub account.</p>
+            <p>Click the link below to reset your password (valid for 1 hour):</p>
+            <a href="{reset_link}" style="background:#0d6efd;color:white;padding:10px 20px;text-decoration:none;border-radius:5px;">Reset Password</a>
+            <p>If you did not request this, please ignore this email.</p>
+            """
+            send_system_email("Password Reset Request", user.email, email_body)
+        
+        flash('If an account with that email exists, we have sent a password reset link.', 'info')
+        return redirect(url_for('auth.login'))
+        
     return render_template('forgot-password.html')
+
+@auth_bp.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    s = get_serializer()
+    try:
+        # توکن فقط برای ۱ ساعت (۳۶۰۰ ثانیه) معتبر است
+        email = s.loads(token, salt='password-reset-salt', max_age=3600)
+    except SignatureExpired:
+        flash('The reset link has expired.', 'danger')
+        return redirect(url_for('auth.forgot_password'))
+    except BadSignature:
+        flash('Invalid reset link.', 'danger')
+        return redirect(url_for('auth.forgot_password'))
+    
+    if request.method == 'POST':
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if password != confirm_password:
+            flash('Passwords do not match.', 'danger')
+            return render_template('reset_password.html', token=token)
+            
+        if not is_strong_password(password):
+            flash('Password is too weak.', 'danger')
+            return render_template('reset_password.html', token=token)
+            
+        user = User.query.filter_by(email=email).first()
+        if user:
+            user.password = generate_password_hash(password, method='pbkdf2:sha256')
+            db.session.commit()
+            flash('Your password has been updated! Please log in.', 'success')
+            return redirect(url_for('auth.login'))
+            
+    return render_template('reset_password.html', token=token)
