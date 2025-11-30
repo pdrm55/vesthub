@@ -14,7 +14,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
-    <!-- Chart.js (Required for Dashboard Charts) -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     {% block head %}{% endblock %}
@@ -39,7 +39,6 @@
                     </a>
                 </li>
 
-                <!-- منوهای شرطی بر اساس دسترسی -->
                 {% if has_permission('manage_users') %}
                 <li class="nav-item">
                     <a href="{{ url_for('admin.users') }}" class="nav-link"> 
@@ -71,7 +70,7 @@
                 <li>
                     <a href="{{ url_for('admin.accounting') }}" class="nav-link">
                         <i class="bi bi-journal-album me-2"></i>
-                        Accounting (Ledger)
+                        Accounting
                     </a>
                 </li>
                 {% endif %}
@@ -80,7 +79,7 @@
                 <li>
                     <a href="{{ url_for('admin.payments') }}" class="nav-link">
                         <i class="bi bi-box-arrow-in-down me-2"></i>
-                        Payment Confirmations
+                        Payments
                     </a>
                 </li>
                 {% endif %}
@@ -89,7 +88,7 @@
                 <li>
                     <a href="{{ url_for('admin.withdrawals') }}" class="nav-link">
                         <i class="bi bi-box-arrow-up-right me-2"></i>
-                        Withdrawal Requests
+                        Withdrawals
                     </a>
                 </li>
                 {% endif %}
@@ -98,7 +97,7 @@
                 <li>
                     <a href="{{ url_for('admin.support') }}" class="nav-link">
                         <i class="bi bi-envelope-paper-fill me-2"></i>
-                        Support Tickets
+                        Support
                     </a>
                 </li>
                 {% endif %}
@@ -116,7 +115,7 @@
                 <li>
                     <a href="{{ url_for('admin.settings') }}" class="nav-link">
                         <i class="bi bi-gear-fill me-2"></i>
-                        Settings & Config
+                        Settings
                     </a>
                 </li>
                 {% endif %}
@@ -125,13 +124,13 @@
                 <li>
                     <a href="{{ url_for('admin.logs') }}" class="nav-link">
                         <i class="bi bi-activity me-2"></i>
-                        Activity Logs
+                        Logs
                     </a>
                 </li>
                 {% endif %}
             </ul>
             <hr>
-            <!-- Sidebar Footer (Admin User) -->
+            <!-- Sidebar Footer -->
             <div class="d-flex align-items-center justify-content-between">
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" style="color: var(--bs-body-color);" data-bs-toggle="dropdown" aria-expanded="false">
@@ -142,7 +141,7 @@
                         <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
                     </ul>
                 </div>
-                <!-- Theme Toggle Button (Desktop) -->
+                <!-- Theme Toggle -->
                 <button class="btn btn-outline-secondary border-0 btn-sm" id="theme-toggle-desktop" title="Toggle theme">
                     <i class="bi bi-sun-fill theme-icon"></i>
                 </button>
@@ -151,51 +150,45 @@
 
         <!-- Main Content Area -->
         <div class="main-content-wrapper flex-grow-1">
-            <!-- Top Bar -->
+            <!-- Top Bar (Mobile) -->
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
                 <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                    <span class="fs-4">Admin Panel</span>
+                    <span class="fs-4">Admin</span>
                 </a>
                 <div class="d-flex align-items-center">
-                    <!-- Theme Toggle Button (Mobile) -->
                     <button class="btn btn-outline-secondary border-0 me-2" id="theme-toggle-mobile" title="Toggle theme">
                         <i class="bi bi-sun-fill theme-icon"></i>
                     </button>
-                    <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
                         <i class="bi bi-list"></i>
                     </button>
                 </div>
             </header>
 
             <!-- Offcanvas Sidebar (Mobile) -->
-            <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+            <!-- از bg-body-tertiary استفاده کردیم تا هوشمند شود -->
+            <div class="offcanvas offcanvas-start bg-body-tertiary" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
-                     <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-white text-decoration-none">
+                     <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                         <span class="fs-4">Admin Panel</span>
                     </a>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="{{ url_for('admin.dashboard') }}" class="nav-link text-white">
+                            <a href="{{ url_for('admin.dashboard') }}" class="nav-link" style="color: var(--bs-body-color);">
                                 <i class="bi bi-grid-fill me-2"></i> Dashboard
                             </a>
                         </li>
-                        <!-- تکرار شرط‌های بالا برای موبایل -->
                         {% if has_permission('manage_users') %}
-                        <li><a href="{{ url_for('admin.users') }}" class="nav-link text-white">Users</a></li>
+                        <li><a href="{{ url_for('admin.users') }}" class="nav-link" style="color: var(--bs-body-color);">Users</a></li>
                         {% endif %}
+                        <!-- بقیه لینک‌های موبایل هم مشابه بالا... -->
                         
-                        {% if has_permission('manage_payments') %}
-                        <li><a href="{{ url_for('admin.payments') }}" class="nav-link text-white">Payments</a></li>
-                        {% endif %}
-                        
-                        <!-- ... سایر لینک‌ها ... -->
-                        
-                        <li><a href="{{ url_for('auth.logout') }}" class="nav-link text-white">Log out</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}" class="nav-link" style="color: var(--bs-body-color);">Log out</a></li>
                     </ul>
                 </div>
             </div>
@@ -208,7 +201,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Theme Toggle Script -->
+    <!-- Theme Script -->
     <script>
         const desktopBtn = document.getElementById('theme-toggle-desktop');
         const mobileBtn = document.getElementById('theme-toggle-mobile');

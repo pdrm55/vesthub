@@ -30,7 +30,7 @@ body {
 
 /* --- تنظیمات مخصوص حالت روشن (Light Mode) --- */
 [data-bs-theme="light"] body {
-    background-color: #f4f6f9; /* پس‌زمینه طوسی روشن برای کل سایت */
+    background-color: #f4f6f9; /* پس‌زمینه طوسی روشن */
     color: #333;
 }
 
@@ -44,12 +44,12 @@ body {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
 }
 
-/* --- تغییر درخواستی: هدر (سایدبار و نوار بالا) در حالت روشن یک درجه تیره‌تر از بدنه --- */
+/* هدر و سایدبار در حالت روشن (کمی تیره‌تر از بدنه برای تفکیک) */
 [data-bs-theme="light"] .sidebar,
 [data-bs-theme="light"] .top-bar,
 [data-bs-theme="light"] .admin-sidebar {
-    background-color: #e2e5ea !important; /* تیره‌تر از f4f6f9 */
-    border-color: #d1d5db !important;
+    background-color: #ffffff !important; /* سفید خالص برای تمیزی بیشتر */
+    border-color: #dee2e6 !important;
 }
 
 /* =================================== */
@@ -69,7 +69,7 @@ body {
   background-size: cover;
   background-position: center;
   padding: 6rem 0;
-  color: white; /* همیشه متن سفید باشد */
+  color: white;
 }
 
 .hero-section .display-3 {
@@ -81,28 +81,17 @@ body {
     padding: 0.75rem 1.5rem;
 }
 
-/* --- Performance Section (جدید) --- */
-/* این کلاس را به بخش A Platform Built for Performance اضافه کنید */
+/* Performance Section */
 .performance-section {
-    background-color: #111; /* پس‌زمینه پایه تیره */
-    /* اضافه کردن گرادینت ملایم آبی برای زیبایی و هماهنگی با تم */
     background: linear-gradient(135deg, #1a1a1a 0%, #0d253f 100%);
-    color: #ffffff !important; /* اجبار رنگ سفید برای متن */
+    color: #ffffff !important;
     padding: 5rem 0;
 }
-
-.performance-section h1, 
-.performance-section h2, 
-.performance-section h3, 
-.performance-section h4, 
-.performance-section p,
-.performance-section .text-muted {
-    color: #ffffff !important; /* اطمینان از خوانایی تمام متون */
+.performance-section h1, .performance-section h2, .performance-section p, .performance-section .text-muted {
+    color: #ffffff !important;
 }
-
-.performance-section .feature-icon,
-.performance-section i {
-    color: var(--bs-primary) !important; /* آیکون‌ها آبی بمانند */
+.performance-section .feature-icon {
+    color: var(--bs-primary) !important;
 }
 
 /* Homepage: Features */
@@ -170,13 +159,13 @@ code {
     margin-bottom: 1rem;
 }
 
-/* --- Auth Pages (Login/Signup) --- */
+/* --- Auth Pages --- */
 .auth-body {
     background: linear-gradient(-45deg, #0d253f, #1a1a1a, #0d253f);
     background-size: 400% 400%;
     animation: authGradient 15s ease infinite;
     min-height: 100vh;
-    color: white; /* همیشه متن سفید */
+    color: white;
 }
 
 @keyframes authGradient {
@@ -199,7 +188,7 @@ code {
 .divider-text { font-size: 0.85rem; font-weight: 500; }
 .divider-text hr { border-color: #777; }
 
-/* --- Dashboard Styles --- */
+/* --- Dashboard Styles (Unified) --- */
 .dashboard-body {
     min-height: 100vh;
     overflow-x: hidden;
@@ -207,26 +196,37 @@ code {
 
 .sidebar {
     width: 280px;
-    background-color: var(--bs-tertiary-bg);
+    background-color: var(--bs-tertiary-bg); /* Adaptive Background */
     border-right: 1px solid var(--bs-border-color);
     min-height: 100vh;
     flex-shrink: 0;
     transition: background-color 0.3s ease;
 }
 
+/* استایل لینک‌های سایدبار */
 .sidebar .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--bs-body-color);
+    color: var(--bs-body-color); /* رنگ متن متغیر */
+    margin-bottom: 0.25rem;
 }
 
 .sidebar .nav-link:hover {
     background-color: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
 }
 
 .sidebar .nav-link.active {
     background-color: var(--bs-primary);
-    color: white;
+    color: white !important; /* متن آیتم فعال همیشه سفید */
+}
+
+/* آیکون‌های سایدبار */
+.sidebar .nav-link i {
+    color: var(--bs-secondary-color);
+}
+.sidebar .nav-link.active i {
+    color: white !important;
 }
 
 .sidebar-footer {
@@ -250,24 +250,27 @@ code {
     .top-bar { display: none !important; }
 }
 
-/* --- Invest Plans Page --- */
+/* --- Admin Portal Specific --- */
+/* در حالت دارک، سایدبار ادمین کمی تیره‌تر باشد */
+[data-bs-theme="dark"] .admin-sidebar {
+    background-color: #111 !important;
+}
+
+/* --- Other Pages --- */
 .plan-card {
     border: 1px solid var(--bs-border-color);
     background-color: var(--bs-card-bg);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-
 .plan-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 0.5rem 1rem rgba(0, 176, 240, 0.15) !important;
 }
-
 .plan-card-best-value {
     border: 2px solid var(--bs-primary);
     position: relative;
     overflow: hidden;
 }
-
 .best-value-ribbon {
     position: absolute;
     top: 15px;
@@ -281,51 +284,39 @@ code {
     box-shadow: 0 0 10px rgba(0, 176, 240, 0.5);
 }
 
-/* --- Pending Investment Page --- */
 .payment-info-box {
     border: 1px solid var(--bs-border-color);
     border-radius: 0.5rem;
     background-color: var(--bs-tertiary-bg);
 }
-
 .payment-info-box .form-control {
     border: none;
     background: transparent !important;
     color: var(--bs-body-color);
 }
-.payment-info-box .form-control:focus {
-    box-shadow: none;
-}
-
+.payment-info-box .form-control:focus { box-shadow: none; }
 .payment-info-box .list-group-item {
     background-color: transparent;
     border-color: var(--bs-border-color);
     color: var(--bs-body-color);
 }
+.payment-info-box .list-group-item:last-child { border-bottom: none; }
 
-.payment-info-box .list-group-item:last-child {
-    border-bottom: none;
-}
-
-/* --- Settings Page --- */
 .settings-nav .nav-link {
     color: var(--bs-body-color);
     font-weight: 500;
 }
-
 .settings-nav .nav-link.active {
     background-color: var(--bs-primary);
     color: white;
 }
-
 .settings-nav .nav-link:hover {
     background-color: var(--bs-secondary-bg);
     color: var(--bs-body-color);
 }
 
-/* --- Risk Assessment Page --- */
+/* Risk Assessment */
 .risk-stepper { gap: 0.5rem; }
-
 .step {
     display: flex;
     align-items: center;
@@ -350,19 +341,10 @@ code {
     background-color: var(--bs-border-color);
     flex-grow: 1;
 }
-
-.step.active .step-circle {
-    background-color: var(--bs-primary);
-    color: white;
-}
+.step.active .step-circle { background-color: var(--bs-primary); color: white; }
 .step.active { color: var(--bs-primary); }
-
-.step.completed .step-circle {
-    background-color: #28a745;
-    color: white;
-}
+.step.completed .step-circle { background-color: #28a745; color: white; }
 .step.completed { color: var(--bs-body-color); }
-
 .risk-question-group { display: none; }
 .risk-question-group.active { display: block; }
 
@@ -371,9 +353,7 @@ code {
     color: var(--bs-body-color);
     text-align: left;
 }
-.btn-group-vertical .btn-outline-secondary:hover {
-    background-color: var(--bs-secondary-bg);
-}
+.btn-group-vertical .btn-outline-secondary:hover { background-color: var(--bs-secondary-bg); }
 .btn-check:checked + .btn-outline-secondary {
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
@@ -381,22 +361,7 @@ code {
     box-shadow: 0 0 10px rgba(0, 176, 240, 0.3);
 }
 
-/* --- Admin Portal --- */
-.admin-sidebar {
-    background-color: var(--bs-dark-bg-subtle) !important;
-}
-
-/* تنظیمات سایدبار ادمین برای هماهنگی با درخواست کاربر (تیره‌تر در حالت روشن) */
-[data-bs-theme="light"] .admin-sidebar {
-    background-color: #e2e5ea !important;
-    border-right: 1px solid #d1d5db;
-}
-
-.admin-sidebar .nav-link { color: var(--bs-body-color); }
-.admin-sidebar .nav-link:hover { background-color: var(--bs-secondary-bg); }
-.admin-sidebar .nav-link.active { background-color: var(--bs-primary); color: white; }
-
-/* Status Badges */
+/* Admin Status Badges */
 .status-verified { background-color: var(--bs-success-bg-subtle); color: var(--bs-success-text-emphasis); border: 1px solid var(--bs-success-border-subtle); }
 .status-pending, .status-not-assessed { background-color: var(--bs-warning-bg-subtle); color: var(--bs-warning-text-emphasis); border: 1px solid var(--bs-warning-border-subtle); }
 .status-not-submitted { background-color: var(--bs-secondary-bg-subtle); color: var(--bs-secondary-text-emphasis); border: 1px solid var(--bs-secondary-border-subtle); }
@@ -404,7 +369,6 @@ code {
 .status-aggressive { background-color: var(--bs-danger-bg-subtle); color: var(--bs-danger-text-emphasis); border: 1px solid var(--bs-danger-border-subtle); }
 .status-conservative { background-color: var(--bs-info-bg-subtle); color: var(--bs-info-text-emphasis); border: 1px solid var(--bs-info-border-subtle); }
 
-/* Admin: Payment Tabs */
 .nav-tabs .nav-link { color: var(--bs-secondary-color); }
 .nav-tabs .nav-link.active {
     color: var(--bs-body-color);
@@ -415,6 +379,4 @@ code {
     border: 1px solid var(--bs-border-color);
     border-top: 0;
 }
-
-/* --- Marketplace Page --- */
 .table-bordered { border-color: var(--bs-border-color); }
