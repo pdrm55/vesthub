@@ -25,6 +25,7 @@
         <!-- Dashboard Sidebar (Desktop) -->
         <nav class="sidebar d-flex flex-column p-3">
             <!-- Sidebar Header -->
+            <!-- کلاس text-white حذف شد و استایل داینامیک اضافه شد -->
             <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none" style="color: var(--bs-body-color);">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                 <span class="fs-4">VestHub</span>
@@ -33,6 +34,7 @@
             <!-- Sidebar Navigation -->
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
+                    <!-- کلاس text-white از تمام لینک‌ها حذف شد -->
                     <a href="{{ url_for('user.dashboard') }}" class="nav-link">
                         <i class="bi bi-grid-fill me-2"></i>
                         Dashboard
@@ -78,7 +80,9 @@
             <hr>
             <!-- Sidebar Footer -->
             <div class="d-flex align-items-center justify-content-between">
+                <!-- User Dropdown -->
                 <div class="dropdown">
+                    <!-- کلاس text-white حذف شد -->
                     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" style="color: var(--bs-body-color);" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://placehold.co/40x40/00b0f0/FFF?text=P" alt="User" width="32" height="32" class="rounded-circle me-2">
                         <strong>{{ current_user.first_name }} (User)</strong>
@@ -100,6 +104,7 @@
         <div class="main-content-wrapper flex-grow-1">
             <!-- Top Bar (Mobile) -->
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
+                <!-- کلاس text-white حذف شد -->
                 <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                     <span class="fs-4">VestHub</span>
@@ -116,18 +121,22 @@
             </header>
 
             <!-- Offcanvas Sidebar (for mobile) -->
+            <!-- کلاس bg-dark به bg-body-tertiary تغییر کرد تا رنگ پس‌زمینه هوشمند شود -->
             <div class="offcanvas offcanvas-start bg-body-tertiary" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
+                    <!-- کلاس text-white حذف شد -->
                     <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                         <span class="fs-4">VestHub</span>
                     </a>
+                    <!-- کلاس btn-close-white حذف شد تا دکمه ضربدر در تم روشن دیده شود -->
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <!-- Mobile navigation -->
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
+                            <!-- کلاس text-white حذف شد -->
                             <a href="{{ url_for('user.dashboard') }}" class="nav-link" style="color: var(--bs-body-color);">
                                 <i class="bi bi-grid-fill me-2"></i>
                                 Dashboard
@@ -139,9 +148,51 @@
                                 New Investment
                             </a>
                         </li>
-                        <!-- بقیه لینک‌ها مشابه... -->
-                        <li><a href="{{ url_for('auth.logout') }}" class="nav-link" style="color: var(--bs-body-color);">Log out</a></li>
+                        <li>
+                            <a href="{{ url_for('user.withdrawal') }}" class="nav-link" style="color: var(--bs-body-color);">
+                                <i class="bi bi-cash-coin me-2"></i>
+                                Withdrawal
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('user.wallet') }}" class="nav-link" style="color: var(--bs-body-color);">
+                                <i class="bi bi-wallet2 me-2"></i>
+                                My Wallet
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('user.support') }}" class="nav-link" style="color: var(--bs-body-color);">
+                                <i class="bi bi-question-circle-fill me-2"></i>
+                                Support
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('user.settings') }}" class="nav-link" style="color: var(--bs-body-color);">
+                                <i class="bi bi-person-fill-gear me-2"></i>
+                                Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('user.risk_assessment') }}" class="nav-link" style="color: var(--bs-body-color);">
+                                <i class="bi bi-clipboard-data-fill me-2"></i>
+                                Risk Profile
+                            </a>
+                        </li>
                     </ul>
+                    <hr>
+                    <!-- Mobile user dropdown -->
+                    <div class="dropdown">
+                        <!-- کلاس text-white حذف شد -->
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" style="color: var(--bs-body-color);" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://placehold.co/40x40/00b0f0/FFF?text=P" alt="User" width="32" height="32" class="rounded-circle me-2">
+                            <strong>{{ current_user.first_name }} (User)</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="{{ url_for('user.settings') }}">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

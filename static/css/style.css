@@ -44,11 +44,11 @@ body {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
 }
 
-/* هدر و سایدبار در حالت روشن (کمی تیره‌تر از بدنه برای تفکیک) */
+/* هدر و سایدبار در حالت روشن (سفید برای تمیزی بیشتر) */
 [data-bs-theme="light"] .sidebar,
 [data-bs-theme="light"] .top-bar,
 [data-bs-theme="light"] .admin-sidebar {
-    background-color: #ffffff !important; /* سفید خالص برای تمیزی بیشتر */
+    background-color: #ffffff !important; 
     border-color: #dee2e6 !important;
 }
 
