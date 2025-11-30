@@ -1,12 +1,11 @@
 /*
- * VestHub Custom Stylesheet (Theme Aware & Optimized)
+ * VestHub Custom Stylesheet (Theme Aware & Improved Light Mode)
  *
  * Table of Contents:
  * 1. Imports & Root Variables
  * 2. General Site Styles
  * 3. Bootstrap Overrides
  * 4. Page-Specific Styles
- * 5. Light Mode Overrides (Critical Fixes)
  */
 
 /* =================================== */
@@ -16,8 +15,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 :root {
+  /* VestHub Blue */
   --bs-primary: #00b0f0; 
   --bs-primary-rgb: 0, 176, 240;
+  
+  /* Custom Dark Blue (for Hero) */
   --vh-dark-blue: #0d253f;
 }
 
@@ -26,10 +28,28 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* تنظیمات پایه برای حالت روشن */
+/* --- تنظیمات مخصوص حالت روشن (Light Mode) --- */
 [data-bs-theme="light"] body {
-    background-color: #f4f6f9;
+    background-color: #f4f6f9; /* پس‌زمینه طوسی روشن */
     color: #333;
+}
+
+/* سفید کردن کامپوننت‌ها در حالت روشن */
+[data-bs-theme="light"] .card,
+[data-bs-theme="light"] .navbar,
+[data-bs-theme="light"] .payment-info-box,
+[data-bs-theme="light"] .auth-card {
+    background-color: #ffffff !important;
+    border-color: #e9ecef !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
+/* هدر و سایدبار در حالت روشن (سفید برای تمیزی بیشتر) */
+[data-bs-theme="light"] .sidebar,
+[data-bs-theme="light"] .top-bar,
+[data-bs-theme="light"] .admin-sidebar {
+    background-color: #ffffff !important; 
+    border-color: #dee2e6 !important;
 }
 
 /* =================================== */
@@ -41,7 +61,7 @@ body {
     width: auto;
 }
 
-/* Hero Section */
+/* Homepage: Hero Section */
 .hero-section {
   background-image: 
     linear-gradient(rgba(13, 37, 63, 0.85), rgba(13, 37, 63, 0.85)), 
@@ -51,8 +71,15 @@ body {
   padding: 6rem 0;
   color: white;
 }
-.hero-section .display-3 { font-weight: 700; }
-.hero-section .btn-primary, .hero-section .btn-outline-light { padding: 0.75rem 1.5rem; }
+
+.hero-section .display-3 {
+  font-weight: 700;
+}
+
+.hero-section .btn-primary,
+.hero-section .btn-outline-light {
+    padding: 0.75rem 1.5rem;
+}
 
 /* Performance Section */
 .performance-section {
@@ -63,17 +90,23 @@ body {
 .performance-section h1, .performance-section h2, .performance-section p, .performance-section .text-muted {
     color: #ffffff !important;
 }
-.performance-section .feature-icon { color: var(--bs-primary) !important; }
+.performance-section .feature-icon {
+    color: var(--bs-primary) !important;
+}
 
-/* Features */
-.trust-bar-icon, .feature-icon {
+/* Homepage: Features */
+.trust-bar-icon,
+.feature-icon {
   font-size: 2.5rem;
   color: var(--bs-primary);
   margin-bottom: 1rem;
 }
-.feature-icon { font-size: 3rem; }
 
-/* Footer */
+.feature-icon {
+  font-size: 3rem;
+}
+
+/* Footer Links */
 .footer-links a:hover {
   text-decoration: underline !important;
   color: var(--bs-primary) !important;
@@ -87,14 +120,19 @@ body {
   --bs-btn-hover-bg: #0099d1;
   --bs-btn-hover-border-color: #0099d1;
 }
+
 .btn-outline-primary {
     --bs-btn-hover-bg: var(--bs-primary);
     --bs-btn-hover-color: #fff;
 }
+
+/* Card Headers */
 .card-header {
     background-color: var(--bs-tertiary-bg);
     border-bottom-color: var(--bs-border-color);
 }
+
+/* Code Blocks */
 code {
     background-color: var(--bs-secondary-bg);
     color: var(--bs-danger);
@@ -106,7 +144,22 @@ code {
 /* ==  4. Page-Specific Styles      == */
 /* =================================== */
 
-/* Auth Pages */
+/* --- Learn & About --- */
+.feature-icon-img,
+.about-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.about-icon-small {
+    width: 64px; 
+    height: 64px; 
+    object-fit: contain; 
+    margin-bottom: 1rem;
+}
+
+/* --- Auth Pages --- */
 .auth-body {
     background: linear-gradient(-45deg, #0d253f, #1a1a1a, #0d253f);
     background-size: 400% 400%;
@@ -114,43 +167,71 @@ code {
     min-height: 100vh;
     color: white;
 }
+
 @keyframes authGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
 .auth-wrapper { min-height: 100vh; }
 .auth-card-wrapper { width: 100%; max-width: 500px; }
-.auth-card { backdrop-filter: blur(10px); }
+
+.auth-card {
+    backdrop-filter: blur(10px);
+}
 [data-bs-theme="dark"] .auth-card {
     background-color: rgba(33, 37, 41, 0.9);
     border: 1px solid #444;
 }
+
 .divider-text { font-size: 0.85rem; font-weight: 500; }
 .divider-text hr { border-color: #777; }
 
-/* Dashboard Styles */
-.dashboard-body { min-height: 100vh; overflow-x: hidden; }
+/* --- Dashboard Styles (Unified) --- */
+.dashboard-body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
 .sidebar {
     width: 280px;
-    background-color: var(--bs-tertiary-bg);
+    background-color: var(--bs-tertiary-bg); /* Adaptive Background */
     border-right: 1px solid var(--bs-border-color);
     min-height: 100vh;
     flex-shrink: 0;
     transition: background-color 0.3s ease;
 }
+
+/* استایل لینک‌های سایدبار */
 .sidebar .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--bs-body-color);
+    color: var(--bs-body-color); /* رنگ متن متغیر */
     margin-bottom: 0.25rem;
 }
-.sidebar .nav-link:hover { background-color: var(--bs-secondary-bg); }
-.sidebar .nav-link.active { background-color: var(--bs-primary); color: white !important; }
-.sidebar .nav-link i { color: var(--bs-secondary-color); }
-.sidebar .nav-link.active i { color: white !important; }
-.sidebar-footer { border-top: 1px solid var(--bs-border-color); }
+
+.sidebar .nav-link:hover {
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--bs-primary);
+    color: white !important; /* متن آیتم فعال همیشه سفید */
+}
+
+/* آیکون‌های سایدبار */
+.sidebar .nav-link i {
+    color: var(--bs-secondary-color);
+}
+.sidebar .nav-link.active i {
+    color: white !important;
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--bs-border-color);
+}
 
 .top-bar {
     background-color: var(--bs-tertiary-bg);
@@ -161,23 +242,46 @@ code {
     z-index: 1020;
 }
 
-@media (max-width: 991.98px) { .sidebar { display: none !important; } }
-@media (min-width: 992px) { .top-bar { display: none !important; } }
+/* Dashboard Responsiveness */
+@media (max-width: 991.98px) {
+    .sidebar { display: none !important; }
+}
+@media (min-width: 992px) {
+    .top-bar { display: none !important; }
+}
 
-[data-bs-theme="dark"] .admin-sidebar { background-color: #111 !important; }
+/* --- Admin Portal Specific --- */
+/* در حالت دارک، سایدبار ادمین کمی تیره‌تر باشد */
+[data-bs-theme="dark"] .admin-sidebar {
+    background-color: #111 !important;
+}
 
-/* Components */
+/* --- Other Pages --- */
 .plan-card {
     border: 1px solid var(--bs-border-color);
     background-color: var(--bs-card-bg);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-.plan-card:hover { transform: translateY(-5px); box-shadow: 0 0.5rem 1rem rgba(0, 176, 240, 0.15) !important; }
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 176, 240, 0.15) !important;
+}
+.plan-card-best-value {
+    border: 2px solid var(--bs-primary);
+    position: relative;
+    overflow: hidden;
+}
 .best-value-ribbon {
-    position: absolute; top: 15px; right: -30px;
-    background-color: var(--bs-primary); color: #fff;
-    font-weight: bold; font-size: 0.8rem; padding: 5px 30px;
-    transform: rotate(45deg); box-shadow: 0 0 10px rgba(0, 176, 240, 0.5);
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background-color: var(--bs-primary);
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(0, 176, 240, 0.5);
 }
 
 .payment-info-box {
@@ -185,31 +289,79 @@ code {
     border-radius: 0.5rem;
     background-color: var(--bs-tertiary-bg);
 }
-.payment-info-box .form-control { border: none; background: transparent !important; color: var(--bs-body-color); }
+.payment-info-box .form-control {
+    border: none;
+    background: transparent !important;
+    color: var(--bs-body-color);
+}
 .payment-info-box .form-control:focus { box-shadow: none; }
-.payment-info-box .list-group-item { background-color: transparent; border-color: var(--bs-border-color); color: var(--bs-body-color); }
+.payment-info-box .list-group-item {
+    background-color: transparent;
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+.payment-info-box .list-group-item:last-child { border-bottom: none; }
 
-.settings-nav .nav-link { color: var(--bs-body-color); font-weight: 500; }
-.settings-nav .nav-link.active { background-color: var(--bs-primary); color: white; }
-.settings-nav .nav-link:hover { background-color: var(--bs-secondary-bg); }
+.settings-nav .nav-link {
+    color: var(--bs-body-color);
+    font-weight: 500;
+}
+.settings-nav .nav-link.active {
+    background-color: var(--bs-primary);
+    color: white;
+}
+.settings-nav .nav-link:hover {
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+}
 
 /* Risk Assessment */
+.risk-stepper { gap: 0.5rem; }
+.step {
+    display: flex;
+    align-items: center;
+    color: var(--bs-secondary-color);
+    transition: color 0.3s ease;
+}
 .step-circle {
-    width: 30px; height: 30px; border-radius: 50%;
-    background-color: var(--bs-secondary-bg); color: var(--bs-secondary-color);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: bold; flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.step-line {
+    height: 2px;
+    background-color: var(--bs-border-color);
+    flex-grow: 1;
 }
 .step.active .step-circle { background-color: var(--bs-primary); color: white; }
+.step.active { color: var(--bs-primary); }
 .step.completed .step-circle { background-color: #28a745; color: white; }
-.step-line { height: 2px; background-color: var(--bs-border-color); flex-grow: 1; }
-.btn-group-vertical .btn-outline-secondary { border-color: var(--bs-border-color); color: var(--bs-body-color); }
-.btn-check:checked + .btn-outline-secondary { background-color: var(--bs-primary); border-color: var(--bs-primary); color: white; }
-
+.step.completed { color: var(--bs-body-color); }
 .risk-question-group { display: none; }
 .risk-question-group.active { display: block; }
 
-/* Status Badges */
+.btn-group-vertical .btn-outline-secondary {
+    border-color: var(--bs-border-color); 
+    color: var(--bs-body-color);
+    text-align: left;
+}
+.btn-group-vertical .btn-outline-secondary:hover { background-color: var(--bs-secondary-bg); }
+.btn-check:checked + .btn-outline-secondary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 176, 240, 0.3);
+}
+
+/* Admin Status Badges */
 .status-verified { background-color: var(--bs-success-bg-subtle); color: var(--bs-success-text-emphasis); border: 1px solid var(--bs-success-border-subtle); }
 .status-pending, .status-not-assessed { background-color: var(--bs-warning-bg-subtle); color: var(--bs-warning-text-emphasis); border: 1px solid var(--bs-warning-border-subtle); }
 .status-not-submitted { background-color: var(--bs-secondary-bg-subtle); color: var(--bs-secondary-text-emphasis); border: 1px solid var(--bs-secondary-border-subtle); }
@@ -223,70 +375,8 @@ code {
     background-color: var(--bs-body-bg);
     border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
 }
-.tab-content { border: 1px solid var(--bs-border-color); border-top: 0; }
+.tab-content {
+    border: 1px solid var(--bs-border-color);
+    border-top: 0;
+}
 .table-bordered { border-color: var(--bs-border-color); }
-
-/* ========================================================= */
-/* == 5. LIGHT MODE OVERRIDES (CRITICAL FIXES) == */
-/* ========================================================= */
-
-/* 1. اجبار رنگ سفید برای پس‌زمینه اجزای اصلی */
-[data-bs-theme="light"] .card,
-[data-bs-theme="light"] .sidebar,
-[data-bs-theme="light"] .top-bar,
-[data-bs-theme="light"] .admin-sidebar,
-[data-bs-theme="light"] .navbar,
-[data-bs-theme="light"] .auth-card {
-    background-color: #ffffff !important;
-    border-color: #dee2e6 !important;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
-}
-
-/* 2. اصلاح اساسی جداول برای خوانایی کامل */
-[data-bs-theme="light"] .table-dark {
-    background-color: #ffffff !important;
-    color: #212529 !important; /* رنگ متن تیره */
-    border-color: #dee2e6 !important;
-    --bs-table-bg: #ffffff; /* ریست کردن متغیر بوت‌استرپ */
-    --bs-table-color: #212529;
-}
-
-[data-bs-theme="light"] .table-dark th,
-[data-bs-theme="light"] .table-dark td {
-    background-color: #ffffff !important;
-    color: #212529 !important;
-    border-color: #dee2e6 !important;
-}
-
-/* هدر جداول در حالت روشن */
-[data-bs-theme="light"] .table thead th,
-[data-bs-theme="light"] .table-dark thead th {
-    background-color: #f8f9fa !important; /* طوسی خیلی روشن برای هدر */
-    color: #212529 !important;
-    border-bottom: 2px solid #dee2e6 !important;
-}
-
-/* 3. اصلاح رنگ متن‌های سفید و کم‌رنگ */
-[data-bs-theme="light"] .text-white,
-[data-bs-theme="light"] .text-white-50,
-[data-bs-theme="light"] .text-light,
-[data-bs-theme="light"] .text-body-secondary {
-    color: #495057 !important; /* خاکستری تیره برای خوانایی */
-}
-
-/* 4. اصلاح پس‌زمینه تیره اجباری */
-[data-bs-theme="light"] .bg-dark,
-[data-bs-theme="light"] .bg-dark-subtle {
-    background-color: #ffffff !important;
-    color: #212529 !important;
-    border: 1px solid #dee2e6;
-}
-
-/* 5. اصلاح آیکون‌ها در حالت روشن */
-[data-bs-theme="light"] .sidebar .nav-link i,
-[data-bs-theme="light"] .bi-envelope-paper-fill {
-    color: #6c757d !important; /* آیکون‌ها هم تیره شوند */
-}
-[data-bs-theme="light"] .sidebar .nav-link.active i {
-    color: #ffffff !important; /* آیکون آیتم فعال سفید بماند */
-}
