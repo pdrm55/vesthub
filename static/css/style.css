@@ -1,5 +1,5 @@
 /*
- * VestHub Custom Stylesheet (Theme Aware)
+ * VestHub Custom Stylesheet (Theme Aware & Improved Light Mode)
  *
  * Table of Contents:
  * 1. Imports & Root Variables
@@ -15,17 +15,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 :root {
-  /* VestHub Blue (Thabete baraye har do theme) */
+  /* VestHub Blue */
   --bs-primary: #00b0f0; 
   --bs-primary-rgb: 0, 176, 240;
   
-  /* Custom Dark Blue (faghat baraye Hero Section estefade mishe) */
+  /* Custom Dark Blue (for Hero) */
   --vh-dark-blue: #0d253f;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  /* background va color tavasote Bootstrap modiriat mishavad */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- تنظیمات مخصوص حالت روشن (Light Mode) --- */
+[data-bs-theme="light"] body {
+    background-color: #f4f6f9; /* پس‌زمینه طوسی روشن برای کل سایت */
+    color: #333;
+}
+
+/* سفید کردن کامپوننت‌ها در حالت روشن برای کنتراست بهتر */
+[data-bs-theme="light"] .card,
+[data-bs-theme="light"] .sidebar,
+[data-bs-theme="light"] .top-bar,
+[data-bs-theme="light"] .navbar,
+[data-bs-theme="light"] .payment-info-box,
+[data-bs-theme="light"] .auth-card {
+    background-color: #ffffff !important;
+    border-color: #e9ecef !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
 }
 
 /* =================================== */
@@ -38,7 +56,6 @@ body {
 }
 
 /* Homepage: Hero Section */
-/* Hero hamishe tarik mimanad ta matn-haye sefid roye an khanaye dashte bashand */
 .hero-section {
   background-image: 
     linear-gradient(rgba(13, 37, 63, 0.85), rgba(13, 37, 63, 0.85)), 
@@ -46,7 +63,7 @@ body {
   background-size: cover;
   background-position: center;
   padding: 6rem 0;
-  color: white; /* Force white text in hero */
+  color: white; /* همیشه متن سفید باشد */
 }
 
 .hero-section .display-3 {
@@ -73,7 +90,7 @@ body {
 /* Footer Links */
 .footer-links a:hover {
   text-decoration: underline !important;
-  color: var(--bs-primary) !important; /* Taghir be primary baraye dide shodan dar har do theme */
+  color: var(--bs-primary) !important;
 }
 
 /* =================================== */
@@ -87,19 +104,19 @@ body {
 
 .btn-outline-primary {
     --bs-btn-hover-bg: var(--bs-primary);
-    --bs-btn-hover-color: #fff; /* Matn sefid dar hover */
+    --bs-btn-hover-color: #fff;
 }
 
-/* Card Headers - Hoshmand sazi baraye Theme */
+/* Card Headers */
 .card-header {
-    background-color: var(--bs-tertiary-bg); /* Auto Light/Dark */
+    background-color: var(--bs-tertiary-bg);
     border-bottom-color: var(--bs-border-color);
 }
 
 /* Code Blocks */
 code {
-    background-color: var(--bs-secondary-bg); /* Auto Light/Dark */
-    color: var(--bs-danger); /* Rango standard bootstrap baraye code */
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-danger);
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
 }
@@ -124,13 +141,12 @@ code {
 }
 
 /* --- Auth Pages (Login/Signup) --- */
-/* in safhe ra hamishe tarik negah midarim chon design khasi darad */
 .auth-body {
     background: linear-gradient(-45deg, #0d253f, #1a1a1a, #0d253f);
     background-size: 400% 400%;
     animation: authGradient 15s ease infinite;
     min-height: 100vh;
-    color: white; /* Force white text */
+    color: white; /* همیشه متن سفید */
 }
 
 @keyframes authGradient {
@@ -143,34 +159,37 @@ code {
 .auth-card-wrapper { width: 100%; max-width: 500px; }
 
 .auth-card {
-    background-color: rgba(33, 37, 41, 0.9); /* Hamishe Dark */
+    /* تنظیمات خاص برای auth card در دارک مود */
     backdrop-filter: blur(10px);
+}
+[data-bs-theme="dark"] .auth-card {
+    background-color: rgba(33, 37, 41, 0.9);
     border: 1px solid #444;
-    color: white;
 }
 
 .divider-text { font-size: 0.85rem; font-weight: 500; }
 .divider-text hr { border-color: #777; }
 
-/* --- Dashboard (THEME AWARE) --- */
+/* --- Dashboard Styles --- */
 .dashboard-body {
-    /* Hazf shod ta az range default body estefade konad */
     min-height: 100vh;
     overflow-x: hidden;
+    /* رنگ پس‌زمینه توسط body هندل می‌شود (طوسی در لایت، تیره در دارک) */
 }
 
 .sidebar {
     width: 280px;
-    background-color: var(--bs-tertiary-bg); /* Hoshmand: Tarik dar Dark, Roshan dar Light */
+    background-color: var(--bs-tertiary-bg);
     border-right: 1px solid var(--bs-border-color);
     min-height: 100vh;
     flex-shrink: 0;
+    transition: background-color 0.3s ease;
 }
 
 .sidebar .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--bs-body-color); /* Rang matn hoshmand */
+    color: var(--bs-body-color);
 }
 
 .sidebar .nav-link:hover {
@@ -205,8 +224,8 @@ code {
 
 /* --- Invest Plans Page --- */
 .plan-card {
-    border: 1px solid var(--bs-border-color); /* Border Hoshmand */
-    background-color: var(--bs-card-bg); /* Background Hoshmand */
+    border: 1px solid var(--bs-border-color);
+    background-color: var(--bs-card-bg);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -289,7 +308,7 @@ code {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: var(--bs-secondary-bg); /* Hoshmand */
+    background-color: var(--bs-secondary-bg);
     color: var(--bs-secondary-color);
     display: flex;
     align-items: center;
@@ -336,11 +355,13 @@ code {
 
 /* --- Admin Portal --- */
 .admin-sidebar {
-    background-color: var(--bs-dark-bg-subtle) !important; /* Admin usually stays darkish or adaptive */
+    /* سایدبار ادمین را همیشه کمی تیره نگه می‌داریم یا طبق تم تنظیم می‌کنیم */
+    background-color: var(--bs-dark-bg-subtle) !important;
 }
-/* Override baraye inke admin sidebar hamishe kami tarik bashad hata dar light mode agar mikhaid */
+/* تنظیمات خاص برای سایدبار ادمین در لایت مود */
 [data-bs-theme="light"] .admin-sidebar {
     background-color: #f8f9fa !important;
+    border-right: 1px solid #dee2e6;
 }
 
 .admin-sidebar .nav-link { color: var(--bs-body-color); }
