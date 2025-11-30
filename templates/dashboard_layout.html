@@ -25,7 +25,7 @@
         <!-- Dashboard Sidebar (Desktop) -->
         <nav class="sidebar d-flex flex-column p-3">
             <!-- Sidebar Header -->
-            <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none" style="color: var(--bs-body-color);">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                 <span class="fs-4">VestHub</span>
             </a>
@@ -33,60 +33,67 @@
             <!-- Sidebar Navigation -->
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="{{ url_for('user.dashboard') }}" class="nav-link text-white">
+                    <a href="{{ url_for('user.dashboard') }}" class="nav-link">
                         <i class="bi bi-grid-fill me-2"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url_for('user.invest_plans') }}" class="nav-link text-white"> 
+                    <a href="{{ url_for('user.invest_plans') }}" class="nav-link"> 
                         <i class="bi bi-rocket-takeoff-fill me-2"></i>
                         New Investment
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('user.withdrawal') }}" class="nav-link text-white">
+                    <a href="{{ url_for('user.withdrawal') }}" class="nav-link">
                         <i class="bi bi-cash-coin me-2"></i>
                         Withdrawal
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('user.wallet') }}" class="nav-link text-white">
+                    <a href="{{ url_for('user.wallet') }}" class="nav-link">
                         <i class="bi bi-wallet2 me-2"></i>
                         My Wallet
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('user.support') }}" class="nav-link text-white">
+                    <a href="{{ url_for('user.support') }}" class="nav-link">
                         <i class="bi bi-question-circle-fill me-2"></i>
                         Support
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('user.settings') }}" class="nav-link text-white">
+                    <a href="{{ url_for('user.settings') }}" class="nav-link">
                         <i class="bi bi-person-fill-gear me-2"></i>
                         Settings
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('user.risk_assessment') }}" class="nav-link text-white">
+                    <a href="{{ url_for('user.risk_assessment') }}" class="nav-link">
                         <i class="bi bi-clipboard-data-fill me-2"></i>
                         Risk Profile
                     </a>
                 </li>
             </ul>
             <hr>
-            <!-- Sidebar Footer (User Dropdown) -->
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://placehold.co/40x40/00b0f0/FFF?text=P" alt="User" width="32" height="32" class="rounded-circle me-2">
-                    <strong>{{ current_user.first_name }} (User)</strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="{{ url_for('user.settings') }}">Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
-                </ul>
+            <!-- Sidebar Footer -->
+            <div class="d-flex align-items-center justify-content-between">
+                <!-- User Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" style="color: var(--bs-body-color);" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://placehold.co/40x40/00b0f0/FFF?text=P" alt="User" width="32" height="32" class="rounded-circle me-2">
+                        <strong>{{ current_user.first_name }} (User)</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="{{ url_for('user.settings') }}">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
+                    </ul>
+                </div>
+                <!-- Theme Toggle Button (Desktop) -->
+                <button class="btn btn-outline-secondary border-0 btn-sm" id="theme-toggle-desktop" title="Toggle theme">
+                    <i class="bi bi-sun-fill theme-icon"></i>
+                </button>
             </div>
         </nav>
 
@@ -94,13 +101,19 @@
         <div class="main-content-wrapper flex-grow-1">
             <!-- Top Bar (for mobile nav toggle) -->
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
-                <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-white text-decoration-none">
+                <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
                     <span class="fs-4">VestHub</span>
                 </a>
-                <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
-                    <i class="bi bi-list"></i>
-                </button>
+                <div class="d-flex align-items-center">
+                    <!-- Theme Toggle Button (Mobile) -->
+                    <button class="btn btn-outline-secondary border-0 me-2" id="theme-toggle-mobile" title="Toggle theme">
+                        <i class="bi bi-sun-fill theme-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
             </header>
 
             <!-- Offcanvas Sidebar (for mobile) -->
@@ -113,7 +126,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <!-- Mobile navigation (same as desktop) -->
+                    <!-- Mobile navigation -->
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
                             <a href="{{ url_for('user.dashboard') }}" class="nav-link text-white">
@@ -183,6 +196,41 @@
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script>
+        const desktopBtn = document.getElementById('theme-toggle-desktop');
+        const mobileBtn = document.getElementById('theme-toggle-mobile');
+        const themeIcons = document.querySelectorAll('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
+
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-bs-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            themeIcons.forEach(icon => {
+                if (theme === 'dark') {
+                    icon.classList.remove('bi-moon-fill');
+                    icon.classList.add('bi-sun-fill');
+                } else {
+                    icon.classList.remove('bi-sun-fill');
+                    icon.classList.add('bi-moon-fill');
+                }
+            });
+        }
+
+        const toggleTheme = () => {
+            const currentTheme = htmlElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        };
+
+        if(desktopBtn) desktopBtn.addEventListener('click', toggleTheme);
+        if(mobileBtn) mobileBtn.addEventListener('click', toggleTheme);
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

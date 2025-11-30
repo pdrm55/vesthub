@@ -34,16 +34,22 @@ body {
     color: #333;
 }
 
-/* سفید کردن کامپوننت‌ها در حالت روشن برای کنتراست بهتر */
+/* سفید کردن کامپوننت‌ها در حالت روشن */
 [data-bs-theme="light"] .card,
-[data-bs-theme="light"] .sidebar,
-[data-bs-theme="light"] .top-bar,
 [data-bs-theme="light"] .navbar,
 [data-bs-theme="light"] .payment-info-box,
 [data-bs-theme="light"] .auth-card {
     background-color: #ffffff !important;
     border-color: #e9ecef !important;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
+/* --- تغییر درخواستی: هدر (سایدبار و نوار بالا) در حالت روشن یک درجه تیره‌تر از بدنه --- */
+[data-bs-theme="light"] .sidebar,
+[data-bs-theme="light"] .top-bar,
+[data-bs-theme="light"] .admin-sidebar {
+    background-color: #e2e5ea !important; /* تیره‌تر از f4f6f9 */
+    border-color: #d1d5db !important;
 }
 
 /* =================================== */
@@ -73,6 +79,30 @@ body {
 .hero-section .btn-primary,
 .hero-section .btn-outline-light {
     padding: 0.75rem 1.5rem;
+}
+
+/* --- Performance Section (جدید) --- */
+/* این کلاس را به بخش A Platform Built for Performance اضافه کنید */
+.performance-section {
+    background-color: #111; /* پس‌زمینه پایه تیره */
+    /* اضافه کردن گرادینت ملایم آبی برای زیبایی و هماهنگی با تم */
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d253f 100%);
+    color: #ffffff !important; /* اجبار رنگ سفید برای متن */
+    padding: 5rem 0;
+}
+
+.performance-section h1, 
+.performance-section h2, 
+.performance-section h3, 
+.performance-section h4, 
+.performance-section p,
+.performance-section .text-muted {
+    color: #ffffff !important; /* اطمینان از خوانایی تمام متون */
+}
+
+.performance-section .feature-icon,
+.performance-section i {
+    color: var(--bs-primary) !important; /* آیکون‌ها آبی بمانند */
 }
 
 /* Homepage: Features */
@@ -159,7 +189,6 @@ code {
 .auth-card-wrapper { width: 100%; max-width: 500px; }
 
 .auth-card {
-    /* تنظیمات خاص برای auth card در دارک مود */
     backdrop-filter: blur(10px);
 }
 [data-bs-theme="dark"] .auth-card {
@@ -174,7 +203,6 @@ code {
 .dashboard-body {
     min-height: 100vh;
     overflow-x: hidden;
-    /* رنگ پس‌زمینه توسط body هندل می‌شود (طوسی در لایت، تیره در دارک) */
 }
 
 .sidebar {
@@ -355,13 +383,13 @@ code {
 
 /* --- Admin Portal --- */
 .admin-sidebar {
-    /* سایدبار ادمین را همیشه کمی تیره نگه می‌داریم یا طبق تم تنظیم می‌کنیم */
     background-color: var(--bs-dark-bg-subtle) !important;
 }
-/* تنظیمات خاص برای سایدبار ادمین در لایت مود */
+
+/* تنظیمات سایدبار ادمین برای هماهنگی با درخواست کاربر (تیره‌تر در حالت روشن) */
 [data-bs-theme="light"] .admin-sidebar {
-    background-color: #f8f9fa !important;
-    border-right: 1px solid #dee2e6;
+    background-color: #e2e5ea !important;
+    border-right: 1px solid #d1d5db;
 }
 
 .admin-sidebar .nav-link { color: var(--bs-body-color); }
