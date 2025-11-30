@@ -1,123 +1,105 @@
 /*
- * VestHub Custom Stylesheet
+ * VestHub Custom Stylesheet (Theme Aware)
  *
  * Table of Contents:
  * 1. Imports & Root Variables
  * 2. General Site Styles
  * 3. Bootstrap Overrides
  * 4. Page-Specific Styles
- *    - Learn Page
- *    - About Page
- *    - Auth Pages
- *    - Dashboard
- *    - Invest Plans Page
- *    - Pending Investment Page
- *    - Settings Page
- *    - Risk Assessment Page
- *    - Admin Portal
  */
 
 /* =================================== */
 /* == 1. Imports & Root Variables == */
 /* =================================== */
 
-/* Google Font: Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 :root {
-  /* VestHub Blue (from logo) */
+  /* VestHub Blue (Thabete baraye har do theme) */
   --bs-primary: #00b0f0; 
   --bs-primary-rgb: 0, 176, 240;
   
-  /* Custom Dark Blue for backgrounds */
+  /* Custom Dark Blue (faghat baraye Hero Section estefade mishe) */
   --vh-dark-blue: #0d253f;
 }
 
 body {
   font-family: 'Inter', sans-serif;
+  /* background va color tavasote Bootstrap modiriat mishavad */
 }
 
 /* =================================== */
 /* ==   2. General Site Styles      == */
 /* =================================== */
 
-/* Header: Navbar Logo */
 .navbar-logo {
     height: 60px !important;
     width: auto;
 }
 
-
 /* Homepage: Hero Section */
+/* Hero hamishe tarik mimanad ta matn-haye sefid roye an khanaye dashte bashand */
 .hero-section {
-  /* Make sure you have an image named 'hero_background.png' inside your 'static/images/' folder. */
   background-image: 
     linear-gradient(rgba(13, 37, 63, 0.85), rgba(13, 37, 63, 0.85)), 
     url('../images/hero_background.png');
   background-size: cover;
   background-position: center;
   padding: 6rem 0;
+  color: white; /* Force white text in hero */
 }
 
 .hero-section .display-3 {
   font-weight: 700;
 }
 
-.hero-section .btn-primary {
-    padding: 0.75rem 1.5rem;
-}
-
+.hero-section .btn-primary,
 .hero-section .btn-outline-light {
     padding: 0.75rem 1.5rem;
 }
 
-/* Homepage: Trust Bar */
-.trust-bar-icon {
+/* Homepage: Features */
+.trust-bar-icon,
+.feature-icon {
   font-size: 2.5rem;
   color: var(--bs-primary);
   margin-bottom: 1rem;
 }
 
-/* Homepage: Core Features */
 .feature-icon {
   font-size: 3rem;
-  color: var(--bs-primary);
-  margin-bottom: 1rem;
 }
 
 /* Footer Links */
 .footer-links a:hover {
   text-decoration: underline !important;
-  color: var(--bs-white) !important;
+  color: var(--bs-primary) !important; /* Taghir be primary baraye dide shodan dar har do theme */
 }
 
 /* =================================== */
 /* ==   3. Bootstrap Overrides      == */
 /* =================================== */
+
 .btn-primary {
-  --bs-btn-hover-bg: #0099d1; /* A slightly darker blue for hover */
+  --bs-btn-hover-bg: #0099d1;
   --bs-btn-hover-border-color: #0099d1;
 }
 
 .btn-outline-primary {
     --bs-btn-hover-bg: var(--bs-primary);
-    --bs-btn-hover-color: var(--bs-dark);
+    --bs-btn-hover-color: #fff; /* Matn sefid dar hover */
 }
 
-.bg-dark-subtle {
-    /* Make the bg-dark-subtle a bit darker for better contrast */
-    background-color: #222 !important;
-}
-
-/* Card Headers */
+/* Card Headers - Hoshmand sazi baraye Theme */
 .card-header {
-    background-color: #2c2c2c;
+    background-color: var(--bs-tertiary-bg); /* Auto Light/Dark */
+    border-bottom-color: var(--bs-border-color);
 }
 
 /* Code Blocks */
 code {
-    background-color: #2c2c2c;
-    color: #f1f1f1;
+    background-color: var(--bs-secondary-bg); /* Auto Light/Dark */
+    color: var(--bs-danger); /* Rango standard bootstrap baraye code */
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
 }
@@ -126,15 +108,8 @@ code {
 /* ==  4. Page-Specific Styles      == */
 /* =================================== */
 
-/* --- Learn Page --- */
-.feature-icon-img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-/* --- About Page --- */
+/* --- Learn & About --- */
+.feature-icon-img,
 .about-icon {
     width: 80px;
     height: 80px;
@@ -147,13 +122,15 @@ code {
     object-fit: contain; 
     margin-bottom: 1rem;
 }
+
 /* --- Auth Pages (Login/Signup) --- */
+/* in safhe ra hamishe tarik negah midarim chon design khasi darad */
 .auth-body {
-    /* Animated gradient background */
     background: linear-gradient(-45deg, #0d253f, #1a1a1a, #0d253f);
     background-size: 400% 400%;
     animation: authGradient 15s ease infinite;
     min-height: 100vh;
+    color: white; /* Force white text */
 }
 
 @keyframes authGradient {
@@ -162,43 +139,30 @@ code {
     100% { background-position: 0% 50%; }
 }
 
-.auth-wrapper {
-    min-height: 100vh;
-}
-
-.auth-card-wrapper {
-    width: 100%;
-    max-width: 500px;
-}
+.auth-wrapper { min-height: 100vh; }
+.auth-card-wrapper { width: 100%; max-width: 500px; }
 
 .auth-card {
-    background-color: rgba(33, 37, 41, 0.9);
+    background-color: rgba(33, 37, 41, 0.9); /* Hamishe Dark */
     backdrop-filter: blur(10px);
     border: 1px solid #444;
+    color: white;
 }
 
-.social-login-btn {
-    --bs-btn-hover-bg: #333;
-}
+.divider-text { font-size: 0.85rem; font-weight: 500; }
+.divider-text hr { border-color: #777; }
 
-.divider-text {
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-.divider-text hr {
-    border-color: #444;
-}
-
-/* --- Dashboard --- */
+/* --- Dashboard (THEME AWARE) --- */
 .dashboard-body {
-    background-color: #1a1a1a;
+    /* Hazf shod ta az range default body estefade konad */
     min-height: 100vh;
     overflow-x: hidden;
 }
 
 .sidebar {
     width: 280px;
-    background-color: #212529; /* Bootstrap bg-dark */
+    background-color: var(--bs-tertiary-bg); /* Hoshmand: Tarik dar Dark, Roshan dar Light */
+    border-right: 1px solid var(--bs-border-color);
     min-height: 100vh;
     flex-shrink: 0;
 }
@@ -206,26 +170,25 @@ code {
 .sidebar .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
+    color: var(--bs-body-color); /* Rang matn hoshmand */
 }
 
 .sidebar .nav-link:hover {
-    background-color: #333;
+    background-color: var(--bs-secondary-bg);
 }
 
 .sidebar .nav-link.active {
     background-color: var(--bs-primary);
+    color: white;
 }
 
 .sidebar-footer {
-    border-top: 1px solid #444;
-}
-
-.main-content-wrapper {
-    width: 100%;
+    border-top: 1px solid var(--bs-border-color);
 }
 
 .top-bar {
-    background-color: #212529;
+    background-color: var(--bs-tertiary-bg);
+    border-bottom: 1px solid var(--bs-border-color);
     padding: 0.75rem 1rem;
     position: sticky;
     top: 0;
@@ -234,17 +197,16 @@ code {
 
 /* Dashboard Responsiveness */
 @media (max-width: 991.98px) {
-    /* Hide desktop sidebar on mobile */
     .sidebar { display: none !important; }
 }
 @media (min-width: 992px) {
-    /* Hide mobile top bar on desktop */
     .top-bar { display: none !important; }
 }
 
 /* --- Invest Plans Page --- */
 .plan-card {
-    border: 1px solid #444;
+    border: 1px solid var(--bs-border-color); /* Border Hoshmand */
+    background-color: var(--bs-card-bg); /* Background Hoshmand */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -264,7 +226,7 @@ code {
     top: 15px;
     right: -30px;
     background-color: var(--bs-primary);
-    color: #1a1a1a;
+    color: #fff;
     font-weight: bold;
     font-size: 0.8rem;
     padding: 5px 30px;
@@ -274,22 +236,24 @@ code {
 
 /* --- Pending Investment Page --- */
 .payment-info-box {
-    border: 1px solid #444;
+    border: 1px solid var(--bs-border-color);
     border-radius: 0.5rem;
+    background-color: var(--bs-tertiary-bg);
 }
 
 .payment-info-box .form-control {
     border: none;
     background: transparent !important;
+    color: var(--bs-body-color);
 }
 .payment-info-box .form-control:focus {
     box-shadow: none;
-    background: transparent;
 }
 
 .payment-info-box .list-group-item {
     background-color: transparent;
-    border-color: #444;
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
 }
 
 .payment-info-box .list-group-item:last-child {
@@ -304,18 +268,17 @@ code {
 
 .settings-nav .nav-link.active {
     background-color: var(--bs-primary);
-    color: #1a1a1a;
+    color: white;
 }
 
 .settings-nav .nav-link:hover {
-    background-color: #333;
+    background-color: var(--bs-secondary-bg);
     color: var(--bs-body-color);
 }
 
 /* --- Risk Assessment Page --- */
-.risk-stepper {
-    gap: 0.5rem;
-}
+.risk-stepper { gap: 0.5rem; }
+
 .step {
     display: flex;
     align-items: center;
@@ -326,8 +289,8 @@ code {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #333;
-    color: #888;
+    background-color: var(--bs-secondary-bg); /* Hoshmand */
+    color: var(--bs-secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -337,113 +300,72 @@ code {
 }
 .step-line {
     height: 2px;
-    background-color: #333;
+    background-color: var(--bs-border-color);
     flex-grow: 1;
 }
 
 .step.active .step-circle {
     background-color: var(--bs-primary);
-    color: #1a1a1a;
-}
-.step.active {
-    color: var(--bs-primary);
-}
-.step.completed .step-circle {
-    background-color: #28a745; /* Green for completed */
     color: white;
 }
-.step.completed {
-    color: var(--bs-body-color);
-}
+.step.active { color: var(--bs-primary); }
 
-.risk-question-group {
-    display: none;
+.step.completed .step-circle {
+    background-color: #28a745;
+    color: white;
 }
-.risk-question-group.active {
-    display: block;
-}
+.step.completed { color: var(--bs-body-color); }
 
-.risk-question-group .form-label {
-    color: var(--bs-warning);
-}
+.risk-question-group { display: none; }
+.risk-question-group.active { display: block; }
 
 .btn-group-vertical .btn-outline-secondary {
-    border-color: #777; 
-    color: #dee2e6;
+    border-color: var(--bs-border-color); 
+    color: var(--bs-body-color);
     text-align: left;
 }
 .btn-group-vertical .btn-outline-secondary:hover {
-    background-color: #333;
+    background-color: var(--bs-secondary-bg);
 }
 .btn-check:checked + .btn-outline-secondary {
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
-    color: #1a1a1a;
+    color: white;
     box-shadow: 0 0 10px rgba(0, 176, 240, 0.3);
 }
 
 /* --- Admin Portal --- */
 .admin-sidebar {
-    background-color: #111 !important;
+    background-color: var(--bs-dark-bg-subtle) !important; /* Admin usually stays darkish or adaptive */
+}
+/* Override baraye inke admin sidebar hamishe kami tarik bashad hata dar light mode agar mikhaid */
+[data-bs-theme="light"] .admin-sidebar {
+    background-color: #f8f9fa !important;
 }
 
-.admin-sidebar .nav-link:hover {
-    background-color: #222;
-}
+.admin-sidebar .nav-link { color: var(--bs-body-color); }
+.admin-sidebar .nav-link:hover { background-color: var(--bs-secondary-bg); }
+.admin-sidebar .nav-link.active { background-color: var(--bs-primary); color: white; }
 
-.admin-sidebar .nav-link.active {
-    background-color: var(--bs-primary);
-}
-
-/* Admin: User Table Status Badges */
-.status-verified {
-    background-color: var(--bs-success-bg-subtle);
-    color: var(--bs-success-text-emphasis);
-    border: 1px solid var(--bs-success-border-subtle);
-}
-.status-pending,
-.status-not-assessed {
-    background-color: var(--bs-warning-bg-subtle);
-    color: var(--bs-warning-text-emphasis);
-    border: 1px solid var(--bs-warning-border-subtle);
-}
-.status-not-submitted {
-    background-color: var(--bs-secondary-bg-subtle);
-    color: var(--bs-secondary-text-emphasis);
-    border: 1px solid var(--bs-secondary-border-subtle);
-}
-.status-balanced {
-    background-color: var(--bs-primary-bg-subtle);
-    color: var(--bs-primary-text-emphasis);
-    border: 1px solid var(--bs-primary-border-subtle);
-}
-.status-aggressive {
-    background-color: var(--bs-danger-bg-subtle);
-    color: var(--bs-danger-text-emphasis);
-    border: 1px solid var(--bs-danger-border-subtle);
-}
-.status-conservative {
-    background-color: var(--bs-info-bg-subtle);
-    color: var(--bs-info-text-emphasis);
-    border: 1px solid var(--bs-info-border-subtle);
-}
+/* Status Badges */
+.status-verified { background-color: var(--bs-success-bg-subtle); color: var(--bs-success-text-emphasis); border: 1px solid var(--bs-success-border-subtle); }
+.status-pending, .status-not-assessed { background-color: var(--bs-warning-bg-subtle); color: var(--bs-warning-text-emphasis); border: 1px solid var(--bs-warning-border-subtle); }
+.status-not-submitted { background-color: var(--bs-secondary-bg-subtle); color: var(--bs-secondary-text-emphasis); border: 1px solid var(--bs-secondary-border-subtle); }
+.status-balanced { background-color: var(--bs-primary-bg-subtle); color: var(--bs-primary-text-emphasis); border: 1px solid var(--bs-primary-border-subtle); }
+.status-aggressive { background-color: var(--bs-danger-bg-subtle); color: var(--bs-danger-text-emphasis); border: 1px solid var(--bs-danger-border-subtle); }
+.status-conservative { background-color: var(--bs-info-bg-subtle); color: var(--bs-info-text-emphasis); border: 1px solid var(--bs-info-border-subtle); }
 
 /* Admin: Payment Tabs */
-.nav-tabs .nav-link {
-    color: var(--bs-body-secondary);
-}
+.nav-tabs .nav-link { color: var(--bs-secondary-color); }
 .nav-tabs .nav-link.active {
     color: var(--bs-body-color);
-    background-color: #2c2c2c;
-    border-color: #2c2c2c #2c2c2c var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
 }
 .tab-content {
-    border: 1px solid #2c2c2c;
+    border: 1px solid var(--bs-border-color);
     border-top: 0;
-    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 /* --- Marketplace Page --- */
-.table-bordered {
-    border-color: #555;
-}
+.table-bordered { border-color: var(--bs-border-color); }
