@@ -1,16 +1,12 @@
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, flash, redirect, url_for, current_app
 from models import InvestmentPlan
+from utils import send_system_email
 
-# Define the Blueprint for the main, public-facing routes of the application.
+# تعریف Blueprint
 main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def home():
-    """
-    Home page route.
-    - If a referral code is present in the URL ('?ref=...'), it's stored in the session.
-    - Fetches the top 3 active investment plans to display on the homepage.
-    """
     if request.args.get('ref'): 
         session['ref_code'] = request.args.get('ref')
     
@@ -19,38 +15,60 @@ def home():
 
 @main_bp.route('/about')
 def about():
-    """Renders the 'About Us' page."""
     return render_template('about.html')
 
 @main_bp.route('/plans')
 def plans():
-    """Renders the 'Investment Plans' page, showing all active plans."""
     plans = InvestmentPlan.query.filter_by(is_active=True).order_by(InvestmentPlan.duration_months.desc()).all()
     return render_template('plans.html', plans=plans)
 
 @main_bp.route('/marketplace')
 def marketplace():
-    """Renders the 'Marketplace' page for trading bots and tools."""
     return render_template('marketplace.html')
 
 @main_bp.route('/invest')
 def invest_learn():
-    """Renders the 'Learn to Invest' educational page."""
     return render_template('learn.html')
 
-# --- Legal & Compliance Routes ---
+# --- Contact Us Form Handler ---
+@main_bp.route('/contact', methods=['POST'])
+def contact():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    message = request.form.get('message')
+    
+    # ساخت متن ایمیل برای ارسال به مدیر
+    email_body = f"""
+    New Contact Message Received:
+    
+    Name: {name}
+    Email: {email}
+    Phone: {phone}
+    
+    Message:
+    {message}
+    """
+    
+    # ارسال ایمیل به آدرس پیش‌فرض سیستم (ادمین)
+    # در فایل config.py، آدرس MAIL_DEFAULT_SENDER تنظیم شده است
+    admin_email = current_app.config['MAIL_DEFAULT_SENDER'][1] if isinstance(current_app.config['MAIL_DEFAULT_SENDER'], tuple) else current_app.config['MAIL_DEFAULT_SENDER']
+    
+    send_system_email(f"New Contact from {name}", admin_email, email_body)
+    
+    flash('Thank you! Your message has been sent successfully. We will get back to you soon.', 'success')
+    return redirect(url_for('main.home', _anchor='contact'))
+
+# --- Legal Pages ---
 
 @main_bp.route('/terms')
 def terms():
-    """Renders the 'Terms & Conditions' page."""
     return render_template('terms.html')
 
 @main_bp.route('/privacy')
 def privacy():
-    """Renders the 'Privacy Policy' page."""
     return render_template('privacy.html')
 
 @main_bp.route('/risk-disclosure')
 def risk_disclosure():
-    """Renders the 'Risk Disclosure' page."""
     return render_template('risk_disclosure.html')
