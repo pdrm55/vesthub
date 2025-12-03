@@ -151,7 +151,7 @@
     </div>
 </section>
 
-<!-- Core Features Section -->
+<!-- Core Features Section (UPDATED) -->
 <section class="performance-section">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">A Platform Built for Performance</h2>
@@ -189,97 +189,6 @@
     </div>
 </section>
 
-<!-- Contact Us Section (NEW) -->
-<section id="contact" class="py-5 bg-body-tertiary">
-    <div class="container">
-        <h2 class="text-center fw-bold mb-5">Contact Us</h2>
-        <div class="row g-5">
-            <!-- Contact Form -->
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4">
-                        <h4 class="mb-4">Send us a message</h4>
-                        <form action="{{ url_for('main.contact') }}" method="POST">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <div class="mb-3">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" name="phone" placeholder="+90 ..." required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Message</label>
-                                <textarea class="form-control" name="message" rows="4" placeholder="How can we help you?" required></textarea>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contact Info & Map -->
-            <div class="col-lg-6">
-                <div class="h-100 d-flex flex-column gap-4">
-                    <!-- Address Card -->
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-start mb-3">
-                                <i class="bi bi-geo-alt-fill fs-3 text-primary me-3"></i>
-                                <div>
-                                    <h5 class="fw-bold">Our Office</h5>
-                                    <p class="text-body-secondary mb-0">
-                                        Cumhuriyet Mahallesi, Halaskargazi Cad. Bülbül 2 Apt.<br>
-                                        No : 137 K : 2 Daire 5, 34371<br>
-                                        Şişli/İstanbul, Türkiye
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- Google Map (Clickable Image Overlay) -->
-                            <div class="position-relative mt-3 rounded-3 overflow-hidden" style="height: 200px; border: 1px solid var(--bs-border-color);">
-                                <a href="https://www.google.com/maps/search/?api=1&query=Cumhuriyet+Mahallesi,+Halaskargazi+Cad.+Bülbül+2+Apt.+No+:+137+K+:+2+Daire+5,+34371+Şişli/İstanbul,+Türkiye" target="_blank" class="text-decoration-none">
-                                    <iframe 
-                                        src="https://www.google.com/maps?q=Cumhuriyet+Mahallesi,+Halaskargazi+Cad.+Bülbül+2+Apt.+No+:+137+K+:+2+Daire+5,+34371+Şişli/İstanbul,+Türkiye&output=embed" 
-                                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                    </iframe>
-                                    <!-- Overlay to ensure click opens new tab (optional but better UX for small maps) -->
-                                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-10 hover-overlay">
-                                        <span class="btn btn-light btn-sm shadow-sm"><i class="bi bi-map-fill me-1"></i> Open in Google Maps</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- WhatsApp Card -->
-                    <div class="card border-0 shadow-sm bg-success-subtle">
-                        <div class="card-body p-4 d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-whatsapp fs-1 text-success me-3"></i>
-                                <div>
-                                    <h5 class="fw-bold mb-1 text-success-emphasis">Chat with us</h5>
-                                    <p class="mb-0 text-success-emphasis font-monospace">0090 531 724 7685</p>
-                                </div>
-                            </div>
-                            <a href="https://wa.me/905317247685" target="_blank" class="btn btn-success rounded-pill px-4">
-                                Open WhatsApp <i class="bi bi-box-arrow-up-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Final Call to Action Section -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
@@ -292,11 +201,5 @@
         </div>
     </div>
 </section>
-
-<style>
-/* استایل کوچک برای هاور روی نقشه */
-.hover-overlay { opacity: 0; transition: opacity 0.3s ease; }
-.hover-overlay:hover { opacity: 1; cursor: pointer; }
-</style>
 
 {% endblock %}

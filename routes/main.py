@@ -30,15 +30,21 @@ def marketplace():
 def invest_learn():
     return render_template('learn.html')
 
-# --- Contact Us Form Handler ---
+# --- Contact Us Routes ---
+
+@main_bp.route('/contact-us')
+def contact_us():
+    """نمایش صفحه تماس با ما"""
+    return render_template('contact.html')
+
 @main_bp.route('/contact', methods=['POST'])
 def contact():
+    """پردازش فرم تماس با ما"""
     name = request.form.get('name')
     email = request.form.get('email')
     phone = request.form.get('phone')
     message = request.form.get('message')
     
-    # ساخت متن ایمیل برای ارسال به مدیر
     email_body = f"""
     New Contact Message Received:
     
@@ -50,14 +56,12 @@ def contact():
     {message}
     """
     
-    # ارسال ایمیل به آدرس پیش‌فرض سیستم (ادمین)
-    # در فایل config.py، آدرس MAIL_DEFAULT_SENDER تنظیم شده است
     admin_email = current_app.config['MAIL_DEFAULT_SENDER'][1] if isinstance(current_app.config['MAIL_DEFAULT_SENDER'], tuple) else current_app.config['MAIL_DEFAULT_SENDER']
     
     send_system_email(f"New Contact from {name}", admin_email, email_body)
     
-    flash('Thank you! Your message has been sent successfully. We will get back to you soon.', 'success')
-    return redirect(url_for('main.home', _anchor='contact'))
+    flash('Thank you! Your message has been sent successfully.', 'success')
+    return redirect(url_for('main.contact_us'))
 
 # --- Legal Pages ---
 
