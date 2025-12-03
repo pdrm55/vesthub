@@ -79,6 +79,18 @@
             </div>
             {% endfor %}
         </div>
+
+        <!-- More Plans Button (Added) -->
+        {% if plans %}
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{{ url_for('main.plans') }}" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">
+                    View More Plans <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
     </div>
 </section>
 
@@ -140,7 +152,6 @@
 </section>
 
 <!-- Core Features Section (UPDATED) -->
-<!-- کلاس performance-section اینجا اضافه شد تا با استایل جدید هماهنگ شود -->
 <section class="performance-section">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">A Platform Built for Performance</h2>
