@@ -1,89 +1,89 @@
 {% extends 'dashboard_layout.html' %}
 
-{% block title %}My Payout Wallet{% endblock %}
-
 {% block content %}
-<h1 class="h2 fw-bold mb-4">My Payout Wallet</h1>
+<div class="container-fluid">
+    <h2 class="mb-4">My Wallet</h2>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-
-<div class="row g-4">
-    <!-- Left Column: Current Wallet & Security Note -->
-    <div class="col-lg-7">
-        <!-- Current Wallet Card -->
-        <div class="card shadow-sm rounded-4 mb-4">
-            <div class="card-header bg-dark-subtle p-3">
-                <h5 class="fw-bold mb-0">Current Payout Wallet</h5>
-            </div>
-            <div class="card-body p-4">
-                <p class="text-body-secondary">This is the wallet address where all your withdrawals will be sent. Please double-check it for accuracy.</p>
-                
-                <h6 class="text-body-secondary mb-1">Wallet Type:</h6>
-                <!-- UPDATED: Show database value or default message -->
-                <p class="fs-5">{{ current_user.wallet_network if current_user.wallet_network else 'Not Set' }}</p>
-
-                <h6 class="text-body-secondary mb-1">Wallet Address:</h6>
-                <!-- UPDATED: Show database value or default message -->
-                {% if current_user.wallet_address %}
-                    <code class="d-block text-break mb-3 fs-5">{{ current_user.wallet_address }}</code>
-                {% else %}
-                    <p class="text-warning mb-3">No wallet address configured yet.</p>
-                {% endif %}
+    <div class="row g-4">
+        <!-- Withdrawal Wallet Settings -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-header bg-transparent border-bottom-0">
+                    <h5 class="mb-0"><i class="bi bi-arrow-up-circle me-2 text-warning"></i>Withdrawal Settings</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary small">Set your receiving wallet address for withdrawals. Ensure the network matches.</p>
+                    
+                    <form method="POST" action="{{ url_for('user.wallet') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Wallet Network</label>
+                            <select class="form-select" name="wallet_type">
+                                <option value="trc20" {% if user.wallet_network == 'trc20' %}selected{% endif %}>USDT (TRC20)</option>
+                                <option value="erc20" {% if user.wallet_network == 'erc20' %}selected{% endif %}>USDT (ERC20)</option>
+                                <option value="bep20" {% if user.wallet_network == 'bep20' %}selected{% endif %}>USDT (BEP20)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Wallet Address</label>
+                            <input type="text" class="form-control" name="wallet_address" value="{{ user.wallet_address or '' }}" placeholder="Enter your address">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Save Withdrawal Address</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <!-- Security Note -->
-        <div class="alert alert-warning d-flex align-items-center" role="alert">
-            <i class="bi bi-shield-lock-fill fs-4 me-3"></i>
-            <div>
-                <strong>Security Policy:</strong> For your protection, all withdrawals will be temporarily disabled for 24 hours after changing your wallet address.
-            </div>
-        </div>
-    </div>
+        <!-- Deposit Addresses (Company Wallets) -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-header bg-transparent border-bottom-0">
+                    <h5 class="mb-0"><i class="bi bi-arrow-down-circle me-2 text-success"></i>Deposit Addresses</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary small">Use these addresses to fund your account manually.</p>
+                    
+                    <ul class="list-group list-group-flush">
+                        {% if company_wallets.trc20 %}
+                        <li class="list-group-item bg-transparent px-0">
+                            <span class="badge bg-success-subtle text-success-emphasis mb-1">USDT (TRC20)</span>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="{{ company_wallets.trc20 }}" readonly>
+                                <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText('{{ company_wallets.trc20 }}')">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                        </li>
+                        {% endif %}
 
-    <!-- Right Column: Update Wallet Form -->
-    <div class="col-lg-5">
-        <div class="card shadow-sm rounded-4">
-            <div class="card-header bg-dark-subtle p-3">
-                <h5 class="fw-bold mb-0">Update Wallet Address</h5>
-            </div>
-            <div class="card-body p-4">
-                <!-- UPDATED: Form Action and Method -->
-                <form method="POST" action="{{ url_for('user.wallet') }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <div class="mb-3">
-                        <label for="walletType" class="form-label">Wallet Type</label>
-                        <!-- UPDATED: Added name attribute & Changed Options -->
-                        <select class="form-select" id="walletType" name="wallet_type">
-                            <option value="TRC-20 (USDT)" selected>USDT (TRC-20)</option>
-                            <option value="ERC-20 (USDT)">USDT (ERC-20)</option>
-                            <!-- Changed Bitcoin to BEP-20 -->
-                            <option value="BEP-20 (USDT)">USDT (BEP-20)</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="walletAddress" class="form-label">New Wallet Address</label>
-                        <!-- UPDATED: Added name attribute -->
-                        <input type="text" class="form-control" id="walletAddress" name="wallet_address" required>
-                    </div>
-                    <hr>
-                    <div class="mb-3">
-                        <label for="2fa_code" class="form-label">Security Confirmation (2FA Code)</label>
-                        <input type="text" class="form-control" id="2fa_code" name="2fa_code" placeholder="Enter your 6-digit 2FA code" required>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Save New Wallet</button>
-                    </div>
-                </form>
+                        {% if company_wallets.erc20 %}
+                        <li class="list-group-item bg-transparent px-0">
+                            <span class="badge bg-info-subtle text-info-emphasis mb-1">USDT (ERC20)</span>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="{{ company_wallets.erc20 }}" readonly>
+                                <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText('{{ company_wallets.erc20 }}')">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if company_wallets.bep20 %}
+                        <li class="list-group-item bg-transparent px-0">
+                            <span class="badge bg-warning-subtle text-warning-emphasis mb-1">USDT (BEP20)</span>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="{{ company_wallets.bep20 }}" readonly>
+                                <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText('{{ company_wallets.bep20 }}')">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

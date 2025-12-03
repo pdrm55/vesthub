@@ -1,97 +1,61 @@
 {% extends 'admin_layout.html' %}
 
-{% block title %}System Settings{% endblock %}
-
 {% block content %}
-<h1 class="h2 fw-bold mb-4">System Settings</h1>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">System Configuration</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <h6 class="text-primary mb-3"><i class="bi bi-wallet2 me-2"></i>Company Wallet Addresses</h6>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">USDT (TRC20)</label>
+                        <input type="text" class="form-control" name="wallet_trc20" value="{{ config.wallet_trc20 }}">
+                        <div class="form-text">Used for USDT deposits on Tron network.</div>
+                    </div>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+                    <div class="mb-3">
+                        <label class="form-label">USDT (ERC20)</label>
+                        <input type="text" class="form-control" name="wallet_erc20" value="{{ config.wallet_erc20 }}">
+                        <div class="form-text">Used for USDT deposits on Ethereum network.</div>
+                    </div>
 
-<div class="row g-4">
-    <!-- Column 1: Referral & Tools -->
-    <div class="col-lg-6">
-        <!-- Referral Config -->
-        <div class="card shadow-sm rounded-4 mb-4">
-            <div class="card-header bg-dark-subtle p-3">
-                <h5 class="fw-bold mb-0">Referral Program Configuration</h5>
-            </div>
-            <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('admin.settings') }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
-                        <label for="referral_percentage" class="form-label">Referral Bonus Percentage (%)</label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="referral_percentage" name="referral_percentage" value="{{ config.referral_percentage }}" step="0.1" min="0" max="100">
-                            <span class="input-group-text">%</span>
-                        </div>
+                        <label class="form-label">USDT (BEP20)</label>
+                        <input type="text" class="form-control" name="wallet_bep20" value="{{ config.wallet_bep20 }}">
+                        <div class="form-text">Used for USDT deposits on BNB Smart Chain.</div>
                     </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Save Referral Settings</button>
-                    </div>
-                </form>
-            </div>
-        </div>
 
-        <!-- Simulation Tools -->
-        <div class="card shadow-sm rounded-4 border-warning">
-            <div class="card-header bg-warning-subtle text-warning-emphasis p-3">
-                <h5 class="fw-bold mb-0"><i class="bi bi-lightning-fill me-2"></i>Simulation Tools</h5>
-            </div>
-            <div class="card-body p-4">
-                <p class="text-body-secondary">Manually trigger profit distribution.</p>
-                <form method="POST" action="{{ url_for('admin.distribute_test_profit') }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-warning w-100 fw-bold">
-                        <i class="bi bi-cash-coin me-2"></i> Run Profit Distribution
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+                    <div class="mb-3">
+                        <label class="form-label">USDT (Polygon/Matic)</label>
+                        <input type="text" class="form-control" name="wallet_polygon" value="{{ config.wallet_polygon }}">
+                        <div class="form-text">Used for USDT deposits on Polygon network.</div>
+                    </div>
 
-    <!-- Column 2: Company Wallet Config -->
-    <div class="col-lg-6">
-        <div class="card shadow-sm rounded-4">
-            <div class="card-header bg-dark-subtle p-3">
-                <h5 class="fw-bold mb-0"><i class="bi bi-wallet2 me-2"></i>Company Payment Details</h5>
-            </div>
-            <div class="card-body p-4">
-                <form method="POST" action="{{ url_for('admin.settings') }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <h6 class="text-primary fw-bold mb-3">Tether (USDT) Wallets</h6>
+                    <hr class="my-4">
+
+                    <h6 class="text-primary mb-3"><i class="bi bi-bank me-2"></i>Bank Transfer Details</h6>
                     <div class="mb-3">
-                        <label class="form-label">TRC20 Address</label>
-                        <input type="text" class="form-control font-monospace" name="wallet_trc20" value="{{ config.wallet_trc20 }}" placeholder="Start with T...">
+                        <label class="form-label">Bank Info (IBAN/Account)</label>
+                        <textarea class="form-control" name="bank_details" rows="3">{{ config.bank_details }}</textarea>
+                        <div class="form-text">Full bank details visible to users for wire transfers.</div>
                     </div>
+
+                    <hr class="my-4">
+
+                    <h6 class="text-primary mb-3"><i class="bi bi-percent me-2"></i>System Parameters</h6>
                     <div class="mb-3">
-                        <label class="form-label">ERC20 Address</label>
-                        <input type="text" class="form-control font-monospace" name="wallet_erc20" value="{{ config.wallet_erc20 }}" placeholder="Start with 0x...">
+                        <label class="form-label">Referral Bonus Percentage (%)</label>
+                        <input type="number" step="0.1" class="form-control" name="referral_percentage" value="{{ config.referral_percentage }}">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">BEP20 Address</label>
-                        <input type="text" class="form-control font-monospace" name="wallet_bep20" value="{{ config.wallet_bep20 }}" placeholder="Start with 0x...">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Polygon Address</label>
-                        <input type="text" class="form-control font-monospace" name="wallet_polygon" value="{{ config.wallet_polygon }}" placeholder="Start with 0x...">
-                    </div>
-                    <hr>
-                    <h6 class="text-primary fw-bold mb-3">Bank Account Details</h6>
-                    <div class="mb-3">
-                        <label class="form-label">Full Bank Info</label>
-                        <textarea class="form-control" name="bank_details" rows="4">{{ config.bank_details }}</textarea>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Save Payment Details</button>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Save Configuration</button>
                     </div>
                 </form>
             </div>
