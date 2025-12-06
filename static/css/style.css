@@ -1,5 +1,5 @@
 /*
- * VestHub Custom Stylesheet (Theme Aware & Optimized)
+ * VestHub Custom Stylesheet (Theme Aware, Optimized & Image Fixes)
  *
  * Table of Contents:
  * 1. Imports & Root Variables
@@ -35,6 +35,13 @@ body {
 /* =================================== */
 /* ==   2. General Site Styles      == */
 /* =================================== */
+
+/* Responsive Images Fix */
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
 
 .navbar-logo {
     height: 60px !important;
@@ -230,7 +237,6 @@ code {
 /* == 5. LIGHT MODE OVERRIDES (CRITICAL FIXES) == */
 /* ========================================================= */
 
-/* اجبار رنگ سفید برای پس‌زمینه اجزای اصلی */
 [data-bs-theme="light"] .card,
 [data-bs-theme="light"] .sidebar,
 [data-bs-theme="light"] .top-bar,
@@ -242,39 +248,49 @@ code {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
 }
 
-/* اصلاح اساسی جداول برای خوانایی کامل */
-[data-bs-theme="light"] .table-dark {
-    background-color: #ffffff !important;
-    color: #212529 !important; /* رنگ متن تیره */
-    border-color: #dee2e6 !important;
-    --bs-table-bg: #ffffff; /* ریست کردن متغیر بوت‌استرپ */
-    --bs-table-color: #212529;
+/* FIX: Ensure Hero and Dark Header sections KEEP white text in light mode */
+[data-bs-theme="light"] .hero-section .text-white,
+[data-bs-theme="light"] .hero-section .display-3,
+[data-bs-theme="light"] .hero-section .lead,
+[data-bs-theme="light"] .performance-section .text-white,
+[data-bs-theme="light"] .performance-section h2,
+[data-bs-theme="light"] .performance-section p,
+[data-bs-theme="light"] .page-header-dark .text-white,
+[data-bs-theme="light"] .page-header-dark h1,
+[data-bs-theme="light"] .page-header-dark p {
+    color: #ffffff !important;
 }
 
+/* Tables Fix */
+[data-bs-theme="light"] .table-dark {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-color: #dee2e6 !important;
+    --bs-table-bg: #ffffff;
+    --bs-table-color: #212529;
+}
 [data-bs-theme="light"] .table-dark th,
 [data-bs-theme="light"] .table-dark td {
     background-color: #ffffff !important;
     color: #212529 !important;
     border-color: #dee2e6 !important;
 }
-
-/* هدر جداول در حالت روشن */
 [data-bs-theme="light"] .table thead th,
 [data-bs-theme="light"] .table-dark thead th {
-    background-color: #f8f9fa !important; /* طوسی خیلی روشن برای هدر */
+    background-color: #f8f9fa !important;
     color: #212529 !important;
     border-bottom: 2px solid #dee2e6 !important;
 }
 
-/* اصلاح رنگ متن‌های سفید که در حالت روشن ناخوانا می‌شوند */
-[data-bs-theme="light"] .text-white,
-[data-bs-theme="light"] .text-white-50,
-[data-bs-theme="light"] .text-light,
-[data-bs-theme="light"] .text-body-secondary {
-    color: #495057 !important; /* خاکستری تیره برای خوانایی */
+/* General Text Fix for Light Mode */
+/* NOTE: We make sure this doesn't override the specific hero sections above by using :not() or specificity */
+[data-bs-theme="light"] .text-white:not(.hero-section *):not(.performance-section *):not(.page-header-dark *),
+[data-bs-theme="light"] .text-white-50:not(.hero-section *):not(.performance-section *):not(.page-header-dark *),
+[data-bs-theme="light"] .text-light:not(.hero-section *):not(.performance-section *):not(.page-header-dark *),
+[data-bs-theme="light"] .text-body-secondary:not(.hero-section *):not(.performance-section *):not(.page-header-dark *) {
+    color: #495057 !important;
 }
 
-/* اصلاح پس‌زمینه تیره اجباری */
 [data-bs-theme="light"] .bg-dark,
 [data-bs-theme="light"] .bg-dark-subtle {
     background-color: #ffffff !important;
@@ -282,7 +298,6 @@ code {
     border: 1px solid #dee2e6;
 }
 
-/* اصلاح آیکون‌ها در حالت روشن */
 [data-bs-theme="light"] .sidebar .nav-link i,
 [data-bs-theme="light"] .bi-envelope-paper-fill {
     color: #6c757d !important;
@@ -291,7 +306,6 @@ code {
     color: #ffffff !important;
 }
 
-/* --- اصلاح اختصاصی برای فوتر در حالت روشن --- */
 [data-bs-theme="light"] footer {
     background-color: #ffffff !important;
     color: #212529 !important;
@@ -299,8 +313,8 @@ code {
 }
 [data-bs-theme="light"] footer a,
 [data-bs-theme="light"] footer small {
-    color: #6c757d !important; /* رنگ طوسی برای لینک‌ها */
+    color: #6c757d !important;
 }
 [data-bs-theme="light"] footer a:hover {
-    color: var(--bs-primary) !important; /* رنگ آبی در حالت هاور */
+    color: var(--bs-primary) !important;
 }

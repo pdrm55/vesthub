@@ -1,55 +1,56 @@
 {% extends 'base.html' %}
 
-{% block title %}About VestHub - Our Mission & Team{% endblock %}
+{% block title %}About Us - VestHub{% endblock %}
 
 {% block content %}
 
-<!-- Section 1: Hero (H1 + Opening Paragraph + Graphic) -->
-<section class="py-5">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <!-- H1 / Main Headline -->
-                <h1 class="display-4 fw-bold mb-4">About VestHub: Where Deep Market Experience Meets Future Technology</h1>
-                <!-- Opening Paragraph: Mission & Identity -->
-                <p class="lead text-body-secondary mb-3">VestHub is not just another FinTech company. We are a collective of veteran traders, market analysts, and engineers who have spent decades living and breathing the global financial markets.</p>
-                <p class="lead">Our mission is simple: to build the tools that real traders actually need to succeed in today's complex markets. We founded this platform because we were tired of the deep gap between the tools that existed and the tools that worked.</p>
-            </div>
-            <div class="col-lg-6">
-                <!-- Hero graphic -->
-                <img src="{{ url_for('static', filename='images/about-hero-fusion.png') }}" class="img-fluid rounded-4 shadow-lg" alt="Abstract graphic showing the fusion of market data and technology">
-            </div>
-        </div>
+<!-- Section 1: Hero -->
+<header class="py-5 text-center text-white" style="background: linear-gradient(rgba(13, 37, 63, 0.9), rgba(13, 37, 63, 0.9)), url('{{ url_for('static', filename='images/about-hero-fusion.png') }}') center/cover;">
+    <div class="container py-5">
+        <h1 class="display-3 fw-bold mb-4">About VestHub</h1>
+        <p class="lead mb-0 mx-auto" style="max-width: 800px;">
+            Where Deep Market Experience Meets Future Technology. We are a collective of veteran traders and engineers building the tools real traders need.
+        </p>
     </div>
-</section>
+</header>
 
-<!-- Section 2: The Two Pillars (Our Unique Advantage) -->
-<section class="py-5 bg-dark-subtle text-body-emphasis">
+<!-- Section 2: Our Unique Advantage (Layout Fix: Text Side-by-Side Image) -->
+<!-- استفاده از bg-body-tertiary برای هماهنگی با تم روشن/تاریک -->
+<section class="py-5 bg-body-tertiary">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">Our Unique Advantage: A Team Forged by Experience</h2>
-        <div class="row g-4">
-            <!-- Pillar 1: Market Experts -->
-            <div class="col-lg-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm">
-                    <div class="card-body d-flex align-items-start">
-                        <img src="{{ url_for('static', filename='images/about-icon-experts.png') }}" class="about-icon me-4" alt="Market Experts Icon">
-                        <div>
-                            <h3 class="fw-semibold mb-3">The Market Experts (20+ Years)</h3>
-                            <p>Our core strategy is driven by senior analysts and quantitative traders with over two decades of active, in-the-trenches market experience. They are the architects of the trading algorithms (bots) tested and proven profitable in diverse market conditions.</p>
-                        </div>
-                    </div>
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Unique Advantage</h2>
+            <p class="text-body-secondary lead">A Team Forged by Experience</p>
+        </div>
+
+        <!-- Advantage 1: Market Experts -->
+        <div class="row align-items-center mb-5 g-5">
+            <!-- تصویر در سمت راست (در دسکتاپ) -->
+            <div class="col-lg-6 order-lg-2">
+                <img src="{{ url_for('static', filename='images/about-icon-experts.png') }}" alt="Market Experts" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+            </div>
+            <!-- متن در سمت چپ -->
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-4">
+                    <h3 class="fw-bold mb-3">The Market Experts (20+ Years)</h3>
+                    <p class="text-body-secondary fs-5">
+                        Our core strategy is driven by senior analysts and quantitative traders with over two decades of active, in-the-trenches market experience. They are the architects of the trading algorithms (bots) tested and proven profitable in diverse market conditions. They don't just follow trends; they anticipate them.
+                    </p>
                 </div>
             </div>
-            <!-- Pillar 2: Innovative Engineers -->
+        </div>
+
+        <!-- Advantage 2: Innovative Engineers -->
+        <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm">
-                    <div class="card-body d-flex align-items-start">
-                        <img src="{{ url_for('static', filename='images/about-icon-engineers.png') }}" class="about-icon me-4" alt="Innovative Engineers Icon">
-                        <div>
-                            <h3 class="fw-semibold mb-3">The Innovative Engineers (AI Prowess)</h3>
-                            <p>Complementing this experience is our senior development team, fluent in the latest software methodologies and AI. This team translates the complex strategies of our analysts into fast, secure, and intelligent tools. We build the tools that we ourselves use every single day.</p>
-                        </div>
-                    </div>
+                <img src="{{ url_for('static', filename='images/about-icon-engineers.png') }}" alt="Innovative Engineers" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+            </div>
+            <div class="col-lg-6">
+                <div class="p-4">
+                    <h3 class="fw-bold mb-3">The Innovative Engineers (AI Prowess)</h3>
+                    <p class="text-body-secondary fs-5">
+                        Complementing this experience is our senior development team, fluent in the latest software methodologies and AI. This team translates the complex strategies of our analysts into fast, secure, and intelligent tools. We build the tools that we ourselves use every single day.
+                    </p>
                 </div>
             </div>
         </div>
@@ -59,72 +60,99 @@
 <!-- Section 3: Proven Track Record -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-3">Beyond Theory: A Proven Track Record of Execution</h2>
-        <p class="lead text-center col-lg-8 mx-auto mb-5">We don't just talk about technology; we have implemented it at the highest levels. This deep experience ensures that the VestHub infrastructure is not only innovative but also obsessively robust, secure, and reliable.</p>
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Beyond Theory: A Proven Track Record</h2>
+            <p class="text-body-secondary lead col-lg-8 mx-auto">
+                We don't just talk about technology; we have implemented it at the highest levels.
+            </p>
+        </div>
         
         <div class="row g-4 text-center">
-            <!-- Record 1: ERP System -->
+            <!-- Record 1 -->
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/about-icon-erp.png') }}" class="about-icon-small" alt="Brokerage ERP Icon">
-                <h4 class="fw-semibold mt-3">Complete Brokerage ERP</h4>
-                <p>Successfully built and deployed a complete ERP system for a licensed brokerage and securities firm.</p>
+                <div class="card border-0 shadow-sm h-100 py-4">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='images/about-icon-erp.png') }}" class="about-icon mb-3" alt="ERP System">
+                        <h4 class="fw-semibold">Complete Brokerage ERP</h4>
+                        <p class="text-body-secondary">Successfully built and deployed a complete ERP system for a licensed brokerage.</p>
+                    </div>
+                </div>
             </div>
-            <!-- Record 2: CFD Platform -->
+            <!-- Record 2 -->
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/about-icon-cfd.png') }}" class="about-icon-small" alt="CFD Platform Icon">
-                <h4 class="fw-semibold mt-3">Ground-Up CFD Platform</h4>
-                <p>Designed and developed an entire CFD Brokerage platform from the ground up, including all its complex infrastructure.</p>
+                <div class="card border-0 shadow-sm h-100 py-4">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='images/about-icon-cfd.png') }}" class="about-icon mb-3" alt="CFD Platform">
+                        <h4 class="fw-semibold">Ground-Up CFD Platform</h4>
+                        <p class="text-body-secondary">Designed and developed an entire CFD Brokerage platform infrastructure.</p>
+                    </div>
+                </div>
             </div>
-            <!-- Record 3: Integration Systems -->
+            <!-- Record 3 -->
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/about-icon-integration.png') }}" class="about-icon-small" alt="Enterprise Integration Icon">
-                <h4 class="fw-semibold mt-3">Enterprise Integration</h4>
-                <p>Executed enterprise-level integration systems for complex, high-availability business processes.</p>
+                <div class="card border-0 shadow-sm h-100 py-4">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='images/about-icon-integration.png') }}" class="about-icon mb-3" alt="Integration">
+                        <h4 class="fw-semibold">Enterprise Integration</h4>
+                        <p class="text-body-secondary">Executed enterprise-level integration systems for high-availability processes.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Section 4: 360-Degree View -->
-<section class="py-5 bg-dark-subtle text-body-emphasis">
+<section class="py-5 bg-body-tertiary">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">A 360-Degree View: Our Complete Team</h2>
-        <p class="lead text-center col-lg-8 mx-auto mb-5">At VestHub, nothing is left to chance. We believe market success requires a complete, 360-degree perspective. Our team structure is built to cover every angle:</p>
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">A 360-Degree Market Perspective</h2>
+            <p class="text-body-secondary lead col-lg-8 mx-auto">
+                At VestHub, nothing is left to chance. Our team structure covers every angle.
+            </p>
+        </div>
         
-        <div class="row g-4 text-center">
-            <!-- Team 1: Fundamental -->
+        <div class="row g-4 justify-content-center">
+            <!-- Team 1 -->
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/about-icon-fundamental.png') }}" class="about-icon-small" alt="Fundamental Analysis Icon">
-                <h4 class="fw-semibold mt-3">Fundamental Analysis Team</h4>
-                <p>Monitoring real-time economic news, data releases, and geopolitical events.</p>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <img src="{{ url_for('static', filename='images/about-icon-fundamental.png') }}" class="img-fluid rounded-3 mb-4" alt="Fundamental Analysis">
+                        <h4 class="fw-bold">Fundamental Analysis</h4>
+                        <p class="text-body-secondary">Monitoring real-time economic news, data releases, and geopolitical events.</p>
+                    </div>
+                </div>
             </div>
-            <!-- Team 2: Technical -->
+            <!-- Team 2 -->
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/about-icon-technical.png') }}" class="about-icon-small" alt="Technical Analysis Icon">
-                <h4 class="fw-semibold mt-3">Technical Analysis Team</h4>
-                <p>Identifying market patterns, trends, support, and resistance levels.</p>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <img src="{{ url_for('static', filename='images/about-icon-technical.png') }}" class="img-fluid rounded-3 mb-4" alt="Technical Analysis">
+                        <h4 class="fw-bold">Technical Analysis</h4>
+                        <p class="text-body-secondary">Identifying market patterns, trends, support, and resistance levels.</p>
+                    </div>
+                </div>
             </div>
-            <!-- Team 3: AI & Algorithmic -->
+            <!-- Team 3 -->
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/about-icon-ai.png') }}" class="about-icon-small" alt="AI & Algorithmic Icon">
-                <h4 class="fw-semibold mt-3">AI & Algorithmic Team</h4>
-                <p>Developing the next generation of advanced bots and analytical tools.</p>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <img src="{{ url_for('static', filename='images/about-icon-ai.png') }}" class="img-fluid rounded-3 mb-4" alt="AI & Algorithmic">
+                        <h4 class="fw-bold">AI & Algorithmic</h4>
+                        <p class="text-body-secondary">Developing the next generation of advanced bots and analytical tools.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Section 5: Final Call to Action -->
+<!-- Section 5: Call to Action -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h2 class="fw-bold mb-3">We came together to bring transparency, intelligence, and genuine power to traders and investors.</h2>
-                <p class="lead mb-4">Our tools are the product of thousands of hours of analysis, experience, and code.</p>
-                <!-- UPDATED: Link now points to Login -->
-                <a href="{{ url_for('auth.login') }}" class="btn btn-light btn-lg fw-bold px-5">Join Our Platform</a>
-            </div>
-        </div>
+        <h2 class="fw-bold mb-3">Ready to Join the Platform?</h2>
+        <p class="lead mb-4">Our tools are the product of thousands of hours of experience.</p>
+        <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">Get Started Now</a>
     </div>
 </section>
 

@@ -4,99 +4,118 @@
 
 {% block content %}
 
-<!-- Hero Section -->
+<!-- Section 1: Hero -->
 <section class="py-5">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <!-- Main Headline -->
                 <h1 class="display-4 fw-bold mb-4">Investing: The Ultimate Insurance for Your Financial Future</h1>
-                <!-- Introductory Paragraph explaining the problem (inflation) -->
+                <!-- Introductory Paragraph -->
                 <p class="lead text-body-secondary mb-3">In a world of economic uncertainty, holding cash in a bank account means your purchasing power is quietly eroding. Saving is an excellent first step, but it isn't enough.</p>
-                <p class="lead">Inflation is the silent, consistent force that diminishes the value of your hard-earned money. Investing is the critical bridge between "saving" and "building wealth." It is an active strategy to protect and grow your future.</p>
+                <p class="lead">Inflation is the silent, consistent force that diminishes the value of your hard-earned money. Investing is the critical bridge between "saving" and "building wealth."</p>
             </div>
             <div class="col-lg-6">
                 <!-- Hero Graphic -->
-                <img src="{{ url_for('static', filename='images/invest-hero-graphic.png') }}" class="img-fluid rounded-4 shadow-lg" alt="Abstract graphic showing financial security">
+                <img src="{{ url_for('static', filename='images/invest-hero-graphic.png') }}" class="img-fluid rounded-4 shadow-lg" alt="Financial Security">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Benefits Section -->
-<section class="py-5 bg-dark-subtle text-body-emphasis">
+<!-- Section 2: Benefits (Redesigned Layout: Alternating Rows) -->
+<section class="py-5 bg-body-tertiary">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">Why Investing Is No Longer a Choice, But a Necessity</h2>
-        <p class="lead text-center col-lg-8 mx-auto mb-5">We believe that smart investing is the cornerstone of future financial independence. Here’s why it is essential:</p>
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Why Investing Is No Longer a Choice, But a Necessity</h2>
+            <p class="lead text-body-secondary col-lg-8 mx-auto">
+                We believe that smart investing is the cornerstone of future financial independence. Here’s why it is essential:
+            </p>
+        </div>
 
-        <div class="row g-4">
-            <!-- Benefit 1: Shield Against Inflation -->
-            <div class="col-md-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm">
-                    <div class="card-body d-flex align-items-start">
-                        <!-- Benefit Icon -->
-                        <img src="{{ url_for('static', filename='images/invest-icon-inflation.png') }}" class="feature-icon-img me-4" alt="Inflation Shield Graphic">
-                        <div>
-                            <h3 class="fw-semibold mb-3">1. Your Shield Against Inflation</h3>
-                            <p>This is the most straightforward reason. If your money isn't growing, it's losing. The primary goal of investing is to outpace inflation, ensuring that 10, 20, or 30 years from now, your money has the same—or more—buying power than it does today.</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Benefit 1: Inflation Shield -->
+        <div class="row align-items-center mb-5 g-5">
+            <div class="col-lg-6 order-lg-2">
+                <img src="{{ url_for('static', filename='images/invest-icon-inflation.png') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;" alt="Inflation Shield">
             </div>
-
-            <!-- Benefit 2: Insurance for Unexpected -->
-            <div class="col-md-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm">
-                    <div class="card-body d-flex align-items-start">
-                        <!-- Benefit Icon -->
-                        <img src="{{ url_for('static', filename='images/invest-icon-insurance.png') }}" class="feature-icon-img me-4" alt="Safety Net Graphic">
-                        <div>
-                            <h3 class="fw-semibold mb-3">2. Your "Insurance" for the Unexpected</h3>
-                            <p>A strong investment portfolio acts as your financial "insurance policy." It is a far more effective and robust emergency fund that gives you the flexibility to navigate financial challenges without extreme stress or being forced into hasty, poor decisions.</p>
-                        </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-2">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-primary rounded-circle p-3 me-3 fs-4">1</span>
+                        <h3 class="fw-bold mb-0">Your Shield Against Inflation</h3>
                     </div>
-                </div>
-            </div>
-
-            <!-- Benefit 3: Engine for Goals -->
-            <div class="col-md-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm">
-                    <div class="card-body d-flex align-items-start">
-                        <!-- Benefit Icon -->
-                        <img src="{{ url_for('static', filename='images/invest-icon-goals.png') }}" class="feature-icon-img me-4" alt="Life Goals Graphic">
-                        <div>
-                            <h3 class="fw-semibold mb-3">3. The Engine for Your Major Goals</h3>
-                            <p>We all have dreams: buying a home, funding a child's education, or enjoying a comfortable retirement. Investing is the engine that puts a realistic timeline on those dreams and transforms "saving" from a passive habit into an active strategy.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Benefit 4: Compound Interest -->
-            <div class="col-md-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm">
-                    <div class="card-body d-flex align-items-start">
-                        <!-- Benefit Icon -->
-                        <img src="{{ url_for('static', filename='images/invest-icon-compounding.png') }}" class="feature-icon-img me-4" alt="Compounding Graphic">
-                        <div>
-                            <h3 class="fw-semibold mb-3">4. The Power of Compound Interest</h3>
-                            <p>Albert Einstein called it the "eighth wonder of the world." You don’t just earn returns on your original money; you earn returns *on your returns*. This "snowball" effect is the difference between a small savings pot and significant wealth.</p>
-                        </div>
-                    </div>
+                    <p class="text-body-secondary fs-5 lh-lg">
+                        This is the most straightforward reason. If your money isn't growing, it's losing. The primary goal of investing is to outpace inflation, ensuring that 10, 20, or 30 years from now, your money has the same—or more—buying power than it does today.
+                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- Benefit 2: Insurance (Image Left) -->
+        <div class="row align-items-center mb-5 g-5">
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='images/invest-icon-insurance.png') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;" alt="Insurance">
+            </div>
+            <div class="col-lg-6">
+                <div class="p-2">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-success rounded-circle p-3 me-3 fs-4">2</span>
+                        <h3 class="fw-bold mb-0">Your "Insurance" for the Unexpected</h3>
+                    </div>
+                    <p class="text-body-secondary fs-5 lh-lg">
+                        A strong investment portfolio acts as your financial "insurance policy." It is a far more effective and robust emergency fund that gives you the flexibility to navigate financial challenges without extreme stress or being forced into hasty, poor decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefit 3: Goals (Image Right) -->
+        <div class="row align-items-center mb-5 g-5">
+            <div class="col-lg-6 order-lg-2">
+                <img src="{{ url_for('static', filename='images/invest-icon-goals.png') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;" alt="Major Goals">
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-2">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-warning text-dark rounded-circle p-3 me-3 fs-4">3</span>
+                        <h3 class="fw-bold mb-0">The Engine for Your Major Goals</h3>
+                    </div>
+                    <p class="text-body-secondary fs-5 lh-lg">
+                        We all have dreams: buying a home, funding a child's education, or enjoying a comfortable retirement. Investing is the engine that puts a realistic timeline on those dreams and transforms "saving" from a passive habit into an active strategy.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefit 4: Compound Interest (Image Left) -->
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='images/invest-icon-compounding.png') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;" alt="Compound Interest">
+            </div>
+            <div class="col-lg-6">
+                <div class="p-2">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-info text-dark rounded-circle p-3 me-3 fs-4">4</span>
+                        <h3 class="fw-bold mb-0">The Power of Compound Interest</h3>
+                    </div>
+                    <p class="text-body-secondary fs-5 lh-lg">
+                        Albert Einstein called it the "eighth wonder of the world." You don’t just earn returns on your original money; you earn returns <em>on your returns</em>. This "snowball" effect is the difference between a small savings pot and significant wealth.
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
-<!-- "How It Works" Section -->
+<!-- Section 3: How It Works -->
 <section class="py-5">
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="fw-bold mb-3">"But Isn't Investing Complicated and Stressful?"</h2>
-                <p class="lead text-body-secondary mb-4">This is where VestHub comes in. We understand that not everyone has the time, the technical knowledge, or the desire to become a full-time professional trader. That is precisely why we created our Managed Investment Service.</p>
-                <p class="lead">We take the complexity out of the equation. Our expert team and our intelligent algorithms do the heavy lifting for you.</p>
+                <h2 class="fw-bold mb-3">"But Isn't Investing Complicated?"</h2>
+                <p class="lead text-body-secondary mb-4">This is where VestHub comes in. We understand not everyone has the time or desire to become a pro trader. That is precisely why we created our Managed Investment Service.</p>
+                <p class="lead">We take the complexity out of the equation. Our expert team and AI algorithms do the heavy lifting.</p>
             </div>
         </div>
 
@@ -104,26 +123,20 @@
 
         <h2 class="fw-bold mb-5">How it Works: Simple & Secure</h2>
         
-        <!-- "How It Works" Infographic -->
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <img src="{{ url_for('static', filename='images/invest-how-it-works.png') }}" class="img-fluid rounded-4 shadow" alt="How VestHub Managed Investing Works Infographic">
+                <img src="{{ url_for('static', filename='images/invest-how-it-works.png') }}" class="img-fluid rounded-4 shadow" alt="How it Works Infographic">
             </div>
         </div>
     </div>
 </section>
 
-
-<!-- Final Call to Action Section -->
+<!-- Section 4: Call to Action -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h2 class="fw-bold mb-3">It is the simplest way to gain all the benefits of investing without any of the stress.</h2>
-                <!-- Button to view investment plans -->
-                <a href="{{ url_for('main.plans') }}" class="btn btn-light btn-lg fw-bold px-5 mt-3">View Our Managed Investment Plans</a>
-            </div>
-        </div>
+        <h2 class="fw-bold mb-3">Simple, Stress-Free Investing.</h2>
+        <p class="lead mb-4">Gain all the benefits of investing without any of the stress.</p>
+        <a href="{{ url_for('main.plans') }}" class="btn btn-light btn-lg fw-bold px-5">View Investment Plans</a>
     </div>
 </section>
 
