@@ -60,12 +60,14 @@
                         <div class="mb-4">
                             <h1 class="fw-bold display-4 text-primary">{{ plan.annual_return_rate|int }}%</h1>
                             <h5 class="text-body-secondary">{{ _('Annual Return') }}</h5>
-                            <h6 class="fw-normal text-white-50">{{ plan.duration_months }} Months Duration</h6>
+                            <h6 class="fw-normal text-white-50">{{ plan.duration_months }} {{ _('Months Duration') }}</h6>
                         </div>
                         
                         <div class="mt-auto">
                             <!-- Call to Action Button: Directs users to the signup page -->
-                            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">{{ _('Choose Plan & Sign Up') }}</a>
+                            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">
+                                {{ _('Choose Plan & Sign Up') }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +84,8 @@
         {% if plans %}
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <a href="{{ url_for('main.plans') }}" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">{{ _('View More Plans') }}<i class="bi bi-arrow-right ms-2"></i>
+                <a href="{{ url_for('main.plans') }}" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">
+                    {{ _('View More Plans') }} <i class="bi bi-arrow-right ms-2"></i>
                 </a>
             </div>
         </div>
@@ -116,7 +119,8 @@
                             <i class="bi bi-piggy-bank fs-1 text-success"></i>
                         </div>
                         <h3 class="card-title fw-bold mb-3">{{ _('VestHub Managed Portfolios') }}</h3>
-                        <p class="card-text">{{ _("'Don't have time to trade? Our top-performing AI bots will trade for you. We manage the risk, you track the returns.") }}</p>
+                        <!-- FIX: Use double quotes to avoid conflict with "Don't" -->
+                        <p class="card-text">{{ _("Don't have time to trade? Our top-performing AI bots will trade for you. We manage the risk, you track the returns.") }}</p>
                         <a href="{{ url_for('main.invest_learn') }}" class="btn btn-outline-success mt-3">{{ _('Learn About Investing') }}</a>
                     </div>
                 </div>
@@ -148,7 +152,7 @@
     </div>
 </section>
 
-<!-- Core Features Section (UPDATED) -->
+<!-- Core Features Section -->
 <section class="performance-section">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">{{ _('A Platform Built for Performance') }}</h2>
