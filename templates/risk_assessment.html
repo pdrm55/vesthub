@@ -192,10 +192,15 @@
                     </div>
                 </form>
             </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="card-footer bg-body-tertiary p-3 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-secondary" id="prevBtn" style="display: none;">{{ _('Previous') }}</button>
+                <button type="button" class="btn btn-primary" id="nextBtn">{{ _('Next (Step 2)') }}</button>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block scripts %}
@@ -205,8 +210,11 @@
         const totalSteps = 3;
         const steps = document.querySelectorAll('.risk-question-group');
         const stepperItems = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const form = document.getElementById('riskForm');
 
-        window.showStep = function(stepNum) {
+        function showStep(stepNum) {
             // Hide all groups
             steps.forEach(step => step.classList.remove('active'));
             // Show target group
@@ -230,17 +238,52 @@
                     stepCircle.innerHTML = index + 1;
                 }
             });
-        };
 
-        window.nextStep = function(step) {
-            showStep(step);
-            window.scrollTo(0, 0);
-        };
+            // Buttons visibility
+            if (stepNum === 1) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'inline-block';
+            }
 
-        window.prevStep = function(step) {
-            showStep(step);
-            window.scrollTo(0, 0);
-        };
+            if (stepNum === totalSteps) {
+                nextBtn.textContent = '{{ _("Submit Assessment") }}';
+                nextBtn.classList.remove('btn-primary');
+                nextBtn.classList.add('btn-success');
+            } else {
+                nextBtn.textContent = `{{ _("Next") }} (Step ${stepNum + 1})`;
+                nextBtn.classList.add('btn-primary');
+                nextBtn.classList.remove('btn-success');
+            }
+        }
+
+        // Add event listeners ONLY IF buttons exist
+        if(nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                    window.scrollTo(0, 0); 
+                } else {
+                    if(confirm("{{ _('Are you sure you want to submit your risk assessment?') }}")) {
+                        form.submit();
+                    }
+                }
+            });
+        }
+
+        if(prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                    window.scrollTo(0, 0);
+                }
+            });
+        }
+        
+        // Initial Show
+        showStep(currentStep);
     });
 </script>
 {% endblock %}

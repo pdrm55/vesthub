@@ -34,7 +34,6 @@ def dashboard():
 def invest_plans():
     if current_user.risk_profile == 'not_assessed': 
         flash('Please complete the risk assessment first.', 'warning')
-        # FIX: Added 'user.' prefix
         return redirect(url_for('user.risk_assessment'))
     
     base_query = InvestmentPlan.query.filter_by(is_active=True).order_by(InvestmentPlan.duration_months.desc())
@@ -58,7 +57,6 @@ def create_investment():
         if amount <= 0: raise ValueError
     except:
         flash('Invalid amount.', 'danger')
-        # FIX: Added 'user.' prefix
         return redirect(url_for('user.invest_plans'))
 
     new_inv = Investment(
@@ -70,7 +68,6 @@ def create_investment():
     )
     db.session.add(new_inv)
     db.session.commit()
-    # FIX: Added 'user.' prefix
     return redirect(url_for('user.investment_pending', investment_id=new_inv.id))
 
 @user_bp.route('/invest/pending/<int:investment_id>')
@@ -79,7 +76,6 @@ def investment_pending(investment_id):
     inv = Investment.query.get_or_404(investment_id)
     if inv.user_id != current_user.id:
         flash('Unauthorized access.', 'danger')
-        # FIX: Added 'user.' prefix
         return redirect(url_for('user.dashboard'))
     
     wallets = {
@@ -95,9 +91,7 @@ def investment_pending(investment_id):
 @login_required
 def submit_proof(investment_id):
     inv = Investment.query.get_or_404(investment_id)
-    if inv.user_id != current_user.id:
-        # FIX: Added 'user.' prefix
-        return redirect(url_for('user.dashboard'))
+    if inv.user_id != current_user.id: return redirect(url_for('user.dashboard'))
         
     tx_hash = request.form.get('txnHash')
     inv.payment_tx_id = tx_hash
@@ -112,16 +106,13 @@ def submit_proof(investment_id):
     ))
     db.session.commit()
     flash('Payment proof submitted and awaiting approval.', 'success')
-    # FIX: Added 'user.' prefix
     return redirect(url_for('user.dashboard'))
 
 @user_bp.route('/payment/process/<int:investment_id>', methods=['POST'])
 @login_required
 def process_online_payment(investment_id):
     inv = Investment.query.get_or_404(investment_id)
-    if inv.user_id != current_user.id: 
-        # FIX: Added 'user.' prefix
-        return redirect(url_for('user.dashboard'))
+    if inv.user_id != current_user.id: return redirect(url_for('user.dashboard'))
 
     inv.status = 'active'
     inv.start_date = datetime.utcnow()
@@ -137,16 +128,13 @@ def process_online_payment(investment_id):
     ))
     db.session.commit()
     flash('Online payment processed successfully.', 'success')
-    # FIX: Added 'user.' prefix
     return redirect(url_for('user.dashboard'))
 
 @user_bp.route('/withdrawal', methods=['GET', 'POST'])
 @login_required
 def withdrawal():
-    # بررسی وضعیت KYC
     if current_user.kyc_status != 'verified': 
         flash('Please complete your Identity Verification (KYC) before making a withdrawal.', 'warning')
-        # FIX: Added 'user.' prefix
         return redirect(url_for('user.settings'))
     
     available = get_withdrawable_balance(current_user.id)
@@ -157,22 +145,13 @@ def withdrawal():
             if amt <= 0: raise ValueError
         except:
             flash('Invalid amount entered.', 'danger')
-            # FIX: Added 'user.' prefix
             return redirect(url_for('user.withdrawal'))
 
         try:
-            # Locking user row for transaction safety
             user = db.session.query(User).filter(User.id == current_user.id).with_for_update().one()
             current_available = get_withdrawable_balance(user.id)
-            
             if amt <= current_available:
-                db.session.add(Transaction(
-                    user_id=user.id, 
-                    type='withdrawal', 
-                    amount=amt, 
-                    status='pending', 
-                    description='User withdrawal request'
-                ))
+                db.session.add(Transaction(user_id=user.id, type='withdrawal', amount=amt, status='pending', description='User withdrawal request'))
                 db.session.commit()
                 flash('Withdrawal request submitted.', 'success')
             else:
@@ -180,10 +159,7 @@ def withdrawal():
                 flash('Insufficient balance.', 'danger')
         except Exception as e:
             db.session.rollback()
-            print(f"Error in withdrawal: {e}")
             flash('An error occurred. Please try again.', 'danger')
-            
-        # FIX: Added 'user.' prefix
         return redirect(url_for('user.withdrawal'))
 
     history = Transaction.query.filter_by(user_id=current_user.id, type='withdrawal').order_by(Transaction.timestamp.desc()).all()
@@ -219,8 +195,7 @@ def enable_2fa():
     secret = pyotp.random_base32()
     current_user.two_factor_secret = secret
     db.session.commit()
-    uri = pyotp.totp.TOTP(secret).provisioning_uri(name=current_user.email, issuer_name='VestHub')
-    return jsonify({'secret': secret, 'uri': uri})
+    return jsonify({'secret': secret, 'uri': pyotp.totp.TOTP(secret).provisioning_uri(name=current_user.email, issuer_name='VestHub')})
 
 @user_bp.route('/settings/confirm-2fa', methods=['POST'])
 @login_required
@@ -232,7 +207,6 @@ def confirm_2fa():
         flash('Two-factor authentication enabled.', 'success')
     else: 
         flash('Incorrect code.', 'danger')
-    # FIX: Added 'user.' prefix
     return redirect(url_for('user.settings'))
 
 @user_bp.route('/settings/submit-kyc', methods=['POST'])
@@ -240,66 +214,66 @@ def confirm_2fa():
 def submit_kyc():
     id_f = request.files.get('idDoc')
     ad_f = request.files.get('addressDoc')
-    
     if id_f and ad_f:
         id_path = save_uploaded_file(id_f)
         ad_path = save_uploaded_file(ad_f)
-        
         if id_path and ad_path:
             current_user.kyc_status = 'pending'
             old_req = KYCRequest.query.filter_by(user_id=current_user.id).first()
             if old_req: db.session.delete(old_req)
-            
-            db.session.add(KYCRequest(
-                user_id=current_user.id, 
-                id_document_url=id_path, 
-                address_document_url=ad_path, 
-                status='pending'
-            ))
+            db.session.add(KYCRequest(user_id=current_user.id, id_document_url=id_path, address_document_url=ad_path, status='pending'))
             db.session.commit()
             flash('Documents submitted and are pending review.', 'success')
         else:
             flash('Invalid file or format detected.', 'danger')
-            
-    # FIX: Added 'user.' prefix
     return redirect(url_for('user.settings'))
 
 @user_bp.route('/risk-assessment', methods=['GET', 'POST'])
 @login_required
 def risk_assessment():
-    if request.method == 'POST': 
-        current_user.risk_profile = 'balanced'
-        current_user.risk_score = 50
-        db.session.commit()
-        flash('Your risk profile has been updated.', 'success')
-        # FIX: Added 'user.' prefix
-        return redirect(url_for('user.dashboard'))
+    if request.method == 'POST':
+        try:
+            # محاسبه واقعی امتیاز ریسک
+            total_score = 0
+            # جمع‌آوری امتیازات از 15 سوال
+            for i in range(1, 16):
+                val = request.form.get(f'q{i}')
+                if val and val.isdigit():
+                    total_score += int(val)
+            
+            # تعیین پروفایل بر اساس مجموع امتیازات
+            profile = 'conservative'
+            if total_score >= 80:
+                profile = 'aggressive'
+            elif total_score >= 50:
+                profile = 'balanced'
+            
+            current_user.risk_score = total_score
+            current_user.risk_profile = profile
+            db.session.commit()
+            
+            flash(f'Assessment Complete! Your risk profile is: {profile.title()}', 'success')
+            return redirect(url_for('user.dashboard'))
+            
+        except Exception as e:
+            # لاگ خطا برای دیباگ
+            print(f"Error in risk assessment: {e}")
+            flash('An error occurred during calculation. Please try again.', 'danger')
+            
     return render_template('risk_assessment.html')
 
 @user_bp.route('/support', methods=['GET', 'POST'])
 @login_required
 def support():
     if request.method == 'POST':
-        tk = Ticket(
-            user_id=current_user.id, 
-            subject=request.form.get('subject'), 
-            category=request.form.get('category'), 
-            status='open'
-        )
+        tk = Ticket(user_id=current_user.id, subject=request.form.get('subject'), category=request.form.get('category'), status='open')
         db.session.add(tk)
         db.session.commit()
-        
-        msg = TicketMessage(
-            ticket_id=tk.id, 
-            sender_type='user', 
-            message=request.form.get('message')
-        )
+        msg = TicketMessage(ticket_id=tk.id, sender_type='user', message=request.form.get('message'))
         db.session.add(msg)
         db.session.commit()
         flash('New ticket created.', 'success')
-        # FIX: Added 'user.' prefix
         return redirect(url_for('user.support'))
-        
     tickets = Ticket.query.filter_by(user_id=current_user.id).order_by(Ticket.updated_at.desc()).all()
     return render_template('support.html', tickets=tickets)
 
@@ -307,20 +281,12 @@ def support():
 @login_required
 def ticket_view(ticket_id):
     ticket = Ticket.query.get_or_404(ticket_id)
-    if ticket.user_id != current_user.id:
-        # FIX: Added 'user.' prefix
-        return redirect(url_for('user.support'))
-        
+    if ticket.user_id != current_user.id: return redirect(url_for('user.support'))
     if request.method == 'POST':
-        db.session.add(TicketMessage(
-            ticket_id=ticket.id, 
-            sender_type='user', 
-            message=request.form.get('message')
-        ))
+        db.session.add(TicketMessage(ticket_id=ticket.id, sender_type='user', message=request.form.get('message')))
         ticket.status = 'open'
         ticket.updated_at = datetime.utcnow()
         db.session.commit()
-        
     return render_template('support_view.html', ticket=ticket)
 
 @user_bp.route('/api/chart/user-data')
