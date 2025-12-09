@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="{{ get_locale() }}" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}VestHub - Intelligent Trading. Automated.{% endblock %}</title>
+    <title>{% block title %}{{ _('VestHub - Intelligent Trading. Automated.') }}{% endblock %}</title>
     
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
@@ -17,7 +17,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
-    <!-- Extra Head Block -->
     {% block head %}{% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -26,44 +25,32 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="60" class="me-2 navbar-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="60" class="me-2 navbar-logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.home') }}">{{ _('Home') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.marketplace') }}">{{ _('Marketplace') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.invest_learn') }}">{{ _('Invest') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.plans') }}">{{ _('Plans') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.about') }}">{{ _('About Us') }}</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">{{ _('Home') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.marketplace') }}">{{ _('Marketplace') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.invest_learn') }}">{{ _('Invest') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.plans') }}">{{ _('Plans') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.about') }}">{{ _('About Us') }}</a></li>
                 </ul>
                 <div class="d-flex align-items-center">
                     
-                    <!-- Language Switcher (Added) -->
+                    <!-- Language Switcher -->
                     <div class="dropdown me-2">
-                        <button class="btn btn-outline-secondary border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ _('Select Language') }}">
+                        <button class="btn btn-outline-secondary dropdown-toggle border-0" type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-globe"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <!-- Using request.endpoint and view_args to stay on the same page -->
-                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, **dict(request.view_args or {}, lang='en')) }}">{{ _('English') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, **dict(request.view_args or {}, lang='tr')) }}">{{ _('Türkçe') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, lang='en') }}">English</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, lang='tr') }}">Türkçe</a></li>
                         </ul>
                     </div>
 
-                    <!-- Theme Toggle Button -->
                     <button class="btn btn-outline-secondary me-2 border-0" id="theme-toggle" title="{{ _('Toggle theme') }}">
                         <i class="bi bi-sun-fill" id="theme-icon"></i>
                     </button>
@@ -82,16 +69,29 @@
 
     <!-- Main Content Block -->
     <main class="flex-grow-1">
+        <!-- Flash Messages Section (ADDED) -->
+        <div class="container mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Section 7: Footer (UPDATED) -->
-    <!-- کلاس bg-dark حذف شد و bg-body-tertiary جایگزین شد -->
+    <!-- Section 7: Footer -->
     <footer class="bg-body-tertiary text-body-secondary py-4 mt-auto border-top">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-                    <small>{{ _('&copy; 2025 VestHub. All rights reserved.') }}</small>
+                    <small>&copy; 2025 VestHub. {{ _('All rights reserved.') }}</small>
                 </div>
                 <div class="col-md-6 text-center text-md-end footer-links">
                     <a href="{{ url_for('main.contact_us') }}" class="text-body-secondary text-decoration-none me-3"><small>{{ _('Contact Us') }}</small></a>
