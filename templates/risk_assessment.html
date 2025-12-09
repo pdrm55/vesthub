@@ -3,216 +3,199 @@
 {% block title %}{{ _('Investment Risk Profile') }}{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-lg-10 col-xl-8">
-            <h1 class="h2 fw-bold mb-3">{{ _('Investment Risk Profile') }}</h1>
-            <p class="lead text-body-secondary mb-4">{{ _('Please answer the following questions to help us understand your investment goals and risk tolerance. This will take about 5 minutes.') }}</p>
-            
-            <!-- Stepper Navigation -->
-            <div class="risk-stepper d-flex align-items-center mb-4">
-                <!-- Step 1 -->
-                <div class="step active" data-step="1">
-                    <div class="step-circle">1</div>
-                    <div class="step-label d-none d-md-block ms-2">{{ _('Financial Profile') }}</div>
-                </div>
-                <div class="step-line"></div>
-                <!-- Step 2 -->
-                <div class="step" data-step="2">
-                    <div class="step-circle">2</div>
-                    <div class="step-label d-none d-md-block ms-2">{{ _('Knowledge & Experience') }}</div>
-                </div>
-                <div class="step-line"></div>
-                <!-- Step 3 -->
-                <div class="step" data-step="3">
-                    <div class="step-circle">3</div>
-                    <div class="step-label d-none d-md-block ms-2">{{ _('Risk Tolerance') }}</div>
-                </div>
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+        <h1 class="h2 fw-bold mb-3">{{ _('Investment Risk Profile') }}</h1>
+        <p class="lead text-body-secondary mb-4">{{ _('Please answer the following questions to help us understand your investment goals and risk tolerance. This will take about 5 minutes.') }}</p>
+        
+        <!-- Stepper Navigation -->
+        <div class="risk-stepper d-flex align-items-center mb-4">
+            <!-- Step 1 -->
+            <div class="step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label d-none d-md-block ms-2">{{ _('Financial Profile') }}</div>
             </div>
+            <div class="step-line"></div>
+            <!-- Step 2 -->
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label d-none d-md-block ms-2">{{ _('Knowledge & Experience') }}</div>
+            </div>
+            <div class="step-line"></div>
+            <!-- Step 3 -->
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label d-none d-md-block ms-2">{{ _('Risk Tolerance') }}</div>
+            </div>
+        </div>
 
-            <!-- Main Form Card -->
-            <div class="card shadow-sm rounded-4">
-                <div class="card-body p-4 p-md-5">
-                    <!-- Form connects to app.py logic -->
-                    <form id="riskForm" method="POST" action="{{ url_for('user.risk_assessment') }}">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <!-- Main Form Card -->
+        <div class="card shadow-sm rounded-4">
+            <div class="card-body p-4 p-md-5">
+                <!-- Form connects to app.py logic -->
+                <form id="riskForm" method="POST" action="{{ url_for('user.risk_assessment') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <!-- =========================================
+                         STEP 1: FINANCIAL PROFILE
+                    ========================================= -->
+                    <div class="risk-question-group active" data-step="1">
+                        <h4 class="fw-semibold mb-4">{{ _('Step 1: Your Financial Profile') }}</h4>
                         
-                        <!-- =========================================
-                             STEP 1: FINANCIAL PROFILE
-                        ========================================= -->
-                        <div class="risk-question-group active" data-step="1">
-                            <h4 class="fw-semibold mb-4">{{ _('Step 1: Your Financial Profile') }}</h4>
-                            
-                            <!-- Q1 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('1. What is your age range?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q1" id="q1a1" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q1a1">{{ _('18-30 (High Capacity)') }}</label>
-                                    <input type="radio" class="btn-check" name="q1" id="q1a2" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q1a2">{{ _('31-45') }}</label>
-                                    <input type="radio" class="btn-check" name="q1" id="q1a3" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q1a3">{{ _('46-60') }}</label>
-                                    <input type="radio" class="btn-check" name="q1" id="q1a4" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q1a4">{{ _('61+ (Low Capacity)') }}</label>
-                                </div>
+                        <!-- Q1 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('1. What is your age range?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q1" id="q1a1" value="10"><label class="btn btn-outline-secondary text-start p-3" for="q1a1">{{ _('18-30 (High Capacity)') }}</label>
+                                <input type="radio" class="btn-check" name="q1" id="q1a2" value="8"><label class="btn btn-outline-secondary text-start p-3" for="q1a2">{{ _('31-45') }}</label>
+                                <input type="radio" class="btn-check" name="q1" id="q1a3" value="5"><label class="btn btn-outline-secondary text-start p-3" for="q1a3">{{ _('46-60') }}</label>
+                                <input type="radio" class="btn-check" name="q1" id="q1a4" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q1a4">{{ _('61+ (Low Capacity)') }}</label>
                             </div>
-                            <!-- Q2 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('2. What is your approximate annual income?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q2" id="q2a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q2a1">{{ _('Less than $50,000') }}</label>
-                                    <input type="radio" class="btn-check" name="q2" id="q2a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q2a2">{{ _('$50,000 - $100,000') }}</label>
-                                    <input type="radio" class="btn-check" name="q2" id="q2a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q2a3">{{ _('$100,000 - $250,000') }}</label>
-                                    <input type="radio" class="btn-check" name="q2" id="q2a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q2a4">{{ _('More than $250,000') }}</label>
-                                </div>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('2. What is your approximate annual income?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q2" id="q2a1" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q2a1">{{ _('Less than $50,000') }}</label>
+                                <input type="radio" class="btn-check" name="q2" id="q2a2" value="5"><label class="btn btn-outline-secondary text-start p-3" for="q2a2">{{ _('$50,000 - $100,000') }}</label>
+                                <input type="radio" class="btn-check" name="q2" id="q2a3" value="8"><label class="btn btn-outline-secondary text-start p-3" for="q2a3">{{ _('$100,000 - $250,000') }}</label>
+                                <input type="radio" class="btn-check" name="q2" id="q2a4" value="10"><label class="btn btn-outline-secondary text-start p-3" for="q2a4">{{ _('More than $250,000') }}</label>
                             </div>
-                            <!-- Q3 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('3. What is your approximate net worth (excluding your primary home)?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q3" id="q3a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q3a1">{{ _('Less than $100,000') }}</label>
-                                    <input type="radio" class="btn-check" name="q3" id="q3a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q3a2">{{ _('$100,000 - $500,000') }}</label>
-                                    <input type="radio" class="btn-check" name="q3" id="q3a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q3a3">{{ _('$500,000 - $1,000,000') }}</label>
-                                    <input type="radio" class="btn-check" name="q3" id="q3a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q3a4">{{ _('More than $1,000,000') }}</label>
-                                </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('3. What is your approximate net worth (excluding your primary home)?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q3" id="q3a1" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q3a1">{{ _('Less than $100,000') }}</label>
+                                <input type="radio" class="btn-check" name="q3" id="q3a2" value="5"><label class="btn btn-outline-secondary text-start p-3" for="q3a2">{{ _('$100,000 - $500,000') }}</label>
+                                <input type="radio" class="btn-check" name="q3" id="q3a3" value="8"><label class="btn btn-outline-secondary text-start p-3" for="q3a3">{{ _('$500,000 - $1,000,000') }}</label>
+                                <input type="radio" class="btn-check" name="q3" id="q3a4" value="10"><label class="btn btn-outline-secondary text-start p-3" for="q3a4">{{ _('More than $1,000,000') }}</label>
                             </div>
-                            <!-- Q4 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('4. What is your primary financial goal?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q4" id="q4a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q4a1">{{ _('Capital Preservation (Safety)') }}</label>
-                                    <input type="radio" class="btn-check" name="q4" id="q4a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q4a2">{{ _('Generating Income') }}</label>
-                                    <input type="radio" class="btn-check" name="q4" id="q4a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q4a3">{{ _('Balanced Growth') }}</label>
-                                    <input type="radio" class="btn-check" name="q4" id="q4a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q4a4">{{ _('Aggressive Growth') }}</label>
-                                </div>
+                        </div>
+                        
+                        <!-- Navigation Buttons -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" class="btn btn-primary px-4" onclick="nextStep(2)">{{ _('Next') }}</button>
+                        </div>
+                    </div>
+
+                    <!-- =========================================
+                         STEP 2: KNOWLEDGE & EXPERIENCE
+                    ========================================= -->
+                    <div class="risk-question-group" data-step="2">
+                        <h4 class="fw-semibold mb-4">{{ _('Step 2: Your Knowledge & Experience') }}</h4>
+                        
+                        <!-- Example Q6 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('6. Investment knowledge level?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q6" id="q6a1" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q6a1">{{ _('None (Beginner)') }}</label>
+                                <input type="radio" class="btn-check" name="q6" id="q6a2" value="5"><label class="btn btn-outline-secondary text-start p-3" for="q6a2">{{ _('Basic (Stocks/Bonds)') }}</label>
+                                <input type="radio" class="btn-check" name="q6" id="q6a3" value="10"><label class="btn btn-outline-secondary text-start p-3" for="q6a3">{{ _('Advanced (Derivatives/Crypto)') }}</label>
                             </div>
-                            <!-- Q5 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('5. How much of your income do you save monthly?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q5" id="q5a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q5a1">{{ _('Less than 10%') }}</label>
-                                    <input type="radio" class="btn-check" name="q5" id="q5a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q5a2">{{ _('10% - 25%') }}</label>
-                                    <input type="radio" class="btn-check" name="q5" id="q5a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q5a3">{{ _('25% - 50%') }}</label>
-                                    <input type="radio" class="btn-check" name="q5" id="q5a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q5a4">{{ _('More than 50%') }}</label>
-                                </div>
+                        </div>
+                        <!-- Q7 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('7. Intended investment time horizon?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q7" id="q7a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q7a1">{{ _('Less than 1 year') }}</label>
+                                <input type="radio" class="btn-check" name="q7" id="q7a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q7a2">{{ _('1 - 3 years') }}</label>
+                                <input type="radio" class="btn-check" name="q7" id="q7a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q7a3">{{ _('3 - 5 years') }}</label>
+                                <input type="radio" class="btn-check" name="q7" id="q7a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q7a4">{{ _('More than 5 years') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q8 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('8. Experience with stocks/funds?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q8" id="q8a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q8a1">{{ _('Never') }}</label>
+                                <input type="radio" class="btn-check" name="q8" id="q8a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q8a2">{{ _('Some') }}</label>
+                                <input type="radio" class="btn-check" name="q8" id="q8a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q8a3">{{ _('Extensive') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q9 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('9. Experience with high-risk assets (Crypto/Forex)?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q9" id="q9a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q9a1">{{ _('Never') }}</label>
+                                <input type="radio" class="btn-check" name="q9" id="q9a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q9a2">{{ _('Some') }}</label>
+                                <input type="radio" class="btn-check" name="q9" id="q9a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q9a3">{{ _('Extensive') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q10 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('10. Understanding of Diversification?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q10" id="q10a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q10a1">{{ _('No idea') }}</label>
+                                <input type="radio" class="btn-check" name="q10" id="q10a2" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q10a2">{{ _('I understand it reduces risk') }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- =========================================
+                         STEP 3: RISK TOLERANCE
+                    ========================================= -->
+                    <div class="risk-question-group" data-step="3">
+                        <h4 class="fw-semibold mb-4">{{ _('Step 3: Your Risk Tolerance') }}</h4>
+                        
+                        <!-- Example Q11 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('11. Which statement best describes you?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q11" id="q11a1" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q11a1">{{ _('I want to protect my money, even if returns are low.') }}</label>
+                                <input type="radio" class="btn-check" name="q11" id="q11a2" value="5"><label class="btn btn-outline-secondary text-start p-3" for="q11a2">{{ _('I want stable growth with moderate risk.') }}</label>
+                                <input type="radio" class="btn-check" name="q11" id="q11a3" value="10"><label class="btn btn-outline-secondary text-start p-3" for="q11a3">{{ _('I want maximum returns and can accept large losses.') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q12 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('12. If your portfolio drops 20% in a month, what do you do?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q12" id="q12a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q12a1">{{ _('Sell everything immediately.') }}</label>
+                                <input type="radio" class="btn-check" name="q12" id="q12a2" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q12a2">{{ _('Do nothing / Wait for recovery.') }}</label>
+                                <input type="radio" class="btn-check" name="q12" id="q12a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q12a3">{{ _('Buy more at lower prices.') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q13 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('13. Which scenario do you prefer?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q13" id="q13a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q13a1">{{ _('Guaranteed 3% return.') }}</label>
+                                <input type="radio" class="btn-check" name="q13" id="q13a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q13a2">{{ _('50% chance of 10% return, 50% chance of 0%.') }}</label>
+                                <input type="radio" class="btn-check" name="q13" id="q13a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q13a3">{{ _('50% chance of 50% return, 50% chance of -20% loss.') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q14 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('14. Allocation to high-risk assets?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q14" id="q14a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q14a1">{{ _('0% - 10%') }}</label>
+                                <input type="radio" class="btn-check" name="q14" id="q14a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q14a2">{{ _('10% - 30%') }}</label>
+                                <input type="radio" class="btn-check" name="q14" id="q14a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q14a3">{{ _('30% - 60%') }}</label>
+                                <input type="radio" class="btn-check" name="q14" id="q14a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q14a4">{{ _('More than 60%') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q15 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('15. How do you feel about market volatility?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q15" id="q15a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q15a1">{{ _('It makes me very anxious.') }}</label>
+                                <input type="radio" class="btn-check" name="q15" id="q15a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q15a2">{{ _('I am concerned but can tolerate it.') }}</label>
+                                <input type="radio" class="btn-check" name="q15" id="q15a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q15a3">{{ _('I see it as an opportunity.') }}</label>
                             </div>
                         </div>
 
-                        <!-- =========================================
-                             STEP 2: KNOWLEDGE & EXPERIENCE
-                        ========================================= -->
-                        <div class="risk-question-group" data-step="2">
-                            <h4 class="fw-semibold mb-4">{{ _('Step 2: Your Knowledge & Experience') }}</h4>
-
-                            <!-- Q6 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('6. Investment knowledge level?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q6" id="q6a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q6a1">{{ _('None (Beginner)') }}</label>
-                                    <input type="radio" class="btn-check" name="q6" id="q6a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q6a2">{{ _('Basic (Stocks/Bonds)') }}</label>
-                                    <input type="radio" class="btn-check" name="q6" id="q6a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q6a3">{{ _('Advanced (Derivatives/Crypto)') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q7 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('7. Intended investment time horizon?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q7" id="q7a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q7a1">{{ _('Less than 1 year') }}</label>
-                                    <input type="radio" class="btn-check" name="q7" id="q7a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q7a2">{{ _('1 - 3 years') }}</label>
-                                    <input type="radio" class="btn-check" name="q7" id="q7a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q7a3">{{ _('3 - 5 years') }}</label>
-                                    <input type="radio" class="btn-check" name="q7" id="q7a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q7a4">{{ _('More than 5 years') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q8 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('8. Experience with stocks/funds?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q8" id="q8a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q8a1">{{ _('Never') }}</label>
-                                    <input type="radio" class="btn-check" name="q8" id="q8a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q8a2">{{ _('Some') }}</label>
-                                    <input type="radio" class="btn-check" name="q8" id="q8a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q8a3">{{ _('Extensive') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q9 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('9. Experience with high-risk assets (Crypto/Forex)?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q9" id="q9a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q9a1">{{ _('Never') }}</label>
-                                    <input type="radio" class="btn-check" name="q9" id="q9a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q9a2">{{ _('Some') }}</label>
-                                    <input type="radio" class="btn-check" name="q9" id="q9a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q9a3">{{ _('Extensive') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q10 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('10. Understanding of Diversification?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q10" id="q10a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q10a1">{{ _('No idea') }}</label>
-                                    <input type="radio" class="btn-check" name="q10" id="q10a2" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q10a2">{{ _('I understand it reduces risk') }}</label>
-                                </div>
-                            </div>
+                         <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary px-4" onclick="prevStep(2)">{{ _('Previous') }}</button>
+                            <button type="submit" class="btn btn-success px-5">{{ _('Submit Assessment') }}</button>
                         </div>
-
-                        <!-- =========================================
-                             STEP 3: RISK TOLERANCE
-                        ========================================= -->
-                        <div class="risk-question-group" data-step="3">
-                            <h4 class="fw-semibold mb-4">{{ _('Step 3: Your Risk Tolerance') }}</h4>
-                            
-                            <!-- Q11 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('11. Which statement best describes you?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q11" id="q11a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q11a1">{{ _('I want to protect my money, even if returns are low.') }}</label>
-                                    <input type="radio" class="btn-check" name="q11" id="q11a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q11a2">{{ _('I want stable growth with moderate risk.') }}</label>
-                                    <input type="radio" class="btn-check" name="q11" id="q11a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q11a3">{{ _('I want maximum returns and can accept large losses.') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q12 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('12. If your portfolio drops 20% in a month, what do you do?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q12" id="q12a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q12a1">{{ _('Sell everything immediately.') }}</label>
-                                    <input type="radio" class="btn-check" name="q12" id="q12a2" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q12a2">{{ _('Do nothing / Wait for recovery.') }}</label>
-                                    <input type="radio" class="btn-check" name="q12" id="q12a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q12a3">{{ _('Buy more at lower prices.') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q13 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('13. Which scenario do you prefer?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q13" id="q13a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q13a1">{{ _('Guaranteed 3% return.') }}</label>
-                                    <input type="radio" class="btn-check" name="q13" id="q13a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q13a2">{{ _('50% chance of 10% return, 50% chance of 0%.') }}</label>
-                                    <input type="radio" class="btn-check" name="q13" id="q13a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q13a3">{{ _('50% chance of 50% return, 50% chance of -20% loss.') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q14 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('14. Allocation to high-risk assets?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q14" id="q14a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q14a1">{{ _('0% - 10%') }}</label>
-                                    <input type="radio" class="btn-check" name="q14" id="q14a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q14a2">{{ _('10% - 30%') }}</label>
-                                    <input type="radio" class="btn-check" name="q14" id="q14a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q14a3">{{ _('30% - 60%') }}</label>
-                                    <input type="radio" class="btn-check" name="q14" id="q14a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q14a4">{{ _('More than 60%') }}</label>
-                                </div>
-                            </div>
-                            <!-- Q15 -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">{{ _('15. How do you feel about market volatility?') }}</label>
-                                <div class="btn-group-vertical w-100" role="group">
-                                    <input type="radio" class="btn-check" name="q15" id="q15a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q15a1">{{ _('It makes me very anxious.') }}</label>
-                                    <input type="radio" class="btn-check" name="q15" id="q15a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q15a2">{{ _('I am concerned but can tolerate it.') }}</label>
-                                    <input type="radio" class="btn-check" name="q15" id="q15a3" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q15a3">{{ _('I see it as an opportunity.') }}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Navigation Buttons -->
-                <div class="card-footer bg-body-tertiary p-3 d-flex justify-content-between">
-                    <button type="button" class="btn btn-outline-secondary" id="prevBtn" style="display: none;">{{ _('Previous') }}</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn">{{ _('Next (Step 2)') }}</button>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block scripts %}
@@ -222,15 +205,13 @@
         const totalSteps = 3;
         const steps = document.querySelectorAll('.risk-question-group');
         const stepperItems = document.querySelectorAll('.step');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const form = document.getElementById('riskForm');
 
-        function showStep(stepNum) {
-            // Hide all
+        window.showStep = function(stepNum) {
+            // Hide all groups
             steps.forEach(step => step.classList.remove('active'));
-            // Show current
-            document.querySelector(`.risk-question-group[data-step="${stepNum}"]`).classList.add('active');
+            // Show target group
+            const target = document.querySelector(`.risk-question-group[data-step="${stepNum}"]`);
+            if(target) target.classList.add('active');
 
             // Update Stepper UI
             stepperItems.forEach((step, index) => {
@@ -249,47 +230,17 @@
                     stepCircle.innerHTML = index + 1;
                 }
             });
+        };
 
-            // Buttons visibility
-            if (stepNum === 1) {
-                prevBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'inline-block';
-            }
+        window.nextStep = function(step) {
+            showStep(step);
+            window.scrollTo(0, 0);
+        };
 
-            if (stepNum === totalSteps) {
-                nextBtn.textContent = '{{ _("Submit Assessment") }}';
-                nextBtn.classList.remove('btn-primary');
-                nextBtn.classList.add('btn-success');
-            } else {
-                nextBtn.textContent = `{{ _("Next") }} (Step ${stepNum + 1})`;
-                nextBtn.classList.add('btn-primary');
-                nextBtn.classList.remove('btn-success');
-            }
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                showStep(currentStep);
-                window.scrollTo(0, 0); // Scroll to top
-            } else {
-                // Submit logic
-                if(confirm("{{ _('Are you sure you want to submit your risk assessment?') }}")) {
-                    form.submit();
-                }
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentStep > 1) {
-                currentStep--;
-                showStep(currentStep);
-                window.scrollTo(0, 0);
-            }
-        });
-
-        showStep(currentStep);
+        window.prevStep = function(step) {
+            showStep(step);
+            window.scrollTo(0, 0);
+        };
     });
 </script>
 {% endblock %}
