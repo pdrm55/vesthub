@@ -39,7 +39,8 @@
                     <!-- =========================================
                          STEP 1: FINANCIAL PROFILE
                     ========================================= -->
-                    <div class="risk-question-group active" data-step="1">
+                    <!-- کلاس active به صورت دستی اضافه شده تا در صورت لود نشدن JS هم دیده شود -->
+                    <div class="risk-question-group active" data-step="1" style="display: block;">
                         <h4 class="fw-semibold mb-4">{{ _('Step 1: Your Financial Profile') }}</h4>
                         
                         <!-- Q1 -->
@@ -70,6 +71,26 @@
                                 <input type="radio" class="btn-check" name="q3" id="q3a2" value="5"><label class="btn btn-outline-secondary text-start p-3" for="q3a2">{{ _('$100,000 - $500,000') }}</label>
                                 <input type="radio" class="btn-check" name="q3" id="q3a3" value="8"><label class="btn btn-outline-secondary text-start p-3" for="q3a3">{{ _('$500,000 - $1,000,000') }}</label>
                                 <input type="radio" class="btn-check" name="q3" id="q3a4" value="10"><label class="btn btn-outline-secondary text-start p-3" for="q3a4">{{ _('More than $1,000,000') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q4 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('4. What is your primary financial goal?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q4" id="q4a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q4a1">{{ _('Capital Preservation (Safety)') }}</label>
+                                <input type="radio" class="btn-check" name="q4" id="q4a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q4a2">{{ _('Generating Income') }}</label>
+                                <input type="radio" class="btn-check" name="q4" id="q4a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q4a3">{{ _('Balanced Growth') }}</label>
+                                <input type="radio" class="btn-check" name="q4" id="q4a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q4a4">{{ _('Aggressive Growth') }}</label>
+                            </div>
+                        </div>
+                        <!-- Q5 -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ _('5. How much of your income do you save monthly?') }}</label>
+                            <div class="btn-group-vertical w-100" role="group">
+                                <input type="radio" class="btn-check" name="q5" id="q5a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q5a1">{{ _('Less than 10%') }}</label>
+                                <input type="radio" class="btn-check" name="q5" id="q5a2" value="2"><label class="btn btn-outline-secondary text-start p-3" for="q5a2">{{ _('10% - 25%') }}</label>
+                                <input type="radio" class="btn-check" name="q5" id="q5a3" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q5a3">{{ _('25% - 50%') }}</label>
+                                <input type="radio" class="btn-check" name="q5" id="q5a4" value="4"><label class="btn btn-outline-secondary text-start p-3" for="q5a4">{{ _('More than 50%') }}</label>
                             </div>
                         </div>
                         
@@ -129,6 +150,11 @@
                                 <input type="radio" class="btn-check" name="q10" id="q10a1" value="1"><label class="btn btn-outline-secondary text-start p-3" for="q10a1">{{ _('No idea') }}</label>
                                 <input type="radio" class="btn-check" name="q10" id="q10a2" value="3"><label class="btn btn-outline-secondary text-start p-3" for="q10a2">{{ _('I understand it reduces risk') }}</label>
                             </div>
+                        </div>
+
+                         <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary px-4" onclick="prevStep(1)">{{ _('Previous') }}</button>
+                            <button type="button" class="btn btn-primary px-4" onclick="nextStep(3)">{{ _('Next') }}</button>
                         </div>
                     </div>
 
@@ -192,12 +218,6 @@
                     </div>
                 </form>
             </div>
-            
-            <!-- Navigation Buttons -->
-            <div class="card-footer bg-body-tertiary p-3 d-flex justify-content-between">
-                <button type="button" class="btn btn-outline-secondary" id="prevBtn" style="display: none;">{{ _('Previous') }}</button>
-                <button type="button" class="btn btn-primary" id="nextBtn">{{ _('Next (Step 2)') }}</button>
-            </div>
         </div>
     </div>
 </div>
@@ -214,14 +234,22 @@
         const nextBtn = document.getElementById('nextBtn');
         const form = document.getElementById('riskForm');
 
-        function showStep(stepNum) {
-            // Hide all groups
-            steps.forEach(step => step.classList.remove('active'));
-            // Show target group
+        // تابع نمایش استپ خاص
+        window.showStep = function(stepNum) {
+            // مخفی کردن همه
+            steps.forEach(step => {
+                step.classList.remove('active');
+                step.style.display = 'none'; // اطمینان از مخفی شدن
+            });
+            
+            // نمایش استپ فعلی
             const target = document.querySelector(`.risk-question-group[data-step="${stepNum}"]`);
-            if(target) target.classList.add('active');
+            if(target) {
+                target.classList.add('active');
+                target.style.display = 'block'; // اطمینان از نمایش
+            }
 
-            // Update Stepper UI
+            // آپدیت نوار بالا (Stepper UI)
             stepperItems.forEach((step, index) => {
                 const stepCircle = step.querySelector('.step-circle');
                 if (index + 1 < stepNum) {
@@ -238,51 +266,19 @@
                     stepCircle.innerHTML = index + 1;
                 }
             });
+        };
 
-            // Buttons visibility
-            if (stepNum === 1) {
-                prevBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'inline-block';
-            }
+        window.nextStep = function(step) {
+            showStep(step);
+            window.scrollTo(0, 0);
+        };
 
-            if (stepNum === totalSteps) {
-                nextBtn.textContent = '{{ _("Submit Assessment") }}';
-                nextBtn.classList.remove('btn-primary');
-                nextBtn.classList.add('btn-success');
-            } else {
-                nextBtn.textContent = `{{ _("Next") }} (Step ${stepNum + 1})`;
-                nextBtn.classList.add('btn-primary');
-                nextBtn.classList.remove('btn-success');
-            }
-        }
+        window.prevStep = function(step) {
+            showStep(step);
+            window.scrollTo(0, 0);
+        };
 
-        // Add event listeners ONLY IF buttons exist
-        if(nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                if (currentStep < totalSteps) {
-                    currentStep++;
-                    showStep(currentStep);
-                    window.scrollTo(0, 0); 
-                } else {
-                    if(confirm("{{ _('Are you sure you want to submit your risk assessment?') }}")) {
-                        form.submit();
-                    }
-                }
-            });
-        }
-
-        if(prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                if (currentStep > 1) {
-                    currentStep--;
-                    showStep(currentStep);
-                    window.scrollTo(0, 0);
-                }
-            });
-        }
-        
-        // Initial Show
+        // نمایش اولیه
         showStep(currentStep);
     });
 </script>
