@@ -1,12 +1,5 @@
 /*
- * VestHub Custom Stylesheet (Theme Aware, Optimized & Image Fixes)
- *
- * Table of Contents:
- * 1. Imports & Root Variables
- * 2. General Site Styles
- * 3. Bootstrap Overrides
- * 4. Page-Specific Styles
- * 5. Light Mode Overrides (Critical Fixes)
+ * VestHub Custom Stylesheet (Final Fix for Light Mode Headers)
  */
 
 /* =================================== */
@@ -36,7 +29,6 @@ body {
 /* ==   2. General Site Styles      == */
 /* =================================== */
 
-/* Responsive Images Fix */
 img {
     max-width: 100%;
     height: auto;
@@ -248,16 +240,13 @@ code {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
 }
 
-/* FIX: Ensure Hero and Dark Header sections KEEP white text in light mode */
-[data-bs-theme="light"] .hero-section .text-white,
-[data-bs-theme="light"] .hero-section .display-3,
-[data-bs-theme="light"] .hero-section .lead,
-[data-bs-theme="light"] .performance-section .text-white,
-[data-bs-theme="light"] .performance-section h2,
-[data-bs-theme="light"] .performance-section p,
-[data-bs-theme="light"] .page-header-dark .text-white,
-[data-bs-theme="light"] .page-header-dark h1,
-[data-bs-theme="light"] .page-header-dark p {
+/* FIX: محافظت از بخش‌های تیره در برابر تغییر رنگ متن */
+[data-bs-theme="light"] .hero-section,
+[data-bs-theme="light"] .hero-section *,
+[data-bs-theme="light"] .performance-section,
+[data-bs-theme="light"] .performance-section *,
+[data-bs-theme="light"] .page-header-dark,
+[data-bs-theme="light"] .page-header-dark * {
     color: #ffffff !important;
 }
 
@@ -282,12 +271,11 @@ code {
     border-bottom: 2px solid #dee2e6 !important;
 }
 
-/* General Text Fix for Light Mode */
-/* NOTE: We make sure this doesn't override the specific hero sections above by using :not() or specificity */
-[data-bs-theme="light"] .text-white:not(.hero-section *):not(.performance-section *):not(.page-header-dark *),
-[data-bs-theme="light"] .text-white-50:not(.hero-section *):not(.performance-section *):not(.page-header-dark *),
-[data-bs-theme="light"] .text-light:not(.hero-section *):not(.performance-section *):not(.page-header-dark *),
-[data-bs-theme="light"] .text-body-secondary:not(.hero-section *):not(.performance-section *):not(.page-header-dark *) {
+/* اصلاح رنگ متن در جاهای سفید (به جز هدرهای تیره) */
+[data-bs-theme="light"] .text-white:not(.hero-section):not(.hero-section *):not(.performance-section):not(.performance-section *):not(.page-header-dark):not(.page-header-dark *),
+[data-bs-theme="light"] .text-white-50:not(.hero-section):not(.hero-section *):not(.performance-section):not(.performance-section *):not(.page-header-dark):not(.page-header-dark *),
+[data-bs-theme="light"] .text-light:not(.hero-section):not(.hero-section *):not(.performance-section):not(.performance-section *):not(.page-header-dark):not(.page-header-dark *),
+[data-bs-theme="light"] .text-body-secondary:not(.hero-section):not(.hero-section *):not(.performance-section):not(.performance-section *):not(.page-header-dark):not(.page-header-dark *) {
     color: #495057 !important;
 }
 

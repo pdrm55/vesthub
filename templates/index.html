@@ -7,13 +7,13 @@
     <div class="container text-center py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
-                <h1 class="display-3 fw-bold mb-4">Intelligent Trading. Automated.</h1>
-                <p class="lead mb-4">Access a new generation of trading bots and analytical tools, or let our AI manage your portfolio.</p>
+                <h1 class="display-3 fw-bold mb-4">{{ _('Intelligent Trading. Automated.') }}</h1>
+                <p class="lead mb-4">{{ _('Access a new generation of trading bots and analytical tools, or let our AI manage your portfolio.') }}</p>
                 <!-- Call to Action Buttons -->
                 <div>
-                    <a href="{{ url_for('main.marketplace') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">Explore the Marketplace</a>
+                    <a href="{{ url_for('main.marketplace') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">{{ _('Explore the Marketplace') }}</a>
                     <!-- Link redirects to plans section or signup -->
-                    <a href="{{ url_for('main.plans') }}" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">Start Investing</a>
+                    <a href="{{ url_for('main.plans') }}" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">{{ _('Start Investing') }}</a>
                 </div>
             </div>
         </div>
@@ -25,8 +25,8 @@
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center">
-                <h2 class="fw-bold">Our Investment Plans</h2>
-                <p class="text-body-secondary">Select a plan that matches your financial goals. Returns are annualized.</p>
+                <h2 class="fw-bold">{{ _('Our Investment Plans') }}</h2>
+                <p class="text-body-secondary">{{ _('Select a plan that matches your financial goals. Returns are annualized.') }}</p>
             </div>
         </div>
 
@@ -40,15 +40,15 @@
                     <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
                     {% if plan.risk_level == 'low' %}
                         <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-info-subtle text-info-emphasis">Low Risk</span>
+                            <span class="badge bg-info-subtle text-info-emphasis">{{ _('Low Risk') }}</span>
                         </div>
                     {% elif plan.risk_level == 'medium' %}
                         <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-warning-subtle text-warning-emphasis">Medium Risk</span>
+                            <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Medium Risk') }}</span>
                         </div>
                     {% else %}
                         <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-danger-subtle text-danger-emphasis">High Risk</span>
+                            <span class="badge bg-danger-subtle text-danger-emphasis">{{ _('High Risk') }}</span>
                         </div>
                     {% endif %}
 
@@ -59,15 +59,13 @@
                         
                         <div class="mb-4">
                             <h1 class="fw-bold display-4 text-primary">{{ plan.annual_return_rate|int }}%</h1>
-                            <h5 class="text-body-secondary">Annual Return</h5>
+                            <h5 class="text-body-secondary">{{ _('Annual Return') }}</h5>
                             <h6 class="fw-normal text-white-50">{{ plan.duration_months }} Months Duration</h6>
                         </div>
                         
                         <div class="mt-auto">
                             <!-- Call to Action Button: Directs users to the signup page -->
-                            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">
-                                Choose Plan & Sign Up
-                            </a>
+                            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary w-100 btn-lg">{{ _('Choose Plan & Sign Up') }}</a>
                         </div>
                     </div>
                 </div>
@@ -75,7 +73,7 @@
             <!-- Fallback message if no plans are available -->
             {% else %}
             <div class="col-12 text-center py-5">
-                <h4 class="text-muted">No investment plans available at the moment.</h4>
+                <h4 class="text-muted">{{ _('No investment plans available at the moment.') }}</h4>
             </div>
             {% endfor %}
         </div>
@@ -84,8 +82,7 @@
         {% if plans %}
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <a href="{{ url_for('main.plans') }}" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">
-                    View More Plans <i class="bi bi-arrow-right ms-2"></i>
+                <a href="{{ url_for('main.plans') }}" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">{{ _('View More Plans') }}<i class="bi bi-arrow-right ms-2"></i>
                 </a>
             </div>
         </div>
@@ -105,9 +102,9 @@
                         <div class="mb-3">
                             <i class="bi bi-graph-up-arrow fs-1 text-primary"></i>
                         </div>
-                        <h3 class="card-title fw-bold mb-3">The Bot & Tool Marketplace</h3>
-                        <p class="card-text">Browse, backtest, and deploy hundreds of bots from top developers. Or build your own strategies with our powerful, low-latency APIs.</p>
-                        <a href="{{ url_for('main.marketplace') }}" class="btn btn-outline-primary mt-3">Go to Marketplace</a>
+                        <h3 class="card-title fw-bold mb-3">{{ _('The Bot & Tool Marketplace') }}</h3>
+                        <p class="card-text">{{ _('Browse, backtest, and deploy hundreds of bots from top developers. Or build your own strategies with our powerful, low-latency APIs.') }}</p>
+                        <a href="{{ url_for('main.marketplace') }}" class="btn btn-outline-primary mt-3">{{ _('Go to Marketplace') }}</a>
                     </div>
                 </div>
             </div>
@@ -118,9 +115,9 @@
                         <div class="mb-3">
                             <i class="bi bi-piggy-bank fs-1 text-success"></i>
                         </div>
-                        <h3 class="card-title fw-bold mb-3">VestHub Managed Portfolios</h3>
-                        <p class="card-text">Don't have time to trade? Our top-performing AI bots will trade for you. We manage the risk, you track the returns.</p>
-                        <a href="{{ url_for('main.invest_learn') }}" class="btn btn-outline-success mt-3">Learn About Investing</a>
+                        <h3 class="card-title fw-bold mb-3">{{ _('VestHub Managed Portfolios') }}</h3>
+                        <p class="card-text">{{ _("'Don't have time to trade? Our top-performing AI bots will trade for you. We manage the risk, you track the returns.") }}</p>
+                        <a href="{{ url_for('main.invest_learn') }}" class="btn btn-outline-success mt-3">{{ _('Learn About Investing') }}</a>
                     </div>
                 </div>
             </div>
@@ -134,18 +131,18 @@
         <div class="row text-center g-4">
             <div class="col-md-4">
                 <i class="bi bi-shield-lock trust-bar-icon"></i>
-                <h4 class="fw-semibold">Institutional-Grade Security</h4>
-                <p class="mb-0 text-secondary">Bank-level encryption & cold storage.</p>
+                <h4 class="fw-semibold">{{ _('Institutional-Grade Security') }}</h4>
+                <p class="mb-0 text-secondary">{{ _('Bank-level encryption & cold storage.') }}</p>
             </div>
             <div class="col-md-4">
                 <i class="bi bi-patch-check trust-bar-icon"></i>
-                <h4 class="fw-semibold">Rigorous Vetting</h4>
-                <p class="mb-0 text-secondary">All marketplace bots are backtested & verified.</p>
+                <h4 class="fw-semibold">{{ _('Rigorous Vetting') }}</h4>
+                <p class="mb-0 text-secondary">{{ _('All marketplace bots are backtested & verified.') }}</p>
             </div>
             <div class="col-md-4">
                 <i class="bi bi-bar-chart-line trust-bar-icon"></i>
-                <h4 class="fw-semibold">Full Transparency</h4>
-                <p class="mb-0 text-secondary">Real-time performance dashboards.</p>
+                <h4 class="fw-semibold">{{ _('Full Transparency') }}</h4>
+                <p class="mb-0 text-secondary">{{ _('Real-time performance dashboards.') }}</p>
             </div>
         </div>
     </div>
@@ -154,35 +151,35 @@
 <!-- Core Features Section (UPDATED) -->
 <section class="performance-section">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">A Platform Built for Performance</h2>
+        <h2 class="text-center fw-bold mb-5">{{ _('A Platform Built for Performance') }}</h2>
         <!-- Features Grid -->
         <div class="row g-4">
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
                     <i class="bi bi-lightning-charge feature-icon"></i>
-                    <h5 class="fw-semibold">Blazing-Fast Backtesting</h5>
-                    <p class="text-secondary">Test your strategies on years of data in seconds.</p>
+                    <h5 class="fw-semibold">{{ _('Blazing-Fast Backtesting') }}</h5>
+                    <p class="text-secondary">{{ _('Test your strategies on years of data in seconds.') }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
                     <i class="bi bi-robot feature-icon"></i>
-                    <h5 class="fw-semibold">AI-Powered Analytics</h5>
-                    <p class="text-secondary">Use our proprietary tools to scan markets and find opportunities.</p>
+                    <h5 class="fw-semibold">{{ _('AI-Powered Analytics') }}</h5>
+                    <p class="text-secondary">{{ _('Use our proprietary tools to scan markets and find opportunities.') }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
                     <i class="bi bi-hdd-network feature-icon"></i>
-                    <h5 class="fw-semibold">Multi-Exchange Connectivity</h5>
-                    <p class="text-secondary">Connect all your exchange accounts in one secure place.</p>
+                    <h5 class="fw-semibold">{{ _('Multi-Exchange Connectivity') }}</h5>
+                    <p class="text-secondary">{{ _('Connect all your exchange accounts in one secure place.') }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
                     <i class="bi bi-code-slash feature-icon"></i>
-                    <h5 class="fw-semibold">Developer-Friendly API</h5>
-                    <p class="text-secondary">Build, test, and deploy your own tools on our infrastructure.</p>
+                    <h5 class="fw-semibold">{{ _('Developer-Friendly API') }}</h5>
+                    <p class="text-secondary">{{ _('Build, test, and deploy your own tools on our infrastructure.') }}</p>
                 </div>
             </div>
         </div>
@@ -194,9 +191,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="fw-bold mb-3">Join the Future of Automated Trading.</h2>
-                <p class="lead mb-4">Sign up for free and get access to your new trading dashboard.</p>
-                <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">Sign Up Free</a>
+                <h2 class="fw-bold mb-3">{{ _('Join the Future of Automated Trading.') }}</h2>
+                <p class="lead mb-4">{{ _('Sign up for free and get access to your new trading dashboard.') }}</p>
+                <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">{{ _('Sign Up Free') }}</a>
             </div>
         </div>
     </div>

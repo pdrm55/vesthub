@@ -3,14 +3,14 @@
 {% block title %}Sign Up - VestHub{% endblock %}
 
 {% block content %}
-    <h2 class="text-center fw-bold mb-4">Create Your Account</h2>
+    <h2 class="text-center fw-bold mb-4">{{ _('Create Your Account') }}</h2>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
           <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
           </div>
         {% endfor %}
       {% endif %}
@@ -20,47 +20,44 @@
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="row g-3">
             <div class="col-md-6">
-                <label for="first-name" class="form-label">First Name</label>
+                <label for="first-name" class="form-label">{{ _('First Name') }}</label>
                 <input type="text" class="form-control form-control-lg" id="first-name" name="first_name" required>
             </div>
             <div class="col-md-6">
-                <label for="last-name" class="form-label">Last Name</label>
+                <label for="last-name" class="form-label">{{ _('Last Name') }}</label>
                 <input type="text" class="form-control form-control-lg" id="last-name" name="last_name" required>
             </div>
         </div>
         <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="you@example.com" required>
+            <label for="email" class="form-label">{{ _('Email address') }}</label>
+            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="{{ _('you@example.com') }}" required>
         </div>
         <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number <span class="text-body-secondary">(Optional)</span></label>
+            <label for="phone" class="form-label">{{ _('Phone Number') }} <span class="text-body-secondary">{{ _('(Optional)') }}</span></label>
             <input type="tel" class="form-control form-control-lg" id="phone" name="phone">
         </div>
         <div class="mb-3">
-            <label for="referral_code" class="form-label">Referral Code <span class="text-body-secondary">(Optional)</span></label>
+            <label for="referral_code" class="form-label">{{ _('Referral Code') }} <span class="text-body-secondary">{{ _('(Optional)') }}</span></label>
             <input type="text" class="form-control form-control-lg" id="referral_code" name="referral_code">
         </div>
         
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label">{{ _('Password') }}</label>
             <input type="password" class="form-control form-control-lg" id="password" name="password" required>
-            <div class="form-text text-info">
-                Min 8 chars, 1 Uppercase, 1 Number, 1 Symbol (!@#$%)
-            </div>
+            <div class="form-text text-info">{{ _('Min 8 chars, 1 Uppercase, 1 Number, 1 Symbol (!@#$%%)') }}</div>
         </div>
         
         <!-- NEW: Confirm Password -->
         <div class="mb-3">
-            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <label for="confirm_password" class="form-label">{{ _('Confirm Password') }}</label>
             <input type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password" required>
         </div>
 
         <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Create Account') }}</button>
         </div>
     </form>
 
-    <p class="text-center text-body-secondary mt-4 mb-0">
-        Already have an account? <a href="{{ url_for('auth.login') }}" class="fw-semibold text-decoration-none">Log In</a>
+    <p class="text-center text-body-secondary mt-4 mb-0">{{ _('Already have an account?') }}<a href="{{ url_for('auth.login') }}" class="fw-semibold text-decoration-none">{{ _('Log In') }}</a>
     </p>
 {% endblock %}

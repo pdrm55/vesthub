@@ -13,10 +13,10 @@
         <form method="POST" action="{{ url_for('admin.ticket_view', ticket_id=ticket.id) }}" class="d-inline">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="close_ticket" value="true">
-            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-check-circle"></i> Close Ticket</button>
+            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-check-circle"></i> {{ _('Close Ticket') }}</button>
         </form>
         {% else %}
-        <span class="badge bg-success fs-6">Closed</span>
+        <span class="badge bg-success fs-6">{{ _('Closed') }}</span>
         {% endif %}
     </div>
 </div>
@@ -25,11 +25,11 @@
     <!-- User Info Sidebar -->
     <div class="col-lg-3">
         <div class="card shadow-sm rounded-4 mb-3">
-            <div class="card-header bg-dark-subtle p-3"><h6 class="mb-0 fw-bold">User Details</h6></div>
+            <div class="card-header bg-dark-subtle p-3"><h6 class="mb-0 fw-bold">{{ _('User Details') }}</h6></div>
             <div class="card-body">
-                <p class="mb-1"><strong>Name:</strong> {{ ticket.user.first_name }} {{ ticket.user.last_name }}</p>
-                <p class="mb-1"><strong>Email:</strong> <a href="mailto:{{ ticket.user.email }}">{{ ticket.user.email }}</a></p>
-                <p class="mb-0"><strong>Category:</strong> {{ ticket.category }}</p>
+                <p class="mb-1"><strong>{{ _('Name:') }}</strong> {{ ticket.user.first_name }} {{ ticket.user.last_name }}</p>
+                <p class="mb-1"><strong>{{ _('Email:') }}</strong> <a href="mailto:{{ ticket.user.email }}">{{ ticket.user.email }}</a></p>
+                <p class="mb-0"><strong>{{ _('Category:') }}</strong> {{ ticket.category }}</p>
             </div>
         </div>
     </div>
@@ -70,8 +70,8 @@
                     <form method="POST" action="{{ url_for('admin.ticket_view', ticket_id=ticket.id) }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <div class="input-group">
-                            <textarea class="form-control" name="message" rows="2" placeholder="Type reply to user..." required></textarea>
-                            <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> Reply</button>
+                            <textarea class="form-control" name="message" rows="2" placeholder="{{ _('Type reply to user...') }}" required></textarea>
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> {{ _('Reply') }}</button>
                         </div>
                     </form>
                 </div>

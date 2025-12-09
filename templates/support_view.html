@@ -50,16 +50,14 @@
         <div class="p-3 bg-dark-subtle border-top border-secondary">
             <!-- If ticket is closed, show a message. Otherwise, show the reply form. -->
             {% if ticket.status == 'closed' %}
-                <div class="alert alert-secondary mb-0 text-center">
-                    This ticket is closed. You can create a new ticket if needed.
-                </div>
+                <div class="alert alert-secondary mb-0 text-center">{{ _('This ticket is closed. You can create a new ticket if needed.') }}</div>
             {% else %}
                 <!-- Reply Form -->
                 <form method="POST" action="{{ url_for('user.ticket_view', ticket_id=ticket.id) }}">
                     {{ form.hidden_tag() if form else '<input type="hidden" name="csrf_token" value="' + csrf_token() + '">' | safe }}
                     <div class="input-group">
-                        <textarea class="form-control" name="message" rows="2" placeholder="Type your reply..." required></textarea>
-                        <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> Send</button>
+                        <textarea class="form-control" name="message" rows="2" placeholder="{{ _('Type your reply...') }}" required></textarea>
+                        <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i> {{ _('Send') }}</button>
                     </div>
                 </form>
             {% endif %}

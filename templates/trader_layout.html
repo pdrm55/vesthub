@@ -21,59 +21,47 @@
     <div class="d-flex">
         <nav class="sidebar admin-sidebar d-flex flex-column p-3">
             <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                <span class="fs-4">Trader Portal</span>
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="me-2 navbar-logo">
+                <span class="fs-4">{{ _('Trader Portal') }}</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a href="{{ url_for('trader_dashboard') }}" class="nav-link text-white">
-                        <i class="bi bi-grid-fill me-2"></i>
-                        Dashboard
-                    </a>
+                        <i class="bi bi-grid-fill me-2"></i>{{ _('Dashboard') }}</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-white"> 
-                        <i class="bi bi-person-bounding-box me-2"></i>
-                        My Account (Vetrix 1)
-                    </a>
+                        <i class="bi bi-person-bounding-box me-2"></i>{{ _('My Account (Vetrix 1)') }}</a>
                 </li>
                 <li>
                     <a href="{{ url_for('trader_api') }}" class="nav-link text-white">
-                        <i class="bi bi-key-fill me-2"></i>
-                        API Management
-                    </a>
+                        <i class="bi bi-key-fill me-2"></i>{{ _('API Management') }}</a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <i class="bi bi-graph-up-arrow me-2"></i>
-                        Live Performance
-                    </a>
+                        <i class="bi bi-graph-up-arrow me-2"></i>{{ _('Live Performance') }}</a>
                 </li>
                 <li>
                     <a href="{{ url_for('trader_subscription') }}" class="nav-link text-white">
-                        <i class="bi bi-file-earmark-text-fill me-2"></i>
-                        My Subscription
-                    </a>
+                        <i class="bi bi-file-earmark-text-fill me-2"></i>{{ _('My Subscription') }}</a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <i class="bi bi-question-circle-fill me-2"></i>
-                        Support
-                    </a>
+                        <i class="bi bi-question-circle-fill me-2"></i>{{ _('Support') }}</a>
                 </li>
             </ul>
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://placehold.co/40x40/00b0f0/FFF?text=T" alt="User" width="32" height="32" class="rounded-circle me-2">
-                    <strong>Pro Trader</strong>
+                    <img src="https://placehold.co/40x40/00b0f0/FFF?text=T" alt="{{ _('User') }}" width="32" height="32" class="rounded-circle me-2">
+                    <strong>{{ _('Pro Trader') }}</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">{{ _('Settings') }}</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <!-- FIX: Changed from home to logout -->
-                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">{{ _('Log out') }}</a></li>
                 </ul>
             </div>
         </nav>
@@ -81,8 +69,8 @@
         <div class="main-content-wrapper flex-grow-1">
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
                 <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-white text-decoration-none">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                    <span class="fs-4">Trader Portal</span>
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="me-2 navbar-logo">
+                    <span class="fs-4">{{ _('Trader Portal') }}</span>
                 </a>
                 <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
                     <i class="bi bi-list"></i>
@@ -92,61 +80,49 @@
             <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
                     <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-white text-decoration-none">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                        <span class="fs-4">Trader Portal</span>
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="me-2 navbar-logo">
+                        <span class="fs-4">{{ _('Trader Portal') }}</span>
                     </a>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="{{ _('Close') }}"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
                             <a href="{{ url_for('trader_dashboard') }}" class="nav-link text-white">
-                                <i class="bi bi-grid-fill me-2"></i>
-                                Dashboard
-                            </a>
+                                <i class="bi bi-grid-fill me-2"></i>{{ _('Dashboard') }}</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link text-white"> 
-                                <i class="bi bi-person-bounding-box me-2"></i>
-                                My Account (Vetrix 1)
-                            </a>
+                                <i class="bi bi-person-bounding-box me-2"></i>{{ _('My Account (Vetrix 1)') }}</a>
                         </li>
                         <li>
                             <a href="{{ url_for('trader_api') }}" class="nav-link text-white">
-                                <i class="bi bi-key-fill me-2"></i>
-                                API Management
-                            </a>
+                                <i class="bi bi-key-fill me-2"></i>{{ _('API Management') }}</a>
                         </li>
                         <li>
                             <a href="#" class="nav-link text-white">
-                                <i class="bi bi-graph-up-arrow me-2"></i>
-                                Live Performance
-                            </a>
+                                <i class="bi bi-graph-up-arrow me-2"></i>{{ _('Live Performance') }}</a>
                         </li>
                         <li>
                             <a href="{{ url_for('trader_subscription') }}" class="nav-link text-white">
-                                <i class="bi bi-file-earmark-text-fill me-2"></i>
-                                My Subscription
-                            </a>
+                                <i class="bi bi-file-earmark-text-fill me-2"></i>{{ _('My Subscription') }}</a>
                         </li>
                         <li>
                             <a href="#" class="nav-link text-white">
-                                <i class="bi bi-question-circle-fill me-2"></i>
-                                Support
-                            </a>
+                                <i class="bi bi-question-circle-fill me-2"></i>{{ _('Support') }}</a>
                         </li>
                     </ul>
                     <hr>
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://placehold.co/40x40/00b0f0/FFF?text=T" alt="User" width="32" height="32" class="rounded-circle me-2">
-                            <strong>Pro Trader</strong>
+                            <img src="https://placehold.co/40x40/00b0f0/FFF?text=T" alt="{{ _('User') }}" width="32" height="32" class="rounded-circle me-2">
+                            <strong>{{ _('Pro Trader') }}</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">{{ _('Settings') }}</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <!-- FIX: Changed from home to logout -->
-                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">{{ _('Log out') }}</a></li>
                         </ul>
                     </div>
                 </div>

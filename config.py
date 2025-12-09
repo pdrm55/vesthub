@@ -32,6 +32,9 @@ class Config:
     UPLOAD_FOLDER = os.path.join(basedir, 'static', 'uploads')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # محدودیت ۱۶ مگابایت
 
+    # تنظیمات زبان (جدید)
+    LANGUAGES = ['en', 'tr']  # انگلیسی و ترکی
+
 class DevelopmentConfig(Config):
     """تنظیمات محیط توسعه"""
     DEBUG = True

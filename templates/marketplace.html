@@ -9,13 +9,13 @@
     <div class="container text-center py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
-                <h1 class="display-3 fw-bold mb-4">Meet Vetrix 1</h1>
-                <p class="lead mb-4">The next generation of intelligent trading bots. Built by veteran traders with 12+ years of market experience, for professional traders and institutions.</p>
-                <p class="lead mb-4">Stop using retail toys or overpaying for institutional platforms. Vetrix 1 bridges the gap.</p>
+                <h1 class="display-3 fw-bold mb-4">{{ _('Meet Vetrix 1') }}</h1>
+                <p class="lead mb-4">{{ _('The next generation of intelligent trading bots. Built by veteran traders with 12+ years of market experience, for professional traders and institutions.') }}</p>
+                <p class="lead mb-4">{{ _('Stop using retail toys or overpaying for institutional platforms. Vetrix 1 bridges the gap.') }}</p>
                 <!-- Call to Action Buttons -->
                 <div>
-                    <a href="{{ url_for('auth.signup') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">Start Trading Now</a>
-                    <a href="#b2b" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">For Institutions</a>
+                    <a href="{{ url_for('auth.signup') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">{{ _('Start Trading Now') }}</a>
+                    <a href="#b2b" class="btn btn-outline-light btn-lg mx-2 my-1 px-4">{{ _('For Institutions') }}</a>
                 </div>
             </div>
         </div>
@@ -25,30 +25,32 @@
 <!-- Competitive Advantage Section -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">The Vetrix 1 Advantage: Why We Are Different</h2>
+        <h2 class="text-center fw-bold mb-5">{{ _('The Vetrix 1 Advantage: Why We Are Different') }}</h2>
         <div class="row g-4">
             <!-- Advantage 1: Aligned Profit Model -->
             <div class="col-lg-4">
                 <div class="card h-100 p-4 rounded-4 shadow-sm text-center">
                     <i class="bi bi-person-hearts feature-icon"></i>
-                    <h4 class="fw-semibold">Aligned Profit Model</h4>
-                    <p>We win when you win. Unlike subscription-based bots that don't care if you profit, Vetrix operates on a **Profit-Sharing** model. Our incentives are 100% aligned with your success.</p>
+                    <h4 class="fw-semibold">{{ _('Aligned Profit Model') }}</h4>
+                    <!-- FIX: Double quotes for "don't" AND double percent "100%" -->
+                    <p>{{ _("We win when you win. Unlike subscription-based bots that don't care if you profit, Vetrix operates on a **Profit-Sharing** model. Our incentives are 100%% aligned with your success.") }}</p>
                 </div>
             </div>
             <!-- Advantage 2: Technical Superiority -->
             <div class="col-lg-4">
                 <div class="card h-100 p-4 rounded-4 shadow-sm text-center">
                     <i class="bi bi-speedometer2 feature-icon"></i>
-                    <h4 class="fw-semibold">Technical Superiority</h4>
-                    <p>Built in C# for low-latency execution. We use **real Range Bar data** from futures markets, not unreliable CFD data. Our algorithm is volume-independent, making it universally adaptable.</p>
+                    <h4 class="fw-semibold">{{ _('Technical Superiority') }}</h4>
+                    <p>{{ _('Built in C# for low-latency execution. We use **real Range Bar data** from futures markets, not unreliable CFD data. Our algorithm is volume-independent, making it universally adaptable.') }}</p>
                 </div>
             </div>
             <!-- Advantage 3: Adaptive Risk Management -->
             <div class="col-lg-4">
                 <div class="card h-100 p-4 rounded-4 shadow-sm text-center">
                     <i class="bi bi-shield-check feature-icon"></i>
-                    <h4 class="fw-semibold">Adaptive Risk Management</h4>
-                    <p>Vetrix 1 features a multi-layered, adaptive money management system. It's designed to control daily drawdowns and manage risk intelligently, protecting your capital during volatile conditions.</p>
+                    <h4 class="fw-semibold">{{ _('Adaptive Risk Management') }}</h4>
+                    <!-- FIX: Double quotes for "It's" -->
+                    <p>{{ _("Vetrix 1 features a multi-layered, adaptive money management system. It's designed to control daily drawdowns and manage risk intelligently, protecting your capital during volatile conditions.") }}</p>
                 </div>
             </div>
         </div>
@@ -58,53 +60,53 @@
 <!-- Competitor Comparison Table Section -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">How We Compare</h2>
+        <h2 class="text-center fw-bold mb-5">{{ _('How We Compare') }}</h2>
         <div class="table-responsive">
             <table class="table table-dark table-striped table-bordered align-middle text-center" style="font-size: 0.9rem;">
                 <thead>
                     <tr class="table-secondary">
-                        <th scope="col">Feature</th>
-                        <th scope="col" class="bg-primary-subtle text-primary-emphasis">Vetrix 1 (VestHub)</th>
-                        <th scope="col">Retail Bot Marketplaces</th>
-                        <th scope="col">Retail Crypto Bots (e.g., 3Commas)</th>
+                        <th scope="col">{{ _('Feature') }}</th>
+                        <th scope="col" class="bg-primary-subtle text-primary-emphasis">{{ _('Vetrix 1 (VestHub)') }}</th>
+                        <th scope="col">{{ _('Retail Bot Marketplaces') }}</th>
+                        <th scope="col">{{ _('Retail Crypto Bots (e.g., 3Commas)') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row" class="text-start">Target Audience</th>
-                        <td class="fw-bold">Funds, Companies, Pro Traders</td>
-                        <td>Retail Traders</td>
-                        <td>Retail Crypto Users</td>
+                        <th scope="row" class="text-start">{{ _('Target Audience') }}</th>
+                        <td class="fw-bold">{{ _('Funds, Companies, Pro Traders') }}</td>
+                        <td>{{ _('Retail Traders') }}</td>
+                        <td>{{ _('Retail Crypto Users') }}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-start">Revenue Model</th>
-                        <td class="fw-bold text-success">Profit-Sharing (Aligned)</td>
-                        <td>Subscription / Direct Sale</td>
-                        <td>Subscription</td>
+                        <th scope="row" class="text-start">{{ _('Revenue Model') }}</th>
+                        <td class="fw-bold text-success">{{ _('Profit-Sharing (Aligned)') }}</td>
+                        <td>{{ _('Subscription / Direct Sale') }}</td>
+                        <td>{{ _('Subscription') }}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-start">Core Technology</th>
-                        <td class="fw-bold">C# (Low-Latency)</td>
-                        <td>Varies (Often Python, JS)</td>
-                        <td>Varies</td>
+                        <th scope="row" class="text-start">{{ _('Core Technology') }}</th>
+                        <td class="fw-bold">{{ _('C# (Low-Latency)') }}</td>
+                        <td>{{ _('Varies (Often Python, JS)') }}</td>
+                        <td>{{ _('Varies') }}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-start">Data Source</th>
-                        <td class="fw-bold">Real Futures Range Bars</td>
-                        <td>Often unreliable CFD data</td>
-                        <td>Exchange API</td>
+                        <th scope="row" class="text-start">{{ _('Data Source') }}</th>
+                        <td class="fw-bold">{{ _('Real Futures Range Bars') }}</td>
+                        <td>{{ _('Often unreliable CFD data') }}</td>
+                        <td>{{ _('Exchange API') }}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-start">Risk Management</th>
-                        <td class="fw-bold text-success">Adaptive, Multi-Level, DD Control</td>
-                        <td>Basic / None</td>
-                        <td>User-dependent Stop-Loss</td>
+                        <th scope="row" class="text-start">{{ _('Risk Management') }}</th>
+                        <td class="fw-bold text-success">{{ _('Adaptive, Multi-Level, DD Control') }}</td>
+                        <td>{{ _('Basic / None') }}</td>
+                        <td>{{ _('User-dependent Stop-Loss') }}</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-start">Transparency</th>
-                        <td class="fw-bold text-success">Full (Real Statements)</td>
-                        <td>Low (Backtests only)</td>
-                        <td>User-dependent</td>
+                        <th scope="row" class="text-start">{{ _('Transparency') }}</th>
+                        <td class="fw-bold text-success">{{ _('Full (Real Statements)') }}</td>
+                        <td>{{ _('Low (Backtests only)') }}</td>
+                        <td>{{ _('User-dependent') }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -115,21 +117,22 @@
 <!-- Target Audience Section -->
 <section class="py-5" id="b2b">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">Built for Professionals</h2>
+        <h2 class="text-center fw-bold mb-5">{{ _('Built for Professionals') }}</h2>
         <div class="row g-4 align-items-stretch">
             <!-- Column 1: For Individual Pro Traders -->
             <div class="col-lg-6">
                 <div class="card h-100 p-4 rounded-4 shadow-sm text-center bg-dark-subtle text-body-emphasis">
                     <div class="card-body">
                         <i class="bi bi-person-fill-gear feature-icon"></i>
-                        <h3 class="card-title fw-bold mb-3">For Individual Pro Traders</h3>
-                        <p class="card-text">Run Vetrix 1 directly on your own trading account. You maintain full control over your funds. We provide the execution, risk management, and performance monitoring.</p>
+                        <h3 class="card-title fw-bold mb-3">{{ _('For Individual Pro Traders') }}</h3>
+                        <p class="card-text">{{ _('Run Vetrix 1 directly on your own trading account. You maintain full control over your funds. We provide the execution, risk management, and performance monitoring.') }}</p>
                         <ul class="list-unstyled text-start mt-3">
-                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Min. Capital:</strong> $60,000</li>
-                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Model:</strong> Profit-Sharing (50/50 above 2% threshold)</li>
-                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Connection:</strong> Direct API (NinjaTrader, AMP, etc.)</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>{{ _('Min. Capital:') }}</strong> {{ _('$60,000') }}</li>
+                            <!-- FIX: Double percent "2%" -->
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>{{ _('Model:') }}</strong> {{ _('Profit-Sharing (50/50 above 2%% threshold)') }}</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>{{ _('Connection:') }}</strong> {{ _('Direct API (NinjaTrader, AMP, etc.)') }}</li>
                         </ul>
-                        <a href="{{ url_for('auth.signup') }}" class="btn btn-primary mt-3 btn-lg">Start Trading</a>
+                        <a href="{{ url_for('auth.signup') }}" class="btn btn-primary mt-3 btn-lg">{{ _('Start Trading') }}</a>
                     </div>
                 </div>
             </div>
@@ -138,14 +141,15 @@
                 <div class="card h-100 p-4 rounded-4 shadow-sm text-center">
                     <div class="card-body">
                         <i class="bi bi-building-fill-gear feature-icon"></i>
-                        <h3 class="card-title fw-bold mb-3">For Institutions & Funds (B2B)</h3>
-                        <p class="card-text">Integrate Vetrix 1 into your fund's portfolio to diversify strategies and stabilize returns. Ideal for fixed-income funds, prop firms, and corporations with idle capital.</p>
+                        <h3 class="card-title fw-bold mb-3">{{ _('For Institutions & Funds (B2B)') }}</h3>
+                        <!-- FIX: Double quotes for "fund's" -->
+                        <p class="card-text">{{ _("Integrate Vetrix 1 into your fund's portfolio to diversify strategies and stabilize returns. Ideal for fixed-income funds, prop firms, and corporations with idle capital.") }}</p>
                          <ul class="list-unstyled text-start mt-3">
-                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Min. Capital:</strong> $100,000</li>
-                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Model:</strong> B2B Agreement (PoC required)</li>
-                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Features:</strong> SLA, Custom Risk Overlays, Managerial Reporting</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>{{ _('Min. Capital:') }}</strong> {{ _('$100,000') }}</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>{{ _('Model:') }}</strong> {{ _('B2B Agreement (PoC required)') }}</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>{{ _('Features:') }}</strong> {{ _('SLA, Custom Risk Overlays, Managerial Reporting') }}</li>
                         </ul>
-                        <a href="#" class="btn btn-outline-primary mt-3 btn-lg">Request a B2B Demo</a>
+                        <a href="#" class="btn btn-outline-primary mt-3 btn-lg">{{ _('Request a B2B Demo') }}</a>
                     </div>
                 </div>
             </div>
@@ -156,14 +160,14 @@
 <!-- Key Features Section -->
 <section class="py-5 bg-dark-subtle text-body-emphasis">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">Key Features</h2>
+        <h2 class="text-center fw-bold mb-5">{{ _('Key Features') }}</h2>
         <div class="row g-4">
             <div class="col-md-6 col-lg-4">
                 <div class="d-flex align-items-start">
                     <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
                     <div>
-                        <h5 class="fw-semibold">Multi-Platform Ready</h5>
-                        <p>Modular architecture designed for NinjaTrader, MetaTrader, Tradovate, and more.</p>
+                        <h5 class="fw-semibold">{{ _('Multi-Platform Ready') }}</h5>
+                        <p>{{ _('Modular architecture designed for NinjaTrader, MetaTrader, Tradovate, and more.') }}</p>
                     </div>
                 </div>
             </div>
@@ -171,8 +175,8 @@
                 <div class="d-flex align-items-start">
                     <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
                     <div>
-                        <h5 class="fw-semibold">Universal Market Adaptability</h5>
-                        <p>Data-independence allows Vetrix to run seamlessly on Futures, Crypto Futures, Forex, and Commodities.</p>
+                        <h5 class="fw-semibold">{{ _('Universal Market Adaptability') }}</h5>
+                        <p>{{ _('Data-independence allows Vetrix to run seamlessly on Futures, Crypto Futures, Forex, and Commodities.') }}</p>
                     </div>
                 </div>
             </div>
@@ -180,8 +184,8 @@
                 <div class="d-flex align-items-start">
                     <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
                     <div>
-                        <h5 class="fw-semibold">AI & Machine Learning Ready</h5>
-                        <p>Built with a foundation for future AI-driven adaptive learning and self-optimization.</p>
+                        <h5 class="fw-semibold">{{ _('AI & Machine Learning Ready') }}</h5>
+                        <p>{{ _('Built with a foundation for future AI-driven adaptive learning and self-optimization.') }}</p>
                     </div>
                 </div>
             </div>
@@ -189,8 +193,8 @@
                 <div class="d-flex align-items-start">
                     <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
                     <div>
-                        <h5 class="fw-semibold">Multi-Risk Coverage</h5>
-                        <p>Tailored profit-to-risk optimization based on your selected risk profile.</p>
+                        <h5 class="fw-semibold">{{ _('Multi-Risk Coverage') }}</h5>
+                        <p>{{ _('Tailored profit-to-risk optimization based on your selected risk profile.') }}</p>
                     </div>
                 </div>
             </div>
@@ -198,8 +202,8 @@
                 <div class="d-flex align-items-start">
                     <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
                     <div>
-                        <h5 class="fw-semibold">Multi-Strategy Management</h5>
-                        <p>Enables portfolio diversification and overall risk reduction by running multiple strategies.</p>
+                        <h5 class="fw-semibold">{{ _('Multi-Strategy Management') }}</h5>
+                        <p>{{ _('Enables portfolio diversification and overall risk reduction by running multiple strategies.') }}</p>
                     </div>
                 </div>
             </div>
@@ -207,8 +211,8 @@
                 <div class="d-flex align-items-start">
                     <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
                     <div>
-                        <h5 class="fw-semibold">API & Copy Trading</h5>
-                        <p>Direct connectivity with global brokers (like AMP Broker) and exchanges (like Binance).</p>
+                        <h5 class="fw-semibold">{{ _('API & Copy Trading') }}</h5>
+                        <p>{{ _('Direct connectivity with global brokers (like AMP Broker) and exchanges (like Binance).') }}</p>
                     </div>
                 </div>
             </div>
@@ -221,9 +225,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="fw-bold mb-3">Ready to Upgrade Your Trading?</h2>
-                <p class="lead mb-4">Join VestHub today and get access to Vetrix 1. Stop guessing, start performing.</p>
-                <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">Sign Up Free</a>
+                <h2 class="fw-bold mb-3">{{ _('Ready to Upgrade Your Trading?') }}</h2>
+                <p class="lead mb-4">{{ _('Join VestHub today and get access to Vetrix 1. Stop guessing, start performing.') }}</p>
+                <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">{{ _('Sign Up Free') }}</a>
             </div>
         </div>
     </div>

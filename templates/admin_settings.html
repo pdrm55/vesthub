@@ -5,57 +5,57 @@
     <div class="col-lg-8">
         <div class="card shadow-sm">
             <div class="card-header">
-                <h5 class="mb-0">System Configuration</h5>
+                <h5 class="mb-0">{{ _('System Configuration') }}</h5>
             </div>
             <div class="card-body">
                 <form method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     
-                    <h6 class="text-primary mb-3"><i class="bi bi-wallet2 me-2"></i>Company Wallet Addresses</h6>
+                    <h6 class="text-primary mb-3"><i class="bi bi-wallet2 me-2"></i>{{ _('Company Wallet Addresses') }}</h6>
                     
                     <div class="mb-3">
-                        <label class="form-label">USDT (TRC20)</label>
+                        <label class="form-label">{{ _('USDT (TRC20)') }}</label>
                         <input type="text" class="form-control" name="wallet_trc20" value="{{ config.wallet_trc20 }}">
-                        <div class="form-text">Used for USDT deposits on Tron network.</div>
+                        <div class="form-text">{{ _('Used for USDT deposits on Tron network.') }}</div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">USDT (ERC20)</label>
+                        <label class="form-label">{{ _('USDT (ERC20)') }}</label>
                         <input type="text" class="form-control" name="wallet_erc20" value="{{ config.wallet_erc20 }}">
-                        <div class="form-text">Used for USDT deposits on Ethereum network.</div>
+                        <div class="form-text">{{ _('Used for USDT deposits on Ethereum network.') }}</div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">USDT (BEP20)</label>
+                        <label class="form-label">{{ _('USDT (BEP20)') }}</label>
                         <input type="text" class="form-control" name="wallet_bep20" value="{{ config.wallet_bep20 }}">
-                        <div class="form-text">Used for USDT deposits on BNB Smart Chain.</div>
+                        <div class="form-text">{{ _('Used for USDT deposits on BNB Smart Chain.') }}</div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">USDT (Polygon/Matic)</label>
+                        <label class="form-label">{{ _('USDT (Polygon/Matic)') }}</label>
                         <input type="text" class="form-control" name="wallet_polygon" value="{{ config.wallet_polygon }}">
-                        <div class="form-text">Used for USDT deposits on Polygon network.</div>
+                        <div class="form-text">{{ _('Used for USDT deposits on Polygon network.') }}</div>
                     </div>
 
                     <hr class="my-4">
 
-                    <h6 class="text-primary mb-3"><i class="bi bi-bank me-2"></i>Bank Transfer Details</h6>
+                    <h6 class="text-primary mb-3"><i class="bi bi-bank me-2"></i>{{ _('Bank Transfer Details') }}</h6>
                     <div class="mb-3">
-                        <label class="form-label">Bank Info (IBAN/Account)</label>
+                        <label class="form-label">{{ _('Bank Info (IBAN/Account)') }}</label>
                         <textarea class="form-control" name="bank_details" rows="3">{{ config.bank_details }}</textarea>
-                        <div class="form-text">Full bank details visible to users for wire transfers.</div>
+                        <div class="form-text">{{ _('Full bank details visible to users for wire transfers.') }}</div>
                     </div>
 
                     <hr class="my-4">
 
-                    <h6 class="text-primary mb-3"><i class="bi bi-percent me-2"></i>System Parameters</h6>
+                    <h6 class="text-primary mb-3"><i class="bi bi-percent me-2"></i>{{ _('System Parameters') }}</h6>
                     <div class="mb-3">
-                        <label class="form-label">Referral Bonus Percentage (%)</label>
+                        <label class="form-label">{{ _('Referral Bonus Percentage (%)') }}</label>
                         <input type="number" step="0.1" class="form-control" name="referral_percentage" value="{{ config.referral_percentage }}">
                     </div>
 
                     <div class="d-grid mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg">Save Configuration</button>
+                        <button type="submit" class="btn btn-primary btn-lg">{{ _('Save Configuration') }}</button>
                     </div>
                 </form>
             </div>

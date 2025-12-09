@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2 fw-bold mb-0">Payment Confirmations</h1>
+    <h1 class="h2 fw-bold mb-0">{{ _('Payment Confirmations') }}</h1>
 </div>
 
 <ul class="nav nav-tabs" id="paymentTabs">
@@ -17,7 +17,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#completed">History</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#completed">{{ _('History') }}</a>
     </li>
 </ul>
 
@@ -29,12 +29,12 @@
                     <table class="table table-dark table-striped mb-0 align-middle">
                         <thead>
                             <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">User Email</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">TxID / Proof</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">{{ _('Date') }}</th>
+                                <th scope="col">{{ _('User Email') }}</th>
+                                <th scope="col">{{ _('Amount') }}</th>
+                                <th scope="col">{{ _('Description') }}</th>
+                                <th scope="col">{{ _('TxID / Proof') }}</th>
+                                <th scope="col">{{ _('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,20 +48,20 @@
                                     {% if tx.tx_hash %}
                                         <code class="text-truncate d-block" style="max-width: 150px;">{{ tx.tx_hash }}</code>
                                     {% else %}
-                                        <span class="text-body-secondary">No TxID</span>
+                                        <span class="text-body-secondary">{{ _('No TxID') }}</span>
                                     {% endif %}
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="{{ url_for('admin.approve_payment', tx_id=tx.id) }}" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                            <button type="submit" class="btn btn-sm btn-success" title="Approve">
+                                            <button type="submit" class="btn btn-sm btn-success" title="{{ _('Approve') }}">
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
                                         </form>
                                         <form action="{{ url_for('admin.reject_payment', tx_id=tx.id) }}" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Reject">
+                                            <button type="submit" class="btn btn-sm btn-danger" title="{{ _('Reject') }}">
                                                 <i class="bi bi-x-lg"></i>
                                             </button>
                                         </form>
@@ -71,9 +71,7 @@
                             {% else %}
                             <tr>
                                 <td colspan="6" class="text-center py-5 text-body-secondary">
-                                    <i class="bi bi-inbox fs-1 d-block mb-3"></i>
-                                    No pending payments to review.
-                                </td>
+                                    <i class="bi bi-inbox fs-1 d-block mb-3"></i>{{ _('No pending payments to review.') }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -85,8 +83,7 @@
     
     <div class="tab-pane fade" id="completed">
          <div class="card shadow-sm rounded-4 rounded-top-0">
-            <div class="card-body p-4 text-center text-body-secondary">
-                To see completed history, check the <a href="{{ url_for('admin.accounting') }}">Accounting Ledger</a>.
+            <div class="card-body p-4 text-center text-body-secondary">{{ _('To see completed history, check the') }}<a href="{{ url_for('admin.accounting') }}">{{ _('Accounting Ledger') }}</a>.
             </div>
         </div>
     </div>

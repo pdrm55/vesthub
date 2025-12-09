@@ -5,36 +5,35 @@
 {% block content %}
 
 <!-- Section 1: Hero -->
-<header class="py-5 text-center text-white" style="background: linear-gradient(rgba(13, 37, 63, 0.9), rgba(13, 37, 63, 0.9)), url('{{ url_for('static', filename='images/about-hero-fusion.png') }}') center/cover;">
+<header class="py-5 text-center text-white page-header-dark" style="background: linear-gradient(rgba(13, 37, 63, 0.9), rgba(13, 37, 63, 0.9)), url('{{ url_for('static', filename='images/about-hero-fusion.png') }}') center/cover;">
     <div class="container py-5">
-        <h1 class="display-3 fw-bold mb-4">About VestHub</h1>
+        <h1 class="display-3 fw-bold mb-4">{{ _('About VestHub') }}</h1>
+        <!-- FIX: Wrapped text in translation function -->
         <p class="lead mb-0 mx-auto" style="max-width: 800px;">
-            Where Deep Market Experience Meets Future Technology. We are a collective of veteran traders and engineers building the tools real traders need.
+            {{ _('Where Deep Market Experience Meets Future Technology. We are a collective of veteran traders and engineers building the tools real traders need.') }}
         </p>
     </div>
 </header>
 
-<!-- Section 2: Our Unique Advantage (Layout Fix: Text Side-by-Side Image) -->
-<!-- استفاده از bg-body-tertiary برای هماهنگی با تم روشن/تاریک -->
+<!-- Section 2: Our Unique Advantage -->
 <section class="py-5 bg-body-tertiary">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Our Unique Advantage</h2>
-            <p class="text-body-secondary lead">A Team Forged by Experience</p>
+            <h2 class="fw-bold">{{ _('Our Unique Advantage') }}</h2>
+            <p class="text-body-secondary lead">{{ _('A Team Forged by Experience') }}</p>
         </div>
 
         <!-- Advantage 1: Market Experts -->
         <div class="row align-items-center mb-5 g-5">
-            <!-- تصویر در سمت راست (در دسکتاپ) -->
             <div class="col-lg-6 order-lg-2">
-                <img src="{{ url_for('static', filename='images/about-icon-experts.png') }}" alt="Market Experts" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+                <img src="{{ url_for('static', filename='images/about-icon-experts.png') }}" alt="{{ _('Market Experts') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
             </div>
-            <!-- متن در سمت چپ -->
             <div class="col-lg-6 order-lg-1">
                 <div class="p-4">
-                    <h3 class="fw-bold mb-3">The Market Experts (20+ Years)</h3>
+                    <h3 class="fw-bold mb-3">{{ _('The Market Experts (20+ Years)') }}</h3>
+                    <!-- FIX: Wrapped text in translation function using double quotes for "don't" -->
                     <p class="text-body-secondary fs-5">
-                        Our core strategy is driven by senior analysts and quantitative traders with over two decades of active, in-the-trenches market experience. They are the architects of the trading algorithms (bots) tested and proven profitable in diverse market conditions. They don't just follow trends; they anticipate them.
+                        {{ _("Our core strategy is driven by senior analysts and quantitative traders with over two decades of active, in-the-trenches market experience. They are the architects of the trading algorithms (bots) tested and proven profitable in diverse market conditions. They don't just follow trends; they anticipate them.") }}
                     </p>
                 </div>
             </div>
@@ -43,13 +42,14 @@
         <!-- Advantage 2: Innovative Engineers -->
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <img src="{{ url_for('static', filename='images/about-icon-engineers.png') }}" alt="Innovative Engineers" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+                <img src="{{ url_for('static', filename='images/about-icon-engineers.png') }}" alt="{{ _('Innovative Engineers') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
             </div>
             <div class="col-lg-6">
                 <div class="p-4">
-                    <h3 class="fw-bold mb-3">The Innovative Engineers (AI Prowess)</h3>
+                    <h3 class="fw-bold mb-3">{{ _('The Innovative Engineers (AI Prowess)') }}</h3>
+                    <!-- FIX: Wrapped text in translation function -->
                     <p class="text-body-secondary fs-5">
-                        Complementing this experience is our senior development team, fluent in the latest software methodologies and AI. This team translates the complex strategies of our analysts into fast, secure, and intelligent tools. We build the tools that we ourselves use every single day.
+                        {{ _('Complementing this experience is our senior development team, fluent in the latest software methodologies and AI. This team translates the complex strategies of our analysts into fast, secure, and intelligent tools. We build the tools that we ourselves use every single day.') }}
                     </p>
                 </div>
             </div>
@@ -61,9 +61,10 @@
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">Beyond Theory: A Proven Track Record</h2>
+            <h2 class="fw-bold mb-3">{{ _('Beyond Theory: A Proven Track Record') }}</h2>
+            <!-- FIX: Wrapped text in translation function using double quotes for "don't" -->
             <p class="text-body-secondary lead col-lg-8 mx-auto">
-                We don't just talk about technology; we have implemented it at the highest levels.
+                {{ _("We don't just talk about technology; we have implemented it at the highest levels.") }}
             </p>
         </div>
         
@@ -72,9 +73,9 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm h-100 py-4">
                     <div class="card-body">
-                        <img src="{{ url_for('static', filename='images/about-icon-erp.png') }}" class="about-icon mb-3" alt="ERP System">
-                        <h4 class="fw-semibold">Complete Brokerage ERP</h4>
-                        <p class="text-body-secondary">Successfully built and deployed a complete ERP system for a licensed brokerage.</p>
+                        <img src="{{ url_for('static', filename='images/about-icon-erp.png') }}" class="about-icon mb-3" alt="{{ _('ERP System') }}">
+                        <h4 class="fw-semibold">{{ _('Complete Brokerage ERP') }}</h4>
+                        <p class="text-body-secondary">{{ _('Successfully built and deployed a complete ERP system for a licensed brokerage.') }}</p>
                     </div>
                 </div>
             </div>
@@ -82,9 +83,9 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm h-100 py-4">
                     <div class="card-body">
-                        <img src="{{ url_for('static', filename='images/about-icon-cfd.png') }}" class="about-icon mb-3" alt="CFD Platform">
-                        <h4 class="fw-semibold">Ground-Up CFD Platform</h4>
-                        <p class="text-body-secondary">Designed and developed an entire CFD Brokerage platform infrastructure.</p>
+                        <img src="{{ url_for('static', filename='images/about-icon-cfd.png') }}" class="about-icon mb-3" alt="{{ _('CFD Platform') }}">
+                        <h4 class="fw-semibold">{{ _('Ground-Up CFD Platform') }}</h4>
+                        <p class="text-body-secondary">{{ _('Designed and developed an entire CFD Brokerage platform infrastructure.') }}</p>
                     </div>
                 </div>
             </div>
@@ -92,9 +93,9 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm h-100 py-4">
                     <div class="card-body">
-                        <img src="{{ url_for('static', filename='images/about-icon-integration.png') }}" class="about-icon mb-3" alt="Integration">
-                        <h4 class="fw-semibold">Enterprise Integration</h4>
-                        <p class="text-body-secondary">Executed enterprise-level integration systems for high-availability processes.</p>
+                        <img src="{{ url_for('static', filename='images/about-icon-integration.png') }}" class="about-icon mb-3" alt="{{ _('Integration') }}">
+                        <h4 class="fw-semibold">{{ _('Enterprise Integration') }}</h4>
+                        <p class="text-body-secondary">{{ _('Executed enterprise-level integration systems for high-availability processes.') }}</p>
                     </div>
                 </div>
             </div>
@@ -106,9 +107,10 @@
 <section class="py-5 bg-body-tertiary">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">A 360-Degree Market Perspective</h2>
+            <h2 class="fw-bold mb-3">{{ _('A 360-Degree Market Perspective') }}</h2>
+            <!-- FIX: Wrapped text in translation function -->
             <p class="text-body-secondary lead col-lg-8 mx-auto">
-                At VestHub, nothing is left to chance. Our team structure covers every angle.
+                {{ _('At VestHub, nothing is left to chance. Our team structure covers every angle.') }}
             </p>
         </div>
         
@@ -117,9 +119,9 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body p-4 text-center">
-                        <img src="{{ url_for('static', filename='images/about-icon-fundamental.png') }}" class="img-fluid rounded-3 mb-4" alt="Fundamental Analysis">
-                        <h4 class="fw-bold">Fundamental Analysis</h4>
-                        <p class="text-body-secondary">Monitoring real-time economic news, data releases, and geopolitical events.</p>
+                        <img src="{{ url_for('static', filename='images/about-icon-fundamental.png') }}" class="img-fluid rounded-3 mb-4" alt="{{ _('Fundamental Analysis') }}">
+                        <h4 class="fw-bold">{{ _('Fundamental Analysis') }}</h4>
+                        <p class="text-body-secondary">{{ _('Monitoring real-time economic news, data releases, and geopolitical events.') }}</p>
                     </div>
                 </div>
             </div>
@@ -127,9 +129,9 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body p-4 text-center">
-                        <img src="{{ url_for('static', filename='images/about-icon-technical.png') }}" class="img-fluid rounded-3 mb-4" alt="Technical Analysis">
-                        <h4 class="fw-bold">Technical Analysis</h4>
-                        <p class="text-body-secondary">Identifying market patterns, trends, support, and resistance levels.</p>
+                        <img src="{{ url_for('static', filename='images/about-icon-technical.png') }}" class="img-fluid rounded-3 mb-4" alt="{{ _('Technical Analysis') }}">
+                        <h4 class="fw-bold">{{ _('Technical Analysis') }}</h4>
+                        <p class="text-body-secondary">{{ _('Identifying market patterns, trends, support, and resistance levels.') }}</p>
                     </div>
                 </div>
             </div>
@@ -137,9 +139,9 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body p-4 text-center">
-                        <img src="{{ url_for('static', filename='images/about-icon-ai.png') }}" class="img-fluid rounded-3 mb-4" alt="AI & Algorithmic">
-                        <h4 class="fw-bold">AI & Algorithmic</h4>
-                        <p class="text-body-secondary">Developing the next generation of advanced bots and analytical tools.</p>
+                        <img src="{{ url_for('static', filename='images/about-icon-ai.png') }}" class="img-fluid rounded-3 mb-4" alt="{{ _('AI & Algorithmic') }}">
+                        <h4 class="fw-bold">{{ _('AI & Algorithmic') }}</h4>
+                        <p class="text-body-secondary">{{ _('Developing the next generation of advanced bots and analytical tools.') }}</p>
                     </div>
                 </div>
             </div>
@@ -150,9 +152,9 @@
 <!-- Section 5: Call to Action -->
 <section class="py-5 bg-primary text-white text-center">
     <div class="container">
-        <h2 class="fw-bold mb-3">Ready to Join the Platform?</h2>
-        <p class="lead mb-4">Our tools are the product of thousands of hours of experience.</p>
-        <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">Get Started Now</a>
+        <h2 class="fw-bold mb-3">{{ _('Ready to Join the Platform?') }}</h2>
+        <p class="lead mb-4">{{ _('Our tools are the product of thousands of hours of experience.') }}</p>
+        <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">{{ _('Get Started Now') }}</a>
     </div>
 </section>
 

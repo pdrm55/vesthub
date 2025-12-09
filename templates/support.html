@@ -5,17 +5,16 @@
 {% block content %}
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">Support Center</h2>
+        <h2 class="mb-0">{{ _('Support Center') }}</h2>
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#newTicketCollapse" aria-expanded="false" aria-controls="newTicketCollapse">
-            <i class="bi bi-plus-lg me-2"></i>New Ticket
-        </button>
+            <i class="bi bi-plus-lg me-2"></i>{{ _('New Ticket') }}</button>
     </div>
 
     <!-- New Ticket Form (Collapsible) -->
     <div class="collapse mb-4" id="newTicketCollapse">
         <div class="card shadow-sm border-0">
             <div class="card-header bg-transparent border-bottom-0 pt-3">
-                <h5 class="mb-0 text-primary"><i class="bi bi-pencil-square me-2"></i>Submit a Ticket</h5>
+                <h5 class="mb-0 text-primary"><i class="bi bi-pencil-square me-2"></i>{{ _('Submit a Ticket') }}</h5>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('user.support') }}">
@@ -24,26 +23,26 @@
                     
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Brief summary of the issue" required>
+                            <label for="subject" class="form-label">{{ _('Subject') }}</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="{{ _('Brief summary of the issue') }}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="category" class="form-label">Category</label>
+                            <label for="category" class="form-label">{{ _('Category') }}</label>
                             <select class="form-select" id="category" name="category">
-                                <option value="Technical">Technical Issue</option>
-                                <option value="Billing">Billing & Payments</option>
-                                <option value="Account">Account Security</option>
-                                <option value="Verification">KYC Verification</option>
-                                <option value="Other">Other</option>
+                                <option value="Technical">{{ _('Technical Issue') }}</option>
+                                <option value="Billing">{{ _('Billing & Payments') }}</option>
+                                <option value="Account">{{ _('Account Security') }}</option>
+                                <option value="Verification">{{ _('KYC Verification') }}</option>
+                                <option value="Other">{{ _('Other') }}</option>
                             </select>
                         </div>
                         <div class="col-12">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Describe your issue in detail..." required></textarea>
+                            <label for="message" class="form-label">{{ _('Message') }}</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="{{ _('Describe your issue in detail...') }}" required></textarea>
                         </div>
                         <div class="col-12 text-end">
-                            <button type="button" class="btn btn-secondary me-2" data-bs-toggle="collapse" data-bs-target="#newTicketCollapse">Cancel</button>
-                            <button type="submit" class="btn btn-primary px-4">Submit Ticket</button>
+                            <button type="button" class="btn btn-secondary me-2" data-bs-toggle="collapse" data-bs-target="#newTicketCollapse">{{ _('Cancel') }}</button>
+                            <button type="submit" class="btn btn-primary px-4">{{ _('Submit Ticket') }}</button>
                         </div>
                     </div>
                 </form>
@@ -54,19 +53,19 @@
     <!-- Tickets History -->
     <div class="card shadow-sm border-0">
         <div class="card-header bg-transparent border-bottom-0">
-            <h5 class="mb-0">My Tickets</h5>
+            <h5 class="mb-0">{{ _('My Tickets') }}</h5>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col" class="ps-4">Ticket ID</th>
-                            <th scope="col">Subject</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Last Update</th>
-                            <th scope="col">Status</th>
-                            <th scope="col" class="text-end pe-4">Action</th>
+                            <th scope="col" class="ps-4">{{ _('Ticket ID') }}</th>
+                            <th scope="col">{{ _('Subject') }}</th>
+                            <th scope="col">{{ _('Category') }}</th>
+                            <th scope="col">{{ _('Last Update') }}</th>
+                            <th scope="col">{{ _('Status') }}</th>
+                            <th scope="col" class="text-end pe-4">{{ _('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,19 +80,17 @@
                                 <td class="text-secondary small">{{ ticket.updated_at.strftime('%Y-%m-%d %H:%M') }}</td>
                                 <td>
                                     {% if ticket.status == 'open' %}
-                                        <span class="badge bg-success-subtle text-success-emphasis">Open</span>
+                                        <span class="badge bg-success-subtle text-success-emphasis">{{ _('Open') }}</span>
                                     {% elif ticket.status == 'answered' %}
-                                        <span class="badge bg-warning-subtle text-warning-emphasis">Answered</span>
+                                        <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Answered') }}</span>
                                     {% elif ticket.status == 'closed' %}
-                                        <span class="badge bg-secondary-subtle text-secondary-emphasis">Closed</span>
+                                        <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ _('Closed') }}</span>
                                     {% else %}
                                         <span class="badge bg-info-subtle text-info-emphasis">{{ ticket.status }}</span>
                                     {% endif %}
                                 </td>
                                 <td class="text-end pe-4">
-                                    <a href="{{ url_for('user.ticket_view', ticket_id=ticket.id) }}" class="btn btn-sm btn-outline-primary">
-                                        View
-                                    </a>
+                                    <a href="{{ url_for('user.ticket_view', ticket_id=ticket.id) }}" class="btn btn-sm btn-outline-primary">{{ _('View') }}</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -102,7 +99,7 @@
                                 <td colspan="6" class="text-center py-5">
                                     <div class="text-muted">
                                         <i class="bi bi-inbox fs-1 d-block mb-3"></i>
-                                        <p>No support tickets found.</p>
+                                        <p>{{ _('No support tickets found.') }}</p>
                                     </div>
                                 </td>
                             </tr>

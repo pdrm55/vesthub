@@ -2,13 +2,13 @@ import os
 import atexit
 import logging
 from logging.handlers import RotatingFileHandler
-from flask import Flask, render_template
+from flask import Flask, render_template , request, session
 from flask_wtf.csrf import CSRFError
 # Add ProxyFix import
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from config import config
-from extensions import db, login_manager, mail, scheduler, csrf
+from extensions import db, login_manager, mail, scheduler, csrf , babel
 from tasks import run_profit_distribution
 from utils import has_permission
 
@@ -35,6 +35,24 @@ def create_app(config_name='default'):
     app.register_blueprint(user_bp)
     app.register_blueprint(admin_bp)
     
+    # --- تنظیمات زبان (Babel) ---
+    def get_locale():
+        # 1. اگر کاربر زبان را در URL فرستاد (مثلا ?lang=tr)
+        lang = request.args.get('lang')
+        if lang in app.config['LANGUAGES']:
+            session['lang'] = lang
+            return lang
+        
+        # 2. اگر قبلاً زبان را انتخاب کرده و در سشن هست
+        if session.get('lang'):
+            return session.get('lang')
+            
+        # 3. تشخیص هوشمند بر اساس مرورگر کاربر
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+    babel.init_app(app, locale_selector=get_locale)
+
+
     @app.context_processor
     def inject_utilities():
         return dict(has_permission=has_permission)

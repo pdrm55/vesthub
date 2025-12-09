@@ -10,7 +10,7 @@
     <div class="col-md-6 col-xl-3">
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-body">
-                <h6 class="text-body-secondary mb-1">Total Invested</h6>
+                <h6 class="text-body-secondary mb-1">{{ _('Total Invested') }}</h6>
                 <h4 class="fw-bold mb-0">${{ "{:,.2f}".format(total_invested) }}</h4>
             </div>
         </div>
@@ -18,7 +18,7 @@
     <div class="col-md-6 col-xl-3">
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-body">
-                <h6 class="text-body-secondary mb-1">Available Profit</h6>
+                <h6 class="text-body-secondary mb-1">{{ _('Available Profit') }}</h6>
                 <h4 class="fw-bold text-success mb-0">${{ "{:,.2f}".format(total_profit) }}</h4>
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="col-md-6 col-xl-3">
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-body">
-                <h6 class="text-body-secondary mb-1">Referrals</h6>
+                <h6 class="text-body-secondary mb-1">{{ _('Referrals') }}</h6>
                 <h4 class="fw-bold mb-0">{{ referral_count }}</h4>
             </div>
         </div>
@@ -34,7 +34,7 @@
     <div class="col-md-6 col-xl-3">
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-body">
-                <h6 class="text-body-secondary mb-1">Referral Bonus</h6>
+                <h6 class="text-body-secondary mb-1">{{ _('Referral Bonus') }}</h6>
                 <h4 class="fw-bold text-warning mb-0">${{ "{:,.2f}".format(referral_earnings) }}</h4>
             </div>
         </div>
@@ -45,7 +45,7 @@
 <div class="row g-4 mb-4">
     <div class="col-lg-8">
         <div class="card shadow-sm rounded-4 h-100">
-            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">Portfolio Growth</h5></div>
+            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Portfolio Growth') }}</h5></div>
             <div class="card-body">
                 <canvas id="growthChart" style="height: 300px;"></canvas>
             </div>
@@ -53,7 +53,7 @@
     </div>
     <div class="col-lg-4">
         <div class="card shadow-sm rounded-4 h-100">
-            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">Asset Allocation</h5></div>
+            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Asset Allocation') }}</h5></div>
             <div class="card-body">
                 <canvas id="assetChart" style="height: 250px;"></canvas>
             </div>
@@ -66,15 +66,14 @@
     <div class="card-body p-4">
         <div class="row align-items-center">
             <div class="col-md-8">
-                <h5 class="fw-bold text-white"><i class="bi bi-share-fill me-2"></i>Invite Friends & Earn</h5>
-                <p class="text-body-secondary mb-0">Share your unique code: <strong>{{ user.referral_code }}</strong></p>
+                <h5 class="fw-bold text-white"><i class="bi bi-share-fill me-2"></i>{{ _('Invite Friends & Earn') }}</h5>
+                <p class="text-body-secondary mb-0">{{ _('Share your unique code:') }} <strong>{{ user.referral_code }}</strong></p>
             </div>
             <div class="col-md-4 mt-3 mt-md-0 text-end">
                 <div class="input-group">
                     <input type="text" class="form-control fw-bold text-center" value="{{ request.host_url }}?ref={{ user.referral_code }}" readonly>
                     <button class="btn btn-primary" onclick="navigator.clipboard.writeText('{{ request.host_url }}?ref={{ user.referral_code }}')">
-                        <i class="bi bi-clipboard"></i> Copy Link
-                    </button>
+                        <i class="bi bi-clipboard"></i>{{ _('Copy Link') }}</button>
                 </div>
             </div>
         </div>
@@ -85,7 +84,7 @@
 <div class="row g-4">
     <div class="col-lg-8">
         <div class="card shadow-sm rounded-4 h-100">
-            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">My Active Investments</h5></div>
+            <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('My Active Investments') }}</h5></div>
             <div class="card-body p-4">
                 {% if active_investments %}
                     {% for inv in active_investments %}
@@ -94,10 +93,10 @@
                             <h3 class="fw-bold text-primary mb-1">{{ inv.plan.name }} (#{{ inv.id }})</h3>
                             <p class="text-body-secondary">Amount: ${{ "{:,.2f}".format(inv.amount) }}</p>
                             {% if inv.status == 'pending_payment' %}
-                                <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Pending Payment</span>
-                                <a href="{{ url_for('user.investment_pending', investment_id=inv.id) }}" class="btn btn-sm btn-outline-warning ms-2">Complete Payment</a>
+                                <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">{{ _('Pending Payment') }}</span>
+                                <a href="{{ url_for('user.investment_pending', investment_id=inv.id) }}" class="btn btn-sm btn-outline-warning ms-2">{{ _('Complete Payment') }}</a>
                             {% else %}
-                                <span class="badge bg-success-subtle text-success-emphasis rounded-pill">Active</span>
+                                <span class="badge bg-success-subtle text-success-emphasis rounded-pill">{{ _('Active') }}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -105,8 +104,8 @@
                     {% endfor %}
                 {% else %}
                     <div class="text-center py-5">
-                        <p class="text-body-secondary">You have no active investments yet.</p>
-                        <a href="{{ url_for('user.invest_plans') }}" class="btn btn-primary">Start Investing</a>
+                        <p class="text-body-secondary">{{ _('You have no active investments yet.') }}</p>
+                        <a href="{{ url_for('user.invest_plans') }}" class="btn btn-primary">{{ _('Start Investing') }}</a>
                     </div>
                 {% endif %}
             </div>
@@ -116,12 +115,12 @@
         <div class="card shadow-sm rounded-4 mb-4">
             <div class="card-body p-4 text-center">
                 <i class="bi bi-cash-coin fs-1 text-primary mb-3"></i>
-                <h5 class="fw-bold">Request Withdrawal</h5>
+                <h5 class="fw-bold">{{ _('Request Withdrawal') }}</h5>
                 {% if user.kyc_status == 'verified' %}
-                    <a href="{{ url_for('user.withdrawal') }}" class="btn btn-primary w-100">Manage Withdrawals</a>
+                    <a href="{{ url_for('user.withdrawal') }}" class="btn btn-primary w-100">{{ _('Manage Withdrawals') }}</a>
                 {% else %}
-                    <p class="text-warning small mb-2"><i class="bi bi-lock-fill"></i> KYC Required</p>
-                    <a href="{{ url_for('user.settings') }}" class="btn btn-outline-warning w-100">Verify Identity</a>
+                    <p class="text-warning small mb-2"><i class="bi bi-lock-fill"></i> {{ _('KYC Required') }}</p>
+                    <a href="{{ url_for('user.settings') }}" class="btn btn-outline-warning w-100">{{ _('Verify Identity') }}</a>
                 {% endif %}
             </div>
         </div>

@@ -3,7 +3,7 @@
 {% block title %}Log In - VestHub{% endblock %}
 
 {% block content %}
-    <h2 class="text-center fw-bold mb-4">Log In to VestHub</h2>
+    <h2 class="text-center fw-bold mb-4">{{ _('Log In to VestHub') }}</h2>
 
     <!-- Flash Messages Area -->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -11,7 +11,7 @@
         {% for category, message in messages %}
           <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
           </div>
         {% endfor %}
       {% endif %}
@@ -21,20 +21,18 @@
     <div class="row g-2">
         <div class="col-md-6">
             <a href="#" class="btn btn-outline-secondary w-100 social-login-btn">
-                <i class="bi bi-google me-2"></i> Continue with Google
-            </a>
+                <i class="bi bi-google me-2"></i>{{ _('Continue with Google') }}</a>
         </div>
         <div class="col-md-6">
             <a href="#" class="btn btn-outline-secondary w-100 social-login-btn">
-                <i class="bi bi-apple me-2"></i> Continue with Apple
-            </a>
+                <i class="bi bi-apple me-2"></i>{{ _('Continue with Apple') }}</a>
         </div>
     </div>
 
     <!-- Divider -->
     <div class="divider-text d-flex align-items-center my-4">
         <hr class="flex-grow-1">
-        <span class="px-3 text-body-secondary">OR</span>
+        <span class="px-3 text-body-secondary">{{ _('OR') }}</span>
         <hr class="flex-grow-1">
     </div>
 
@@ -42,25 +40,24 @@
     <form method="POST" action="{{ url_for('auth.login') }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
+            <label for="email" class="form-label">{{ _('Email address') }}</label>
             <!-- Added name attribute -->
-            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="you@example.com" required>
+            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="{{ _('you@example.com') }}" required>
         </div>
         <div class="mb-3">
             <div class="d-flex justify-content-between">
-                <label for="password" class="form-label">Password</label>
-                <a href="{{ url_for('auth.forgot_password') }}" class="form-text text-decoration-none">Forgot?</a>
+                <label for="password" class="form-label">{{ _('Password') }}</label>
+                <a href="{{ url_for('auth.forgot_password') }}" class="form-text text-decoration-none">{{ _('Forgot?') }}</a>
             </div>
             <!-- Added name attribute -->
             <input type="password" class="form-control form-control-lg" id="password" name="password" required>
         </div>
         <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-primary btn-lg">Log In</button>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Log In') }}</button>
         </div>
     </form>
 
     <!-- Sign Up Link -->
-    <p class="text-center text-body-secondary mt-4 mb-0">
-        Don't have an account? <a href="{{ url_for('auth.signup') }}" class="fw-semibold text-decoration-none">Sign Up Free</a>
+    <p class="text-center text-body-secondary mt-4 mb-0">{{ _("Don't have an account?") }}<a href="{{ url_for('auth.signup') }}" class="fw-semibold text-decoration-none">{{ _('Sign Up Free') }}</a>
     </p>
 {% endblock %}

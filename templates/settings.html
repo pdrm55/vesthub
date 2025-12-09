@@ -3,14 +3,14 @@
 {% block title %}Settings{% endblock %}
 
 {% block content %}
-<h1 class="h2 fw-bold mb-4">Settings</h1>
+<h1 class="h2 fw-bold mb-4">{{ _('Settings') }}</h1>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
       <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
         {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
       </div>
     {% endfor %}
   {% endif %}
@@ -22,9 +22,9 @@
         <div class="card shadow-sm rounded-4">
             <div class="card-body p-2">
                 <ul class="nav nav-pills flex-column settings-nav">
-                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#profile"><i class="bi bi-person-fill me-2"></i> Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#security"><i class="bi bi-shield-lock-fill me-2"></i> Security</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#verification"><i class="bi bi-patch-check-fill me-2"></i> Verification (KYC)</a></li>
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#profile"><i class="bi bi-person-fill me-2"></i> {{ _('Profile') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#security"><i class="bi bi-shield-lock-fill me-2"></i> {{ _('Security') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#verification"><i class="bi bi-patch-check-fill me-2"></i> {{ _('Verification (KYC)') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -35,13 +35,13 @@
             <!-- Profile Tab -->
             <div class="tab-pane fade show active" id="profile">
                 <div class="card shadow-sm rounded-4">
-                    <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">My Profile</h5></div>
+                    <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('My Profile') }}</h5></div>
                     <div class="card-body p-4">
                         <form>
                             <div class="row g-3">
-                                <div class="col-md-6 mb-3"><label class="form-label">First Name</label><input type="text" class="form-control" value="{{ user.first_name }}" readonly></div>
-                                <div class="col-md-6 mb-3"><label class="form-label">Last Name</label><input type="text" class="form-control" value="{{ user.last_name }}" readonly></div>
-                                <div class="col-12 mb-3"><label class="form-label">Email</label><input type="email" class="form-control" value="{{ user.email }}" readonly></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">{{ _('First Name') }}</label><input type="text" class="form-control" value="{{ user.first_name }}" readonly></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">{{ _('Last Name') }}</label><input type="text" class="form-control" value="{{ user.last_name }}" readonly></div>
+                                <div class="col-12 mb-3"><label class="form-label">{{ _('Email') }}</label><input type="email" class="form-control" value="{{ user.email }}" readonly></div>
                             </div>
                         </form>
                     </div>
@@ -51,36 +51,35 @@
             <!-- Security Tab (2FA) -->
             <div class="tab-pane fade" id="security">
                 <div class="card shadow-sm rounded-4">
-                    <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">Two-Factor Authentication (2FA)</h5></div>
+                    <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Two-Factor Authentication (2FA)') }}</h5></div>
                     <div class="card-body p-4">
                         {% if user.is_2fa_enabled %}
                             <div class="alert alert-success d-flex align-items-center">
                                 <i class="bi bi-check-circle-fill fs-3 me-3"></i>
                                 <div>
-                                    <strong>2FA is Enabled</strong><br>Your account is protected with Google Authenticator.
-                                </div>
+                                    <strong>{{ _('2FA is Enabled') }}</strong><br>{{ _('Your account is protected with Google Authenticator.') }}</div>
                             </div>
                         {% else %}
-                            <div class="alert alert-warning"><i class="bi bi-exclamation-triangle me-2"></i> 2FA is currently disabled. Enable it to secure your account.</div>
+                            <div class="alert alert-warning"><i class="bi bi-exclamation-triangle me-2"></i> {{ _('2FA is currently disabled. Enable it to secure your account.') }}</div>
                             
                             <!-- Setup Area -->
                             <div id="setup2fa" class="text-center" style="display:none;">
-                                <h5 class="mb-3">Scan this QR Code with Google Authenticator</h5>
+                                <h5 class="mb-3">{{ _('Scan this QR Code with Google Authenticator') }}</h5>
                                 <!-- QR Code Container -->
                                 <div id="qrCodeContainer" class="bg-white p-3 d-inline-block rounded mb-3"></div>
-                                <p class="small text-muted">Or enter manual key: <code id="secretKeyDisplay"></code></p>
+                                <p class="small text-muted">{{ _('Or enter manual key:') }} <code id="secretKeyDisplay"></code></p>
                                 
                                 <form method="POST" action="{{ url_for('user.confirm_2fa') }}" class="col-md-6 mx-auto">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control text-center" name="code" placeholder="Enter 6-digit code" required>
-                                        <button class="btn btn-primary" type="submit">Verify & Enable</button>
+                                        <input type="text" class="form-control text-center" name="code" placeholder="{{ _('Enter 6-digit code') }}" required>
+                                        <button class="btn btn-primary" type="submit">{{ _('Verify & Enable') }}</button>
                                     </div>
                                 </form>
                             </div>
 
                             <div id="startBtnArea" class="text-center">
-                                <button class="btn btn-primary btn-lg" onclick="start2FASetup()">Setup 2FA Now</button>
+                                <button class="btn btn-primary btn-lg" onclick="start2FASetup()">{{ _('Setup 2FA Now') }}</button>
                             </div>
                         {% endif %}
                     </div>
@@ -90,21 +89,21 @@
             <!-- Verification (KYC) Tab -->
             <div class="tab-pane fade" id="verification">
                 <div class="card shadow-sm rounded-4">
-                    <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">Identity Verification (KYC)</h5></div>
+                    <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Identity Verification (KYC)') }}</h5></div>
                     <div class="card-body p-4">
                         {% if user.kyc_status == 'verified' %}
-                            <div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i> Verified!</div>
+                            <div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i> {{ _('Verified!') }}</div>
                         {% elif user.kyc_status == 'pending' %}
-                            <div class="alert alert-info"><i class="bi bi-hourglass-split me-2"></i> Under Review</div>
+                            <div class="alert alert-info"><i class="bi bi-hourglass-split me-2"></i> {{ _('Under Review') }}</div>
                         {% else %}
                             <form method="POST" action="{{ url_for('user.submit_kyc') }}" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="mb-4">
-                                    <label for="idDoc" class="form-label">1. Identity Document (ID/Passport)</label>
+                                    <label for="idDoc" class="form-label">{{ _('1. Identity Document (ID/Passport)') }}</label>
                                     <input class="form-control" type="file" id="idDoc" name="idDoc" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="addressDoc" class="form-label">2. Proof of Address</label>
+                                    <label for="addressDoc" class="form-label">{{ _('2. Proof of Address') }}</label>
                                     <input class="form-control" type="file" id="addressDoc" name="addressDoc" required>
                                 </div>
                                 
@@ -112,12 +111,12 @@
                                 {% if user.is_2fa_enabled %}
                                 <hr>
                                 <div class="mb-4 bg-dark-subtle p-3 rounded">
-                                    <label class="form-label fw-bold"><i class="bi bi-shield-lock me-1"></i> Security Check</label>
-                                    <input type="text" class="form-control" name="2fa_code" placeholder="Enter 2FA Code to Submit" required>
+                                    <label class="form-label fw-bold"><i class="bi bi-shield-lock me-1"></i> {{ _('Security Check') }}</label>
+                                    <input type="text" class="form-control" name="2fa_code" placeholder="{{ _('Enter 2FA Code to Submit') }}" required>
                                 </div>
                                 {% endif %}
 
-                                <button type="submit" class="btn btn-primary btn-lg">Submit Verification</button>
+                                <button type="submit" class="btn btn-primary btn-lg">{{ _('Submit Verification') }}</button>
                             </form>
                         {% endif %}
                     </div>

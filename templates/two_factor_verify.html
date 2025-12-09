@@ -3,17 +3,15 @@
 {% block title %}Two-Factor Authentication{% endblock %}
 
 {% block content %}
-    <h2 class="text-center fw-bold mb-4">Two-Factor Authentication</h2>
-    <p class="text-center text-body-secondary mb-4">
-        Please enter the code from your Google Authenticator app to verify your identity.
-    </p>
+    <h2 class="text-center fw-bold mb-4">{{ _('Two-Factor Authentication') }}</h2>
+    <p class="text-center text-body-secondary mb-4">{{ _('Please enter the code from your Google Authenticator app to verify your identity.') }}</p>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
           <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
           </div>
         {% endfor %}
       {% endif %}
@@ -22,15 +20,15 @@
     <form method="POST" action="{{ url_for('auth.verify_2fa_login') }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="mb-4">
-            <label for="code" class="form-label">Authenticator Code</label>
-            <input type="text" class="form-control form-control-lg text-center fw-bold" id="code" name="code" maxlength="6" placeholder="000000" required autocomplete="off">
+            <label for="code" class="form-label">{{ _('Authenticator Code') }}</label>
+            <input type="text" class="form-control form-control-lg text-center fw-bold" id="code" name="code" maxlength="6" placeholder="{{ _('000000') }}" required autocomplete="off">
         </div>
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-lg">Verify & Log In</button>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Verify & Log In') }}</button>
         </div>
     </form>
     
     <p class="text-center mt-4">
-        <a href="{{ url_for('auth.logout') }}" class="text-decoration-none">Cancel Login</a>
+        <a href="{{ url_for('auth.logout') }}" class="text-decoration-none">{{ _('Cancel Login') }}</a>
     </p>
 {% endblock %}

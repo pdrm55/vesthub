@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2 fw-bold mb-0">Identity Verification (KYC)</h1>
+    <h1 class="h2 fw-bold mb-0">{{ _('Identity Verification (KYC)') }}</h1>
 </div>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -12,7 +12,7 @@
     {% for category, message in messages %}
       <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
         {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
       </div>
     {% endfor %}
   {% endif %}
@@ -29,7 +29,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#approved">History</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#approved">{{ _('History') }}</a>
     </li>
 </ul>
 
@@ -42,10 +42,10 @@
                     <table class="table table-dark table-striped mb-0 align-middle">
                         <thead>
                             <tr>
-                                <th scope="col">Date Submitted</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Documents</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">{{ _('Date Submitted') }}</th>
+                                <th scope="col">{{ _('User') }}</th>
+                                <th scope="col">{{ _('Documents') }}</th>
+                                <th scope="col">{{ _('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,31 +60,27 @@
                                 <td>
                                     <div class="d-flex gap-2">
                                         <a href="{{ url_for('static', filename='uploads/' ~ req.id_document_url) }}" class="btn btn-sm btn-outline-info" target="_blank">
-                                            <i class="bi bi-file-earmark-person"></i> View ID
-                                        </a>
+                                            <i class="bi bi-file-earmark-person"></i>{{ _('View ID') }}</a>
                                         <a href="{{ url_for('static', filename='uploads/' ~ req.address_document_url) }}" class="btn btn-sm btn-outline-info" target="_blank">
-                                            <i class="bi bi-file-earmark-text"></i> View Address
-                                        </a>
+                                            <i class="bi bi-file-earmark-text"></i>{{ _('View Address') }}</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="{{ url_for('admin.approve_kyc', req_id=req.id) }}" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                            <button type="submit" class="btn btn-sm btn-success">{{ _('Approve') }}</button>
                                         </form>
                                         <form action="{{ url_for('admin.reject_kyc', req_id=req.id) }}" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">{{ _('Reject') }}</button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
                             {% else %}
                             <tr>
-                                <td colspan="4" class="text-center py-5 text-body-secondary">
-                                    No pending KYC applications.
-                                </td>
+                                <td colspan="4" class="text-center py-5 text-body-secondary">{{ _('No pending KYC applications.') }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -103,10 +99,10 @@
                     <table class="table table-dark table-striped mb-0 align-middle">
                         <thead>
                             <tr>
-                                <th scope="col">Date Decided</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Documents</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">{{ _('Date Decided') }}</th>
+                                <th scope="col">{{ _('User') }}</th>
+                                <th scope="col">{{ _('Documents') }}</th>
+                                <th scope="col">{{ _('Status') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,27 +115,21 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a href="{{ url_for('static', filename='uploads/' ~ req.id_document_url) }}" class="btn btn-sm btn-outline-secondary" target="_blank">
-                                            View ID
-                                        </a>
-                                        <a href="{{ url_for('static', filename='uploads/' ~ req.address_document_url) }}" class="btn btn-sm btn-outline-secondary" target="_blank">
-                                            View Address
-                                        </a>
+                                        <a href="{{ url_for('static', filename='uploads/' ~ req.id_document_url) }}" class="btn btn-sm btn-outline-secondary" target="_blank">{{ _('View ID') }}</a>
+                                        <a href="{{ url_for('static', filename='uploads/' ~ req.address_document_url) }}" class="btn btn-sm btn-outline-secondary" target="_blank">{{ _('View Address') }}</a>
                                     </div>
                                 </td>
                                 <td>
                                     {% if req.status == 'approved' %}
-                                        <span class="badge bg-success-subtle text-success-emphasis">Approved</span>
+                                        <span class="badge bg-success-subtle text-success-emphasis">{{ _('Approved') }}</span>
                                     {% else %}
-                                        <span class="badge bg-danger-subtle text-danger-emphasis">Rejected</span>
+                                        <span class="badge bg-danger-subtle text-danger-emphasis">{{ _('Rejected') }}</span>
                                     {% endif %}
                                 </td>
                             </tr>
                             {% else %}
                             <tr>
-                                <td colspan="4" class="text-center py-5 text-body-secondary">
-                                    No KYC history found.
-                                </td>
+                                <td colspan="4" class="text-center py-5 text-body-secondary">{{ _('No KYC history found.') }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

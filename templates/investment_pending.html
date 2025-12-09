@@ -3,14 +3,14 @@
 {% block title %}Pending Investment Confirmation{% endblock %}
 
 {% block content %}
-<h1 class="h2 fw-bold mb-4">Investment Pending Payment</h1>
+<h1 class="h2 fw-bold mb-4">{{ _('Investment Pending Payment') }}</h1>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
       <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
         {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
       </div>
     {% endfor %}
   {% endif %}
@@ -20,14 +20,14 @@
     <div class="card-body p-4">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h6 class="text-body-secondary mb-1">You are investing:</h6>
-                <h3 class="fw-bold mb-0">${{ "{:,.2f}".format(investment.amount) }} <span class="text-body-secondary fw-normal fs-5">in</span> {{ investment.plan.name }}</h3>
+                <h6 class="text-body-secondary mb-1">{{ _('You are investing:') }}</h6>
+                <h3 class="fw-bold mb-0">${{ "{:,.2f}".format(investment.amount) }} <span class="text-body-secondary fw-normal fs-5">{{ _('in') }}</span> {{ investment.plan.name }}</h3>
             </div>
             <div>
                 {% if investment.payment_tx_id %}
-                    <span class="badge bg-info-subtle text-info-emphasis rounded-pill fs-6">Waiting for Approval</span>
+                    <span class="badge bg-info-subtle text-info-emphasis rounded-pill fs-6">{{ _('Waiting for Approval') }}</span>
                 {% else %}
-                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill fs-6">Pending Payment</span>
+                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill fs-6">{{ _('Pending Payment') }}</span>
                 {% endif %}
             </div>
         </div>
@@ -38,40 +38,40 @@
     <div class="col-lg-6">
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-header bg-dark-subtle p-3">
-                <h5 class="fw-bold mb-0">Step 1: Make Your Payment</h5>
+                <h5 class="fw-bold mb-0">{{ _('Step 1: Make Your Payment') }}</h5>
             </div>
             <div class="card-body p-4">
                 <ul class="nav nav-pills nav-fill mb-3" id="paymentTabs" role="tablist">
-                    <li class="nav-item"><button class="nav-link active" id="crypto-tab" data-bs-toggle="tab" data-bs-target="#crypto-pane" type="button">Manual Crypto</button></li>
-                    <li class="nav-item"><button class="nav-link" id="online-tab" data-bs-toggle="tab" data-bs-target="#online-pane" type="button">Online Payment</button></li>
-                    <li class="nav-item"><button class="nav-link" id="bank-tab" data-bs-toggle="tab" data-bs-target="#bank-pane" type="button">Bank Transfer</button></li>
+                    <li class="nav-item"><button class="nav-link active" id="crypto-tab" data-bs-toggle="tab" data-bs-target="#crypto-pane" type="button">{{ _('Manual Crypto') }}</button></li>
+                    <li class="nav-item"><button class="nav-link" id="online-tab" data-bs-toggle="tab" data-bs-target="#online-pane" type="button">{{ _('Online Payment') }}</button></li>
+                    <li class="nav-item"><button class="nav-link" id="bank-tab" data-bs-toggle="tab" data-bs-target="#bank-pane" type="button">{{ _('Bank Transfer') }}</button></li>
                 </ul>
 
                 <div class="tab-content">
                     <!-- Crypto Pane -->
                     <div class="tab-pane fade show active" id="crypto-pane">
                         <ul class="nav nav-tabs mb-3 border-bottom-0" id="networkTabs" role="tablist">
-                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#trc20">TRC20</button></li>
-                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#erc20">ERC20</button></li>
-                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bep20">BEP20</button></li>
-                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#polygon">Polygon</button></li>
+                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#trc20">{{ _('TRC20') }}</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#erc20">{{ _('ERC20') }}</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bep20">{{ _('BEP20') }}</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#polygon">{{ _('Polygon') }}</button></li>
                         </ul>
 
                         <div class="tab-content p-3 border rounded bg-dark-subtle">
                             <div class="tab-pane fade show active" id="trc20">
-                                <label class="form-label text-secondary">USDT (TRC20):</label>
+                                <label class="form-label text-secondary">{{ _('USDT (TRC20):') }}</label>
                                 <div class="input-group"><input type="text" class="form-control font-monospace" value="{{ wallets.trc20 }}" readonly><button class="btn btn-outline-secondary" onclick="copyToClipboard(this)"><i class="bi bi-clipboard"></i></button></div>
                             </div>
                             <div class="tab-pane fade" id="erc20">
-                                <label class="form-label text-secondary">USDT (ERC20):</label>
+                                <label class="form-label text-secondary">{{ _('USDT (ERC20):') }}</label>
                                 <div class="input-group"><input type="text" class="form-control font-monospace" value="{{ wallets.erc20 }}" readonly><button class="btn btn-outline-secondary" onclick="copyToClipboard(this)"><i class="bi bi-clipboard"></i></button></div>
                             </div>
                             <div class="tab-pane fade" id="bep20">
-                                <label class="form-label text-secondary">USDT (BEP20):</label>
+                                <label class="form-label text-secondary">{{ _('USDT (BEP20):') }}</label>
                                 <div class="input-group"><input type="text" class="form-control font-monospace" value="{{ wallets.bep20 }}" readonly><button class="btn btn-outline-secondary" onclick="copyToClipboard(this)"><i class="bi bi-clipboard"></i></button></div>
                             </div>
                             <div class="tab-pane fade" id="polygon">
-                                <label class="form-label text-secondary">USDT (Polygon):</label>
+                                <label class="form-label text-secondary">{{ _('USDT (Polygon):') }}</label>
                                 <div class="input-group"><input type="text" class="form-control font-monospace" value="{{ wallets.polygon }}" readonly><button class="btn btn-outline-secondary" onclick="copyToClipboard(this)"><i class="bi bi-clipboard"></i></button></div>
                             </div>
                         </div>
@@ -81,10 +81,10 @@
                     <div class="tab-pane fade" id="online-pane">
                         <div class="text-center py-4">
                             <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
-                            <h5>Pay Securely with Gateway</h5>
+                            <h5>{{ _('Pay Securely with Gateway') }}</h5>
                             <form method="POST" action="{{ url_for('user.process_online_payment', investment_id=investment.id) }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-primary btn-lg w-100">Pay Now</button>
+                                <button type="submit" class="btn btn-primary btn-lg w-100">{{ _('Pay Now') }}</button>
                             </form>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="tab-pane fade" id="bank-pane">
                         <div class="card bg-dark-subtle border-0">
                             <div class="card-body">
-                                <h6 class="fw-bold mb-3">Bank Account Details</h6>
+                                <h6 class="fw-bold mb-3">{{ _('Bank Account Details') }}</h6>
                                 <div class="text-body-secondary">{{ wallets.bank | safe }}</div>
                             </div>
                         </div>
@@ -107,24 +107,24 @@
     <div class="col-lg-6">
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-header bg-dark-subtle p-3">
-                <h5 class="fw-bold mb-0">Step 2: Submit Proof (Manual Only)</h5>
+                <h5 class="fw-bold mb-0">{{ _('Step 2: Submit Proof (Manual Only)') }}</h5>
             </div>
             <div class="card-body p-4">
                 {% if investment.payment_tx_id %}
                     <div class="text-center py-5">
-                        <h4 class="fw-bold text-white">Proof Submitted!</h4>
-                        <p class="text-body-secondary">Transaction ID: <code class="text-break">{{ investment.payment_tx_id }}</code></p>
-                        <a href="{{ url_for('user.dashboard') }}" class="btn btn-outline-primary w-100">Return to Dashboard</a>
+                        <h4 class="fw-bold text-white">{{ _('Proof Submitted!') }}</h4>
+                        <p class="text-body-secondary">{{ _('Transaction ID:') }} <code class="text-break">{{ investment.payment_tx_id }}</code></p>
+                        <a href="{{ url_for('user.dashboard') }}" class="btn btn-outline-primary w-100">{{ _('Return to Dashboard') }}</a>
                     </div>
                 {% else %}
                     <form method="POST" action="{{ url_for('user.submit_proof', investment_id=investment.id) }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <div class="mb-3">
-                            <label for="txnHash" class="form-label">Crypto TxID (or Bank Ref)</label>
+                            <label for="txnHash" class="form-label">{{ _('Crypto TxID (or Bank Ref)') }}</label>
                             <input type="text" class="form-control" id="txnHash" name="txnHash" required>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">Submit Proof</button>
+                            <button type="submit" class="btn btn-primary btn-lg">{{ _('Submit Proof') }}</button>
                         </div>
                     </form>
                 {% endif %}

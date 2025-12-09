@@ -1,0 +1,3314 @@
+# Turkish translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-12-08 19:44+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: tr\n"
+"Language-Team: tr <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/about.html:10
+msgid "About VestHub"
+msgstr "VestHub Hakkında"
+
+#: templates/about.html:13
+msgid ""
+"Where Deep Market Experience Meets Future Technology. We are a collective"
+" of veteran traders and engineers building the tools real traders need."
+msgstr ""
+"Derin Piyasa Deneyiminin Geleceğin Teknolojisiyle Buluştuğu Yer. Gerçek "
+"yatırımcıların ihtiyaç duyduğu araçları inşa eden kıdemli yatırımcılar ve "
+"mühendislerden oluşan bir kolektifiz."
+
+#: templates/about.html:22
+msgid "Our Unique Advantage"
+msgstr "Benzersiz Avantajımız"
+
+#: templates/about.html:23
+msgid "A Team Forged by Experience"
+msgstr "Deneyimle Yoğrulmuş Bir Ekip"
+
+#: templates/about.html:29
+msgid "Market Experts"
+msgstr "Piyasa Uzmanları"
+
+#: templates/about.html:33
+msgid "The Market Experts (20+ Years)"
+msgstr "Piyasa Uzmanları (20+ Yıl)"
+
+#: templates/about.html:36
+msgid ""
+"Our core strategy is driven by senior analysts and quantitative traders "
+"with over two decades of active, in-the-trenches market experience. They "
+"are the architects of the trading algorithms (bots) tested and proven "
+"profitable in diverse market conditions. They don't just follow trends; "
+"they anticipate them."
+msgstr ""
+"Temel stratejimiz, yirmi yılı aşkın aktif piyasa deneyimine sahip kıdemli "
+"analistler ve kantitatif yatırımcılar tarafından yönlendirilmektedir. Onlar, "
+"çeşitli piyasa koşullarında test edilmiş ve kârlılığı kanıtlanmış ticaret "
+"algoritmalarının (botların) mimarlarıdır. Sadece trendleri takip etmezler; "
+"onları öngörürler."
+
+#: templates/about.html:45
+msgid "Innovative Engineers"
+msgstr "Yenilikçi Mühendisler"
+
+#: templates/about.html:49
+msgid "The Innovative Engineers (AI Prowess)"
+msgstr "Yenilikçi Mühendisler (Yapay Zeka Yetkinliği)"
+
+#: templates/about.html:52
+msgid ""
+"Complementing this experience is our senior development team, fluent in "
+"the latest software methodologies and AI. This team translates the "
+"complex strategies of our analysts into fast, secure, and intelligent "
+"tools. We build the tools that we ourselves use every single day."
+msgstr ""
+"Bu deneyimi tamamlayan, en son yazılım metodolojileri ve yapay zeka "
+"konusunda uzmanlaşmış kıdemli geliştirme ekibimizdir. Bu ekip, "
+"analistlerimizin karmaşık stratejilerini hızlı, güvenli ve akıllı araçlara "
+"dönüştürür. Her gün bizzat kullandığımız araçları inşa ediyoruz."
+
+#: templates/about.html:64
+msgid "Beyond Theory: A Proven Track Record"
+msgstr "Teorinin Ötesinde: Kanıtlanmış Bir Geçmiş"
+
+#: templates/about.html:67
+msgid ""
+"We don't just talk about technology; we have implemented it at the "
+"highest levels."
+msgstr "Sadece teknolojiden bahsetmiyoruz; onu en üst düzeylerde uyguladık."
+
+#: templates/about.html:76
+msgid "ERP System"
+msgstr "ERP Sistemi"
+
+#: templates/about.html:77
+msgid "Complete Brokerage ERP"
+msgstr "Tam Aracı Kurum ERP"
+
+#: templates/about.html:78
+msgid ""
+"Successfully built and deployed a complete ERP system for a licensed "
+"brokerage."
+msgstr ""
+"Lisanslı bir aracı kurum için eksiksiz bir ERP sistemi başarıyla oluşturuldu "
+"ve dağıtıldı."
+
+#: templates/about.html:86
+msgid "CFD Platform"
+msgstr "CFD Platformu"
+
+#: templates/about.html:87
+msgid "Ground-Up CFD Platform"
+msgstr "Sıfırdan CFD Platformu"
+
+#: templates/about.html:88
+msgid "Designed and developed an entire CFD Brokerage platform infrastructure."
+msgstr "Tüm CFD Aracı Kurum platform altyapısı tasarlandı ve geliştirildi."
+
+#: templates/about.html:96
+msgid "Integration"
+msgstr "Entegrasyon"
+
+#: templates/about.html:97
+msgid "Enterprise Integration"
+msgstr "Kurumsal Entegrasyon"
+
+#: templates/about.html:98
+msgid ""
+"Executed enterprise-level integration systems for high-availability "
+"processes."
+msgstr ""
+"Yüksek kullanılabilirlik süreçleri için kurumsal düzeyde entegrasyon "
+"sistemleri yürütüldü."
+
+#: templates/about.html:110
+msgid "A 360-Degree Market Perspective"
+msgstr "360 Derece Piyasa Perspektifi"
+
+#: templates/about.html:113
+msgid ""
+"At VestHub, nothing is left to chance. Our team structure covers every "
+"angle."
+msgstr "VestHub'da hiçbir şey şansa bırakılmaz. Ekip yapımız her açıyı kapsar."
+
+#: templates/about.html:122 templates/about.html:123
+msgid "Fundamental Analysis"
+msgstr "Temel Analiz"
+
+#: templates/about.html:124
+msgid ""
+"Monitoring real-time economic news, data releases, and geopolitical "
+"events."
+msgstr ""
+"Gerçek zamanlı ekonomik haberleri, veri bültenlerini ve jeopolitik olayları "
+"izleme."
+
+#: templates/about.html:132 templates/about.html:133
+msgid "Technical Analysis"
+msgstr "Teknik Analiz"
+
+#: templates/about.html:134
+msgid "Identifying market patterns, trends, support, and resistance levels."
+msgstr "Piyasa modellerini, trendleri, destek ve direnç seviyelerini belirleme."
+
+#: templates/about.html:142 templates/about.html:143
+msgid "AI & Algorithmic"
+msgstr "Yapay Zeka ve Algoritmik"
+
+#: templates/about.html:144
+msgid "Developing the next generation of advanced bots and analytical tools."
+msgstr "Yeni nesil gelişmiş botlar ve analitik araçlar geliştirme."
+
+#: templates/about.html:155
+msgid "Ready to Join the Platform?"
+msgstr "Platforma Katılmaya Hazır Mısınız?"
+
+#: templates/about.html:156
+msgid "Our tools are the product of thousands of hours of experience."
+msgstr "Araçlarımız binlerce saatlik deneyimin ürünüdür."
+
+#: templates/about.html:157
+msgid "Get Started Now"
+msgstr "Şimdi Başlayın"
+
+#: templates/admin_accounting.html:7
+msgid "Master Accounting Ledger"
+msgstr "Ana Muhasebe Defteri"
+
+#: templates/admin_accounting.html:9
+msgid "Search by User or TxID..."
+msgstr "Kullanıcı veya TxID ile ara..."
+
+#: templates/admin_accounting.html:11 templates/admin_logs.html:8
+msgid "Export CSV"
+msgstr "CSV Dışa Aktar"
+
+#: templates/admin_accounting.html:17
+msgid "All Transactions"
+msgstr "Tüm İşlemler"
+
+#: templates/admin_accounting.html:19
+msgid "Live Ledger View"
+msgstr "Canlı Defter Görünümü"
+
+#: templates/admin_accounting.html:26 templates/admin_payments.html:32
+#: templates/admin_withdrawals.html:45 templates/withdrawal.html:105
+msgid "Date"
+msgstr "Tarih"
+
+#: templates/admin_accounting.html:27 templates/admin_kyc.html:46
+#: templates/admin_kyc.html:103 templates/admin_users.html:22
+#: templates/admin_withdrawals.html:46 templates/dashboard_layout.html:73
+#: templates/dashboard_layout.html:159 templates/trader_layout.html:57
+#: templates/trader_layout.html:118
+msgid "User"
+msgstr "Kullanıcı"
+
+#: templates/admin_accounting.html:28
+msgid "TxID"
+msgstr "TxID"
+
+#: templates/admin_accounting.html:29 templates/withdrawal.html:107
+msgid "Type"
+msgstr "Tür"
+
+#: templates/admin_accounting.html:30 templates/admin_payments.html:35
+#: templates/admin_plans.html:91 templates/admin_plans.html:140
+#: templates/admin_roles.html:34 templates/admin_roles.html:72
+#: templates/admin_roles.html:133
+msgid "Description"
+msgstr "Açıklama"
+
+#: templates/admin_accounting.html:31 templates/admin_payments.html:34
+#: templates/admin_withdrawals.html:47 templates/withdrawal.html:106
+msgid "Amount"
+msgstr "Tutar"
+
+#: templates/admin_accounting.html:32 templates/admin_kyc.html:105
+#: templates/support.html:67 templates/trader_api.html:32
+#: templates/trader_subscription.html:79 templates/withdrawal.html:108
+msgid "Status"
+msgstr "Durum"
+
+#: templates/admin_accounting.html:47
+msgid "System"
+msgstr "Sistem"
+
+#: templates/admin_accounting.html:52
+msgid "Deposit"
+msgstr "Para Yatırma"
+
+#: templates/admin_accounting.html:54 templates/dashboard_layout.html:47
+#: templates/dashboard_layout.html:135
+msgid "Withdrawal"
+msgstr "Para Çekme"
+
+#: templates/admin_accounting.html:56 templates/withdrawal.html:118
+msgid "Profit"
+msgstr "Kâr"
+
+#: templates/admin_accounting.html:58
+msgid "Referral"
+msgstr "Referans"
+
+#: templates/admin_accounting.html:69 templates/withdrawal.html:122
+msgid "Completed"
+msgstr "Tamamlandı"
+
+#: templates/admin_accounting.html:71 templates/withdrawal.html:124
+msgid "Pending"
+msgstr "Beklemede"
+
+#: templates/admin_accounting.html:73 templates/admin_kyc.html:126
+#: templates/withdrawal.html:126
+msgid "Rejected"
+msgstr "Reddedildi"
+
+#: templates/admin_accounting.html:80
+msgid "No transactions recorded yet."
+msgstr "Henüz kaydedilmiş işlem yok."
+
+#: templates/admin_dashboard.html:6
+msgid "Admin Dashboard"
+msgstr "Yönetici Paneli"
+
+#: templates/admin_dashboard.html:12
+msgid "New User Registrations (Last 7 Days)"
+msgstr "Yeni Kullanıcı Kayıtları (Son 7 Gün)"
+
+#: templates/admin_dashboard.html:21
+msgid "Quick Actions"
+msgstr "Hızlı İşlemler"
+
+#: templates/admin_dashboard.html:23
+msgid "Review Payments"
+msgstr "Ödemeleri İncele"
+
+#: templates/admin_dashboard.html:24 templates/admin_layout.html:78
+msgid "Withdrawals"
+msgstr "Çekimler"
+
+#: templates/admin_dashboard.html:25
+msgid "Review KYC"
+msgstr "KYC İncele"
+
+#: templates/admin_dashboard.html:26 templates/admin_layout.html:99
+#: templates/dashboard_layout.html:59 templates/dashboard_layout.html:77
+#: templates/dashboard_layout.html:147 templates/dashboard_layout.html:163
+#: templates/settings.html:6 templates/trader_layout.html:61
+#: templates/trader_layout.html:122
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: templates/admin_kyc.html:7 templates/settings.html:92
+msgid "Identity Verification (KYC)"
+msgstr "Kimlik Doğrulama (KYC)"
+
+#: templates/admin_kyc.html:15 templates/admin_layout.html:154
+#: templates/admin_login.html:15 templates/admin_roles.html:13
+#: templates/admin_roles.html:150 templates/admin_withdrawals.html:15
+#: templates/dashboard_layout.html:119 templates/invest-plans.html:62
+#: templates/investment_pending.html:13 templates/login.html:14
+#: templates/settings.html:13 templates/signup.html:13
+#: templates/trader_api.html:84 templates/trader_layout.html:86
+#: templates/two_factor_verify.html:14 templates/verify_email.html:14
+#: templates/withdrawal.html:15
+msgid "Close"
+msgstr "Kapat"
+
+#: templates/admin_kyc.html:32 templates/admin_payments.html:20
+#: templates/admin_withdrawals.html:32
+msgid "History"
+msgstr "Geçmiş"
+
+#: templates/admin_kyc.html:45
+msgid "Date Submitted"
+msgstr "Gönderim Tarihi"
+
+#: templates/admin_kyc.html:47 templates/admin_kyc.html:104
+msgid "Documents"
+msgstr "Belgeler"
+
+#: templates/admin_kyc.html:48 templates/admin_payments.html:37
+#: templates/admin_roles.html:74 templates/admin_users.html:25
+#: templates/admin_withdrawals.html:50 templates/trader_api.html:34
+msgid "Actions"
+msgstr "İşlemler"
+
+#: templates/admin_kyc.html:63 templates/admin_kyc.html:118
+msgid "View ID"
+msgstr "Kimliği Görüntüle"
+
+#: templates/admin_kyc.html:65 templates/admin_kyc.html:119
+msgid "View Address"
+msgstr "Adresi Görüntüle"
+
+#: templates/admin_kyc.html:72 templates/admin_payments.html:58
+#: templates/admin_withdrawals.html:79
+msgid "Approve"
+msgstr "Onayla"
+
+#: templates/admin_kyc.html:76 templates/admin_payments.html:64
+#: templates/admin_withdrawals.html:85
+msgid "Reject"
+msgstr "Reddedildi"
+
+#: templates/admin_kyc.html:83
+msgid "No pending KYC applications."
+msgstr "Bekleyen KYC başvurusu yok."
+
+#: templates/admin_kyc.html:102
+msgid "Date Decided"
+msgstr "Karar Tarihi"
+
+#: templates/admin_kyc.html:124
+msgid "Approved"
+msgstr "Onaylandı"
+
+#: templates/admin_kyc.html:132
+msgid "No KYC history found."
+msgstr "KYC geçmişi bulunamadı."
+
+#: templates/admin_layout.html:29 templates/admin_layout.html:134
+#: templates/admin_layout.html:151 templates/auth_layout.html:26
+#: templates/base.html:29 templates/dashboard_layout.html:30
+#: templates/dashboard_layout.html:95 templates/dashboard_layout.html:115
+#: templates/trader_layout.html:24 templates/trader_layout.html:72
+#: templates/trader_layout.html:83
+msgid "VestHub Logo"
+msgstr "VestHub Logosu"
+
+#: templates/admin_layout.html:30 templates/admin_layout.html:152
+msgid "Admin Panel"
+msgstr "Yönetici Paneli"
+
+#: templates/admin_layout.html:37 templates/admin_layout.html:160
+#: templates/base.html:72 templates/dashboard_layout.html:39
+#: templates/dashboard_layout.html:127 templates/trader_layout.html:31
+#: templates/trader_layout.html:92
+msgid "Dashboard"
+msgstr "Panel"
+
+#: templates/admin_layout.html:43 templates/admin_users.html:7
+msgid "User Management"
+msgstr "Kullanıcı Yönetimi"
+
+#: templates/admin_layout.html:50
+msgid "Roles & Permissions"
+msgstr "Roller ve İzinler"
+
+#: templates/admin_layout.html:57 templates/admin_plans.html:5
+msgid "Investment Plans"
+msgstr "Yatırım Planları"
+
+#: templates/admin_layout.html:64
+msgid "Accounting"
+msgstr "Muhasebe"
+
+#: templates/admin_layout.html:71
+msgid "Payments"
+msgstr "Ödemeler"
+
+#: templates/admin_layout.html:85 templates/dashboard_layout.html:55
+#: templates/dashboard_layout.html:143 templates/trader_layout.html:51
+#: templates/trader_layout.html:112
+msgid "Support"
+msgstr "Destek"
+
+#: templates/admin_layout.html:92
+msgid "KYC Review"
+msgstr "KYC İnceleme"
+
+#: templates/admin_layout.html:106
+msgid "Logs"
+msgstr "Kayıtlar"
+
+#: templates/admin_layout.html:115 templates/admin_layout.html:135
+msgid "Admin"
+msgstr "Yönetici"
+
+#: templates/admin_layout.html:119 templates/admin_layout.html:167
+#: templates/dashboard_layout.html:79 templates/dashboard_layout.html:165
+#: templates/trader_layout.html:64 templates/trader_layout.html:125
+msgid "Log out"
+msgstr "Çıkış Yap"
+
+#: templates/admin_layout.html:123 templates/admin_layout.html:138
+#: templates/base.html:67 templates/dashboard_layout.html:83
+#: templates/dashboard_layout.html:100
+msgid "Toggle theme"
+msgstr "Temayı Değiştir"
+
+#: templates/admin_layout.html:163
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: templates/admin_login.html:6
+msgid "Admin Portal"
+msgstr "Yönetici Portalı"
+
+#: templates/admin_login.html:7
+msgid "Please log in to manage the platform."
+msgstr "Platformu yönetmek için lütfen giriş yapın."
+
+#: templates/admin_login.html:26
+msgid "Admin Email"
+msgstr "Yönetici E-posta"
+
+#: templates/admin_login.html:28
+msgid "admin@vesthub.com"
+msgstr "admin@vesthub.com"
+
+#: templates/admin_login.html:31 templates/login.html:49
+#: templates/signup.html:45
+msgid "Password"
+msgstr "Şifre"
+
+#: templates/admin_login.html:36
+msgid "to"
+msgstr ""
+
+#: templates/admin_login.html:37 templates/base.html:75 templates/login.html:56
+#: templates/signup.html:61
+msgid "Log In"
+msgstr "Giriş Yap"
+
+#: templates/admin_logs.html:7
+msgid "Admin Activity Logs"
+msgstr "Yönetici Aktivite Kayıtları"
+
+#: templates/admin_logs.html:17
+msgid "Time"
+msgstr "Zaman"
+
+#: templates/admin_logs.html:18
+msgid "Admin User"
+msgstr "Yönetici Kullanıcı"
+
+#: templates/admin_logs.html:19 templates/support.html:68
+#: templates/trader_subscription.html:80
+msgid "Action"
+msgstr "İşlem"
+
+#: templates/admin_logs.html:20
+msgid "Details"
+msgstr "Detaylar"
+
+#: templates/admin_logs.html:21
+msgid "IP Address"
+msgstr "IP Adresi"
+
+#: templates/admin_logs.html:37
+msgid "No logs found."
+msgstr "Kayıt bulunamadı."
+
+#: templates/admin_payments.html:7
+msgid "Payment Confirmations"
+msgstr "Ödeme Onayları"
+
+#: templates/admin_payments.html:33
+msgid "User Email"
+msgstr "Kullanıcı E-posta"
+
+#: templates/admin_payments.html:36
+msgid "TxID / Proof"
+msgstr "TxID / Kanıt"
+#: templates/admin_payments.html:51
+msgid "No TxID"
+msgstr "TxID Yok"
+
+#: templates/admin_payments.html:74
+msgid "No pending payments to review."
+msgstr "İncelenecek bekleyen ödeme yok."
+
+#: templates/admin_payments.html:86
+msgid "To see completed history, check the"
+msgstr "Tamamlanan geçmişi görmek için şuna bakın:"
+
+#: templates/admin_payments.html:86 templates/admin_withdrawals.html:107
+msgid "Accounting Ledger"
+msgstr "Muhasebe Defteri"
+
+#: templates/admin_plans.html:7
+msgid "New Plan"
+msgstr "Yeni Plan"
+
+#: templates/admin_plans.html:18 templates/dashboard.html:99
+#: templates/trader_subscription.html:19
+msgid "Active"
+msgstr "Aktif"
+
+#: templates/admin_plans.html:20
+msgid "Inactive"
+msgstr "Pasif"
+
+#: templates/admin_plans.html:24
+msgid "/ Year"
+msgstr "/ Yıl"
+
+#: templates/admin_plans.html:33 templates/trader_api.html:51
+#: templates/trader_api.html:68
+msgid "Edit"
+msgstr "Düzenle"
+
+#: templates/admin_plans.html:39
+msgid "Deactivate"
+msgstr "Devre Dışı Bırak"
+
+#: templates/admin_plans.html:44
+msgid "Activate"
+msgstr "Etkinleştir"
+
+#: templates/admin_plans.html:50 templates/trader_api.html:52
+#: templates/trader_api.html:69
+msgid "Delete"
+msgstr "Sil"
+
+#: templates/admin_plans.html:69 templates/admin_plans.html:118
+msgid "Plan Name"
+msgstr "Plan Adı"
+
+#: templates/admin_plans.html:74 templates/admin_plans.html:123
+msgid "Duration (Months)"
+msgstr "Süre (Ay)"
+
+#: templates/admin_plans.html:78 templates/admin_plans.html:127
+#, no-c-format, no-python-format
+msgid "Annual Return (%)"
+msgstr "Yıllık Getiri (%%)"
+
+#: templates/admin_plans.html:83 templates/admin_plans.html:132
+msgid "Risk Level"
+msgstr "Risk Seviyesi"
+
+#: templates/admin_plans.html:85 templates/admin_plans.html:134
+msgid "Low"
+msgstr "Düşük"
+
+#: templates/admin_plans.html:86 templates/admin_plans.html:135
+msgid "Medium"
+msgstr "Orta"
+
+#: templates/admin_plans.html:87 templates/admin_plans.html:136
+msgid "High"
+msgstr "Yüksek"
+
+#: templates/admin_plans.html:96 templates/admin_plans.html:145
+#: templates/admin_users.html:75 templates/invest-plans.html:87
+#: templates/support.html:44
+msgid "Cancel"
+msgstr "İptal"
+
+#: templates/admin_plans.html:97 templates/admin_roles.html:151
+#: templates/admin_users.html:76
+msgid "Save Changes"
+msgstr "Değişiklikleri Kaydet"
+
+#: templates/admin_plans.html:111
+msgid "Create New Plan"
+msgstr "Yeni Plan Oluştur"
+
+#: templates/admin_plans.html:146
+msgid "Create Plan"
+msgstr "Plan Oluştur"
+
+#: templates/admin_roles.html:6
+msgid "Manage Roles & Permissions"
+msgstr "Rolleri ve İzinleri Yönet"
+
+#: templates/admin_roles.html:24
+msgid "Create Custom Role"
+msgstr "Özel Rol Oluştur"
+
+#: templates/admin_roles.html:30 templates/admin_roles.html:71
+#: templates/admin_roles.html:129
+msgid "Role Name"
+msgstr "Rol Adı"
+
+#: templates/admin_roles.html:31
+msgid "e.g. Finance Support"
+msgstr "örn. Finans Destek"
+
+#: templates/admin_roles.html:35
+msgid "Brief description..."
+msgstr "Kısa açıklama..."
+
+#: templates/admin_roles.html:39
+msgid "Assign Permissions:"
+msgstr "İzinleri Ata:"
+
+#: templates/admin_roles.html:54
+msgid "Create Role"
+msgstr "Rol Oluştur"
+
+#: templates/admin_roles.html:65
+msgid "Existing Roles"
+msgstr "Mevcut Roller"
+
+#: templates/admin_roles.html:73 templates/admin_roles.html:137
+msgid "Permissions"
+msgstr "İzinler"
+
+#: templates/admin_roles.html:89
+msgid "ALL ACCESS"
+msgstr "TAM ERİŞİM"
+
+#: templates/admin_roles.html:112
+msgid "Protected"
+msgstr "Korumalı"
+
+#: templates/admin_settings.html:8
+msgid "System Configuration"
+msgstr "Sistem Yapılandırması"
+
+#: templates/admin_settings.html:14
+msgid "Company Wallet Addresses"
+msgstr "Şirket Cüzdan Adresleri"
+
+#: templates/admin_settings.html:17 templates/wallet.html:23
+#: templates/wallet.html:52
+msgid "USDT (TRC20)"
+msgstr "USDT (TRC20)"
+
+#: templates/admin_settings.html:19
+msgid "Used for USDT deposits on Tron network."
+msgstr "Tron ağındaki USDT yatırımları için kullanılır."
+
+#: templates/admin_settings.html:23 templates/wallet.html:24
+#: templates/wallet.html:64
+msgid "USDT (ERC20)"
+msgstr "USDT (ERC20)"
+
+#: templates/admin_settings.html:25
+msgid "Used for USDT deposits on Ethereum network."
+msgstr "Ethereum ağındaki USDT yatırımları için kullanılır."
+
+#: templates/admin_settings.html:29 templates/wallet.html:25
+#: templates/wallet.html:76
+msgid "USDT (BEP20)"
+msgstr "USDT (BEP20)"
+
+#: templates/admin_settings.html:31
+msgid "Used for USDT deposits on BNB Smart Chain."
+msgstr "BNB Smart Chain ağındaki USDT yatırımları için kullanılır."
+
+#: templates/admin_settings.html:35
+msgid "USDT (Polygon/Matic)"
+msgstr "USDT (Polygon/Matic)"
+
+#: templates/admin_settings.html:37
+msgid "Used for USDT deposits on Polygon network."
+msgstr "Polygon ağındaki USDT yatırımları için kullanılır."
+
+#: templates/admin_settings.html:42
+msgid "Bank Transfer Details"
+msgstr "Banka Transfer Detayları"
+
+#: templates/admin_settings.html:44
+msgid "Bank Info (IBAN/Account)"
+msgstr "Banka Bilgisi (IBAN/Hesap)"
+
+#: templates/admin_settings.html:46
+msgid "Full bank details visible to users for wire transfers."
+msgstr "Kullanıcılara havale işlemleri için görünen tam banka detayları."
+
+#: templates/admin_settings.html:51
+msgid "System Parameters"
+msgstr "Sistem Parametreleri"
+
+#: templates/admin_settings.html:53
+#, no-c-format, no-python-format
+msgid "Referral Bonus Percentage (%)"
+msgstr "Referans Bonusu Yüzdesi (%%)"
+
+#: templates/admin_settings.html:58
+msgid "Save Configuration"
+msgstr "Yapılandırmayı Kaydet"
+
+#: templates/admin_support.html:6
+msgid "Support Tickets"
+msgstr "Destek Talepleri"
+
+#: templates/admin_support.html:10
+msgid "Open Tickets"
+msgstr "Açık Talepler"
+
+#: templates/admin_support.html:14
+msgid "Closed History"
+msgstr "Kapanmış Geçmiş"
+
+#: templates/admin_support.html:39
+msgid "No open tickets."
+msgstr "Açık talep yok."
+
+#: templates/admin_support.html:58
+msgid "No closed tickets."
+msgstr "Kapanmış talep yok."
+
+#: templates/admin_support_view.html:16
+msgid "Close Ticket"
+msgstr "Talebi Kapat"
+
+#: templates/admin_support_view.html:19 templates/support.html:87
+msgid "Closed"
+msgstr "Kapalı"
+
+#: templates/admin_support_view.html:28
+msgid "User Details"
+msgstr "Kullanıcı Detayları"
+
+#: templates/admin_support_view.html:30
+msgid "Name:"
+msgstr "İsim:"
+
+#: templates/admin_support_view.html:31
+msgid "Email:"
+msgstr "E-posta:"
+
+#: templates/admin_support_view.html:32
+msgid "Category:"
+msgstr "Kategori:"
+
+#: templates/admin_support_view.html:73
+msgid "Type reply to user..."
+msgstr "Kullanıcıya yanıt yaz..."
+
+#: templates/admin_support_view.html:74
+msgid "Reply"
+msgstr "Yanıtla"
+
+#: templates/admin_users.html:9
+msgid "Add New User"
+msgstr "Yeni Kullanıcı Ekle"
+
+#: templates/admin_users.html:14
+msgid "All Users"
+msgstr "Tüm Kullanıcılar"
+
+#: templates/admin_users.html:21
+msgid "ID"
+msgstr "ID"
+
+#: templates/admin_users.html:23
+msgid "Current Role"
+msgstr "Mevcut Rol"
+
+#: templates/admin_users.html:24
+msgid "KYC"
+msgstr "KYC"
+
+#: templates/admin_users.html:43
+msgid "Verified"
+msgstr "Doğrulanmış"
+
+#: templates/admin_users.html:50
+msgid "Change Role"
+msgstr "Rol Değiştir"
+
+#: templates/admin_users.html:65
+msgid "Select a new role for this user:"
+msgstr "Bu kullanıcı için yeni bir rol seçin:"
+
+#: templates/admin_withdrawals.html:7
+msgid "Withdrawal Requests"
+msgstr "Para Çekme Talepleri"
+
+#: templates/admin_withdrawals.html:49
+msgid "Payout Wallet"
+msgstr "Ödeme Cüzdanı"
+
+#: templates/admin_withdrawals.html:94
+msgid "No pending withdrawal requests."
+msgstr "Bekleyen para çekme talebi yok."
+
+#: templates/admin_withdrawals.html:107
+msgid "Check the"
+msgstr "Geçmiş için"
+
+#: templates/admin_withdrawals.html:107
+msgid "for history."
+msgstr "kontrol edin."
+
+#: templates/base.html:31
+msgid "Toggle navigation"
+msgstr "Menüyü Aç/Kapat"
+
+#: templates/base.html:37
+msgid "Home"
+msgstr "Ana Sayfa"
+
+#: templates/base.html:40
+msgid "Marketplace"
+msgstr "Pazar Yeri"
+
+#: templates/base.html:43
+msgid "Invest"
+msgstr "Yatırım"
+
+#: templates/base.html:46
+msgid "Plans"
+msgstr "Planlar"
+
+#: templates/base.html:49
+msgid "About Us"
+msgstr "Hakkımızda"
+
+#: templates/base.html:56
+msgid "Select Language"
+msgstr "Dil Seçin"
+
+#: templates/base.html:61
+msgid "English"
+msgstr "English"
+
+#: templates/base.html:62
+msgid "Türkçe"
+msgstr "Türkçe"
+
+#: templates/base.html:73
+msgid "Logout"
+msgstr "Çıkış Yap"
+
+#: templates/base.html:76 templates/index.html:196 templates/login.html:61
+#: templates/marketplace.html:230
+msgid "Sign Up Free"
+msgstr "Ücretsiz Kayıt Ol"
+
+#: templates/base.html:94
+msgid "&copy; 2025 VestHub. All rights reserved."
+msgstr "&copy; 2025 VestHub. Tüm hakları saklıdır."
+
+#: templates/base.html:97
+msgid "Contact Us"
+msgstr "Bize Ulaşın"
+
+#: templates/base.html:98
+msgid "Terms & Conditions"
+msgstr "Şartlar ve Koşullar"
+
+#: templates/base.html:99 templates/privacy.html:9
+msgid "Privacy Policy"
+msgstr "Gizlilik Politikası"
+
+#: templates/base.html:100
+msgid "Risk Disclosure"
+msgstr "Risk Bildirimi"
+
+#: templates/contact.html:9
+msgid "Get in Touch"
+msgstr "İletişime Geçin"
+
+#: templates/contact.html:11
+msgid ""
+"Have questions about our investment plans or trading tools? We're here to"
+" help."
+msgstr ""
+"Yatırım planlarımız veya ticaret araçlarımız hakkında sorularınız mı var? "
+"Yardımcı olmak için buradayız."
+
+#: templates/contact.html:20
+msgid "Send us a message"
+msgstr "Bize bir mesaj gönderin"
+
+#: templates/contact.html:25
+msgid "Full Name"
+msgstr "Ad Soyad"
+
+#: templates/contact.html:26
+msgid "Your Name"
+msgstr "Adınız"
+
+#: templates/contact.html:29
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+#: templates/contact.html:30
+msgid "name@example.com"
+msgstr "isim@ornek.com"
+
+#: templates/contact.html:33 templates/signup.html:36
+msgid "Phone Number"
+msgstr "Telefon Numarası"
+
+#: templates/contact.html:33
+msgid "Optional"
+msgstr "İsteğe Bağlı"
+
+#: templates/contact.html:34
+msgid "+90 ..."
+msgstr "+90 ..."
+
+#: templates/contact.html:37 templates/support.html:26
+#: templates/support.html:64
+msgid "Subject"
+msgstr "Konu"
+
+#: templates/contact.html:39
+msgid "General Inquiry"
+msgstr "Genel Soru"
+
+#: templates/contact.html:40
+msgid "Technical Support"
+msgstr "Teknik Destek"
+
+#: templates/contact.html:41 templates/support.html:33
+msgid "Billing & Payments"
+msgstr "Faturalandırma ve Ödemeler"
+
+#: templates/contact.html:42
+msgid "Partnership"
+msgstr "Ortaklık"
+
+#: templates/contact.html:46 templates/support.html:40
+msgid "Message"
+msgstr "Mesaj"
+
+#: templates/contact.html:47
+msgid "How can we help you?"
+msgstr "Size nasıl yardımcı olabiliriz?"
+
+#: templates/contact.html:50
+msgid "Send Message"
+msgstr "Mesaj Gönder"
+
+#: templates/contact.html:69
+msgid "Our Office"
+msgstr "Ofisimiz"
+
+#: templates/contact.html:70
+msgid "Cumhuriyet Mahallesi, Halaskargazi Cad."
+msgstr "Cumhuriyet Mahallesi, Halaskargazi Cad."
+
+#: templates/contact.html:70
+msgid "Bülbül 2 Apt. No: 137 K: 2 Daire 5,"
+msgstr "Bülbül 2 Apt. No: 137 K: 2 Daire 5,"
+
+#: templates/contact.html:70
+msgid "34371 Şişli/İstanbul, Türkiye"
+msgstr "34371 Şişli/İstanbul, Türkiye"
+
+#: templates/contact.html:76
+msgid "Open in Google Maps"
+msgstr "Google Haritalar'da Aç"
+
+#: templates/contact.html:82
+msgid "View on Google Maps"
+msgstr "Google Haritalar'da Göster"
+
+#: templates/contact.html:98
+msgid "WhatsApp Support"
+msgstr "WhatsApp Destek"
+
+#: templates/contact.html:99
+msgid "0090 531 724 7685"
+msgstr "0090 531 724 7685"
+
+#: templates/contact.html:103
+msgid "Chat Now"
+msgstr "Sohbet Et"
+
+#: templates/contact.html:116
+msgid "Email Us"
+msgstr "Bize E-posta Gönder"
+
+#: templates/contact.html:117
+msgid "support@vesthub.org"
+msgstr "support@vesthub.org"
+#: templates/dashboard.html:13
+msgid "Total Invested"
+msgstr "Toplam Yatırım"
+
+#: templates/dashboard.html:21
+msgid "Available Profit"
+msgstr "Kullanılabilir Kar"
+
+#: templates/dashboard.html:29
+msgid "Referrals"
+msgstr "Referanslar"
+
+#: templates/dashboard.html:37
+msgid "Referral Bonus"
+msgstr "Referans Bonusu"
+
+#: templates/dashboard.html:48
+msgid "Portfolio Growth"
+msgstr "Portföy Büyümesi"
+
+#: templates/dashboard.html:56
+msgid "Asset Allocation"
+msgstr "Varlık Dağılımı"
+
+#: templates/dashboard.html:69
+msgid "Invite Friends & Earn"
+msgstr "Arkadaşlarını Davet Et ve Kazan"
+
+#: templates/dashboard.html:70
+msgid "Share your unique code:"
+msgstr "Benzersiz kodunu paylaş:"
+
+#: templates/dashboard.html:76
+msgid "Copy Link"
+msgstr "Bağlantıyı Kopyala"
+
+#: templates/dashboard.html:87
+msgid "My Active Investments"
+msgstr "Aktif Yatırımlarım"
+
+#: templates/dashboard.html:96 templates/investment_pending.html:30
+msgid "Pending Payment"
+msgstr "Ödeme Bekleniyor"
+
+#: templates/dashboard.html:97
+msgid "Complete Payment"
+msgstr "Ödemeyi Tamamla"
+
+#: templates/dashboard.html:107
+msgid "You have no active investments yet."
+msgstr "Henüz aktif bir yatırımınız yok."
+
+#: templates/dashboard.html:108 templates/index.html:16
+msgid "Start Investing"
+msgstr "Yatırıma Başla"
+
+#: templates/dashboard.html:118 templates/withdrawal.html:7
+msgid "Request Withdrawal"
+msgstr "Para Çekme Talebi"
+
+#: templates/dashboard.html:120
+msgid "Manage Withdrawals"
+msgstr "Çekimleri Yönet"
+
+#: templates/dashboard.html:122
+msgid "KYC Required"
+msgstr "KYC Gerekli"
+
+#: templates/dashboard.html:123
+msgid "Verify Identity"
+msgstr "Kimliği Doğrula"
+
+#: templates/dashboard_layout.html:31 templates/dashboard_layout.html:96
+#: templates/dashboard_layout.html:116
+msgid "VestHub"
+msgstr "VestHub"
+
+#: templates/dashboard_layout.html:43 templates/dashboard_layout.html:131
+msgid "New Investment"
+msgstr "Yeni Yatırım"
+
+#: templates/dashboard_layout.html:51 templates/dashboard_layout.html:139
+#: templates/wallet.html:5
+msgid "My Wallet"
+msgstr "Cüzdanım"
+
+#: templates/dashboard_layout.html:63 templates/dashboard_layout.html:151
+msgid "Risk Profile"
+msgstr "Risk Profili"
+
+#: templates/index.html:10
+msgid "Intelligent Trading. Automated."
+msgstr "Akıllı Ticaret. Otomatikleştirilmiş."
+
+#: templates/index.html:11
+msgid ""
+"Access a new generation of trading bots and analytical tools, or let our "
+"AI manage your portfolio."
+msgstr ""
+"Yeni nesil ticaret botlarına ve analiz araçlarına erişin veya yapay zekamızın "
+"portföyünüzü yönetmesine izin verin."
+
+#: templates/index.html:14
+msgid "Explore the Marketplace"
+msgstr "Pazaryerini Keşfet"
+
+#: templates/index.html:28 templates/plans.html:10
+msgid "Our Investment Plans"
+msgstr "Yatırım Planlarımız"
+
+#: templates/index.html:29
+msgid "Select a plan that matches your financial goals. Returns are annualized."
+msgstr ""
+"Finansal hedeflerinize uygun bir plan seçin. Getiriler yıllıklandırılmıştır."
+
+#: templates/index.html:43 templates/invest-plans.html:17
+#: templates/plans.html:25
+msgid "Low Risk"
+msgstr "Düşük Risk"
+
+#: templates/index.html:47 templates/invest-plans.html:21
+#: templates/plans.html:29
+msgid "Medium Risk"
+msgstr "Orta Risk"
+
+#: templates/index.html:51 templates/invest-plans.html:25
+#: templates/plans.html:33
+msgid "High Risk"
+msgstr "Yüksek Risk"
+
+#: templates/index.html:62 templates/invest-plans.html:35
+#: templates/plans.html:44
+msgid "Annual Return"
+msgstr "Yıllık Getiri"
+
+#: templates/index.html:68 templates/plans.html:50
+msgid "Choose Plan & Sign Up"
+msgstr "Plan Seç ve Kaydol"
+
+#: templates/index.html:76 templates/plans.html:58
+msgid "No investment plans available at the moment."
+msgstr "Şu anda uygun yatırım planı bulunmamaktadır."
+
+#: templates/index.html:85
+msgid "View More Plans"
+msgstr "Daha Fazla Plan Görüntüle"
+
+#: templates/index.html:105
+msgid "The Bot & Tool Marketplace"
+msgstr "Bot ve Araç Pazaryeri"
+
+#: templates/index.html:106
+msgid ""
+"Browse, backtest, and deploy hundreds of bots from top developers. Or "
+"build your own strategies with our powerful, low-latency APIs."
+msgstr ""
+"En iyi geliştiricilerin yüzlerce botunu inceleyin, geriye dönük test edin ve "
+"kullanın. Veya güçlü, düşük gecikmeli API'lerimizle kendi stratejilerinizi "
+"oluşturun."
+
+#: templates/index.html:107
+msgid "Go to Marketplace"
+msgstr "Pazaryerine Git"
+
+#: templates/index.html:118
+msgid "VestHub Managed Portfolios"
+msgstr "VestHub Yönetilen Portföyler"
+
+#: templates/index.html:119
+msgid ""
+"'Don't have time to trade? Our top-performing AI bots will trade for you."
+" We manage the risk, you track the returns."
+msgstr ""
+"İşlem yapmaya vaktiniz yok mu? En iyi performans gösteren yapay zeka "
+"botlarımız sizin için işlem yapsın. Biz riski yönetelim, siz getirileri "
+"takip edin."
+
+#: templates/index.html:120
+msgid "Learn About Investing"
+msgstr "Yatırım Hakkında Bilgi Edinin"
+
+#: templates/index.html:134
+msgid "Institutional-Grade Security"
+msgstr "Kurumsal Düzeyde Güvenlik"
+
+#: templates/index.html:135
+msgid "Bank-level encryption & cold storage."
+msgstr "Banka düzeyinde şifreleme ve soğuk depolama."
+
+#: templates/index.html:139
+msgid "Rigorous Vetting"
+msgstr "Titiz İnceleme"
+
+#: templates/index.html:140
+msgid "All marketplace bots are backtested & verified."
+msgstr "Tüm pazaryeri botları geriye dönük test edilmiş ve doğrulanmıştır."
+
+#: templates/index.html:144
+msgid "Full Transparency"
+msgstr "Tam Şeffaflık"
+
+#: templates/index.html:145
+msgid "Real-time performance dashboards."
+msgstr "Gerçek zamanlı performans gösterge tabloları."
+
+#: templates/index.html:154
+msgid "A Platform Built for Performance"
+msgstr "Performans İçin Tasarlanmış Bir Platform"
+
+#: templates/index.html:160
+msgid "Blazing-Fast Backtesting"
+msgstr "Işık Hızında Backtest"
+
+#: templates/index.html:161
+msgid "Test your strategies on years of data in seconds."
+msgstr "Stratejilerinizi saniyeler içinde yılların verisi üzerinde test edin."
+
+#: templates/index.html:167
+msgid "AI-Powered Analytics"
+msgstr "Yapay Zeka Destekli Analizler"
+
+#: templates/index.html:168
+msgid "Use our proprietary tools to scan markets and find opportunities."
+msgstr ""
+"Piyasaları taramak ve fırsatları bulmak için özel araçlarımızı kullanın."
+
+#: templates/index.html:174
+msgid "Multi-Exchange Connectivity"
+msgstr "Çoklu Borsa Bağlantısı"
+
+#: templates/index.html:175
+msgid "Connect all your exchange accounts in one secure place."
+msgstr "Tüm borsa hesaplarınızı tek bir güvenli yerden bağlayın."
+
+#: templates/index.html:181
+msgid "Developer-Friendly API"
+msgstr "Geliştirici Dostu API"
+
+#: templates/index.html:182
+msgid "Build, test, and deploy your own tools on our infrastructure."
+msgstr "Kendi araçlarınızı altyapımız üzerinde oluşturun, test edin ve dağıtın."
+
+#: templates/index.html:194
+msgid "Join the Future of Automated Trading."
+msgstr "Otomatik Ticaretin Geleceğine Katılın."
+
+#: templates/index.html:195
+msgid "Sign up for free and get access to your new trading dashboard."
+msgstr ""
+"Ücretsiz kaydolun ve yeni ticaret kontrol panelinize erişim sağlayın."
+
+#: templates/invest-plans.html:6
+msgid "Choose Your Investment Plan"
+msgstr "Yatırım Planınızı Seçin"
+
+#: templates/invest-plans.html:7
+msgid "Based on your"
+msgstr "Sizin"
+
+#: templates/invest-plans.html:7
+msgid "risk profile, we have selected the best plans for you."
+msgstr "risk profilinize dayanarak, sizin için en iyi planları seçtik."
+
+#: templates/invest-plans.html:44
+msgid "Choose Plan"
+msgstr "Plan Seç"
+
+#: templates/invest-plans.html:51
+msgid "No investment plans available for your risk profile at the moment."
+msgstr "Şu anda risk profiliniz için uygun yatırım planı bulunmamaktadır."
+
+#: templates/invest-plans.html:61
+msgid "Start Investment"
+msgstr "Yatırımı Başlat"
+
+#: templates/invest-plans.html:68
+msgid "You have selected:"
+msgstr "Seçiminiz:"
+
+#: templates/invest-plans.html:69
+msgid "..."
+msgstr "..."
+
+#: templates/invest-plans.html:74
+msgid "Investment Amount"
+msgstr "Yatırım Tutarı"
+
+#: templates/invest-plans.html:77
+msgid "1000.00"
+msgstr "1000.00"
+
+#: templates/invest-plans.html:78
+msgid "USD"
+msgstr "USD"
+
+#: templates/invest-plans.html:83
+msgid "I understand and agree to the terms of this investment plan."
+msgstr "Bu yatırım planının şartlarını anlıyorum ve kabul ediyorum."
+
+#: templates/invest-plans.html:88
+msgid "Confirm Investment"
+msgstr "Yatırımı Onayla"
+
+#: templates/investment_pending.html:6
+msgid "Investment Pending Payment"
+msgstr "Yatırım Ödemesi Bekleniyor"
+
+#: templates/investment_pending.html:23
+msgid "You are investing:"
+msgstr "Yatırım yapıyorsunuz:"
+
+#: templates/investment_pending.html:24
+msgid "in"
+msgstr "buraya:"
+
+#: templates/investment_pending.html:28
+msgid "Waiting for Approval"
+msgstr "Onay Bekleniyor"
+
+#: templates/investment_pending.html:41
+msgid "Step 1: Make Your Payment"
+msgstr "1. Adım: Ödemenizi Yapın"
+
+#: templates/investment_pending.html:45
+msgid "Manual Crypto"
+msgstr "Manuel Kripto"
+
+#: templates/investment_pending.html:46
+msgid "Online Payment"
+msgstr "Online Ödeme"
+
+#: templates/investment_pending.html:47
+msgid "Bank Transfer"
+msgstr "Banka Transferi"
+
+#: templates/investment_pending.html:54
+msgid "TRC20"
+msgstr "TRC20"
+
+#: templates/investment_pending.html:55
+msgid "ERC20"
+msgstr "ERC20"
+
+#: templates/investment_pending.html:56
+msgid "BEP20"
+msgstr "BEP20"
+
+#: templates/investment_pending.html:57
+msgid "Polygon"
+msgstr "Polygon"
+
+#: templates/investment_pending.html:62
+msgid "USDT (TRC20):"
+msgstr "USDT (TRC20):"
+
+#: templates/investment_pending.html:66
+msgid "USDT (ERC20):"
+msgstr "USDT (ERC20):"
+
+#: templates/investment_pending.html:70
+msgid "USDT (BEP20):"
+msgstr "USDT (BEP20):"
+
+#: templates/investment_pending.html:74
+msgid "USDT (Polygon):"
+msgstr "USDT (Polygon):"
+
+#: templates/investment_pending.html:84
+msgid "Pay Securely with Gateway"
+msgstr "Gateway ile Güvenli Öde"
+
+#: templates/investment_pending.html:87
+msgid "Pay Now"
+msgstr "Şimdi Öde"
+
+#: templates/investment_pending.html:96
+msgid "Bank Account Details"
+msgstr "Banka Hesap Detayları"
+
+#: templates/investment_pending.html:110
+msgid "Step 2: Submit Proof (Manual Only)"
+msgstr "2. Adım: Kanıt Gönder (Sadece Manuel)"
+
+#: templates/investment_pending.html:115
+msgid "Proof Submitted!"
+msgstr "Kanıt Gönderildi!"
+
+#: templates/investment_pending.html:116
+msgid "Transaction ID:"
+msgstr "İşlem Kimliği (TxID):"
+
+#: templates/investment_pending.html:117
+msgid "Return to Dashboard"
+msgstr "Kontrol Paneline Dön"
+
+#: templates/investment_pending.html:123
+msgid "Crypto TxID (or Bank Ref)"
+msgstr "Kripto TxID (veya Banka Ref)"
+
+#: templates/investment_pending.html:127
+msgid "Submit Proof"
+msgstr "Kanıt Gönder"
+
+#: templates/learn.html:12
+msgid "Investing: The Ultimate Insurance for Your Financial Future"
+msgstr "Yatırım: Finansal Geleceğiniz İçin Nihai Sigorta"
+
+#: templates/learn.html:13
+msgid ""
+"In a world of economic uncertainty, holding cash in a bank account means "
+"your purchasing power is quietly eroding. Saving is an excellent first "
+"step, but it isn't enough."
+msgstr ""
+"Ekonomik belirsizlik dünyasında, banka hesabında nakit tutmak, satın alma "
+"gücünüzün sessizce eridiği anlamına gelir. Tasarruf etmek harika bir ilk "
+"adımdır, ancak yeterli değildir."
+
+#: templates/learn.html:14
+msgid ""
+"Inflation is the silent, consistent force that diminishes the value of "
+"your hard-earned money. Investing is the critical bridge between "
+"\"saving\" and \"building wealth.\""
+msgstr ""
+"Enflasyon, zor kazanılan paranızın değerini azaltan sessiz ve istikrarlı bir "
+"güçtür. Yatırım, \"tasarruf\" ile \"servet inşası\" arasındaki kritik "
+"köprüdür."
+
+#: templates/learn.html:17
+msgid "Financial Security"
+msgstr "Finansal Güvenlik"
+
+#: templates/learn.html:27
+msgid "Why Investing Is No Longer a Choice, But a Necessity"
+msgstr "Yatırım Neden Artık Bir Seçenek Değil, Bir Zorunluluktur"
+
+#: templates/learn.html:30
+msgid ""
+"We believe that smart investing is the cornerstone of future financial "
+"independence. Here’s why it is essential:"
+msgstr ""
+"Akıllı yatırımın gelecekteki finansal bağımsızlığın temel taşı olduğuna "
+"inanıyoruz. İşte neden gerekli olduğu:"
+
+#: templates/learn.html:37
+msgid "Inflation Shield"
+msgstr "Enflasyon Kalkanı"
+
+#: templates/learn.html:43
+msgid "Your Shield Against Inflation"
+msgstr "Enflasyona Karşı Kalkanınız"
+
+#: templates/learn.html:47
+msgid ""
+"This is the most straightforward reason. If your money isn't growing, "
+"it's losing. The primary goal of investing is to outpace inflation, "
+"ensuring that 10, 20, or 30 years from now, your money has the same—or "
+"more—buying power than it does today."
+msgstr ""
+"Bu en basit nedendir. Paranız büyümüyorsa, kaybediyordur. Yatırımın birincil "
+"amacı enflasyonu geçmek, 10, 20 veya 30 yıl sonra paranızın bugünkünden aynı "
+"-veya daha fazla- alım gücüne sahip olmasını sağlamaktır."
+
+#: templates/learn.html:56
+msgid "Insurance"
+msgstr "Sigorta"
+
+#: templates/learn.html:62
+msgid "Your \"Insurance\" for the Unexpected"
+msgstr "Beklenmedik Durumlar İçin \"Sigortanız\""
+
+#: templates/learn.html:66
+msgid ""
+"A strong investment portfolio acts as your financial \"insurance "
+"policy.\" It is a far more effective and robust emergency fund that gives"
+" you the flexibility to navigate financial challenges without extreme "
+"stress or being forced into hasty, poor decisions."
+msgstr ""
+"Güçlü bir yatırım portföyü finansal \"sigorta poliçeniz\" gibi hareket eder. "
+"Size aşırı stres yaşamadan veya aceleci, kötü kararlar almaya zorlanmadan "
+"finansal zorlukları aşma esnekliği veren çok daha etkili ve sağlam bir acil "
+"durum fonudur."
+
+#: templates/learn.html:75
+msgid "Major Goals"
+msgstr "Büyük Hedefler"
+
+#: templates/learn.html:81
+msgid "The Engine for Your Major Goals"
+msgstr "Büyük Hedefleriniz İçin Motor"
+
+#: templates/learn.html:85
+msgid ""
+"We all have dreams: buying a home, funding a child's education, or "
+"enjoying a comfortable retirement. Investing is the engine that puts a "
+"realistic timeline on those dreams and transforms \"saving\" from a "
+"passive habit into an active strategy."
+msgstr ""
+"Hepimizin hayalleri vardır: ev almak, bir çocuğun eğitimini finanse etmek "
+"veya rahat bir emekliliğin tadını çıkarmak. Yatırım, bu hayallere gerçekçi "
+"bir zaman çizelgesi koyan ve \"tasarrufu\" pasif bir alışkanlıktan aktif bir "
+"stratejiye dönüştüren motordur."
+
+#: templates/learn.html:94
+msgid "Compound Interest"
+msgstr "Bileşik Faiz"
+
+#: templates/learn.html:100
+msgid "The Power of Compound Interest"
+msgstr "Bileşik Faizin Gücü"
+
+#: templates/learn.html:104
+msgid ""
+"Albert Einstein called it the eighth wonder of the world. You don’t just "
+"earn returns on your original money; you earn returns"
+msgstr ""
+"Albert Einstein buna dünyanın sekizinci harikası demiştir. Sadece orijinal "
+"paranız üzerinden getiri elde etmezsiniz; aynı zamanda"
+
+#: templates/learn.html:104
+msgid "on your returns"
+msgstr "getirileriniz üzerinden de getiri"
+
+#: templates/learn.html:104
+msgid ""
+". This \"snowball\" effect is the difference between a small savings pot "
+"and significant wealth."
+msgstr ""
+"kazanırsınız. Bu \"kar topu\" etkisi, küçük bir birikim ile önemli bir "
+"servet arasındaki farktır."
+
+#: templates/learn.html:117
+msgid "\"But Isn't Investing Complicated?\""
+msgstr "\"Ama Yatırım Yapmak Karmaşık Değil mi?\""
+#: templates/learn.html:118
+msgid ""
+"This is where VestHub comes in. We understand not everyone has the time "
+"or desire to become a pro trader. That is precisely why we created our "
+"Managed Investment Service."
+msgstr ""
+"İşte VestHub burada devreye giriyor. Herkesin profesyonel bir yatırımcı "
+"olmak için zamanı veya isteği olmadığını anlıyoruz. Tam da bu yüzden "
+"Yönetilen Yatırım Hizmetimizi oluşturduk."
+
+#: templates/learn.html:119
+msgid ""
+"We take the complexity out of the equation. Our expert team and AI "
+"algorithms do the heavy lifting."
+msgstr ""
+"Karmaşıklığı denklemden çıkarıyoruz. Uzman ekibimiz ve yapay zeka "
+"algoritmalarımız zor işi sizin yerinize yapıyor."
+
+#: templates/learn.html:125
+msgid "How it Works: Simple & Secure"
+msgstr "Nasıl Çalışır: Basit ve Güvenli"
+
+#: templates/learn.html:129
+msgid "How it Works Infographic"
+msgstr "Nasıl Çalışır İnfografiği"
+
+#: templates/learn.html:137
+msgid "Simple, Stress-Free Investing."
+msgstr "Basit, Stressiz Yatırım."
+
+#: templates/learn.html:138
+msgid "Gain all the benefits of investing without any of the stress."
+msgstr "Stres yaşamadan yatırımın tüm avantajlarından yararlanın."
+
+#: templates/learn.html:139
+msgid "View Investment Plans"
+msgstr "Yatırım Planlarını Görüntüle"
+
+#: templates/login.html:6
+msgid "Log In to VestHub"
+msgstr "VestHub'a Giriş Yap"
+
+#: templates/login.html:24
+msgid "Continue with Google"
+msgstr "Google ile Devam Et"
+
+#: templates/login.html:28
+msgid "Continue with Apple"
+msgstr "Apple ile Devam Et"
+
+#: templates/login.html:35
+msgid "OR"
+msgstr "VEYA"
+
+#: templates/login.html:43 templates/signup.html:32
+msgid "Email address"
+msgstr "E-posta adresi"
+
+#: templates/login.html:45 templates/signup.html:33
+msgid "you@example.com"
+msgstr "siz@ornek.com"
+
+#: templates/login.html:50
+msgid "Forgot?"
+msgstr "Unuttunuz mu?"
+
+#: templates/login.html:61
+msgid "Don't have an account?"
+msgstr "Hesabınız yok mu?"
+
+#: templates/marketplace.html:12
+msgid "Meet Vetrix 1"
+msgstr "Vetrix 1 ile Tanışın"
+
+#: templates/marketplace.html:13
+msgid ""
+"The next generation of intelligent trading bots. Built by veteran traders"
+" with 12+ years of market experience, for professional traders and "
+"institutions."
+msgstr ""
+"Akıllı ticaret botlarının yeni nesli. 12 yılı aşkın piyasa deneyimine sahip "
+"kıdemli yatırımcılar tarafından, profesyonel yatırımcılar ve kurumlar için "
+"tasarlandı."
+
+#: templates/marketplace.html:14
+msgid ""
+"Stop using retail toys or overpaying for institutional platforms. Vetrix "
+"1 bridges the gap."
+msgstr ""
+"Bireysel oyuncakları kullanmayı veya kurumsal platformlara fazla ödeme "
+"yapmayı bırakın. Vetrix 1 aradaki boşluğu dolduruyor."
+
+#: templates/marketplace.html:17
+msgid "Start Trading Now"
+msgstr "Şimdi İşleme Başla"
+
+#: templates/marketplace.html:18
+msgid "For Institutions"
+msgstr "Kurumlar İçin"
+
+#: templates/marketplace.html:28
+msgid "The Vetrix 1 Advantage: Why We Are Different"
+msgstr "Vetrix 1 Avantajı: Neden Farklıyız"
+
+#: templates/marketplace.html:34
+msgid "Aligned Profit Model"
+msgstr "Hizalanmış Kar Modeli"
+
+#: templates/marketplace.html:36
+#, python-format, no-c-format, no-python-format
+msgid ""
+"We win when you win. Unlike subscription-based bots that don't care if "
+"you profit, Vetrix operates on a **Profit-Sharing** model. Our incentives"
+" are 100% aligned with your success."
+msgstr ""
+"Siz kazandığınızda biz de kazanırız. Kâr edip etmediğinizi önemsemeyen "
+"abonelik tabanlı botların aksine, Vetrix bir **Kar Paylaşımı** modeliyle "
+"çalışır. Teşviklerimiz %%100 başarınızla uyumludur."
+
+#: templates/marketplace.html:43
+msgid "Technical Superiority"
+msgstr "Teknik Üstünlük"
+
+#: templates/marketplace.html:44
+msgid ""
+"Built in C# for low-latency execution. We use **real Range Bar data** "
+"from futures markets, not unreliable CFD data. Our algorithm is volume-"
+"independent, making it universally adaptable."
+msgstr ""
+"Düşük gecikmeli işlem yürütme için C# ile oluşturuldu. Güvenilmez CFD "
+"verileri yerine vadeli işlem piyasalarından **gerçek Aralık Çubuğu (Range "
+"Bar) verileri** kullanıyoruz. Algoritmamız hacimden bağımsızdır, bu da onu "
+"evrensel olarak uyarlanabilir kılar."
+
+#: templates/marketplace.html:51
+msgid "Adaptive Risk Management"
+msgstr "Uyarlanabilir Risk Yönetimi"
+
+#: templates/marketplace.html:53
+msgid ""
+"Vetrix 1 features a multi-layered, adaptive money management system. It's"
+" designed to control daily drawdowns and manage risk intelligently, "
+"protecting your capital during volatile conditions."
+msgstr ""
+"Vetrix 1, çok katmanlı, uyarlanabilir bir para yönetim sistemine sahiptir. "
+"Günlük düşüşleri kontrol etmek ve riski akıllıca yönetmek, dalgalı "
+"koşullarda sermayenizi korumak için tasarlanmıştır."
+
+#: templates/marketplace.html:63
+msgid "How We Compare"
+msgstr "Karşılaştırma"
+
+#: templates/marketplace.html:68
+msgid "Feature"
+msgstr "Özellik"
+
+#: templates/marketplace.html:69
+msgid "Vetrix 1 (VestHub)"
+msgstr "Vetrix 1 (VestHub)"
+
+#: templates/marketplace.html:70
+msgid "Retail Bot Marketplaces"
+msgstr "Perakende Bot Pazarları"
+
+#: templates/marketplace.html:71
+msgid "Retail Crypto Bots (e.g., 3Commas)"
+msgstr "Bireysel Kripto Botları (örn. 3Commas)"
+
+#: templates/marketplace.html:76
+msgid "Target Audience"
+msgstr "Hedef Kitle"
+
+#: templates/marketplace.html:77
+msgid "Funds, Companies, Pro Traders"
+msgstr "Fonlar, Şirketler, Profesyonel Yatırımcılar"
+
+#: templates/marketplace.html:78
+msgid "Retail Traders"
+msgstr "Bireysel Yatırımcılar"
+
+#: templates/marketplace.html:79
+msgid "Retail Crypto Users"
+msgstr "Bireysel Kripto Kullanıcıları"
+
+#: templates/marketplace.html:82
+msgid "Revenue Model"
+msgstr "Gelir Modeli"
+
+#: templates/marketplace.html:83
+msgid "Profit-Sharing (Aligned)"
+msgstr "Kar Paylaşımı (Hizalanmış)"
+
+#: templates/marketplace.html:84
+msgid "Subscription / Direct Sale"
+msgstr "Abonelik / Doğrudan Satış"
+
+#: templates/marketplace.html:85
+msgid "Subscription"
+msgstr "Abonelik"
+
+#: templates/marketplace.html:88
+msgid "Core Technology"
+msgstr "Çekirdek Teknoloji"
+
+#: templates/marketplace.html:89
+msgid "C# (Low-Latency)"
+msgstr "C# (Düşük Gecikme)"
+
+#: templates/marketplace.html:90
+msgid "Varies (Often Python, JS)"
+msgstr "Değişken (Genellikle Python, JS)"
+
+#: templates/marketplace.html:91
+msgid "Varies"
+msgstr "Değişken"
+
+#: templates/marketplace.html:94
+msgid "Data Source"
+msgstr "Veri Kaynağı"
+
+#: templates/marketplace.html:95
+msgid "Real Futures Range Bars"
+msgstr "Gerçek Vadeli İşlem Range Bar'ları"
+
+#: templates/marketplace.html:96
+msgid "Often unreliable CFD data"
+msgstr "Genellikle güvenilmez CFD verileri"
+
+#: templates/marketplace.html:97
+msgid "Exchange API"
+msgstr "Borsa API'si"
+
+#: templates/marketplace.html:100
+msgid "Risk Management"
+msgstr "Risk Yönetimi"
+
+#: templates/marketplace.html:101
+msgid "Adaptive, Multi-Level, DD Control"
+msgstr "Uyarlanabilir, Çok Seviyeli, DD Kontrolü"
+
+#: templates/marketplace.html:102
+msgid "Basic / None"
+msgstr "Temel / Yok"
+
+#: templates/marketplace.html:103
+msgid "User-dependent Stop-Loss"
+msgstr "Kullanıcıya bağlı Zarar Durdurma (Stop-Loss)"
+
+#: templates/marketplace.html:106
+msgid "Transparency"
+msgstr "Şeffaflık"
+
+#: templates/marketplace.html:107
+msgid "Full (Real Statements)"
+msgstr "Tam (Gerçek Hesap Özetleri)"
+
+#: templates/marketplace.html:108
+msgid "Low (Backtests only)"
+msgstr "Düşük (Sadece Backtestler)"
+
+#: templates/marketplace.html:109
+msgid "User-dependent"
+msgstr "Kullanıcıya bağlı"
+
+#: templates/marketplace.html:120
+msgid "Built for Professionals"
+msgstr "Profesyoneller İçin Tasarlandı"
+
+#: templates/marketplace.html:127
+msgid "For Individual Pro Traders"
+msgstr "Bireysel Profesyonel Yatırımcılar İçin"
+
+#: templates/marketplace.html:128
+msgid ""
+"Run Vetrix 1 directly on your own trading account. You maintain full "
+"control over your funds. We provide the execution, risk management, and "
+"performance monitoring."
+msgstr ""
+"Vetrix 1'i doğrudan kendi ticaret hesabınızda çalıştırın. Fonlarınız "
+"üzerinde tam kontrolü elinizde tutarsınız. Biz işlem yürütme, risk yönetimi "
+"ve performans izleme sağlıyoruz."
+
+#: templates/marketplace.html:130 templates/marketplace.html:148
+msgid "Min. Capital:"
+msgstr "Min. Sermaye:"
+
+#: templates/marketplace.html:130
+msgid "$60,000"
+msgstr "$60.000"
+
+#: templates/marketplace.html:132 templates/marketplace.html:149
+msgid "Model:"
+msgstr "Model:"
+
+#: templates/marketplace.html:132
+#, python-format, no-c-format, no-python-format
+msgid "Profit-Sharing (50/50 above 2%% threshold)"
+msgstr "Kar Paylaşımı (%%2 eşiğinin üzerinde 50/50)"
+
+#: templates/marketplace.html:133
+msgid "Connection:"
+msgstr "Bağlantı:"
+
+#: templates/marketplace.html:133
+msgid "Direct API (NinjaTrader, AMP, etc.)"
+msgstr "Doğrudan API (NinjaTrader, AMP, vb.)"
+
+#: templates/marketplace.html:135
+msgid "Start Trading"
+msgstr "İşleme Başla"
+
+#: templates/marketplace.html:144
+msgid "For Institutions & Funds (B2B)"
+msgstr "Kurumlar ve Fonlar İçin (B2B)"
+
+#: templates/marketplace.html:146
+msgid ""
+"Integrate Vetrix 1 into your fund's portfolio to diversify strategies and"
+" stabilize returns. Ideal for fixed-income funds, prop firms, and "
+"corporations with idle capital."
+msgstr ""
+"Stratejileri çeşitlendirmek ve getirileri istikrara kavuşturmak için Vetrix "
+"1'i fonunuzun portföyüne entegre edin. Sabit getirili fonlar, prop firmaları "
+"ve atıl sermayesi olan şirketler için idealdir."
+
+#: templates/marketplace.html:148
+msgid "$100,000"
+msgstr "$100.000"
+
+#: templates/marketplace.html:149
+msgid "B2B Agreement (PoC required)"
+msgstr "B2B Anlaşması (PoC gereklidir)"
+
+#: templates/marketplace.html:150
+msgid "Features:"
+msgstr "Özellikler:"
+
+#: templates/marketplace.html:150
+msgid "SLA, Custom Risk Overlays, Managerial Reporting"
+msgstr "SLA, Özel Risk Katmanları, Yönetimsel Raporlama"
+
+#: templates/marketplace.html:152
+msgid "Request a B2B Demo"
+msgstr "B2B Demosu Talep Edin"
+
+#: templates/marketplace.html:163
+msgid "Key Features"
+msgstr "Temel Özellikler"
+
+#: templates/marketplace.html:169
+msgid "Multi-Platform Ready"
+msgstr "Çoklu Platforma Hazır"
+
+#: templates/marketplace.html:170
+msgid ""
+"Modular architecture designed for NinjaTrader, MetaTrader, Tradovate, and"
+" more."
+msgstr ""
+"NinjaTrader, MetaTrader, Tradovate ve daha fazlası için tasarlanmış modüler "
+"mimari."
+
+#: templates/marketplace.html:178
+msgid "Universal Market Adaptability"
+msgstr "Evrensel Piyasa Uyumluluğu"
+
+#: templates/marketplace.html:179
+msgid ""
+"Data-independence allows Vetrix to run seamlessly on Futures, Crypto "
+"Futures, Forex, and Commodities."
+msgstr ""
+"Veri bağımsızlığı, Vetrix'in Vadeli İşlemler, Kripto Vadeli İşlemler, Forex "
+"ve Emtialar üzerinde sorunsuz çalışmasını sağlar."
+
+#: templates/marketplace.html:187
+msgid "AI & Machine Learning Ready"
+msgstr "Yapay Zeka ve Makine Öğrenimine Hazır"
+
+#: templates/marketplace.html:188
+msgid ""
+"Built with a foundation for future AI-driven adaptive learning and self-"
+"optimization."
+msgstr ""
+"Gelecekteki yapay zeka odaklı uyarlanabilir öğrenme ve kendi kendine "
+"optimizasyon temeli üzerine kurulmuştur."
+
+#: templates/marketplace.html:196
+msgid "Multi-Risk Coverage"
+msgstr "Çoklu Risk Kapsamı"
+
+#: templates/marketplace.html:197
+msgid "Tailored profit-to-risk optimization based on your selected risk profile."
+msgstr ""
+"Seçtiğiniz risk profiline göre uyarlanmış kar-risk optimizasyonu."
+
+#: templates/marketplace.html:205
+msgid "Multi-Strategy Management"
+msgstr "Çoklu Strateji Yönetimi"
+
+#: templates/marketplace.html:206
+msgid ""
+"Enables portfolio diversification and overall risk reduction by running "
+"multiple strategies."
+msgstr ""
+"Birden fazla strateji çalıştırarak portföy çeşitlendirmesi ve genel risk "
+"azaltımı sağlar."
+
+#: templates/marketplace.html:214
+msgid "API & Copy Trading"
+msgstr "API ve Kopya Ticaret"
+
+#: templates/marketplace.html:215
+msgid ""
+"Direct connectivity with global brokers (like AMP Broker) and exchanges "
+"(like Binance)."
+msgstr ""
+"Küresel brokerlar (AMP Broker gibi) ve borsalarla (Binance gibi) doğrudan "
+"bağlantı."
+
+#: templates/marketplace.html:228
+msgid "Ready to Upgrade Your Trading?"
+msgstr "Ticaretinizi Yükseltmeye Hazır Mısınız?"
+
+#: templates/marketplace.html:229
+msgid ""
+"Join VestHub today and get access to Vetrix 1. Stop guessing, start "
+"performing."
+msgstr ""
+"Bugün VestHub'a katılın ve Vetrix 1'e erişin. Tahmin etmeyi bırakın, "
+"performans göstermeye başlayın."
+
+#: templates/plans.html:11
+msgid ""
+"Select a plan that matches your financial goals. Returns are annualized. "
+"Find a plan you like?"
+msgstr ""
+"Finansal hedeflerinize uyan bir plan seçin. Getiriler yıllıklandırılmıştır. "
+"Beğendiğiniz bir plan buldunuz mu?"
+
+#: templates/plans.html:11
+msgid "Sign up free"
+msgstr "Ücretsiz kaydolun"
+
+#: templates/plans.html:11
+msgid "to get started."
+msgstr "ve başlayın."
+
+#: templates/privacy.html:10 templates/terms.html:10
+msgid "Last Updated: November 2025"
+msgstr "Son Güncelleme: Kasım 2025"
+
+#: templates/privacy.html:14
+msgid "1. Information We Collect"
+msgstr "1. Topladığımız Bilgiler"
+
+#: templates/privacy.html:15
+msgid ""
+"We collect information you provide directly to us, such as when you "
+"create an account, complete KYC verification, make a deposit, or "
+"communicate with support. This may include:"
+msgstr ""
+"Bir hesap oluşturduğunuzda, KYC doğrulamasını tamamladığınızda, para "
+"yatırdığınızda veya destekle iletişim kurduğunuzda bize doğrudan "
+"sağladığınız bilgileri topluyoruz. Bunlar şunları içerebilir:"
+
+#: templates/privacy.html:17
+msgid "Personal identification information (Name, email address, phone number)."
+msgstr "Kişisel kimlik bilgileri (Ad, e-posta adresi, telefon numarası)."
+
+#: templates/privacy.html:18
+msgid "Identity verification documents (Passport, ID card, utility bills)."
+msgstr "Kimlik doğrulama belgeleri (Pasaport, kimlik kartı, faturalar)."
+
+#: templates/privacy.html:19
+msgid "Financial information (Wallet addresses, transaction history)."
+msgstr "Finansal bilgiler (Cüzdan adresleri, işlem geçmişi)."
+
+#: templates/privacy.html:24
+msgid "2. How We Use Your Information"
+msgstr "2. Bilgilerinizi Nasıl Kullanıyoruz"
+
+#: templates/privacy.html:25
+msgid "We use the collected information to:"
+msgstr "Toplanan bilgileri şu amaçlarla kullanıyoruz:"
+
+#: templates/privacy.html:27
+msgid "Provide, maintain, and improve our services."
+msgstr "Hizmetlerimizi sağlamak, sürdürmek ve geliştirmek."
+
+#: templates/privacy.html:28
+msgid "Process transactions and send related notifications."
+msgstr "İşlemleri gerçekleştirmek ve ilgili bildirimleri göndermek."
+
+#: templates/privacy.html:29
+msgid "Verify your identity and prevent fraud."
+msgstr "Kimliğinizi doğrulamak ve dolandırıcılığı önlemek."
+
+#: templates/privacy.html:30
+msgid "Comply with legal obligations."
+msgstr "Yasal yükümlülüklere uymak."
+
+#: templates/privacy.html:35
+msgid "3. Data Security"
+msgstr "3. Veri Güvenliği"
+
+#: templates/privacy.html:36
+msgid ""
+"We implement appropriate technical and organizational measures to protect"
+" your personal data against unauthorized access, alteration, disclosure, "
+"or destruction. This includes encryption, two-factor authentication (2FA)"
+" support, and secure server infrastructure."
+msgstr ""
+"Kişisel verilerinizi yetkisiz erişime, değişikliğe, ifşaya veya imhaya karşı "
+"korumak için uygun teknik ve organizasyonel önlemleri uyguluyoruz. Buna "
+"şifreleme, iki faktörlü kimlik doğrulama (2FA) desteği ve güvenli sunucu "
+"altyapısı dahildir."
+
+#: templates/privacy.html:40
+msgid "4. Sharing of Information"
+msgstr "4. Bilgilerin Paylaşımı"
+
+#: templates/privacy.html:41
+msgid ""
+"We do not sell your personal data. We may share your information with "
+"third-party service providers (e.g., email delivery services) only to the"
+" extent necessary to provide our services, or when required by law."
+msgstr ""
+"Kişisel verilerinizi satmıyoruz. Bilgilerinizi üçüncü taraf hizmet "
+"sağlayıcılarla (örneğin, e-posta teslim hizmetleri) yalnızca hizmetlerimizi "
+"sağlamak için gerekli olduğu ölçüde veya yasalar gerektirdiğinde "
+"paylaşabiliriz."
+
+#: templates/privacy.html:45
+msgid "5. Cookies"
+msgstr "5. Çerezler"
+
+#: templates/privacy.html:46
+msgid ""
+"We use cookies to improve your experience on our site. You can instruct "
+"your browser to refuse all cookies or to indicate when a cookie is being "
+"sent."
+msgstr ""
+"Sitemizdeki deneyiminizi geliştirmek için çerezler kullanıyoruz. "
+"Tarayıcınıza tüm çerezleri reddetmesi veya bir çerez gönderildiğinde bunu "
+"belirtmesi talimatını verebilirsiniz."
+
+#: templates/privacy.html:50
+msgid "6. Contact Us"
+msgstr "6. Bize Ulaşın"
+
+#: templates/privacy.html:51
+msgid ""
+"If you have any questions about this Privacy Policy, please contact us at"
+" support@vesthub.org."
+msgstr ""
+"Bu Gizlilik Politikası hakkında herhangi bir sorunuz varsa, lütfen "
+"support@vesthub.org adresinden bizimle iletişime geçin."
+#: templates/privacy.html:55 templates/risk_disclosure.html:39
+#: templates/terms.html:54
+msgid "&larr; Back to Home"
+msgstr "&larr; Ana Sayfaya Dön"
+
+#: templates/reset_password.html:9 templates/reset_password.html:34
+msgid "Reset Password"
+msgstr "Şifreyi Sıfırla"
+
+#: templates/reset_password.html:10
+msgid "Please enter your new password below."
+msgstr "Lütfen yeni şifrenizi aşağıya girin."
+
+#: templates/reset_password.html:18
+msgid "New Password"
+msgstr "Yeni Şifre"
+
+#: templates/reset_password.html:21
+msgid "Enter new password"
+msgstr "Yeni şifreyi girin"
+
+#: templates/reset_password.html:26
+msgid "Confirm New Password"
+msgstr "Yeni Şifreyi Onayla"
+
+#: templates/reset_password.html:29
+msgid "Confirm new password"
+msgstr "Yeni şifreyi onayla"
+
+#: templates/risk_assessment.html:8
+msgid "Investment Risk Profile"
+msgstr "Yatırım Risk Profili"
+
+#: templates/risk_assessment.html:9
+msgid ""
+"Please answer the following questions to help us understand your "
+"investment goals and risk tolerance. This will take about 5 minutes."
+msgstr ""
+"Yatırım hedeflerinizi ve risk toleransınızı anlamamıza yardımcı olmak için "
+"lütfen aşağıdaki soruları cevaplayın. Bu işlem yaklaşık 5 dakika sürecektir."
+
+#: templates/risk_assessment.html:16
+msgid "Financial Profile"
+msgstr "Finansal Profil"
+
+#: templates/risk_assessment.html:22
+msgid "Knowledge & Experience"
+msgstr "Bilgi ve Deneyim"
+
+#: templates/risk_assessment.html:28
+msgid "Risk Tolerance"
+msgstr "Risk Toleransı"
+
+#: templates/risk_assessment.html:43
+msgid "Step 1: Your Financial Profile"
+msgstr "1. Adım: Finansal Profiliniz"
+
+#: templates/risk_assessment.html:47
+msgid "1. What is your age range?"
+msgstr "1. Yaş aralığınız nedir?"
+
+#: templates/risk_assessment.html:49
+msgid "18-30 (High Capacity)"
+msgstr "18-30 (Yüksek Kapasite)"
+
+#: templates/risk_assessment.html:50
+msgid "31-45"
+msgstr "31-45"
+
+#: templates/risk_assessment.html:51
+msgid "46-60"
+msgstr "46-60"
+
+#: templates/risk_assessment.html:52
+msgid "61+ (Low Capacity)"
+msgstr "61+ (Düşük Kapasite)"
+
+#: templates/risk_assessment.html:57
+msgid "2. What is your approximate annual income?"
+msgstr "2. Yaklaşık yıllık geliriniz nedir?"
+
+#: templates/risk_assessment.html:59
+msgid "Less than $50,000"
+msgstr "$50.000'den az"
+
+#: templates/risk_assessment.html:60
+msgid "$50,000 - $100,000"
+msgstr "$50.000 - $100.000"
+
+#: templates/risk_assessment.html:61
+msgid "$100,000 - $250,000"
+msgstr "$100.000 - $250.000"
+
+#: templates/risk_assessment.html:62
+msgid "More than $250,000"
+msgstr "$250.000'den fazla"
+
+#: templates/risk_assessment.html:67
+msgid "3. What is your approximate net worth (excluding your primary home)?"
+msgstr "3. Yaklaşık net değeriniz nedir (birincil eviniz hariç)?"
+
+#: templates/risk_assessment.html:69
+msgid "Less than $100,000"
+msgstr "$100.000'den az"
+
+#: templates/risk_assessment.html:70
+msgid "$100,000 - $500,000"
+msgstr "$100.000 - $500.000"
+
+#: templates/risk_assessment.html:71
+msgid "$500,000 - $1,000,000"
+msgstr "$500.000 - $1.000.000"
+
+#: templates/risk_assessment.html:72
+msgid "More than $1,000,000"
+msgstr "$1.000.000'dan fazla"
+
+#: templates/risk_assessment.html:77
+msgid "4. What is your primary financial goal?"
+msgstr "4. Birincil finansal hedefiniz nedir?"
+
+#: templates/risk_assessment.html:79
+msgid "Capital Preservation (Safety)"
+msgstr "Sermaye Koruma (Güvenlik)"
+
+#: templates/risk_assessment.html:80
+msgid "Generating Income"
+msgstr "Gelir Elde Etme"
+
+#: templates/risk_assessment.html:81
+msgid "Balanced Growth"
+msgstr "Dengeli Büyüme"
+
+#: templates/risk_assessment.html:82
+msgid "Aggressive Growth"
+msgstr "Agresif Büyüme"
+
+#: templates/risk_assessment.html:87
+msgid "5. How much of your income do you save monthly?"
+msgstr "5. Gelirinizin ne kadarını aylık olarak biriktiriyorsunuz?"
+
+#: templates/risk_assessment.html:89
+#, no-c-format, no-python-format
+msgid "Less than 10%"
+msgstr "%10'dan az"
+
+#: templates/risk_assessment.html:90
+#, no-c-format, no-python-format
+msgid "10% - 25%"
+msgstr "%10 - %25"
+
+#: templates/risk_assessment.html:91
+#, no-c-format, no-python-format
+msgid "25% - 50%"
+msgstr "%25 - %50"
+
+#: templates/risk_assessment.html:92
+#, no-c-format, no-python-format
+msgid "More than 50%"
+msgstr "%50'den fazla"
+
+#: templates/risk_assessment.html:101
+msgid "Step 2: Your Knowledge & Experience"
+msgstr "2. Adım: Bilgi ve Deneyiminiz"
+
+#: templates/risk_assessment.html:105
+msgid "6. Investment knowledge level?"
+msgstr "6. Yatırım bilgi seviyesi?"
+
+#: templates/risk_assessment.html:107
+msgid "None (Beginner)"
+msgstr "Yok (Yeni Başlayan)"
+
+#: templates/risk_assessment.html:108
+msgid "Basic (Stocks/Bonds)"
+msgstr "Temel (Hisse Senetleri/Tahviller)"
+
+#: templates/risk_assessment.html:109
+msgid "Advanced (Derivatives/Crypto)"
+msgstr "İleri (Türevler/Kripto)"
+
+#: templates/risk_assessment.html:114
+msgid "7. Intended investment time horizon?"
+msgstr "7. Planlanan yatırım vadesi?"
+
+#: templates/risk_assessment.html:116
+msgid "Less than 1 year"
+msgstr "1 yıldan az"
+
+#: templates/risk_assessment.html:117
+msgid "1 - 3 years"
+msgstr "1 - 3 yıl"
+
+#: templates/risk_assessment.html:118
+msgid "3 - 5 years"
+msgstr "3 - 5 yıl"
+
+#: templates/risk_assessment.html:119
+msgid "More than 5 years"
+msgstr "5 yıldan fazla"
+
+#: templates/risk_assessment.html:124
+msgid "8. Experience with stocks/funds?"
+msgstr "8. Hisse senedi/fon deneyimi?"
+
+#: templates/risk_assessment.html:126 templates/risk_assessment.html:135
+msgid "Never"
+msgstr "Hiç Yok"
+
+#: templates/risk_assessment.html:127 templates/risk_assessment.html:136
+msgid "Some"
+msgstr "Biraz"
+
+#: templates/risk_assessment.html:128 templates/risk_assessment.html:137
+msgid "Extensive"
+msgstr "Kapsamlı"
+
+#: templates/risk_assessment.html:133
+msgid "9. Experience with high-risk assets (Crypto/Forex)?"
+msgstr "9. Yüksek riskli varlıklarla (Kripto/Forex) deneyim?"
+
+#: templates/risk_assessment.html:142
+msgid "10. Understanding of Diversification?"
+msgstr "10. Çeşitlendirme anlayışı?"
+
+#: templates/risk_assessment.html:144
+msgid "No idea"
+msgstr "Fikrim yok"
+
+#: templates/risk_assessment.html:145
+msgid "I understand it reduces risk"
+msgstr "Riski azalttığını anlıyorum"
+
+#: templates/risk_assessment.html:154
+msgid "Step 3: Your Risk Tolerance"
+msgstr "3. Adım: Risk Toleransınız"
+
+#: templates/risk_assessment.html:158
+msgid "11. Which statement best describes you?"
+msgstr "11. Hangi ifade sizi en iyi tanımlıyor?"
+
+#: templates/risk_assessment.html:160
+msgid "I want to protect my money, even if returns are low."
+msgstr "Getiriler düşük olsa bile paramı korumak istiyorum."
+
+#: templates/risk_assessment.html:161
+msgid "I want stable growth with moderate risk."
+msgstr "Orta riskle istikrarlı büyüme istiyorum."
+
+#: templates/risk_assessment.html:162
+msgid "I want maximum returns and can accept large losses."
+msgstr "Maksimum getiri istiyorum ve büyük kayıpları kabul edebilirim."
+
+#: templates/risk_assessment.html:167
+#, python-format
+msgid "12. If your portfolio drops 20% in a month, what do you do?"
+msgstr "12. Portföyünüz bir ayda %20 düşerse ne yaparsınız?"
+
+#: templates/risk_assessment.html:169
+msgid "Sell everything immediately."
+msgstr "Hemen her şeyi satarım."
+
+#: templates/risk_assessment.html:170
+msgid "Do nothing / Wait for recovery."
+msgstr "Hiçbir şey yapmam / Düzelmesini beklerim."
+
+#: templates/risk_assessment.html:171
+msgid "Buy more at lower prices."
+msgstr "Daha düşük fiyatlardan daha fazla alırım."
+
+#: templates/risk_assessment.html:176
+msgid "13. Which scenario do you prefer?"
+msgstr "13. Hangi senaryoyu tercih edersiniz?"
+
+#: templates/risk_assessment.html:178
+#, python-format
+#, no-c-format, no-python-format
+msgid "Guaranteed 3% return."
+msgstr "Garantili %3 getiri."
+
+#: templates/risk_assessment.html:179
+#, python-format
+#, no-c-format, no-python-format
+msgid "50% chance of 10% return, 50% chance of 0%."
+msgstr "%50 ihtimalle %10 getiri, %50 ihtimalle %0."
+
+#: templates/risk_assessment.html:180
+#, python-format
+#, no-c-format, no-python-format
+msgid "50% chance of 50% return, 50% chance of -20% loss."
+msgstr "%50 ihtimalle %50 getiri, %50 ihtimalle -%20 kayıp."
+
+#: templates/risk_assessment.html:185
+msgid "14. Allocation to high-risk assets?"
+msgstr "14. Yüksek riskli varlıklara ayrılan pay?"
+
+#: templates/risk_assessment.html:187
+#, no-c-format, no-python-format
+msgid "0% - 10%"
+msgstr "%0 - %10"
+
+#: templates/risk_assessment.html:188
+#, no-c-format, no-python-format
+msgid "10% - 30%"
+msgstr "%10 - %30"
+
+#: templates/risk_assessment.html:189
+#, no-c-format, no-python-format
+msgid "30% - 60%"
+msgstr "%30 - %60"
+
+#: templates/risk_assessment.html:190
+#, no-c-format, no-python-format
+msgid "More than 60%"
+msgstr "%60'tan fazla"
+
+#: templates/risk_assessment.html:195
+msgid "15. How do you feel about market volatility?"
+msgstr "15. Piyasa oynaklığı hakkında ne hissediyorsunuz?"
+
+#: templates/risk_assessment.html:197
+msgid "It makes me very anxious."
+msgstr "Beni çok endişelendiriyor."
+
+#: templates/risk_assessment.html:198
+msgid "I am concerned but can tolerate it."
+msgstr "Endişeliyim ama tahammül edebilirim."
+
+#: templates/risk_assessment.html:199
+msgid "I see it as an opportunity."
+msgstr "Bunu bir fırsat olarak görüyorum."
+
+#: templates/risk_assessment.html:208
+msgid "Previous"
+msgstr "Önceki"
+
+#: templates/risk_assessment.html:209
+msgid "Next (Step 2)"
+msgstr "Sonraki (2. Adım)"
+
+#: templates/risk_disclosure.html:9
+msgid "Risk Disclosure Statement"
+msgstr "Risk Bildirimi Beyanı"
+
+#: templates/risk_disclosure.html:13
+msgid "Important Notice:"
+msgstr "Önemli Uyarı:"
+
+#: templates/risk_disclosure.html:15
+msgid ""
+"Trading and investing in financial markets involve a significant level of"
+" risk and may not be suitable for all investors. You should carefully "
+"consider your investment objectives, level of experience, and risk "
+"appetite before deciding to invest."
+msgstr ""
+"Finansal piyasalarda ticaret ve yatırım yapmak önemli düzeyde risk içerir ve "
+"tüm yatırımcılar için uygun olmayabilir. Yatırım yapmaya karar vermeden önce "
+"yatırım hedeflerinizi, deneyim seviyenizi ve risk iştahınızı dikkatlice "
+"değerlendirmelisiniz."
+
+#: templates/risk_disclosure.html:19
+msgid "1. General Risk Warning"
+msgstr "1. Genel Risk Uyarısı"
+
+#: templates/risk_disclosure.html:20
+msgid ""
+"There is a possibility that you may sustain a loss of some or all of your"
+" initial investment and therefore you should not invest money that you "
+"cannot afford to lose. You should be aware of all the risks associated "
+"with trading and seek advice from an independent financial advisor if you"
+" have any doubts."
+msgstr ""
+"Başlangıç yatırımınızın bir kısmını veya tamamını kaybetme ihtimaliniz "
+"vardır ve bu nedenle kaybetmeyi göze alamayacağınız parayla yatırım "
+"yapmamalısınız. Ticaretle ilgili tüm risklerin farkında olmalı ve herhangi "
+"bir şüpheniz varsa bağımsız bir finansal danışmandan tavsiye almalısınız."
+
+#: templates/risk_disclosure.html:24
+msgid "2. Market Volatility"
+msgstr "2. Piyasa Oynaklığı"
+
+#: templates/risk_disclosure.html:25
+msgid ""
+"Cryptocurrency and financial markets are highly volatile. Prices can "
+"fluctuate significantly in a short period due to various factors "
+"including regulatory changes, market sentiment, and technical issues. "
+"VestHub cannot guarantee profits or freedom from loss."
+msgstr ""
+"Kripto para ve finansal piyasalar oldukça değişkendir. Fiyatlar, düzenleyici "
+"değişiklikler, piyasa duyarlılığı ve teknik sorunlar dahil olmak üzere "
+"çeşitli faktörler nedeniyle kısa sürede önemli ölçüde dalgalanabilir. "
+"VestHub kar veya kayıptan muafiyet garanti edemez."
+
+#: templates/risk_disclosure.html:29
+msgid "3. Technology Risk"
+msgstr "3. Teknoloji Riski"
+
+#: templates/risk_disclosure.html:30
+msgid ""
+"While VestHub employs advanced security measures, there are inherent "
+"risks associated with using internet-based trading systems, including, "
+"but not limited to, the failure of hardware, software, and internet "
+"connections."
+msgstr ""
+"VestHub gelişmiş güvenlik önlemleri kullanmasına rağmen, donanım, yazılım ve "
+"internet bağlantılarının arızalanması dahil ancak bunlarla sınırlı olmamak "
+"üzere internet tabanlı ticaret sistemlerinin kullanılmasıyla ilişkili doğal "
+"riskler vardır."
+
+#: templates/risk_disclosure.html:34
+msgid "4. No Financial Advice"
+msgstr "4. Finansal Tavsiye Değildir"
+
+#: templates/risk_disclosure.html:35
+msgid ""
+"The content provided on the VestHub website, including investment plans "
+"and market data, is for informational purposes only and does not "
+"constitute financial advice. All investment decisions are made at your "
+"own risk."
+msgstr ""
+"Yatırım planları ve piyasa verileri dahil olmak üzere VestHub web sitesinde "
+"sağlanan içerik yalnızca bilgilendirme amaçlıdır ve finansal tavsiye "
+"niteliği taşımaz. Tüm yatırım kararları kendi riskiniz altındadır."
+
+#: templates/settings.html:25
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/settings.html:26
+msgid "Security"
+msgstr "Güvenlik"
+
+#: templates/settings.html:27
+msgid "Verification (KYC)"
+msgstr "Doğrulama (KYC)"
+
+#: templates/settings.html:38
+msgid "My Profile"
+msgstr "Profilim"
+
+#: templates/settings.html:42 templates/signup.html:23
+msgid "First Name"
+msgstr "Ad"
+
+#: templates/settings.html:43 templates/signup.html:27
+msgid "Last Name"
+msgstr "Soyad"
+
+#: templates/settings.html:44
+msgid "Email"
+msgstr "E-posta"
+
+#: templates/settings.html:54
+msgid "Two-Factor Authentication (2FA)"
+msgstr "İki Faktörlü Kimlik Doğrulama (2FA)"
+
+#: templates/settings.html:60
+msgid "2FA is Enabled"
+msgstr "2FA Etkin"
+
+#: templates/settings.html:60
+msgid "Your account is protected with Google Authenticator."
+msgstr "Hesabınız Google Authenticator ile korunmaktadır."
+
+#: templates/settings.html:63
+msgid "2FA is currently disabled. Enable it to secure your account."
+msgstr "2FA şu anda devre dışı. Hesabınızı güvence altına almak için etkinleştirin."
+
+#: templates/settings.html:67
+msgid "Scan this QR Code with Google Authenticator"
+msgstr "Bu QR Kodunu Google Authenticator ile tarayın"
+
+#: templates/settings.html:70
+msgid "Or enter manual key:"
+msgstr "Veya manuel anahtarı girin:"
+
+#: templates/settings.html:75
+msgid "Enter 6-digit code"
+msgstr "6 haneli kodu girin"
+
+#: templates/settings.html:76
+msgid "Verify & Enable"
+msgstr "Doğrula ve Etkinleştir"
+
+#: templates/settings.html:82
+msgid "Setup 2FA Now"
+msgstr "2FA'yı Şimdi Kur"
+
+#: templates/settings.html:95
+msgid "Verified!"
+msgstr "Doğrulandı!"
+
+#: templates/settings.html:97
+msgid "Under Review"
+msgstr "İnceleme Altında"
+
+#: templates/settings.html:102
+msgid "1. Identity Document (ID/Passport)"
+msgstr "1. Kimlik Belgesi (Kimlik/Pasaport)"
+
+#: templates/settings.html:106
+msgid "2. Proof of Address"
+msgstr "2. Adres Kanıtı"
+
+#: templates/settings.html:114
+msgid "Security Check"
+msgstr "Güvenlik Kontrolü"
+
+#: templates/settings.html:115
+msgid "Enter 2FA Code to Submit"
+msgstr "Göndermek için 2FA Kodunu Girin"
+
+#: templates/settings.html:119
+msgid "Submit Verification"
+msgstr "Doğrulamayı Gönder"
+
+#: templates/signup.html:6
+msgid "Create Your Account"
+msgstr "Hesabını Oluştur"
+
+#: templates/signup.html:36 templates/signup.html:40
+msgid "(Optional)"
+msgstr "(İsteğe Bağlı)"
+#: templates/signup.html:40
+msgid "Referral Code"
+msgstr "Referans Kodu"
+
+#: templates/signup.html:47
+msgid "Min 8 chars, 1 Uppercase, 1 Number, 1 Symbol (!@#$%)"
+msgstr "En az 8 karakter, 1 büyük harf, 1 rakam, 1 sembol (!@#$%)"
+
+#: templates/signup.html:52
+msgid "Confirm Password"
+msgstr "Şifreyi Doğrula"
+
+#: templates/signup.html:57
+msgid "Create Account"
+msgstr "Hesap Oluştur"
+
+#: templates/signup.html:61
+msgid "Already have an account?"
+msgstr "Zaten bir hesabın var mı?"
+
+#: templates/support.html:8
+msgid "Support Center"
+msgstr "Destek Merkezi"
+
+#: templates/support.html:10
+msgid "New Ticket"
+msgstr "Yeni Talep"
+
+#: templates/support.html:17
+msgid "Submit a Ticket"
+msgstr "Bir Talep Gönder"
+
+#: templates/support.html:27
+msgid "Brief summary of the issue"
+msgstr "Sorunun kısa özeti"
+
+#: templates/support.html:30 templates/support.html:65
+msgid "Category"
+msgstr "Kategori"
+
+#: templates/support.html:32
+msgid "Technical Issue"
+msgstr "Teknik Sorun"
+
+#: templates/support.html:34
+msgid "Account Security"
+msgstr "Hesap Güvenliği"
+
+#: templates/support.html:35
+msgid "KYC Verification"
+msgstr "KYC Doğrulaması"
+
+#: templates/support.html:36
+msgid "Other"
+msgstr "Diğer"
+
+#: templates/support.html:41
+msgid "Describe your issue in detail..."
+msgstr "Sorununuzu detaylı olarak açıklayın..."
+
+#: templates/support.html:45
+msgid "Submit Ticket"
+msgstr "Talebi Gönder"
+
+#: templates/support.html:56
+msgid "My Tickets"
+msgstr "Taleplerim"
+
+#: templates/support.html:63
+msgid "Ticket ID"
+msgstr "Talep No"
+
+#: templates/support.html:66
+msgid "Last Update"
+msgstr "Son Güncelleme"
+
+#: templates/support.html:83
+msgid "Open"
+msgstr "Açık"
+
+#: templates/support.html:85
+msgid "Answered"
+msgstr "Yanıtlandı"
+
+#: templates/support.html:93
+msgid "View"
+msgstr "Görüntüle"
+
+#: templates/support.html:102
+msgid "No support tickets found."
+msgstr "Destek talebi bulunamadı."
+
+#: templates/support_view.html:53
+msgid "This ticket is closed. You can create a new ticket if needed."
+msgstr "Bu talep kapatılmıştır. Gerekirse yeni bir talep oluşturabilirsiniz."
+
+#: templates/support_view.html:59
+msgid "Type your reply..."
+msgstr "Yanıtınızı yazın..."
+
+#: templates/support_view.html:60
+msgid "Send"
+msgstr "Gönder"
+
+#: templates/terms.html:9
+msgid "Terms and Conditions"
+msgstr "Şartlar ve Koşullar"
+
+#: templates/terms.html:14
+msgid "1. Introduction"
+msgstr "1. Giriş"
+
+#: templates/terms.html:15
+msgid ""
+"Welcome to VestHub. By accessing our website and using our services, you "
+"agree to be bound by these Terms and Conditions. Please read them "
+"carefully."
+msgstr ""
+"VestHub'a hoş geldiniz. Web sitemize erişerek ve hizmetlerimizi kullanarak, "
+"bu Şartlar ve Koşullara bağlı kalmayı kabul edersiniz. Lütfen bunları "
+"dikkatlice okuyun."
+
+#: templates/terms.html:19
+msgid "2. Eligibility"
+msgstr "2. Uygunluk"
+
+#: templates/terms.html:20
+msgid ""
+"To use our services, you must be at least 18 years old and capable of "
+"forming a binding contract. You must not be a resident of any "
+"jurisdiction where accessing or using our services is prohibited."
+msgstr ""
+"Hizmetlerimizi kullanmak için en az 18 yaşında olmanız ve bağlayıcı bir "
+"sözleşme yapabilmeniz gerekir. Hizmetlerimize erişmenin veya kullanmanın "
+"yasak olduğu herhangi bir yargı bölgesinde ikamet etmemelisiniz."
+
+#: templates/terms.html:24
+msgid "3. Account Registration and Security"
+msgstr "3. Hesap Kaydı ve Güvenlik"
+
+#: templates/terms.html:25
+msgid ""
+"You agree to provide accurate and complete information during the "
+"registration process. You are responsible for maintaining the "
+"confidentiality of your account credentials, including your password and "
+"2FA codes. VestHub is not liable for any loss or damage arising from your"
+" failure to protect your account information."
+msgstr ""
+"Kayıt işlemi sırasında doğru ve eksiksiz bilgi vermeyi kabul edersiniz. "
+"Şifreniz ve 2FA kodlarınız dahil olmak üzere hesap kimlik bilgilerinizin "
+"gizliliğini korumaktan siz sorumlusunuz. VestHub, hesap bilgilerinizi "
+"koruyamamanızdan kaynaklanan herhangi bir kayıp veya hasardan sorumlu "
+"değildir."
+
+#: templates/terms.html:29
+msgid "4. Identity Verification (KYC)"
+msgstr "4. Kimlik Doğrulama (KYC)"
+
+#: templates/terms.html:30
+msgid ""
+"To comply with anti-money laundering (AML) regulations, VestHub requires "
+"all users to complete Identity Verification (KYC) before withdrawing "
+"funds. We reserve the right to request additional documents or suspend "
+"accounts that fail to provide satisfactory proof of identity."
+msgstr ""
+"Kara para aklamayı önleme (AML) düzenlemelerine uymak için VestHub, tüm "
+"kullanıcıların para çekmeden önce Kimlik Doğrulamasını (KYC) tamamlamasını "
+"gerektirir. Ek belgeler talep etme veya tatmin edici kimlik kanıtı sunmayan "
+"hesapları askıya alma hakkımız saklıdır."
+
+#: templates/terms.html:34
+msgid "5. Investment Services"
+msgstr "5. Yatırım Hizmetleri"
+
+#: templates/terms.html:35
+msgid ""
+"VestHub provides automated trading and investment plans. While we strive "
+"for accuracy, past performance is not indicative of future results. You "
+"acknowledge that all investments carry risk, and you are solely "
+"responsible for your investment decisions."
+msgstr ""
+"VestHub otomatik ticaret ve yatırım planları sunar. Doğruluk için çabalasak "
+"da, geçmiş performans gelecekteki sonuçların göstergesi değildir. Tüm "
+"yatırımların risk taşıdığını ve yatırım kararlarınızdan yalnızca sizin "
+"sorumlu olduğunuzu kabul edersiniz."
+
+#: templates/terms.html:39
+msgid "6. Deposits and Withdrawals"
+msgstr "6. Para Yatırma ve Çekme"
+
+#: templates/terms.html:40
+msgid ""
+"Deposits must be made using the supported payment methods. Withdrawals "
+"are processed according to our withdrawal policy and may be subject to "
+"security checks. You agree not to deposit funds originating from illegal "
+"activities."
+msgstr ""
+"Para yatırma işlemleri desteklenen ödeme yöntemleri kullanılarak "
+"yapılmalıdır. Para çekme işlemleri para çekme politikamıza göre işlenir ve "
+"güvenlik kontrollerine tabi olabilir. Yasa dışı faaliyetlerden kaynaklanan "
+"fonları yatırmamayı kabul edersiniz."
+
+#: templates/terms.html:44
+msgid "7. Limitation of Liability"
+msgstr "7. Sorumluluk Sınırlaması"
+
+#: templates/terms.html:45
+msgid ""
+"VestHub shall not be liable for any indirect, incidental, special, "
+"consequential, or punitive damages, including without limitation, loss of"
+" profits, data, use, goodwill, or other intangible losses, resulting from"
+" your access to or use of or inability to access or use the services."
+msgstr ""
+"VestHub, hizmetlere erişiminizden veya kullanımınızdan veya hizmetlere "
+"erişememenizden veya kullanamamanızdan kaynaklanan kar, veri, kullanım, "
+"itibar veya diğer maddi olmayan kayıplar dahil ancak bunlarla sınırlı "
+"olmamak üzere dolaylı, arızi, özel, sonuç olarak ortaya çıkan veya cezai "
+"zararlardan sorumlu olmayacaktır."
+
+#: templates/terms.html:49
+msgid "8. Changes to Terms"
+msgstr "8. Şartlarda Değişiklikler"
+
+#: templates/terms.html:50
+msgid ""
+"We reserve the right to modify these terms at any time. We will notify "
+"users of any significant changes via email or a notice on our website."
+msgstr ""
+"Bu şartları istediğimiz zaman değiştirme hakkımız saklıdır. Önemli "
+"değişiklikleri e-posta veya web sitemizdeki bir bildirim yoluyla "
+"kullanıcılara bildireceğiz."
+
+#: templates/trader_api.html:7 templates/trader_layout.html:39
+#: templates/trader_layout.html:100
+msgid "API Management"
+msgstr "API Yönetimi"
+
+#: templates/trader_api.html:9 templates/trader_api.html:83
+msgid "Connect New Account"
+msgstr "Yeni Hesap Bağla"
+
+#: templates/trader_api.html:16
+msgid "Secure Connection:"
+msgstr "Güvenli Bağlantı:"
+
+#: templates/trader_api.html:16
+msgid ""
+"Your API keys are encrypted and stored securely. We never have access to "
+"withdraw funds from your brokerage account."
+msgstr ""
+"API anahtarlarınız şifrelenir ve güvenli bir şekilde saklanır. Borsa "
+"hesabınızdan para çekme erişimimiz asla yoktur."
+
+#: templates/trader_api.html:22
+msgid "Connected Exchange/Broker Accounts"
+msgstr "Bağlı Borsa/Aracı Kurum Hesapları"
+
+#: templates/trader_api.html:29
+msgid "Platform"
+msgstr "Platform"
+
+#: templates/trader_api.html:30
+msgid "Label"
+msgstr "Etiket"
+
+#: templates/trader_api.html:31
+msgid "API Key (Masked)"
+msgstr "API Anahtarı (Maskeli)"
+
+#: templates/trader_api.html:33
+msgid "Last Active"
+msgstr "Son Etkinlik"
+
+#: templates/trader_api.html:43 templates/trader_api.html:92
+msgid "NinjaTrader"
+msgstr "NinjaTrader"
+
+#: templates/trader_api.html:46
+msgid "Main Futures Acc"
+msgstr "Ana Vadeli İşlemler Hesabı"
+
+#: templates/trader_api.html:47
+msgid "7A8x............9B2z"
+msgstr "7A8x............9B2z"
+
+#: templates/trader_api.html:48
+msgid "Connected"
+msgstr "Bağlandı"
+
+#: templates/trader_api.html:49
+msgid "2 mins ago"
+msgstr "2 dakika önce"
+
+#: templates/trader_api.html:60 templates/trader_api.html:95
+msgid "Binance Futures"
+msgstr "Binance Futures"
+
+#: templates/trader_api.html:63
+msgid "Crypto Scalping"
+msgstr "Kripto Scalping"
+
+#: templates/trader_api.html:64
+msgid "vmK2............p0Lq"
+msgstr "vmK2............p0Lq"
+
+#: templates/trader_api.html:65
+msgid "Error"
+msgstr "Hata"
+
+#: templates/trader_api.html:66
+msgid "2 days ago"
+msgstr "2 gün önce"
+
+#: templates/trader_api.html:89
+msgid "Broker / Exchange"
+msgstr "Aracı Kurum / Borsa"
+
+#: templates/trader_api.html:91
+msgid "Select platform..."
+msgstr "Platform seçin..."
+
+#: templates/trader_api.html:93
+msgid "AMP Futures"
+msgstr "AMP Futures"
+
+#: templates/trader_api.html:94
+msgid "Tradovate"
+msgstr "Tradovate"
+
+#: templates/trader_api.html:99
+msgid "Connection Label"
+msgstr "Bağlantı Etiketi"
+
+#: templates/trader_api.html:100
+msgid "e.g., Main Account"
+msgstr "örn. Ana Hesap"
+
+#: templates/trader_api.html:103
+msgid "API Key"
+msgstr "API Anahtarı"
+
+#: templates/trader_api.html:107
+msgid "API Secret"
+msgstr "API Gizli Anahtarı (Secret)"
+
+#: templates/trader_api.html:112
+msgid "Enable Trading Permission (Required for Vetrix 1)"
+msgstr "Alım Satım İznini Etkinleştir (Vetrix 1 için Gerekli)"
+
+#: templates/trader_api.html:115
+msgid "Connect & Test"
+msgstr "Bağla ve Test Et"
+
+#: templates/trader_layout.html:25 templates/trader_layout.html:73
+#: templates/trader_layout.html:84
+msgid "Trader Portal"
+msgstr "Yatırımcı Portalı"
+
+#: templates/trader_layout.html:35 templates/trader_layout.html:96
+msgid "My Account (Vetrix 1)"
+msgstr "Hesabım (Vetrix 1)"
+
+#: templates/trader_layout.html:43 templates/trader_layout.html:104
+msgid "Live Performance"
+msgstr "Canlı Performans"
+
+#: templates/trader_layout.html:47 templates/trader_layout.html:108
+msgid "My Subscription"
+msgstr "Aboneliğim"
+
+#: templates/trader_layout.html:58 templates/trader_layout.html:119
+msgid "Pro Trader"
+msgstr "Profesyonel Yatırımcı"
+
+#: templates/trader_subscription.html:7
+msgid "My Subscription & Profits"
+msgstr "Abonelik ve Karlarım"
+
+#: templates/trader_subscription.html:8
+msgid "Current Cycle: Nov 1 - Nov 30"
+msgstr "Mevcut Dönem: 1 Kas - 30 Kas"
+
+#: templates/trader_subscription.html:17
+msgid "Current Plan"
+msgstr "Mevcut Plan"
+
+#: templates/trader_subscription.html:18
+msgid "Profit-Sharing"
+msgstr "Kar Paylaşımı"
+
+#: templates/trader_subscription.html:22
+msgid "Client Share:"
+msgstr "Müşteri Payı:"
+
+#: templates/trader_subscription.html:23
+#, no-c-format, no-python-format
+msgid "100% (up to 2%), then 50%"
+msgstr "%100 (%2'ye kadar), sonra %50"
+
+#: templates/trader_subscription.html:26
+msgid "VestHub Share:"
+msgstr "VestHub Payı:"
+
+#: templates/trader_subscription.html:27
+#, no-c-format, no-python-format
+msgid "2%)"
+msgstr "%2)"
+
+#: templates/trader_subscription.html:37
+msgid "Current Cycle Net Profit"
+msgstr "Mevcut Dönem Net Karı"
+
+#: templates/trader_subscription.html:38
+msgid "$4,500.00"
+msgstr "$4,500.00"
+
+#: templates/trader_subscription.html:41
+#, no-c-format, no-python-format
+msgid "Profit Threshold (2% = $1,200)"
+msgstr "Kar Eşiği (%2 = $1,200)"
+
+#: templates/trader_subscription.html:45
+msgid "Threshold met. Profit sharing active."
+msgstr "Eşik aşıldı. Kar paylaşımı aktif."
+
+#: templates/trader_subscription.html:54
+msgid "Unpaid Commission Invoice"
+msgstr "Ödenmemiş Komisyon Faturası"
+
+#: templates/trader_subscription.html:55
+msgid "$1,650.00"
+msgstr "$1,650.00"
+
+#: templates/trader_subscription.html:56
+msgid "Due by:"
+msgstr "Son Ödeme Tarihi:"
+
+#: templates/trader_subscription.html:56
+msgid "Dec 5, 2025"
+msgstr "5 Ara 2025"
+
+#: templates/trader_subscription.html:58
+msgid "Pay Invoice"
+msgstr "Faturayı Öde"
+
+#: templates/trader_subscription.html:67
+msgid "Invoice History"
+msgstr "Fatura Geçmişi"
+
+#: templates/trader_subscription.html:68
+msgid "Download All"
+msgstr "Tümünü İndir"
+
+#: templates/trader_subscription.html:75
+msgid "Invoice ID"
+msgstr "Fatura No"
+
+#: templates/trader_subscription.html:76
+msgid "Billing Period"
+msgstr "Fatura Dönemi"
+
+#: templates/trader_subscription.html:77
+msgid "Total Profit"
+msgstr "Toplam Kar"
+
+#: templates/trader_subscription.html:78
+msgid "VestHub Share"
+msgstr "VestHub Payı"
+
+#: templates/trader_subscription.html:86
+msgid "#INV-2025-10"
+msgstr "#INV-2025-10"
+
+#: templates/trader_subscription.html:87
+msgid "Oct 1 - Oct 31, 2025"
+msgstr "1 Eki - 31 Eki, 2025"
+
+#: templates/trader_subscription.html:88
+msgid "$3,200.00"
+msgstr "$3,200.00"
+
+#: templates/trader_subscription.html:89
+msgid "$1,000.00"
+msgstr "$1,000.00"
+
+#: templates/trader_subscription.html:90
+msgid "Paid"
+msgstr "Ödendi"
+
+#: templates/trader_subscription.html:92 templates/trader_subscription.html:103
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/trader_subscription.html:97
+msgid "#INV-2025-09"
+msgstr "#INV-2025-09"
+
+#: templates/trader_subscription.html:98
+msgid "Sep 1 - Sep 30, 2025"
+msgstr "1 Eyl - 30 Eyl, 2025"
+
+#: templates/trader_subscription.html:99
+msgid "$800.00"
+msgstr "$800.00"
+
+#: templates/trader_subscription.html:100
+msgid "$0.00"
+msgstr "$0.00"
+
+#: templates/trader_subscription.html:101
+#, no-c-format, no-python-format
+msgid "No Fee (Below 2%)"
+msgstr "Ücret Yok (%2 Altında)"
+
+#: templates/two_factor_verify.html:6
+msgid "Two-Factor Authentication"
+msgstr "İki Faktörlü Kimlik Doğrulama"
+
+#: templates/two_factor_verify.html:7
+msgid ""
+"Please enter the code from your Google Authenticator app to verify your "
+"identity."
+msgstr ""
+"Kimliğinizi doğrulamak için lütfen Google Authenticator uygulamanızdaki kodu "
+"girin."
+
+#: templates/two_factor_verify.html:23
+msgid "Authenticator Code"
+msgstr "Doğrulama Kodu"
+
+#: templates/two_factor_verify.html:24
+msgid "000000"
+msgstr "000000"
+#: templates/two_factor_verify.html:27
+msgid "Verify & Log In"
+msgstr "Doğrula ve Giriş Yap"
+
+#: templates/two_factor_verify.html:32
+msgid "Cancel Login"
+msgstr "Girişi İptal Et"
+
+#: templates/verify_email.html:6
+msgid "Verify Your Email"
+msgstr "E-postanızı Doğrulayın"
+
+#: templates/verify_email.html:7
+msgid ""
+"We sent a 6-digit code to your email address. Please enter it below to "
+"activate your account."
+msgstr ""
+"E-posta adresinize 6 haneli bir kod gönderdik. Hesabınızı etkinleştirmek için "
+"lütfen kodu aşağıya girin."
+
+#: templates/verify_email.html:23
+msgid "Verification Code"
+msgstr "Doğrulama Kodu"
+
+#: templates/verify_email.html:24
+msgid "123456"
+msgstr "123456"
+
+#: templates/verify_email.html:27
+msgid "Verify Account"
+msgstr "Hesabı Doğrula"
+
+#: templates/verify_email.html:32
+msgid "Back to Login"
+msgstr "Girişe Dön"
+
+#: templates/wallet.html:12
+msgid "Withdrawal Settings"
+msgstr "Çekim Ayarları"
+
+#: templates/wallet.html:15
+msgid ""
+"Set your receiving wallet address for withdrawals. Ensure the network "
+"matches."
+msgstr ""
+"Çekimler için alıcı cüzdan adresinizi ayarlayın. Ağın eşleştiğinden emin "
+"olun."
+
+#: templates/wallet.html:21
+msgid "Wallet Network"
+msgstr "Cüzdan Ağı"
+
+#: templates/wallet.html:30
+msgid "Wallet Address"
+msgstr "Cüzdan Adresi"
+
+#: templates/wallet.html:31
+msgid "Enter your address"
+msgstr "Adresinizi girin"
+
+#: templates/wallet.html:34
+msgid "Save Withdrawal Address"
+msgstr "Çekim Adresini Kaydet"
+
+#: templates/wallet.html:44
+msgid "Deposit Addresses"
+msgstr "Yatırım Adresleri"
+
+#: templates/wallet.html:47
+msgid "Use these addresses to fund your account manually."
+msgstr "Hesabınıza manuel olarak fon sağlamak için bu adresleri kullanın."
+
+#: templates/withdrawal.html:27
+msgid "Available for Withdrawal (Profits)"
+msgstr "Çekilebilir Bakiye (Karlar)"
+
+#: templates/withdrawal.html:32
+msgid "Demo Tool:"
+msgstr "Demo Aracı:"
+
+#: templates/withdrawal.html:34
+msgid "Add $50 Fake Profit"
+msgstr "$50 Sahte Kar Ekle"
+
+#: templates/withdrawal.html:42
+msgid "Locked (Active Investments)"
+msgstr "Kilitli (Aktif Yatırımlar)"
+
+#: templates/withdrawal.html:44
+msgid "Unlocks on maturity."
+msgstr "Vade sonunda açılır."
+
+#: templates/withdrawal.html:53
+msgid "New Withdrawal Request"
+msgstr "Yeni Çekim Talebi"
+
+#: templates/withdrawal.html:61
+msgid "1. Select Fund Type"
+msgstr "1. Fon Türünü Seçin"
+
+#: templates/withdrawal.html:63
+msgid "Withdraw Profits"
+msgstr "Karları Çek"
+
+#: templates/withdrawal.html:64
+msgid "Withdraw Principal (Contact Support)"
+msgstr "Ana Parayı Çek (Destekle İletişime Geç)"
+
+#: templates/withdrawal.html:69
+msgid "2. Enter Amount"
+msgstr "2. Tutarı Girin"
+
+#: templates/withdrawal.html:72
+msgid "0.00"
+msgstr "0.00"
+
+#: templates/withdrawal.html:78
+msgid "3. Confirm Payout Wallet"
+msgstr "3. Ödeme Cüzdanını Onayla"
+
+#: templates/withdrawal.html:80
+msgid "Funds will be sent to your registered wallet."
+msgstr "Fonlar kayıtlı cüzdanınıza gönderilecektir."
+
+#: templates/withdrawal.html:81
+msgid "Manage Wallet"
+msgstr "Cüzdanı Yönet"
+
+#: templates/withdrawal.html:86
+msgid "Submit Withdrawal Request"
+msgstr "Çekim Talebini Gönder"
+
+#: templates/withdrawal.html:97
+msgid "Withdrawal History"
+msgstr "Çekim Geçmişi"
+
+#: templates/withdrawal.html:133
+msgid "No withdrawal history found."
+msgstr "Çekim geçmişi bulunamadı."

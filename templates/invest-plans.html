@@ -3,10 +3,8 @@
 {% block title %}Choose Investment Plan{% endblock %}
 
 {% block content %}
-<h1 class="h2 fw-bold mb-2">Choose Your Investment Plan</h1>
-<p class="lead text-body-secondary mb-4">
-    Based on your <strong>{{ current_user.risk_profile.title() }}</strong> risk profile, we have selected the best plans for you.
-</p>
+<h1 class="h2 fw-bold mb-2">{{ _('Choose Your Investment Plan') }}</h1>
+<p class="lead text-body-secondary mb-4">{{ _('Based on your') }}<strong>{{ current_user.risk_profile.title() }}</strong>{{ _('risk profile, we have selected the best plans for you.') }}</p>
 
 <div class="row g-4">
     {% for plan in plans %}
@@ -16,15 +14,15 @@
             
             {% if plan.risk_level == 'low' %}
                 <div class="position-absolute top-0 end-0 m-3">
-                    <span class="badge bg-info-subtle text-info-emphasis">Low Risk</span>
+                    <span class="badge bg-info-subtle text-info-emphasis">{{ _('Low Risk') }}</span>
                 </div>
             {% elif plan.risk_level == 'medium' %}
                 <div class="position-absolute top-0 end-0 m-3">
-                    <span class="badge bg-warning-subtle text-warning-emphasis">Medium Risk</span>
+                    <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Medium Risk') }}</span>
                 </div>
             {% else %}
                 <div class="position-absolute top-0 end-0 m-3">
-                    <span class="badge bg-danger-subtle text-danger-emphasis">High Risk</span>
+                    <span class="badge bg-danger-subtle text-danger-emphasis">{{ _('High Risk') }}</span>
                 </div>
             {% endif %}
 
@@ -34,7 +32,7 @@
                 
                 <div class="mb-4">
                     <h1 class="fw-bold display-4 text-primary">{{ plan.annual_return_rate|int }}%</h1>
-                    <h5 class="text-body-secondary">Annual Return</h5>
+                    <h5 class="text-body-secondary">{{ _('Annual Return') }}</h5>
                     <h6 class="fw-normal text-white-50">{{ plan.duration_months }} Months Duration</h6>
                 </div>
                 
@@ -43,16 +41,14 @@
                             data-bs-toggle="modal" 
                             data-bs-target="#investModal"
                             data-plan-id="{{ plan.id }}"
-                            data-plan-name="{{ plan.name }} ({{ plan.annual_return_rate|int }}% APY)">
-                        Choose Plan
-                    </button>
+                            data-plan-name="{{ plan.name }} ({{ plan.annual_return_rate|int }}% APY)">{{ _('Choose Plan') }}</button>
                 </div>
             </div>
         </div>
     </div>
     {% else %}
     <div class="col-12 text-center py-5">
-        <h4 class="text-muted">No investment plans available for your risk profile at the moment.</h4>
+        <h4 class="text-muted">{{ _('No investment plans available for your risk profile at the moment.') }}</h4>
     </div>
     {% endfor %}
 </div>
@@ -62,36 +58,34 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header border-0">
-                <h1 class="modal-title fs-5" id="investModalLabel">Start Investment</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="investModalLabel">{{ _('Start Investment') }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ _('Close') }}"></button>
             </div>
             
             <form method="POST" action="{{ url_for('user.create_investment') }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="modal-body p-4">
-                    <p>You have selected:</p>
-                    <h3 class="fw-bold text-primary mb-3" id="modalPlanName">...</h3>
+                    <p>{{ _('You have selected:') }}</p>
+                    <h3 class="fw-bold text-primary mb-3" id="modalPlanName">{{ _('...') }}</h3>
                     
                     <input type="hidden" name="plan_id" id="modalPlanId" value="">
 
                     <div class="mb-3">
-                        <label for="investAmount" class="form-label">Investment Amount</label>
+                        <label for="investAmount" class="form-label">{{ _('Investment Amount') }}</label>
                         <div class="input-group input-group-lg">
                             <span class="input-group-text">$</span>
-                            <input type="number" class="form-control" name="amount" id="investAmount" placeholder="1000.00" min="100" required>
-                            <span class="input-group-text">USD</span>
+                            <input type="number" class="form-control" name="amount" id="investAmount" placeholder="{{ _('1000.00') }}" min="100" required>
+                            <span class="input-group-text">{{ _('USD') }}</span>
                         </div>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
-                        <label class="form-check-label" for="flexCheckDefault">
-                            I understand and agree to the terms of this investment plan.
-                        </label>
+                        <label class="form-check-label" for="flexCheckDefault">{{ _('I understand and agree to the terms of this investment plan.') }}</label>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Confirm Investment</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ _('Confirm Investment') }}</button>
                 </div>
             </form>
         </div>

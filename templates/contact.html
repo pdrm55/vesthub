@@ -6,8 +6,9 @@
 <div class="container py-5">
     <div class="row justify-content-center text-center mb-5">
         <div class="col-lg-8">
-            <h1 class="fw-bold mb-3">Get in Touch</h1>
-            <p class="lead text-secondary">Have questions about our investment plans or trading tools? We're here to help.</p>
+            <h1 class="fw-bold mb-3">{{ _('Get in Touch') }}</h1>
+            <!-- FIX: Used double quotes to prevent syntax error with "We're" -->
+            <p class="lead text-secondary">{{ _("Have questions about our investment plans or trading tools? We're here to help.") }}</p>
         </div>
     </div>
 
@@ -16,28 +17,37 @@
         <div class="col-lg-6">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4 p-md-5">
-                    <h4 class="mb-4 fw-bold">Send us a message</h4>
+                    <h4 class="mb-4 fw-bold">{{ _('Send us a message') }}</h4>
                     <form action="{{ url_for('main.contact') }}" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         
                         <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control bg-light" name="name" placeholder="Your Name" required>
+                            <label class="form-label">{{ _('Full Name') }}</label>
+                            <input type="text" class="form-control bg-light" name="name" placeholder="{{ _('Your Name') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control bg-light" name="email" placeholder="name@example.com" required>
+                            <label class="form-label">{{ _('Email Address') }}</label>
+                            <input type="email" class="form-control bg-light" name="email" placeholder="{{ _('name@example.com') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control bg-light" name="phone" placeholder="+90 ..." required>
+                            <label class="form-label">{{ _('Phone Number') }} ({{ _('Optional') }})</label>
+                            <input type="tel" class="form-control bg-light" name="phone" placeholder="{{ _('+90 ...') }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">{{ _('Subject') }}</label>
+                            <select class="form-select bg-light" name="subject">
+                                <option value="General">{{ _('General Inquiry') }}</option>
+                                <option value="Support">{{ _('Technical Support') }}</option>
+                                <option value="Billing">{{ _('Billing & Payments') }}</option>
+                                <option value="Partnership">{{ _('Partnership') }}</option>
+                            </select>
                         </div>
                         <div class="mb-4">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control bg-light" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                            <label class="form-label">{{ _('Message') }}</label>
+                            <textarea class="form-control bg-light" name="message" rows="5" placeholder="{{ _('How can we help you?') }}" required></textarea>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                            <button type="submit" class="btn btn-primary btn-lg">{{ _('Send Message') }}</button>
                         </div>
                     </form>
                 </div>
@@ -56,24 +66,20 @@
                                 <i class="bi bi-geo-alt-fill fs-3 text-primary"></i>
                             </div>
                             <div>
-                                <h5 class="fw-bold mb-1">Our Office</h5>
-                                <p class="text-body-secondary mb-0 mt-2 lh-lg">
-                                    Cumhuriyet Mahallesi, Halaskargazi Cad.<br>
-                                    Bülbül 2 Apt. No: 137 K: 2 Daire 5,<br>
-                                    34371 Şişli/İstanbul, Türkiye
-                                </p>
+                                <h5 class="fw-bold mb-1">{{ _('Our Office') }}</h5>
+                                <p class="text-body-secondary mb-0 mt-2 lh-lg">{{ _('Cumhuriyet Mahallesi, Halaskargazi Cad.') }}<br>{{ _('Bülbül 2 Apt. No: 137 K: 2 Daire 5,') }}<br>{{ _('34371 Şişli/İstanbul, Türkiye') }}</p>
                             </div>
                         </div>
 
                         <!-- Map -->
                         <div class="position-relative mt-4 rounded-4 overflow-hidden border" style="height: 250px;">
-                            <a href="https://www.google.com/maps/search/?api=1&query=Halaskargazi+Cad.+No:137,+Şişli,+İstanbul" target="_blank" class="text-decoration-none" title="Open in Google Maps">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Halaskargazi+Cad.+No:137,+Şişli,+İstanbul" target="_blank" class="text-decoration-none" title="{{ _('Open in Google Maps') }}">
                                 <iframe 
                                     src="https://www.google.com/maps?q=Halaskargazi+Cad.+No:137,+Şişli,+İstanbul&output=embed" 
                                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-10 hover-overlay">
-                                    <span class="btn btn-light btn-sm shadow-sm fw-bold"><i class="bi bi-map-fill me-2"></i>View on Google Maps</span>
+                                    <span class="btn btn-light btn-sm shadow-sm fw-bold"><i class="bi bi-map-fill me-2"></i>{{ _('View on Google Maps') }}</span>
                                 </div>
                             </a>
                         </div>
@@ -89,12 +95,12 @@
                                     <i class="bi bi-whatsapp fs-3"></i>
                                 </div>
                                 <div>
-                                    <h5 class="fw-bold mb-1 text-success-emphasis">WhatsApp Support</h5>
-                                    <p class="mb-0 text-success-emphasis font-monospace fs-5">0090 531 724 7685</p>
+                                    <h5 class="fw-bold mb-1 text-success-emphasis">{{ _('WhatsApp Support') }}</h5>
+                                    <p class="mb-0 text-success-emphasis font-monospace fs-5">{{ _('0090 531 724 7685') }}</p>
                                 </div>
                             </div>
                             <a href="https://wa.me/905317247685" target="_blank" class="btn btn-success rounded-pill px-4 py-2 fw-bold">
-                                Chat Now <i class="bi bi-arrow-right ms-2"></i>
+                                {{ _('Chat Now') }} <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                         </div>
                     </div>
@@ -107,8 +113,8 @@
                             <i class="bi bi-envelope-fill fs-3 text-primary"></i>
                         </div>
                         <div>
-                            <h5 class="fw-bold mb-1">Email Us</h5>
-                            <a href="mailto:support@vesthub.org" class="text-decoration-none fs-5">support@vesthub.org</a>
+                            <h5 class="fw-bold mb-1">{{ _('Email Us') }}</h5>
+                            <a href="mailto:support@vesthub.org" class="text-decoration-none fs-5">{{ _('support@vesthub.org') }}</a>
                         </div>
                     </div>
                 </div>

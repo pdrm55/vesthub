@@ -4,33 +4,32 @@
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2 fw-bold mb-0">Master Accounting Ledger</h1>
+    <h1 class="h2 fw-bold mb-0">{{ _('Master Accounting Ledger') }}</h1>
     <div>
-        <input type="search" class="form-control d-inline-block" placeholder="Search by User or TxID..." style="width: auto;">
+        <input type="search" class="form-control d-inline-block" placeholder="{{ _('Search by User or TxID...') }}" style="width: auto;">
         <button class="btn btn-outline-secondary">
-            <i class="bi bi-download me-2"></i> Export CSV
-        </button>
+            <i class="bi bi-download me-2"></i>{{ _('Export CSV') }}</button>
     </div>
 </div>
 
 <div class="card shadow-sm rounded-4 mt-4">
     <div class="card-header bg-dark-subtle p-3 d-flex justify-content-between align-items-center">
-        <h5 class="fw-bold mb-0">All Transactions</h5>
+        <h5 class="fw-bold mb-0">{{ _('All Transactions') }}</h5>
         <!-- Note: Calculating Total AUM in template is complex, ideally passed from backend. Using placeholder for now or sum loop. -->
-        <h5 class="fw-bold mb-0">Live Ledger View</h5>
+        <h5 class="fw-bold mb-0">{{ _('Live Ledger View') }}</h5>
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-dark table-striped mb-0 align-middle">
                 <thead>
                     <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">User</th>
-                        <th scope="col">TxID</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">{{ _('Date') }}</th>
+                        <th scope="col">{{ _('User') }}</th>
+                        <th scope="col">{{ _('TxID') }}</th>
+                        <th scope="col">{{ _('Type') }}</th>
+                        <th scope="col">{{ _('Description') }}</th>
+                        <th scope="col">{{ _('Amount') }}</th>
+                        <th scope="col">{{ _('Status') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,18 +44,18 @@
                             {% if tx.tx_hash %}
                                 <code class="text-truncate d-block" style="max-width: 100px;" title="{{ tx.tx_hash }}">{{ tx.tx_hash }}</code>
                             {% else %}
-                                <span class="text-muted small">System</span>
+                                <span class="text-muted small">{{ _('System') }}</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if tx.type == 'deposit' %}
-                                <span class="badge bg-primary-subtle text-primary-emphasis">Deposit</span>
+                                <span class="badge bg-primary-subtle text-primary-emphasis">{{ _('Deposit') }}</span>
                             {% elif tx.type == 'withdrawal' %}
-                                <span class="badge bg-danger-subtle text-danger-emphasis">Withdrawal</span>
+                                <span class="badge bg-danger-subtle text-danger-emphasis">{{ _('Withdrawal') }}</span>
                             {% elif tx.type == 'profit' %}
-                                <span class="badge bg-success-subtle text-success-emphasis">Profit</span>
+                                <span class="badge bg-success-subtle text-success-emphasis">{{ _('Profit') }}</span>
                             {% elif tx.type == 'referral_bonus' %}
-                                <span class="badge bg-warning-subtle text-warning-emphasis">Referral</span>
+                                <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Referral') }}</span>
                             {% else %}
                                 <span class="badge bg-secondary">{{ tx.type }}</span>
                             {% endif %}
@@ -67,20 +66,18 @@
                         </td>
                         <td>
                             {% if tx.status == 'completed' %}
-                                <span class="badge bg-success"><i class="bi bi-check-lg"></i> Completed</span>
+                                <span class="badge bg-success"><i class="bi bi-check-lg"></i> {{ _('Completed') }}</span>
                             {% elif tx.status == 'pending' %}
-                                <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Pending</span>
+                                <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split"></i> {{ _('Pending') }}</span>
                             {% elif tx.status == 'rejected' %}
-                                <span class="badge bg-danger"><i class="bi bi-x-lg"></i> Rejected</span>
+                                <span class="badge bg-danger"><i class="bi bi-x-lg"></i> {{ _('Rejected') }}</span>
                             {% endif %}
                         </td>
                     </tr>
                     {% else %}
                     <tr>
                         <td colspan="7" class="text-center py-5 text-body-secondary">
-                            <i class="bi bi-journal-x fs-1 d-block mb-3"></i>
-                            No transactions recorded yet.
-                        </td>
+                            <i class="bi bi-journal-x fs-1 d-block mb-3"></i>{{ _('No transactions recorded yet.') }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
