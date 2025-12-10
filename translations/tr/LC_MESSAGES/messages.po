@@ -1198,7 +1198,7 @@ msgstr "VestHub Yönetilen Portföyler"
 
 #: templates/index.html:119
 msgid ""
-"'Don't have time to trade? Our top-performing AI bots will trade for you."
+"Don't have time to trade? Our top-performing AI bots will trade for you."
 " We manage the risk, you track the returns."
 msgstr ""
 "İşlem yapmaya vaktiniz yok mu? En iyi performans gösteren yapay zeka "
