@@ -107,6 +107,26 @@ def change_role(user_id):
         flash('User role updated.', 'success')
     return redirect(url_for('admin.users'))
 
+@admin_bp.route('/users/delete/<int:user_id>', methods=['POST'])
+@login_required
+@permission_required('manage_users')
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    
+    if user.id == current_user.id:
+        flash('You cannot delete your own account.', 'danger')
+        return redirect(url_for('admin.users'))
+
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        log_admin_activity('Delete User', f'Deleted user: {user.email}')
+        flash('User deleted successfully.', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash('Error deleting user. They may have related records (investments, etc.).', 'danger')
+    return redirect(url_for('admin.users'))
+
 # --- Plans Management ---
 @admin_bp.route('/plans', methods=['GET', 'POST'])
 @login_required

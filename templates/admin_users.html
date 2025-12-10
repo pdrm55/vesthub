@@ -48,6 +48,8 @@
                         <td>
                             <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#roleModal{{ user.id }}">
                                 <i class="bi bi-person-gear"></i>{{ _('Change Role') }}</button>
+                            <button class="btn btn-sm btn-outline-danger ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ user.id }}">
+                                <i class="bi bi-trash-fill"></i></button>
                         </td>
                     </tr>
 
@@ -76,6 +78,29 @@
                                         <button type="submit" class="btn btn-primary">{{ _('Save Changes') }}</button>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete User Modal -->
+                    <div class="modal fade" id="deleteModal{{ user.id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark text-white">
+                                <div class="modal-header border-secondary">
+                                    <h5 class="modal-title">{{ _('Delete User') }}</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{ _('Are you sure you want to delete user') }} <strong>{{ user.email }}</strong>?</p>
+                                    <p class="text-danger small mb-0"><i class="bi bi-exclamation-triangle-fill me-1"></i> {{ _('This action cannot be undone.') }}</p>
+                                </div>
+                                <div class="modal-footer border-secondary">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                                    <form method="POST" action="{{ url_for('admin.delete_user', user_id=user.id) }}">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-danger">{{ _('Delete Permanently') }}</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
