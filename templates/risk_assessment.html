@@ -39,7 +39,6 @@
                     <!-- =========================================
                          STEP 1: FINANCIAL PROFILE
                     ========================================= -->
-                    <!-- کلاس active به صورت دستی اضافه شده تا در صورت لود نشدن JS هم دیده شود -->
                     <div class="risk-question-group active" data-step="1" style="display: block;">
                         <h4 class="fw-semibold mb-4">{{ _('Step 1: Your Financial Profile') }}</h4>
                         
@@ -247,6 +246,8 @@
             if(target) {
                 target.classList.add('active');
                 target.style.display = 'block'; // اطمینان از نمایش
+            } else {
+                console.error('Risk Assessment: Step not found for stepNum:', stepNum);
             }
 
             // آپدیت نوار بالا (Stepper UI)
