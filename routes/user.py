@@ -1,12 +1,13 @@
 import random
+import string
 import pyotp
 from decimal import Decimal
 from datetime import datetime
-from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
+from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, session
 from flask_login import login_required, current_user
 from extensions import db
 from models import Investment, InvestmentPlan, Transaction, Ticket, TicketMessage, KYCRequest, User
-from utils import get_withdrawable_balance, get_setting, save_uploaded_file
+from utils import get_withdrawable_balance, get_setting, save_uploaded_file, send_system_email
 
 user_bp = Blueprint('user', __name__)
 
@@ -136,34 +137,92 @@ def withdrawal():
     if current_user.kyc_status != 'verified': 
         flash('Please complete your Identity Verification (KYC) before making a withdrawal.', 'warning')
         return redirect(url_for('user.settings'))
+        
+    # بررسی فعال بودن 2FA
+    if not current_user.is_2fa_enabled:
+        flash('Please enable Two-Factor Authentication (2FA) in Settings to request withdrawals.', 'warning')
+        return redirect(url_for('user.settings'))
     
     available = get_withdrawable_balance(current_user.id)
+    history = Transaction.query.filter_by(user_id=current_user.id, type='withdrawal').order_by(Transaction.timestamp.desc()).all()
     
-    if request.method == 'POST':
-        try:
-            amt = Decimal(request.form.get('amount'))
-            if amt <= 0: raise ValueError
-        except:
-            flash('Invalid amount entered.', 'danger')
+    # --- STEP 2: VERIFICATION & CONFIRMATION ---
+    if request.method == 'POST' and 'verify_withdrawal' in request.form:
+        pending_data = session.get('pending_withdrawal')
+        if not pending_data:
+            flash('Withdrawal session expired. Please try again.', 'danger')
             return redirect(url_for('user.withdrawal'))
-
+            
+        email_code_input = request.form.get('email_code')
+        ga_code_input = request.form.get('ga_code')
+        
+        # 1. Validate Email Code
+        if email_code_input != pending_data['code']:
+            flash('Invalid Email Verification Code.', 'danger')
+            return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history, verify_mode=True)
+            
+        # 2. Validate Google Authenticator Code
+        if not pyotp.TOTP(current_user.two_factor_secret).verify(ga_code_input):
+            flash('Invalid Google Authenticator Code.', 'danger')
+            return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history, verify_mode=True)
+            
+        # 3. Process Withdrawal
         try:
+            amt = Decimal(pending_data['amount'])
+            # Re-check balance (concurrency check)
             user = db.session.query(User).filter(User.id == current_user.id).with_for_update().one()
             current_available = get_withdrawable_balance(user.id)
+            
             if amt <= current_available:
                 db.session.add(Transaction(user_id=user.id, type='withdrawal', amount=amt, status='pending', description='User withdrawal request'))
                 db.session.commit()
-                flash('Withdrawal request submitted.', 'success')
+                session.pop('pending_withdrawal', None) # Clear session
+                flash('Withdrawal request submitted successfully.', 'success')
+                return redirect(url_for('user.withdrawal'))
             else:
                 db.session.rollback()
                 flash('Insufficient balance.', 'danger')
+                session.pop('pending_withdrawal', None)
         except Exception as e:
             db.session.rollback()
             flash('An error occurred. Please try again.', 'danger')
         return redirect(url_for('user.withdrawal'))
 
-    history = Transaction.query.filter_by(user_id=current_user.id, type='withdrawal').order_by(Transaction.timestamp.desc()).all()
-    return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history)
+    # --- STEP 1: REQUEST & SEND EMAIL ---
+    if request.method == 'POST':
+        try:
+            amt = Decimal(request.form.get('amount'))
+            if amt <= 0: raise ValueError
+            
+            if amt > available:
+                flash('Insufficient balance.', 'danger')
+                return redirect(url_for('user.withdrawal'))
+                
+            # Generate 6-digit Email Code
+            email_code = ''.join(random.choices(string.digits, k=6))
+            
+            # Store in Session
+            session['pending_withdrawal'] = {
+                'amount': str(amt),
+                'code': email_code,
+                'timestamp': datetime.utcnow().timestamp()
+            }
+            
+            # Send Email
+            send_system_email(
+                "Withdrawal Verification", 
+                current_user.email, 
+                f"Your withdrawal verification code is: {email_code}. Do not share this code."
+            )
+            
+            flash('Verification code sent to your email. Please enter it below along with your 2FA code.', 'info')
+            return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history, verify_mode=True)
+
+        except:
+            flash('Invalid amount entered.', 'danger')
+            return redirect(url_for('user.withdrawal'))
+
+    return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history, verify_mode=False)
 
 @user_bp.route('/wallet', methods=['GET', 'POST'])
 @login_required
