@@ -133,7 +133,12 @@
 <script>
 function start2FASetup() {
     // Call backend to generate secret
-    fetch("{{ url_for('user.enable_2fa') }}", {method: 'POST'})
+    fetch("{{ url_for('user.enable_2fa') }}", {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': "{{ csrf_token() }}"
+        }
+    })
     .then(response => response.json())
     .then(data => {
         document.getElementById('startBtnArea').style.display = 'none';
