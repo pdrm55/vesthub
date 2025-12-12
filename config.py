@@ -33,7 +33,7 @@ class Config:
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # محدودیت ۱۶ مگابایت
 
     # تنظیمات زبان (جدید)
-    LANGUAGES = ['en', 'tr']  # انگلیسی و ترکی
+    LANGUAGES = ['en', 'tr', 'fa']  # انگلیسی، ترکی و فارسی
 
 class DevelopmentConfig(Config):
     """تنظیمات محیط توسعه"""

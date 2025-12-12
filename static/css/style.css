@@ -7,6 +7,7 @@
 /* =================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
 
 :root {
   --bs-primary: #00b0f0; 
@@ -23,6 +24,11 @@ body {
 [data-bs-theme="light"] body {
     background-color: #f4f6f9;
     color: #333;
+}
+
+/* تنظیمات فونت فارسی */
+html[lang="fa"] body {
+    font-family: 'Vazirmatn', 'Inter', sans-serif;
 }
 
 /* =================================== */
@@ -134,7 +140,7 @@ code {
 .sidebar {
     width: 280px;
     background-color: var(--bs-tertiary-bg);
-    border-right: 1px solid var(--bs-border-color);
+    border-inline-end: 1px solid var(--bs-border-color);
     min-height: 100vh;
     flex-shrink: 0;
     transition: background-color 0.3s ease;
@@ -177,6 +183,10 @@ code {
     background-color: var(--bs-primary); color: #fff;
     font-weight: bold; font-size: 0.8rem; padding: 5px 30px;
     transform: rotate(45deg); box-shadow: 0 0 10px rgba(0, 176, 240, 0.5);
+}
+html[dir="rtl"] .best-value-ribbon {
+    right: auto; left: -30px;
+    transform: rotate(-45deg);
 }
 
 .payment-info-box {
