@@ -1,7 +1,7 @@
 from decimal import Decimal
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, current_app
 from flask_login import login_required, current_user
-from datetime import datetime
+from datetime import datetime, timedelta
 from extensions import db
 from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog
 from decorators import permission_required
@@ -383,3 +383,25 @@ def distribute_test_profit():
     log_admin_activity('Distribute Profit', f'Manual run: {count} payouts')
     flash(f'Manual profit distribution completed. {count} payouts.', 'success')
     return redirect(url_for('admin.accounting'))
+
+@admin_bp.route('/api/chart/admin-stats')
+@login_required
+def api_admin_stats():
+    # آمار ثبت‌نام کاربران در ۷ روز گذشته
+    today = datetime.utcnow().date()
+    labels = []
+    data_users = []
+    
+    for i in range(6, -1, -1):
+        d = today - timedelta(days=i)
+        # شمارش کاربران ثبت‌نام شده در آن روز
+        count = User.query.filter(db.func.date(User.created_at) == d).count()
+        labels.append(d.strftime('%d %b'))
+        data_users.append(count)
+        
+    return jsonify({
+        'registrations': {
+            'labels': labels,
+            'data': data_users
+        }
+    })

@@ -60,12 +60,15 @@
 
     // Attempt to fetch data, fall back to mock if API fails
     try {
-        fetch('/api/chart/admin-stats')
+        fetch("{{ url_for('admin.api_admin_stats') }}")
         .then(res => {
             if (!res.ok) throw new Error("API unreachable");
             return res.json();
         })
-        .then(data => renderAdminChart(data))
+        .then(data => {
+            // Map API response structure to chart data structure
+            renderAdminChart({ dates: data.registrations.labels, counts: data.registrations.data });
+        })
         .catch(err => {
             console.warn("Backend API not reachable. Using mock data.", err);
             renderAdminChart(mockAdminData);

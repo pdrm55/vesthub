@@ -2,7 +2,7 @@ import random
 import string
 import pyotp
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, session
 from flask_login import login_required, current_user
 from extensions import db
@@ -350,5 +350,43 @@ def ticket_view(ticket_id):
 
 @user_bp.route('/api/chart/user-data')
 @login_required
-def api_user_data(): 
-    return jsonify({'assets': {'invested':0, 'profit':0, 'referral':0}})
+def api_user_data():
+    # محاسبه مجموع سرمایه‌گذاری‌های فعال
+    total_invested = sum(inv.amount for inv in current_user.investments if inv.status in ['active', 'pending_payment'])
+    
+    # محاسبه سود قابل برداشت
+    total_profit = get_withdrawable_balance(current_user.id)
+    
+    # محاسبه درآمد حاصل از رفرال
+    referral_earnings = db.session.query(db.func.sum(Transaction.amount)).filter_by(
+        user_id=current_user.id, type='referral_bonus', status='completed'
+    ).scalar() or Decimal('0.0')
+
+    # داده‌های نمودار رشد (۷ روز گذشته)
+    today = datetime.utcnow().date()
+    growth_labels = []
+    growth_data = []
+    
+    for i in range(6, -1, -1):
+        d = today - timedelta(days=i)
+        # محاسبه سود روزانه
+        daily_sum = db.session.query(db.func.sum(Transaction.amount)).filter(
+            Transaction.user_id == current_user.id,
+            Transaction.type == 'profit',
+            db.func.date(Transaction.timestamp) == d
+        ).scalar() or Decimal('0.0')
+        
+        growth_labels.append(d.strftime('%d %b')) # نمونه: 12 Dec
+        growth_data.append(float(daily_sum))
+
+    return jsonify({
+        'assets': {
+            'invested': float(total_invested), 
+            'profit': float(total_profit), 
+            'referral': float(referral_earnings)
+        },
+        'growth': {
+            'labels': growth_labels,
+            'data': growth_data
+        }
+    })

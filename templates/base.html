@@ -50,9 +50,9 @@
                             <i class="bi bi-globe"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, lang='en') }}">English</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, lang='tr') }}">Türkçe</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint, lang='fa') }}">فارسی</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint or 'main.home', lang='en') }}">English</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint or 'main.home', lang='tr') }}">Türkçe</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for(request.endpoint or 'main.home', lang='fa') }}">فارسی</a></li>
                         </ul>
                     </div>
 
