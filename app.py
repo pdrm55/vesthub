@@ -57,7 +57,7 @@ def create_app(config_name='default'):
     @app.context_processor
     def inject_utilities():
         # Inject get_locale to be used in templates (base.html)
-        return dict(has_permission=has_permission, get_locale=get_locale)
+        return dict(has_permission=has_permission, get_locale=get_locale, languages=app.config.get('LANGUAGES', {}))
 
     from models import User
     @login_manager.user_loader

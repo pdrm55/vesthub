@@ -3,7 +3,7 @@
 {% block content %}
 
 <!-- Hero Section -->
-<header class="hero-section text-white d-flex align-items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('{{ url_for('static', filename='images/hero-bg.png') }}') no-repeat center center; background-size: cover; min-height: 80vh;">
+<header class="hero-section text-white d-flex align-items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ url_for('static', filename='images/hero-bg.png') }}') no-repeat center center; background-size: cover; min-height: 80vh;">
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
@@ -19,6 +19,30 @@
         </div>
     </div>
 </header>
+
+<!-- Trusted By / Logo Strip -->
+<div class="trusted-by-section py-3">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
+        <span class="me-md-4 mb-3 mb-md-0 fw-medium">{{ _('Integrated with Top Exchanges:') }}</span>
+        <div class="d-flex align-items-center gap-4 flex-wrap justify-content-center">
+            <a href="https://ninjatrader.com" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='images/ninjatrader.png') }}" alt="NinjaTrader" class="exchange-logo">
+            </a>
+            <a href="https://www.ampfutures.com" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='images/amp.png') }}" alt="AMP" class="exchange-logo">
+            </a>
+            <a href="https://optimusfutures.com" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='images/optimus.png') }}" alt="Optimus" class="exchange-logo">
+            </a>
+            <a href="https://www.tradovate.com" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='images/tradovate.png') }}" alt="Tradovate" class="exchange-logo">
+            </a>
+            <a href="https://www.ironbeam.com" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='images/ironbeam.png') }}" alt="IronBeam" class="exchange-logo">
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- Investment Plans Section -->
 <section class="py-5">

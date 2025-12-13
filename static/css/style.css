@@ -46,6 +46,22 @@ img {
     width: auto;
 }
 
+/* Transparent Header Overlay */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
 /* Hero Section */
 .hero-section {
   background-image: 
@@ -58,6 +74,27 @@ img {
 }
 .hero-section .display-3 { font-weight: 700; }
 .hero-section .btn-primary, .hero-section .btn-outline-light { padding: 0.75rem 1.5rem; }
+.hero-section h1, .hero-section p.lead {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Trusted By Section */
+.trusted-by-section {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+    color: rgba(255, 255, 255, 0.5);
+}
+.exchange-logo {
+    height: 30px;
+    width: auto;
+    opacity: 0.5;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+.exchange-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
 
 /* Performance Section */
 .performance-section {
@@ -325,4 +362,16 @@ html[dir="rtl"] .best-value-ribbon {
 [data-bs-theme="light"] .bg-dark-subtle .btn-outline-light:hover {
     background-color: var(--bs-body-color) !important;
     color: #ffffff !important;
+}
+
+/* =================================== */
+/* ==   6. Mobile Fixes             == */
+/* =================================== */
+
+@media (max-width: 768px) {
+    /* Fix for dropdown menus (like language selector) overflowing screen */
+    .dropdown-menu {
+        min-width: auto !important;
+        width: max-content !important;
+    }
 }
