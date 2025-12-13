@@ -316,3 +316,13 @@ html[dir="rtl"] .best-value-ribbon {
 [data-bs-theme="light"] footer a:hover {
     color: var(--bs-primary) !important;
 }
+
+/* Fix for btn-outline-light visibility inside light sections in light mode */
+[data-bs-theme="light"] .bg-dark-subtle .btn-outline-light {
+    color: var(--bs-body-color) !important;
+    border-color: var(--bs-body-color) !important;
+}
+[data-bs-theme="light"] .bg-dark-subtle .btn-outline-light:hover {
+    background-color: var(--bs-body-color) !important;
+    color: #ffffff !important;
+}
