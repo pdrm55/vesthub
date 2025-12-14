@@ -368,7 +368,7 @@ html[dir="rtl"] .best-value-ribbon {
 /* ==   6. Mobile Fixes             == */
 /* =================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 991.98px) {
     /* Fix for dropdown menus (like language selector) overflowing screen */
     .dropdown-menu {
         min-width: auto !important;
@@ -381,5 +381,19 @@ html[dir="rtl"] .best-value-ribbon {
     html[dir="rtl"] .dropdown-menu {
         left: 0 !important;
         right: auto !important;
+    }
+
+    /* Fix for transparent navbar on mobile: Add background to the collapsed menu */
+    .navbar-collapse {
+        background-color: rgba(13, 37, 63, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    [data-bs-theme="light"] .navbar-collapse {
+        background-color: transparent;
+        box-shadow: none;
     }
 }
