@@ -16,6 +16,22 @@
       {% endif %}
     {% endwith %}
 
+    <!-- Social Logins -->
+    <div class="row g-2 mb-3">
+        <div class="col-md-6">
+            <a href="{{ url_for('auth.social_login', provider='google') }}" class="btn btn-outline-secondary w-100 social-login-btn">
+                <i class="bi bi-google me-2"></i>{{ _('Sign up with Google') }}</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ url_for('auth.social_login', provider='apple') }}" class="btn btn-outline-secondary w-100 social-login-btn">
+                <i class="bi bi-apple me-2"></i>{{ _('Sign up with Apple') }}</a>
+        </div>
+    </div>
+
+    <div class="divider-text d-flex align-items-center my-4">
+        <hr class="flex-grow-1"><span class="px-3 text-body-secondary">{{ _('OR') }}</span><hr class="flex-grow-1">
+    </div>
+
     <form method="POST" action="{{ url_for('auth.signup') }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="row g-3">

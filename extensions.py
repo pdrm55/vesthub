@@ -13,6 +13,7 @@ from flask_mail import Mail
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_wtf.csrf import CSRFProtect
 from flask_babel import Babel
+from authlib.integrations.flask_client import OAuth
 
 
 # ایجاد نمونه‌های افزونه‌ها به صورت متصل نشده (unbound)
@@ -22,6 +23,7 @@ mail = Mail()
 scheduler = BackgroundScheduler()
 csrf = CSRFProtect()
 babel = Babel()
+oauth = OAuth()
 
 # تنظیمات مربوط به مدیریت ورود کاربران
 login_manager.login_view = 'auth.login'

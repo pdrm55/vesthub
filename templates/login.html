@@ -20,7 +20,7 @@
     <!-- Social Logins -->
     <div class="row g-2">
         <div class="col-md-6">
-            <a href="#" class="btn btn-outline-secondary w-100 social-login-btn">
+            <a href="{{ url_for('auth.social_login', provider='google') }}" class="btn btn-outline-secondary w-100 social-login-btn">
                 <i class="bi bi-google me-2"></i>{{ _('Continue with Google') }}</a>
         </div>
         <div class="col-md-6">

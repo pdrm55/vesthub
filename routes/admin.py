@@ -1,6 +1,7 @@
 from decimal import Decimal
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, current_app
 from flask_login import login_required, current_user
+from sqlalchemy import func, or_
 from datetime import datetime, timedelta
 from extensions import db
 from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog
@@ -372,7 +373,58 @@ def logs():
 @login_required
 @permission_required('view_ledger')
 def accounting():
-    return render_template('admin_accounting.html', transactions=Transaction.query.order_by(Transaction.timestamp.desc()).limit(200).all())
+    # 1. Base Query
+    query = Transaction.query
+
+    # 2. Filtering
+    search = request.args.get('search')
+    tx_type = request.args.get('type')
+    
+    if search:
+        # Search by User Email, TxHash, or ID
+        search_condition = or_(
+            User.email.ilike(f'%{search}%'),
+            Transaction.tx_hash.ilike(f'%{search}%'),
+            Transaction.description.ilike(f'%{search}%')
+        )
+        if search.isdigit():
+            search_condition = or_(search_condition, Transaction.id == int(search))
+            
+        query = query.join(User).filter(search_condition)
+    
+    if tx_type and tx_type != 'all':
+        query = query.filter(Transaction.type == tx_type)
+
+    # 3. Sorting & Pagination
+    page = request.args.get('page', 1, type=int)
+    pagination = query.order_by(Transaction.timestamp.desc()).paginate(page=page, per_page=20, error_out=False)
+
+    # 4. Financial Totals (Calculated on DB side for performance)
+    # Total Deposits (Completed)
+    total_deposits = db.session.query(func.sum(Transaction.amount)).filter(
+        Transaction.type == 'deposit', Transaction.status == 'completed'
+    ).scalar() or 0
+    
+    # Total Withdrawals (Completed)
+    total_withdrawals = db.session.query(func.sum(Transaction.amount)).filter(
+        Transaction.type == 'withdrawal', Transaction.status == 'completed'
+    ).scalar() or 0
+    
+    # Total Profit Distributed
+    total_profit = db.session.query(func.sum(Transaction.amount)).filter(
+        Transaction.type == 'profit'
+    ).scalar() or 0
+
+    return render_template(
+        'admin_accounting.html', 
+        pagination=pagination,
+        transactions=pagination.items,
+        total_deposits=total_deposits,
+        total_withdrawals=total_withdrawals,
+        total_profit=total_profit,
+        search=search,
+        tx_type=tx_type
+    )
 
 # --- Test Route ---
 @admin_bp.route('/test/distribute-profit', methods=['POST'])

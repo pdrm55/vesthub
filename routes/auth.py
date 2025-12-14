@@ -1,11 +1,12 @@
 import random
 import string
+import secrets
 import pyotp
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
-from extensions import db
+from extensions import db, oauth
 from models import User, Role
 from utils import is_strong_password, generate_referral_code, send_system_email, log_admin_activity
 
@@ -29,10 +30,6 @@ def login():
             if not user.is_email_verified:
                 session['unverified_user_id'] = user.id
                 return redirect(url_for('auth.verify_email'))
-            
-            if user.is_2fa_enabled:
-                session['2fa_user_id'] = user.id
-                return redirect(url_for('auth.verify_2fa_login'))
             
             login_user(user)
             log_admin_activity('Login', 'User logged in via standard form')
@@ -141,6 +138,77 @@ def logout():
     logout_user()
     flash('You have been logged out successfully.', 'info')
     return redirect(url_for('auth.login'))
+
+# --- Social Login Routes ---
+
+@auth_bp.route('/social-login/<provider>')
+def social_login(provider):
+    if not current_user.is_anonymous:
+        return redirect(url_for('user.dashboard'))
+    
+    client = oauth.create_client(provider)
+    if not client:
+        flash(f'{provider.title()} login is not configured.', 'warning')
+        return redirect(url_for('auth.login'))
+        
+    redirect_uri = url_for('auth.social_auth_callback', provider=provider, _external=True)
+    return client.authorize_redirect(redirect_uri)
+
+@auth_bp.route('/social-login/<provider>/callback')
+def social_auth_callback(provider):
+    client = oauth.create_client(provider)
+    if not client:
+        return redirect(url_for('auth.login'))
+        
+    try:
+        token = client.authorize_access_token()
+        user_info = token.get('userinfo')
+        if not user_info:
+            user_info = client.userinfo()
+            
+        email = user_info.get('email')
+        if not email:
+            flash('Could not retrieve email from provider.', 'danger')
+            return redirect(url_for('auth.login'))
+            
+        # Check if user exists
+        user = User.query.filter_by(email=email).first()
+        
+        if not user:
+            # Create new user automatically
+            first_name = user_info.get('given_name', 'User')
+            last_name = user_info.get('family_name', '')
+            
+            role_investor = Role.query.filter_by(name='Investor').first()
+            random_pw = secrets.token_urlsafe(16) # Secure random password
+            
+            # Handle referral if exists in session
+            ref_code = session.get('ref_code')
+            referrer_id = None
+            if ref_code:
+                ref_user = User.query.filter_by(referral_code=ref_code).first()
+                if ref_user: referrer_id = ref_user.id
+
+            user = User(
+                email=email,
+                password=generate_password_hash(random_pw, method='pbkdf2:sha256'),
+                first_name=first_name,
+                last_name=last_name,
+                role=role_investor,
+                referral_code=generate_referral_code(),
+                referrer_id=referrer_id,
+                is_email_verified=True # Trusted provider
+            )
+            db.session.add(user)
+            db.session.commit()
+            log_admin_activity('Signup', f'User signed up via {provider}')
+            
+        login_user(user)
+        return redirect(url_for('user.dashboard'))
+        
+    except Exception as e:
+        flash(f'Authentication failed: {str(e)}', 'danger')
+        return redirect(url_for('auth.login'))
 
 # --- Password Reset Logic (Added) ---
 

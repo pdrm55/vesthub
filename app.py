@@ -8,7 +8,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 from config import config
 # FIX: Added 'babel' to imports
-from extensions import db, login_manager, mail, scheduler, csrf, babel
+from extensions import db, login_manager, mail, scheduler, csrf, babel, oauth
 from tasks import run_profit_distribution
 from utils import has_permission
 
@@ -28,6 +28,16 @@ def create_app(config_name='default'):
     mail.init_app(app)
     login_manager.init_app(app)
     csrf.init_app(app)
+    oauth.init_app(app)
+    
+    # Register Google OAuth
+    oauth.register(
+        name='google',
+        client_id=app.config['GOOGLE_CLIENT_ID'],
+        client_secret=app.config['GOOGLE_CLIENT_SECRET'],
+        server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+        client_kwargs={'scope': 'openid email profile'}
+    )
     
     # --- Babel Configuration ---
     def get_locale():
