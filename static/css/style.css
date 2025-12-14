@@ -24,6 +24,8 @@ body {
 [data-bs-theme="light"] body {
     background-color: #f4f6f9;
     color: #333;
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
 /* تنظیمات فونت فارسی */
@@ -42,8 +44,9 @@ img {
 }
 
 .navbar-logo {
-    height: 60px !important;
+    height: 66px !important;
     width: auto;
+    margin-top: 5px;
 }
 
 /* Transparent Header Overlay */
@@ -280,11 +283,10 @@ html[dir="rtl"] .best-value-ribbon {
 [data-bs-theme="light"] .sidebar,
 [data-bs-theme="light"] .top-bar,
 [data-bs-theme="light"] .admin-sidebar,
-[data-bs-theme="light"] .navbar,
 [data-bs-theme="light"] .auth-card {
     background-color: #ffffff !important;
-    border-color: #dee2e6 !important;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* FIX: محافظت از بخش‌های تیره در برابر تغییر رنگ متن */
@@ -391,9 +393,5 @@ html[dir="rtl"] .best-value-ribbon {
         border-radius: 0.5rem;
         margin-top: 0.5rem;
         box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-    [data-bs-theme="light"] .navbar-collapse {
-        background-color: transparent;
-        box-shadow: none;
     }
 }
