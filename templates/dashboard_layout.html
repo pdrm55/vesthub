@@ -29,9 +29,8 @@
         <!-- Dashboard Sidebar (Desktop) -->
         <nav class="sidebar d-flex flex-column p-3">
             <!-- Sidebar Header -->
-            <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none" style="color: var(--bs-body-color);">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                <span class="fs-4">VestHub</span>
+            <a href="{{ url_for('main.home') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none ps-3" style="color: var(--bs-body-color);">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="navbar-logo">
             </a>
             <hr>
             <!-- Sidebar Navigation -->
@@ -106,8 +105,7 @@
             <!-- Top Bar (Mobile) -->
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
                 <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                    <span class="fs-4">VestHub</span>
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="navbar-logo">
                 </a>
                 <div class="d-flex align-items-center">
                     <!-- Theme Toggle Button (Mobile) -->
@@ -123,9 +121,8 @@
             <!-- Offcanvas Sidebar (for mobile) -->
             <div class="offcanvas offcanvas-start bg-body-tertiary" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
-                    <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="me-2 navbar-logo">
-                        <span class="fs-4">VestHub</span>
+                    <a href="{{ url_for('main.home') }}" class="d-flex align-items-center text-decoration-none ps-3" style="color: var(--bs-body-color);">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="VestHub Logo" height="32" class="navbar-logo">
                     </a>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>

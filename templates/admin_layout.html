@@ -29,9 +29,8 @@
         <!-- Admin Sidebar (Desktop) -->
         <nav class="sidebar admin-sidebar d-flex flex-column p-3">
             <!-- Sidebar Header -->
-            <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none" style="color: var(--bs-body-color);">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="me-2 navbar-logo">
-                <span class="fs-4">{{ _('Admin Panel') }}</span>
+            <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none ps-3" style="color: var(--bs-body-color);">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="navbar-logo">
             </a>
             <hr>
             <!-- Sidebar Navigation -->
@@ -135,8 +134,7 @@
             <!-- Top Bar (Mobile) -->
             <header class="top-bar d-lg-none d-flex align-items-center justify-content-between">
                 <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="me-2 navbar-logo">
-                    <span class="fs-4">{{ _('Admin') }}</span>
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="navbar-logo">
                 </a>
                 <div class="d-flex align-items-center">
                     <button class="btn btn-outline-secondary border-0 me-2" id="theme-toggle-mobile" title="{{ _('Toggle theme') }}">
@@ -151,9 +149,8 @@
             <!-- Offcanvas Sidebar (Mobile) -->
             <div class="offcanvas offcanvas-start bg-body-tertiary" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
                 <div class="offcanvas-header">
-                     <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-decoration-none" style="color: var(--bs-body-color);">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="me-2 navbar-logo">
-                        <span class="fs-4">{{ _('Admin Panel') }}</span>
+                     <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-decoration-none ps-3" style="color: var(--bs-body-color);">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('VestHub Logo') }}" height="32" class="navbar-logo">
                     </a>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="{{ _('Close') }}"></button>
                 </div>
