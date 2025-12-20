@@ -7,13 +7,13 @@
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
-                <h1 class="display-3 fw-bold mb-4">{{ _('Intelligent Trading. Automated.') }}</h1>
-                <p class="lead mb-5">{{ _('Access a new generation of trading bots and analytical tools, or let our AI manage your portfolio.') }}</p>
+                <h1 class="display-3 fw-bold mb-4">{{ _('Intelligent Wealth Growth. Simplified.') }}</h1>
+                <p class="lead mb-5">{{ _('Secure automated investment plans for everyone, or dedicated managed accounts for elite capital. No trading experience required.') }}</p>
                 <!-- Call to Action Buttons -->
                 <div>
-                    <a href="{{ url_for('main.marketplace') }}" class="btn btn-primary btn-lg mx-2 my-1 px-5 py-3 fw-semibold">{{ _('Explore the Marketplace') }}</a>
+                    <a href="{{ url_for('main.plans') }}" class="btn btn-primary btn-lg mx-2 my-1 px-5 py-3 fw-semibold">{{ _('Start Growing (Plans)') }}</a>
                     <!-- Link redirects to plans section or signup -->
-                    <a href="{{ url_for('main.plans') }}" class="btn btn-outline-light btn-lg mx-2 my-1 px-5 py-3 fw-semibold">{{ _('Start Investing') }}</a>
+                    <a href="{{ url_for('main.marketplace') }}" class="btn btn-outline-light btn-lg mx-2 my-1 px-5 py-3 fw-semibold">{{ _('Explore VIP Solutions') }}</a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,8 @@
             <!-- Loop through available investment plans -->
             {% for plan in plans %}
             <div class="col-md-6 col-lg-4">
-                <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative" {% if loop.index == 2 %}style="transform: scale(1.05); z-index: 2; border: 1px solid #ffc107; box-shadow: 0 0 20px rgba(255, 193, 7, 0.2) !important;"{% endif %}>
+                <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative" 
+                     style="transition: all 0.3s ease; {% if loop.index == 2 %}transform: scale(1.05); z-index: 2; border: 1px solid #ffc107; box-shadow: 0 0 20px rgba(255, 193, 7, 0.2) !important;{% endif %}">
                     
                     <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
                     {% if plan.risk_level == 'low' %}
@@ -104,6 +105,49 @@
             {% endfor %}
         </div>
 
+        <!-- Profit Calculator Widget (Moved Below) -->
+        <div class="card mt-5 shadow-lg bg-dark-subtle border-0 profit-calculator">
+            <div class="card-body p-4">
+                <h3 class="fw-bold mb-4 text-center">{{ _('Profit Calculator') }}</h3>
+                <div class="row g-4 align-items-center justify-content-center">
+                    <div class="col-md-4">
+                        <label for="plan-selector" class="form-label">{{ _('Select Plan') }}</label>
+                        <select class="form-select form-select-lg" id="plan-selector">
+                            <option value="" selected disabled>{{ _('Choose a plan...') }}</option>
+                            {% for plan in plans %}
+                            <option value="{{ plan.id }}" data-roi="{{ plan.annual_return_rate }}" data-duration="{{ plan.duration_months }}">
+                                {{ plan.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="invest-amount" class="form-label mb-1">{{ _('Investment Amount ($)') }}</label>
+                        <div class="d-flex align-items-center mb-2 bg-dark bg-opacity-50 rounded px-3 py-1 border border-secondary amount-wrapper">
+                            <input type="number" class="form-control form-control-lg bg-transparent border-0 text-white fw-bold p-0" id="invest-amount" value="1000" min="100" max="50000">
+                        </div>
+                        <input type="range" class="form-range" id="invest-range" min="100" max="50000" step="100" value="1000">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card bg-body-tertiary border-0 p-3">
+                            <div class="d-flex justify-content-between mb-2 fs-5">
+                                <span>{{ _('Total Return (Simple):') }}</span>
+                                <span class="fw-bold text-white" id="total-return">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 fs-5">
+                                <span>{{ _('Net Profit (Simple):') }}</span>
+                                <span class="fw-bold text-success" id="net-profit">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between fs-5">
+                                <span>{{ _('Potential with Compound Interest:') }} <i class="bi bi-info-circle small text-muted" title="{{ _('Assumes monthly reinvestment') }}" data-bs-toggle="tooltip"></i></span>
+                                <span class="fw-bold text-success" id="compound-profit">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- More Plans Button -->
         {% if plans %}
         <div class="row mt-5">
@@ -118,34 +162,56 @@
     </div>
 </section>
 
-<!-- Product Offering Section (Two Paths) -->
-<section class="py-5 bg-dark-subtle text-body-emphasis">
+<!-- Solutions Section -->
+<section class="py-5 bg-dark-subtle text-body-emphasis" id="solutions">
     <div class="container">
+        <h2 class="text-center fw-bold mb-5">{{ _('Our Intelligent Solutions') }}</h2>
         <div class="row g-4 align-items-stretch">
-            <!-- Column 1: For Active Traders -->
-            <div class="col-lg-6">
-                <div class="card h-100 p-4 rounded-4 shadow-sm border-0">
-                    <div class="card-body text-center">
-                        <div class="mb-3">
-                            <i class="bi bi-graph-up-arrow fs-1 text-primary"></i>
+            <!-- Card 1: Automated Growth Plans -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 rounded-4 shadow-sm border-primary border-2">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="mb-3 text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/></svg>
                         </div>
-                        <h3 class="card-title fw-bold mb-4">{{ _('The Bot & Tool Marketplace') }}</h3>
-                        <p class="card-text" style="line-height: 1.6;">{{ _('Browse, backtest, and deploy hundreds of bots from top developers. Or build your own strategies with our powerful, low-latency APIs.') }}</p>
-                        <a href="{{ url_for('main.marketplace') }}" class="btn btn-outline-primary mt-3">{{ _('Go to Marketplace') }}</a>
+                        <h3 class="card-title fw-bold mb-3">{{ _('Automated Growth Plans') }}</h3>
+                        <p class="card-text mb-4">{{ _('Join our secure liquidity pools. Our AI trades, you receive passive profit based on your plan. Ideal for secure, hands-off growth.') }}</p>
+                        <div class="mt-auto">
+                            <a href="{{ url_for('main.plans') }}" class="btn btn-primary w-100">{{ _('View Plans & Calculate Profit') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Column 2: For Passive Investors -->
-            <div class="col-lg-6">
+            <!-- Card 2: Private Managed Accounts (VIP) -->
+            <div class="col-md-4">
                 <div class="card h-100 p-4 rounded-4 shadow-sm border-0">
-                    <div class="card-body text-center">
-                        <div class="mb-3">
-                            <i class="bi bi-piggy-bank fs-1 text-success"></i>
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="mb-3 text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/><path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/></svg>
                         </div>
-                        <h3 class="card-title fw-bold mb-4">{{ _('VestHub Managed Portfolios') }}</h3>
-                        <!-- FIX: Use double quotes to avoid conflict with "Don't" -->
-                        <p class="card-text" style="line-height: 1.6;">{{ _("Don't have time to trade? Our top-performing AI bots will trade for you. We manage the risk, you track the returns.") }}</p>
-                        <a href="{{ url_for('main.invest_learn') }}" class="btn btn-outline-light mt-3">{{ _('Learn About Investing') }}</a>
+                        <h3 class="card-title fw-bold mb-3">{{ _('Private Managed Accounts (VIP)') }}</h3>
+                        <p class="card-text mb-4">{{ _('For capital over $100k. Our AI trades directly in your NinjaTrader account. Full transparency, profit-share model.') }}</p>
+                        <div class="mt-auto">
+                            <a href="{{ url_for('main.contact_us') }}" class="btn btn-outline-primary w-100">{{ _('Request Consultation') }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3: Developer API & Lab (Coming Soon) -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 rounded-4 shadow-sm border-0 position-relative opacity-75">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-secondary">{{ _('COMING SOON') }}</span>
+                    </div>
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="mb-3 text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/></svg>
+                        </div>
+                        <h3 class="card-title fw-bold mb-3">{{ _('Developer API & Lab') }}</h3>
+                        <p class="card-text mb-4">{{ _('Access our low-latency infrastructure and historical data to build your own tools.') }}</p>
+                        <div class="mt-auto">
+                            <button class="btn btn-secondary w-100" disabled>{{ _('Join Waitlist') }}</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,61 +219,86 @@
     </div>
 </section>
 
-<!-- Trust Bar Section -->
-<section class="py-5">
+<!-- How It Works Section -->
+<section class="py-5 bg-light text-dark">
     <div class="container">
-        <div class="row text-center g-4">
+        <h2 class="text-center fw-bold mb-5">{{ _('Simple, Secure Growth. How it Works.') }}</h2>
+        
+        <!-- Video Area -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <div class="ratio ratio-16x9 bg-dark rounded-4 shadow-sm overflow-hidden">
+                    <video controls poster="{{ url_for('static', filename='images/logo.png') }}">
+                        {% if get_locale() == 'fa' %}
+                        <source src="{{ url_for('static', filename='videos/vesthub-fa.mp4') }}" type="video/mp4">
+                        {% elif get_locale() == 'tr' %}
+                        <source src="{{ url_for('static', filename='videos/vesthub-tr.mp4') }}" type="video/mp4">
+                        {% else %}
+                        <source src="{{ url_for('static', filename='videos/vesthub-en.mp4') }}" type="video/mp4">
+                        {% endif %}
+                        {{ _('Your browser does not support the video tag.') }}
+                    </video>
+                </div>
+                <p class="text-center mt-3 fw-bold fs-5">{{ _('WATCH EXPLAINER VIDEO: How VestHub Grows Your Wealth Safely') }}</p>
+            </div>
+        </div>
+
+        <!-- Steps Row -->
+        <div class="row g-4 text-center">
             <div class="col-md-4">
-                <i class="bi bi-shield-lock trust-bar-icon"></i>
-                <h4 class="fw-semibold">{{ _('Institutional-Grade Security') }}</h4>
-                <p class="mb-0 text-secondary">{{ _('Bank-level encryption & cold storage.') }}</p>
+                <div class="p-3">
+                    <i class="bi bi-wallet2 fs-1 text-primary mb-3"></i>
+                    <h4 class="fw-bold">{{ _('Select Plan & Deposit') }}</h4>
+                </div>
             </div>
             <div class="col-md-4">
-                <i class="bi bi-patch-check trust-bar-icon"></i>
-                <h4 class="fw-semibold">{{ _('Rigorous Vetting') }}</h4>
-                <p class="mb-0 text-secondary">{{ _('All marketplace bots are backtested & verified.') }}</p>
+                <div class="p-3">
+                    <i class="bi bi-gear-wide-connected fs-1 text-primary mb-3"></i>
+                    <h4 class="fw-bold">{{ _('AI Manages & Trades') }}</h4>
+                </div>
             </div>
             <div class="col-md-4">
-                <i class="bi bi-bar-chart-line trust-bar-icon"></i>
-                <h4 class="fw-semibold">{{ _('Full Transparency') }}</h4>
-                <p class="mb-0 text-secondary">{{ _('Real-time performance dashboards.') }}</p>
+                <div class="p-3">
+                    <i class="bi bi-cash-coin fs-1 text-primary mb-3"></i>
+                    <h4 class="fw-bold">{{ _('Withdraw Your Profits') }}</h4>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Core Features Section -->
-<section class="performance-section">
+<!-- Performance/Features Section -->
+<section class="performance-section py-5">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">{{ _('A Platform Built for Performance') }}</h2>
         <!-- Features Grid -->
         <div class="row g-4">
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
-                    <i class="bi bi-lightning-charge feature-icon"></i>
-                    <h5 class="fw-semibold">{{ _('Blazing-Fast Backtesting') }}</h5>
-                    <p class="text-secondary" style="line-height: 1.6;">{{ _('Test your strategies on years of data in seconds.') }}</p>
+                    <i class="bi bi-shield-lock feature-icon fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-semibold">{{ _('Institutional-Grade Security') }}</h5>
+                    <p class="text-secondary" style="line-height: 1.6;">{{ _('Bank-level encryption & cold storage.') }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
-                    <i class="bi bi-robot feature-icon"></i>
-                    <h5 class="fw-semibold">{{ _('AI-Powered Analytics') }}</h5>
-                    <p class="text-secondary" style="line-height: 1.6;">{{ _('Use our proprietary tools to scan markets and find opportunities.') }}</p>
+                    <i class="bi bi-patch-check feature-icon fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-semibold">{{ _('Fully Managed Risk') }}</h5>
+                    <p class="text-secondary" style="line-height: 1.6;">{{ _('AI-Driven Risk Management.') }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
-                    <i class="bi bi-hdd-network feature-icon"></i>
-                    <h5 class="fw-semibold">{{ _('Multi-Exchange Connectivity') }}</h5>
-                    <p class="text-secondary" style="line-height: 1.6;">{{ _('Connect all your exchange accounts in one secure place.') }}</p>
+                    <i class="bi bi-bar-chart feature-icon fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-semibold">{{ _('Real-Time Transparency') }}</h5>
+                    <p class="text-secondary" style="line-height: 1.6;">{{ _('Real-time performance dashboards.') }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="text-center">
-                    <i class="bi bi-code-slash feature-icon"></i>
-                    <h5 class="fw-semibold">{{ _('Developer-Friendly API') }}</h5>
-                    <p class="text-secondary" style="line-height: 1.6;">{{ _('Build, test, and deploy your own tools on our infrastructure.') }}</p>
+                    <i class="bi bi-code-square feature-icon fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-semibold">{{ _('Future-Ready Infrastructure') }}</h5>
+                    <p class="text-secondary" style="line-height: 1.6;">{{ _('API Coming Soon.') }}</p>
                 </div>
             </div>
         </div>
@@ -226,5 +317,77 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        const amountInput = document.getElementById('invest-amount');
+        const amountRange = document.getElementById('invest-range');
+        const planSelect = document.getElementById('plan-selector');
+        const totalReturnEl = document.getElementById('total-return');
+        const netProfitEl = document.getElementById('net-profit');
+        const compoundProfitEl = document.getElementById('compound-profit');
+
+        function calculate() {
+            const selectedOption = planSelect.options[planSelect.selectedIndex];
+            
+            // Check if a valid plan is selected (has data attributes)
+            if (!selectedOption || !selectedOption.dataset.roi) {
+                totalReturnEl.textContent = '$0.00';
+                netProfitEl.textContent = '$0.00';
+                compoundProfitEl.textContent = '$0.00';
+                return;
+            }
+
+            const roi = parseFloat(selectedOption.dataset.roi); // Annual Rate %
+            const durationMonths = parseFloat(selectedOption.dataset.duration);
+            const amount = parseFloat(amountInput.value) || 0;
+
+            // Variables for formula
+            const P = amount;
+            const r = roi / 100;
+            const n = 12; // Monthly compounding
+            const t = durationMonths / 12; // Time in years
+
+            // 1. Simple Profit: P * r * t
+            const simpleProfit = P * r * t;
+            const simpleTotal = P + simpleProfit;
+
+            // 2. Compound Amount: A = P * (1 + r/n)^(n*t)
+            const compoundAmount = P * Math.pow((1 + (r / n)), (n * t));
+            const compoundProfit = compoundAmount - P;
+
+            // Formatting
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            });
+
+            totalReturnEl.textContent = formatter.format(simpleTotal);
+            netProfitEl.textContent = formatter.format(simpleProfit);
+            compoundProfitEl.textContent = formatter.format(compoundProfit);
+        }
+
+        planSelect.addEventListener('change', calculate);
+        
+        // Sync Range Slider -> Number Input & Calculate
+        amountRange.addEventListener('input', function() {
+            amountInput.value = this.value;
+            calculate();
+        });
+
+        // Sync Number Input -> Range Slider & Calculate
+        amountInput.addEventListener('input', function() {
+            amountRange.value = this.value;
+            calculate();
+        });
+    });
+</script>
 
 {% endblock %}

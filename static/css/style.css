@@ -395,3 +395,145 @@ html[dir="rtl"] .best-value-ribbon {
         box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 }
+
+/* =================================== */
+/* ==   7. Comparison Table         == */
+/* =================================== */
+
+.comparison-table .highlight-th {
+    position: relative;
+    overflow: visible !important;
+    border: 2px solid #00d084 !important;
+    border-bottom: none !important;
+    background-color: #212529 !important;
+}
+
+.comparison-table .best-choice-badge {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.comparison-table .highlight-td {
+    border-left: 2px solid #00d084 !important;
+    border-right: 2px solid #00d084 !important;
+    background-color: #212529 !important;
+}
+
+.comparison-table .highlight-td-bottom {
+    border-bottom: 2px solid #00d084 !important;
+}
+
+/* =========================================
+   Marketplace Styles (Table & Chart) - FIXED
+   ========================================= */
+
+/* Chart Animation */
+@keyframes drawChart {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+}
+.chart-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawChart 2.5s ease-out forwards;
+}
+
+/* FIX: Override Bootstrap Variables for the Table in Light Mode */
+[data-bs-theme="light"] .comparison-table {
+    /* Reset Bootstrap's dark table variables to Light Theme colors */
+    --bs-table-bg: #ffffff;
+    --bs-table-color: #212529;
+    --bs-table-striped-bg: #f3f4f6;  /* Light Gray for stripes */
+    --bs-table-striped-color: #212529;
+    --bs-table-active-bg: #e5e7eb;
+    --bs-table-active-color: #212529;
+    --bs-table-hover-bg: #e5e7eb;
+    --bs-table-hover-color: #212529;
+    
+    /* Ensure borders are light */
+    --bs-table-border-color: #e5e7eb;
+    color: #212529 !important;
+    border-color: #e5e7eb !important;
+}
+
+/* Ensure Table Header matches Light Theme */
+[data-bs-theme="light"] .comparison-table thead th {
+    background-color: #f9fafb !important;
+    color: #111827 !important;
+    border-bottom: 2px solid #e5e7eb !important;
+}
+
+/* Vetrix 1 Column Highlight (Mint Green) - Force Override Stripes */
+[data-bs-theme="light"] .comparison-table .highlight-th,
+[data-bs-theme="light"] .comparison-table .highlight-td {
+    background-color: #ecfdf5 !important; /* Mint Green wins over stripes */
+    color: #064e3b !important;
+    border-left: 1px solid #10b981 !important;
+    border-right: 1px solid #10b981 !important;
+    box-shadow: none !important; /* Remove any dark shadows */
+}
+
+/* Fix Bottom Border for Highlight Column */
+[data-bs-theme="light"] .comparison-table .highlight-td-bottom {
+    border-bottom: 1px solid #10b981 !important;
+}
+
+/* Faded/Gray Text for Competitor Columns */
+[data-bs-theme="light"] .comparison-table td:not(.highlight-td) {
+    color: #4b5563 !important; /* Cool Gray */
+}
+
+/* =========================================
+   Index Styles (Calculator & Slider) - FIXED
+   ========================================= */
+
+/* Custom Range Slider Styling */
+input[type=range]::-webkit-slider-thumb { 
+    -webkit-appearance: none; width: 16px; height: 16px; 
+    border-radius: 50%; background: #00b0f0; 
+    box-shadow: 0 0 10px rgba(0, 176, 240, 0.5); 
+    cursor: pointer; margin-top: -5px; 
+}
+input[type=range]::-webkit-slider-runnable-track { 
+    background: rgba(255, 255, 255, 0.2); 
+    height: 6px; border-radius: 3px; 
+}
+/* Slider Track in Light Mode */
+[data-bs-theme="light"] input[type=range]::-webkit-slider-runnable-track {
+    background: #d1d5db;
+}
+
+/* Profit Calculator Container in Light Mode */
+[data-bs-theme="light"] .profit-calculator { 
+    background-color: #f8f9fa !important; /* Distinct Light Gray */
+    border: 1px solid #dee2e6 !important; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; 
+}
+
+/* Text Colors in Calculator (Light Mode) */
+[data-bs-theme="light"] .profit-calculator h3, 
+[data-bs-theme="light"] .profit-calculator .form-label, 
+[data-bs-theme="light"] .profit-calculator .fs-5 span:first-child { 
+    color: #111827 !important; 
+}
+
+/* Inputs in Light Mode (White background to pop against gray container) */
+[data-bs-theme="light"] .profit-calculator .form-select,
+[data-bs-theme="light"] .profit-calculator .amount-wrapper { 
+    background-color: #ffffff !important; 
+    border: 1px solid #ced4da !important; 
+    color: #111827 !important; 
+}
+
+[data-bs-theme="light"] .profit-calculator input[type="number"] { 
+    color: #111827 !important; 
+}
+
+/* Result Values in Light Mode */
+[data-bs-theme="light"] .profit-calculator .text-white { 
+    color: #111827 !important; /* Change total return from white to dark */
+}

@@ -3,15 +3,13 @@
 {% block title %}Vetrix 1: Professional Algorithmic Trading - VestHub{% endblock %}
 
 {% block content %}
-
 <!-- Hero Section for Vetrix 1 -->
 <header class="hero-section text-white" style="background-image: linear-gradient(rgba(13, 37, 63, 0.9), rgba(13, 37, 63, 0.9)), url('{{ url_for('static', filename='images/vetrix_hero_background.png') }}');">
     <div class="container text-center py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
-                <h1 class="display-3 fw-bold mb-4">{{ _('Meet Vetrix 1') }}</h1>
-                <p class="lead mb-4">{{ _('The next generation of intelligent trading bots. Built by veteran traders with 12+ years of market experience, for professional traders and institutions.') }}</p>
-                <p class="lead mb-4">{{ _('Stop using retail toys or overpaying for institutional platforms. Vetrix 1 bridges the gap.') }}</p>
+                <h1 class="display-3 fw-bold mb-4">{{ _('Institutional-Grade Alpha. Available to You.') }}</h1>
+                <p class="lead mb-4">{{ _('Stop trading against the house. Trade WITH the house using Vetrix 1.') }}</p>
                 <!-- Call to Action Buttons -->
                 <div>
                     <a href="{{ url_for('auth.signup') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">{{ _('Start Trading Now') }}</a>
@@ -21,6 +19,30 @@
         </div>
     </div>
 </header>
+
+<!-- Live Performance Verification Section -->
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4 display-5">{{ _("Don't Trust Words. Trust Data.") }}</h2>
+                <p class="lead text-secondary">{{ _('Vetrix 1 is backtested over 10 years of tick-data and forward-tested in live markets. Transparency is our core value.') }}</p>
+            </div>
+            <div class="col-lg-6">
+                <!-- Mock Chart Card -->
+                <div class="card bg-dark-subtle border-0 shadow-lg p-4 position-relative overflow-hidden">
+                    <h5 class="text-secondary mb-1">{{ _('Total Return') }}</h5>
+                    <h2 class="text-success fw-bold mb-0 display-4">+80%</h2>
+                    <p class="text-secondary small mb-4 mt-2">{{ _('Approved based on real market data backed testing.') }}</p>
+                    <!-- Animated SVG Chart -->
+                    <svg viewBox="0 0 500 150" class="w-100" style="height: 150px; filter: drop-shadow(0 0 8px rgba(0, 208, 132, 0.5));">
+                        <path d="M0,150 C50,120 100,140 150,80 C200,20 250,100 300,60 C350,20 400,40 500,10" fill="none" stroke="#00d084" stroke-width="4" class="chart-path" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Competitive Advantage Section -->
 <section class="py-5">
@@ -62,11 +84,14 @@
     <div class="container">
         <h2 class="text-center fw-bold mb-5">{{ _('How We Compare') }}</h2>
         <div class="table-responsive">
-            <table class="table table-dark table-striped table-bordered align-middle text-center" style="font-size: 0.9rem;">
+            <table class="table table-dark table-striped table-bordered align-middle text-center comparison-table" style="font-size: 0.9rem;">
                 <thead>
                     <tr class="table-secondary">
                         <th scope="col">{{ _('Feature') }}</th>
-                        <th scope="col" class="bg-primary-subtle text-primary-emphasis">{{ _('Vetrix 1 (VestHub)') }}</th>
+                        <th scope="col" class="bg-dark text-white highlight-th">
+                            <span class="badge bg-success best-choice-badge shadow-sm">{{ _('Best Choice') }}</span>
+                            {{ _('Vetrix 1 (VestHub)') }}
+                        </th>
                         <th scope="col">{{ _('Retail Bot Marketplaces') }}</th>
                         <th scope="col">{{ _('Retail Crypto Bots (e.g., 3Commas)') }}</th>
                     </tr>
@@ -74,37 +99,37 @@
                 <tbody>
                     <tr>
                         <th scope="row" class="text-start">{{ _('Target Audience') }}</th>
-                        <td class="fw-bold">{{ _('Funds, Companies, Pro Traders') }}</td>
+                        <td class="fw-bold text-white highlight-td">{{ _('Funds, Companies, Pro Traders') }}</td>
                         <td>{{ _('Retail Traders') }}</td>
                         <td>{{ _('Retail Crypto Users') }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">{{ _('Revenue Model') }}</th>
-                        <td class="fw-bold text-success">{{ _('Profit-Sharing (Aligned)') }}</td>
+                        <td class="fw-bold text-success highlight-td">{{ _('Profit-Sharing (Aligned)') }}</td>
                         <td>{{ _('Subscription / Direct Sale') }}</td>
                         <td>{{ _('Subscription') }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">{{ _('Core Technology') }}</th>
-                        <td class="fw-bold">{{ _('C# (Low-Latency)') }}</td>
+                        <td class="fw-bold text-white highlight-td">{{ _('C# (Low-Latency)') }}</td>
                         <td>{{ _('Varies (Often Python, JS)') }}</td>
                         <td>{{ _('Varies') }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">{{ _('Data Source') }}</th>
-                        <td class="fw-bold">{{ _('Real Futures Range Bars') }}</td>
+                        <td class="fw-bold text-white highlight-td">{{ _('Real Futures Range Bars') }}</td>
                         <td>{{ _('Often unreliable CFD data') }}</td>
                         <td>{{ _('Exchange API') }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">{{ _('Risk Management') }}</th>
-                        <td class="fw-bold text-success">{{ _('Adaptive, Multi-Level, DD Control') }}</td>
+                        <td class="fw-bold text-success highlight-td">{{ _('Adaptive, Multi-Level, DD Control') }}</td>
                         <td>{{ _('Basic / None') }}</td>
                         <td>{{ _('User-dependent Stop-Loss') }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">{{ _('Transparency') }}</th>
-                        <td class="fw-bold text-success">{{ _('Full (Real Statements)') }}</td>
+                        <td class="fw-bold text-success highlight-td highlight-td-bottom">{{ _('Full (Real Statements)') }}</td>
                         <td>{{ _('Low (Backtests only)') }}</td>
                         <td>{{ _('User-dependent') }}</td>
                     </tr>
@@ -163,56 +188,56 @@
         <h2 class="text-center fw-bold mb-5">{{ _('Key Features') }}</h2>
         <div class="row g-4">
             <div class="col-md-6 col-lg-4">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
-                    <div>
-                        <h5 class="fw-semibold">{{ _('Multi-Platform Ready') }}</h5>
-                        <p>{{ _('Modular architecture designed for NinjaTrader, MetaTrader, Tradovate, and more.') }}</p>
+                <div class="card h-100 p-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-check-circle text-primary fs-2 mb-3"></i>
+                        <h3 class="h5 fw-bold">{{ _('Multi-Platform Ready') }}</h3>
+                        <p class="text-secondary">{{ _('Modular architecture designed for NinjaTrader, MetaTrader, Tradovate, and more.') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
-                    <div>
-                        <h5 class="fw-semibold">{{ _('Universal Market Adaptability') }}</h5>
-                        <p>{{ _('Data-independence allows Vetrix to run seamlessly on Futures, Crypto Futures, Forex, and Commodities.') }}</p>
+                <div class="card h-100 p-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-check-circle text-primary fs-2 mb-3"></i>
+                        <h3 class="h5 fw-bold">{{ _('Universal Market Adaptability') }}</h3>
+                        <p class="text-secondary">{{ _('Data-independence allows Vetrix to run seamlessly on Futures, Crypto Futures, Forex, and Commodities.') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
-                    <div>
-                        <h5 class="fw-semibold">{{ _('AI & Machine Learning Ready') }}</h5>
-                        <p>{{ _('Built with a foundation for future AI-driven adaptive learning and self-optimization.') }}</p>
+                <div class="card h-100 p-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-check-circle text-primary fs-2 mb-3"></i>
+                        <h3 class="h5 fw-bold">{{ _('AI & Machine Learning Ready') }}</h3>
+                        <p class="text-secondary">{{ _('Built with a foundation for future AI-driven adaptive learning and self-optimization.') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
-                    <div>
-                        <h5 class="fw-semibold">{{ _('Multi-Risk Coverage') }}</h5>
-                        <p>{{ _('Tailored profit-to-risk optimization based on your selected risk profile.') }}</p>
+                <div class="card h-100 p-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-check-circle text-primary fs-2 mb-3"></i>
+                        <h3 class="h5 fw-bold">{{ _('Multi-Risk Coverage') }}</h3>
+                        <p class="text-secondary">{{ _('Tailored profit-to-risk optimization based on your selected risk profile.') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
-                    <div>
-                        <h5 class="fw-semibold">{{ _('Multi-Strategy Management') }}</h5>
-                        <p>{{ _('Enables portfolio diversification and overall risk reduction by running multiple strategies.') }}</p>
+                <div class="card h-100 p-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-check-circle text-primary fs-2 mb-3"></i>
+                        <h3 class="h5 fw-bold">{{ _('Multi-Strategy Management') }}</h3>
+                        <p class="text-secondary">{{ _('Enables portfolio diversification and overall risk reduction by running multiple strategies.') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle text-primary fs-4 me-3"></i>
-                    <div>
-                        <h5 class="fw-semibold">{{ _('API & Copy Trading') }}</h5>
-                        <p>{{ _('Direct connectivity with global brokers (like AMP Broker) and exchanges (like Binance).') }}</p>
+                <div class="card h-100 p-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-check-circle text-primary fs-2 mb-3"></i>
+                        <h3 class="h5 fw-bold">{{ _('API & Copy Trading') }}</h3>
+                        <p class="text-secondary">{{ _('Direct connectivity with global brokers (like AMP Broker) and exchanges (like Binance).') }}</p>
                     </div>
                 </div>
             </div>
