@@ -43,7 +43,7 @@
             <div class="card-body p-4">
                 <ul class="nav nav-pills nav-fill mb-3" id="paymentTabs" role="tablist">
                     <li class="nav-item"><button class="nav-link active" id="crypto-tab" data-bs-toggle="tab" data-bs-target="#crypto-pane" type="button">{{ _('Manual Crypto') }}</button></li>
-                    <li class="nav-item"><button class="nav-link" id="online-tab" data-bs-toggle="tab" data-bs-target="#online-pane" type="button">{{ _('Online Payment') }}</button></li>
+                    <li class="nav-item"><button class="nav-link d-none" id="online-tab" data-bs-toggle="tab" data-bs-target="#online-pane" type="button">{{ _('Online Payment') }}</button></li>
                     <li class="nav-item"><button class="nav-link" id="bank-tab" data-bs-toggle="tab" data-bs-target="#bank-pane" type="button">{{ _('Bank Transfer') }}</button></li>
                 </ul>
 
@@ -79,13 +79,9 @@
 
                     <!-- Online Payment Pane -->
                     <div class="tab-pane fade" id="online-pane">
-                        <div class="text-center py-4">
-                            <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
-                            <h5>{{ _('Pay Securely with Gateway') }}</h5>
-                            <form method="POST" action="{{ url_for('user.process_online_payment', investment_id=investment.id) }}">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-primary btn-lg w-100">{{ _('Pay Now') }}</button>
-                            </form>
+                        <div class="alert alert-warning text-center" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill fs-4 d-block mb-2"></i>
+                            {{ _('Online payment is currently under maintenance.') }}
                         </div>
                     </div>
 
@@ -114,14 +110,22 @@
                     <div class="text-center py-5">
                         <h4 class="fw-bold text-white">{{ _('Proof Submitted!') }}</h4>
                         <p class="text-body-secondary">{{ _('Transaction ID:') }} <code class="text-break">{{ investment.payment_tx_id }}</code></p>
+                        {% if investment.payment_proof_url %}
+                            <p class="text-success small mb-3"><i class="bi bi-check-circle-fill me-1"></i>{{ _('Receipt Document Uploaded') }}</p>
+                        {% endif %}
                         <a href="{{ url_for('user.dashboard') }}" class="btn btn-outline-primary w-100">{{ _('Return to Dashboard') }}</a>
                     </div>
                 {% else %}
-                    <form method="POST" action="{{ url_for('user.submit_proof', investment_id=investment.id) }}">
+                    <form method="POST" action="{{ url_for('user.submit_proof', investment_id=investment.id) }}" enctype="multipart/form-data" id="proofForm">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <div class="mb-3">
                             <label for="txnHash" class="form-label">{{ _('Crypto TxID (or Bank Ref)') }}</label>
-                            <input type="text" class="form-control" id="txnHash" name="txnHash" required>
+                            <input type="text" class="form-control" id="txnHash" name="txnHash">
+                        </div>
+                        <div class="mb-3">
+                            <label for="proofFile" class="form-label">{{ _('Upload Receipt') }}</label>
+                            <input type="file" class="form-control" id="proofFile" name="proofFile" accept=".jpg,.jpeg,.png,.pdf">
+                            <div class="form-text">{{ _('Upload receipt (Max 5MB)') }}</div>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">{{ _('Submit Proof') }}</button>
@@ -139,6 +143,19 @@
     function copyToClipboard(button) {
         var input = button.previousElementSibling;
         navigator.clipboard.writeText(input.value);
+    }
+
+    var proofForm = document.getElementById('proofForm');
+    if (proofForm) {
+        proofForm.addEventListener('submit', function(event) {
+            var txnHash = document.getElementById('txnHash').value.trim();
+            var proofFile = document.getElementById('proofFile').value;
+
+            if (!txnHash && !proofFile) {
+                event.preventDefault();
+                alert("Please enter a Transaction ID or upload a proof document.");
+            }
+        });
     }
 </script>
 {% endblock %}

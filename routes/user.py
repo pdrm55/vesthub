@@ -3,7 +3,7 @@ import string
 import pyotp
 from decimal import Decimal
 from datetime import datetime, timedelta
-from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, session
+from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, session, current_app, send_from_directory
 from flask_login import login_required, current_user
 from extensions import db
 from models import Investment, InvestmentPlan, Transaction, Ticket, TicketMessage, KYCRequest, User
@@ -88,6 +88,11 @@ def investment_pending(investment_id):
     }
     return render_template('investment_pending.html', investment=inv, wallets=wallets)
 
+@user_bp.route('/uploads/<filename>')
+@login_required
+def uploaded_file(filename):
+    return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename)
+
 @user_bp.route('/invest/submit-proof/<int:investment_id>', methods=['POST'])
 @login_required
 def submit_proof(investment_id):
@@ -95,7 +100,23 @@ def submit_proof(investment_id):
     if inv.user_id != current_user.id: return redirect(url_for('user.dashboard'))
         
     tx_hash = request.form.get('txnHash')
+    
+    file = request.files.get('proofFile')
+    has_file = file and file.filename != ''
+
+    if not tx_hash and not has_file:
+        flash('Please provide either a TxID or a proof document.', 'danger')
+        return redirect(url_for('user.investment_pending', investment_id=investment_id))
+
+    if not tx_hash and has_file:
+        tx_hash = f"DOC-{int(datetime.utcnow().timestamp())}"
+
     inv.payment_tx_id = tx_hash
+    
+    if has_file:
+        filename = save_uploaded_file(file)
+        if filename:
+            inv.payment_proof_url = filename
     
     db.session.add(Transaction(
         user_id=current_user.id, 

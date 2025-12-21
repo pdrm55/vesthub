@@ -46,21 +46,27 @@
                                 <td>{{ tx.description }}</td>
                                 <td>
                                     {% if tx.tx_hash %}
-                                        <code class="text-truncate d-block" style="max-width: 150px;">{{ tx.tx_hash }}</code>
+                                        <code class="text-truncate d-block mb-1" style="max-width: 150px;">{{ tx.tx_hash }}</code>
                                     {% else %}
-                                        <span class="text-body-secondary">{{ _('No TxID') }}</span>
+                                        <span class="text-body-secondary d-block mb-1">{{ _('No TxID') }}</span>
+                                    {% endif %}
+                                    
+                                    {% if tx.investment and tx.investment.payment_proof_url %}
+                                        <a href="{{ url_for('user.uploaded_file', filename=tx.investment.payment_proof_url) }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info py-0 px-2" style="font-size: 0.75rem;">
+                                            <i class="bi bi-paperclip"></i> {{ _('View Proof') }}
+                                        </a>
                                     {% endif %}
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="{{ url_for('admin.approve_payment', tx_id=tx.id) }}" method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-sm btn-success" title="{{ _('Approve') }}">
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
                                         </form>
                                         <form action="{{ url_for('admin.reject_payment', tx_id=tx.id) }}" method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-sm btn-danger" title="{{ _('Reject') }}">
                                                 <i class="bi bi-x-lg"></i>
                                             </button>

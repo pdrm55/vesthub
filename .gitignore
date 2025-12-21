@@ -5,3 +5,10 @@ __pycache__/
 .env
 instance/
 .DS_Store
+# Ignore Uploads folder but keep the folder itself (optional)
+static/uploads/
+!static/uploads/.gitkeep
+
+# Ignore Logs
+logs/
+*.log
