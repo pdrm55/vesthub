@@ -11,7 +11,8 @@ def home():
         session['ref_code'] = request.args.get('ref')
     
     plans = InvestmentPlan.query.filter_by(is_active=True).order_by(InvestmentPlan.duration_months.desc()).limit(3).all()
-    return render_template('index.html', plans=plans)
+    all_plans = InvestmentPlan.query.filter_by(is_active=True).order_by(InvestmentPlan.duration_months.desc()).all()
+    return render_template('index.html', plans=plans, all_plans=all_plans)
 
 @main_bp.route('/about')
 def about():

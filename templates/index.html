@@ -114,7 +114,7 @@
                         <label for="plan-selector" class="form-label">{{ _('Select Plan') }}</label>
                         <select class="form-select form-select-lg" id="plan-selector">
                             <option value="" selected disabled>{{ _('Choose a plan...') }}</option>
-                            {% for plan in plans %}
+                            {% for plan in all_plans %}
                             <option value="{{ plan.id }}" data-roi="{{ plan.annual_return_rate }}" data-duration="{{ plan.duration_months }}">
                                 {{ plan.name }}
                             </option>
@@ -124,9 +124,9 @@
                     <div class="col-md-3">
                         <label for="invest-amount" class="form-label mb-1">{{ _('Investment Amount ($)') }}</label>
                         <div class="d-flex align-items-center mb-2 bg-dark bg-opacity-50 rounded px-3 py-1 border border-secondary amount-wrapper">
-                            <input type="number" class="form-control form-control-lg bg-transparent border-0 text-white fw-bold p-0" id="invest-amount" value="1000" min="100" max="50000">
+                            <input type="number" class="form-control form-control-lg bg-transparent border-0 text-white fw-bold p-0" id="invest-amount" value="1000" min="100" max="1000000">
                         </div>
-                        <input type="range" class="form-range" id="invest-range" min="100" max="50000" step="100" value="1000">
+                        <input type="range" class="form-range" id="invest-range" min="100" max="1000000" step="500" value="1000">
                     </div>
                     <div class="col-md-5">
                         <div class="card bg-body-tertiary border-0 p-3">
