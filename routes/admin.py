@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from sqlalchemy import func, or_
 from datetime import datetime, timedelta
 from extensions import db
-from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog
+from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog, Investment
 from decorators import permission_required
 from utils import log_admin_activity, set_setting
 from tasks import run_profit_distribution
@@ -215,7 +215,8 @@ def activate_plan(plan_id):
 @login_required
 @permission_required('manage_payments')
 def payments():
-    return render_template('admin_payments.html', payments=Transaction.query.filter_by(type='deposit').order_by(Transaction.timestamp.desc()).all())
+    pending_payments = Transaction.query.filter_by(type='deposit', status='pending').order_by(Transaction.timestamp.desc()).all()
+    return render_template('admin_payments.html', payments=pending_payments)
 
 @admin_bp.route('/payments/approve/<int:tx_id>', methods=['POST'])
 @login_required
@@ -224,9 +225,22 @@ def approve_payment(tx_id):
     tx = db.session.get(Transaction, tx_id)
     if tx and tx.status == 'pending':
         tx.status = 'completed'
+        
+        # Activate associated investment if exists
+        if tx.investment:
+            tx.investment.status = 'active'
+            tx.investment.start_date = datetime.utcnow()
+        else:
+            # Fallback: Try to find investment by TxID if not directly linked
+            inv = Investment.query.filter_by(payment_tx_id=tx.tx_hash).first()
+            if inv and inv.status == 'pending_payment':
+                inv.status = 'active'
+                inv.start_date = datetime.utcnow()
+                tx.investment = inv # Link them for future
+        
         db.session.commit()
         log_admin_activity('Approve Payment', f'Approved TX {tx.id}')
-        flash('Deposit approved.', 'success')
+        flash('Payment approved successfully.', 'success')
     return redirect(url_for('admin.payments'))
 
 @admin_bp.route('/payments/reject/<int:tx_id>', methods=['POST'])
@@ -236,16 +250,27 @@ def reject_payment(tx_id):
     tx = db.session.get(Transaction, tx_id)
     if tx and tx.status == 'pending':
         tx.status = 'rejected'
+
+        # Reject associated investment if it exists
+        if tx.investment:
+            tx.investment.status = 'rejected'
+        else:
+            # Fallback for older, unlinked transactions
+            inv = Investment.query.filter_by(payment_tx_id=tx.tx_hash).first()
+            if inv and inv.status == 'pending_payment':
+                inv.status = 'rejected'
+
         db.session.commit()
         log_admin_activity('Reject Payment', f'Rejected TX {tx.id}')
-        flash('Deposit rejected.', 'warning')
+        flash('Payment rejected.', 'warning')
     return redirect(url_for('admin.payments'))
 
 @admin_bp.route('/withdrawals')
 @login_required
 @permission_required('manage_withdrawals')
 def withdrawals():
-    return render_template('admin_withdrawals.html', requests=Transaction.query.filter_by(type='withdrawal').order_by(Transaction.timestamp.desc()).all())
+    pending_withdrawals = Transaction.query.filter_by(type='withdrawal', status='pending').order_by(Transaction.timestamp.desc()).all()
+    return render_template('admin_withdrawals.html', requests=pending_withdrawals)
 
 @admin_bp.route('/withdrawals/approve/<int:tx_id>', methods=['POST'])
 @login_required
@@ -374,11 +399,13 @@ def logs():
 @permission_required('view_ledger')
 def accounting():
     # 1. Base Query
-    query = Transaction.query
+    query = Transaction.query.join(User)
 
     # 2. Filtering
     search = request.args.get('search')
     tx_type = request.args.get('type')
+    start_date_str = request.args.get('start_date')
+    end_date_str = request.args.get('end_date')
     
     if search:
         # Search by User Email, TxHash, or ID
@@ -389,29 +416,40 @@ def accounting():
         )
         if search.isdigit():
             search_condition = or_(search_condition, Transaction.id == int(search))
-            
-        query = query.join(User).filter(search_condition)
+        query = query.filter(search_condition)
     
     if tx_type and tx_type != 'all':
         query = query.filter(Transaction.type == tx_type)
 
+    if start_date_str:
+        start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+        query = query.filter(Transaction.timestamp >= start_date)
+
+    if end_date_str:
+        end_date = datetime.strptime(end_date_str, '%Y-%m-%d') + timedelta(hours=23, minutes=59, seconds=59)
+        query = query.filter(Transaction.timestamp <= end_date)
+
     # 3. Sorting & Pagination
     page = request.args.get('page', 1, type=int)
+    # The main paginated query for the table
     pagination = query.order_by(Transaction.timestamp.desc()).paginate(page=page, per_page=20, error_out=False)
 
     # 4. Financial Totals (Calculated on DB side for performance)
+    # Use the filtered query as the base for calculations
+    filtered_query_for_stats = query
+
     # Total Deposits (Completed)
-    total_deposits = db.session.query(func.sum(Transaction.amount)).filter(
+    total_deposits = filtered_query_for_stats.with_entities(func.sum(Transaction.amount)).filter(
         Transaction.type == 'deposit', Transaction.status == 'completed'
     ).scalar() or 0
     
     # Total Withdrawals (Completed)
-    total_withdrawals = db.session.query(func.sum(Transaction.amount)).filter(
+    total_withdrawals = filtered_query_for_stats.with_entities(func.sum(Transaction.amount)).filter(
         Transaction.type == 'withdrawal', Transaction.status == 'completed'
     ).scalar() or 0
     
     # Total Profit Distributed
-    total_profit = db.session.query(func.sum(Transaction.amount)).filter(
+    total_profit = filtered_query_for_stats.with_entities(func.sum(Transaction.amount)).filter(
         Transaction.type == 'profit'
     ).scalar() or 0
 
@@ -423,7 +461,9 @@ def accounting():
         total_withdrawals=total_withdrawals,
         total_profit=total_profit,
         search=search,
-        tx_type=tx_type
+        tx_type=tx_type,
+        start_date=start_date_str,
+        end_date=end_date_str
     )
 
 # --- Test Route ---

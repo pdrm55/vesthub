@@ -109,11 +109,14 @@ class Transaction(db.Model):
     __tablename__ = 'transactions'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    type = db.Column(db.String(20), nullable=False)  # نوع تراکنش: profit, withdrawal, deposit, ...
+    # Link transaction to a specific investment
+    investment_id = db.Column(db.Integer, db.ForeignKey('investments.id'), nullable=True)
+    # Relationship property to access tx.investment
+    investment = db.relationship('Investment', backref=db.backref('transactions', lazy=True))
     
+    type = db.Column(db.String(20), nullable=False)  # نوع تراکنش: profit, withdrawal, deposit, ...
     # استفاده از Numeric برای ذخیره دقیق مبلغ تراکنش
     amount = db.Column(db.Numeric(15, 4), nullable=False)
-    
     description = db.Column(db.String(200))
     status = db.Column(db.String(20), default='pending')
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)

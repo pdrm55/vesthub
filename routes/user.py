@@ -103,7 +103,8 @@ def submit_proof(investment_id):
         amount=inv.amount, 
         status='pending', 
         tx_hash=tx_hash,
-        description=f"Deposit for plan #{inv.plan_id}"
+        description=f"Deposit for plan #{inv.plan_id}",
+        investment_id=inv.id
     ))
     db.session.commit()
     flash('Payment proof submitted and awaiting approval.', 'success')
@@ -125,7 +126,8 @@ def process_online_payment(investment_id):
         amount=inv.amount, 
         status='completed', 
         tx_hash=inv.payment_tx_id,
-        description="Online Payment Gateway"
+        description="Online Payment Gateway",
+        investment_id=inv.id
     ))
     db.session.commit()
     flash('Online payment processed successfully.', 'success')
