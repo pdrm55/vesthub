@@ -15,6 +15,10 @@
   --vh-dark-blue: #0d253f;
 }
 
+html {
+  font-size: 15px; /* Scale down base typography for a more professional look */
+}
+
 body {
   font-family: 'Inter', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -44,7 +48,7 @@ img {
 }
 
 .navbar-logo {
-    height: 66px !important;
+    height: 50px !important;
     width: auto;
     margin-top: 5px;
 }
@@ -75,7 +79,7 @@ img {
   padding: 6rem 0;
   color: white;
 }
-.hero-section .display-3 { font-weight: 700; }
+.hero-section .display-3 { font-weight: 700; font-size: 3rem !important; }
 .hero-section .btn-primary, .hero-section .btn-outline-light { padding: 0.75rem 1.5rem; }
 .hero-section h1, .hero-section p.lead {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
@@ -146,6 +150,25 @@ code {
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
 }
+
+/* == Professional UI Refinements == */
+
+/* 1. Refine Container Width (More Whitespace) */
+@media (min-width: 1400px) {
+    .container { max-width: 1140px !important; }
+}
+
+/* 2. Scale Down Typography */
+h1, .h1 { font-size: 2.2rem !important; }
+h2, .h2 { font-size: 1.8rem !important; }
+h3, .h3 { font-size: 1.5rem !important; }
+.display-4 { font-size: 2.2rem !important; }
+p.lead { font-size: 1.1rem !important; line-height: 1.6; }
+
+/* 3. Refine Components */
+.card-body { padding: 1.25rem !important; }
+.btn-lg { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; font-size: 1rem !important; }
+
 
 /* =================================== */
 /* ==  4. Page-Specific Styles      == */
@@ -536,4 +559,71 @@ input[type=range]::-webkit-slider-runnable-track {
 /* Result Values in Light Mode */
 [data-bs-theme="light"] .profit-calculator .text-white { 
     color: #111827 !important; /* Change total return from white to dark */
+}
+
+/* =================================== */
+/* ==   8. Swiper Carousel Styles   == */
+/* =================================== */
+
+.myPlanSwiper {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0 50px 0;
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.swiper-slide .card {
+    width: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--bs-primary) !important;
+}
+
+/* Static Highlight for the Best Plan (Always Active) */
+.best-plan-card {
+    transform: scale(1.05);
+    border: 2px solid #ffc107 !important;
+    z-index: 5;
+    box-shadow: 0 1rem 3rem rgba(255, 193, 7, 0.15) !important;
+}
+
+/* Button style inside the best plan */
+.best-plan-card .btn-highlight {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+.best-plan-card .btn-highlight:hover {
+    background-color: #e0a800 !important;
+}
+
+/* Ensure smooth transition */
+.plan-card, .btn-primary {
+    transition: all 0.3s ease-out;
 }

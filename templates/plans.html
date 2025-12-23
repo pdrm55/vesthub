@@ -42,7 +42,7 @@
                     <div class="mb-4">
                         <h1 class="fw-bold display-4 text-primary">{{ plan.annual_return_rate|int }}%</h1>
                         <h5 class="text-body-secondary">{{ _('Annual Return') }}</h5>
-                        <h6 class="fw-normal text-white-50">{{ plan.duration_months }} Months Duration</h6>
+                        <h6 class="fw-normal text-white-50">{{ plan.duration_months }} {{ _('Months Duration') }}</h6>
                     </div>
                     
                     <div class="mt-auto">
@@ -58,6 +58,49 @@
             <h4 class="text-muted">{{ _('No investment plans available at the moment.') }}</h4>
         </div>
         {% endfor %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card plan-card h-100 rounded-4 shadow-sm border-0 position-relative" style="background: linear-gradient(145deg, #0f0f0f, #2a2a2a); border: 1px solid #ffd700 !important;">
+                <div class="position-absolute top-0 end-0 m-3">
+                    <span class="badge bg-warning text-dark fw-bold">{{ _('Min $100k') }}</span>
+                </div>
+                <div class="card-body p-4 d-flex flex-column">
+                    <h3 class="fw-semibold text-warning"><i class="bi bi-gem me-2"></i>{{ _('VIP Managed') }}</h3>
+                    <p class="text-white-50 mb-4" style="min-height: 48px;">{{ _('Exclusive strategy for high capital. Profit-sharing model based on performance.') }}</p>
+                    <div class="mb-4">
+                        <h1 class="fw-bold display-5 text-warning">{{ _('Profit Share') }}</h1>
+                        <h5 class="text-secondary">{{ _('No Fixed Rate') }}</h5>
+                        <h6 class="fw-normal text-white-50">{{ _('Flexible Duration') }}</h6>
+                    </div>
+                    <div class="mt-auto">
+                        <button type="button" class="btn btn-outline-warning w-100 btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#vipModal">
+                            {{ _('Request Access') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="vipModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-secondary">
+            <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title fw-bold text-warning">
+                    <i class="bi bi-crown me-2"></i>{{ _('VIP Exclusive Access') }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <i class="bi bi-shield-lock-fill text-warning display-1 mb-3"></i>
+                <p class="lead mb-4">{{ _('VIP accounts require a minimum deposit of $100,000.') }}</p>
+                <p class="text-white-50">{{ _('This involves a dedicated account manager and a profit-sharing model (not fixed ROI). Please contact support to proceed.') }}</p>
+            </div>
+            <div class="modal-footer border-top border-secondary justify-content-center">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">{{ _('Close') }}</button>
+                <a href="{{ url_for('main.contact_us') }}" class="btn btn-warning fw-bold px-4">{{ _('Contact Support') }}</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

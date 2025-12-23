@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <!-- Hero Section -->
 <header class="hero-section text-white d-flex align-items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ url_for('static', filename='images/hero-bg.png') }}') no-repeat center center; background-size: cover; min-height: 80vh;">
     <div class="container text-center">
@@ -54,13 +55,16 @@
             </div>
         </div>
 
-        <!-- Plans Grid -->
-        <div class="row g-4 justify-content-center">
+        <!-- Plans Slider -->
+        <div class="swiper myPlanSwiper px-4 py-3">
+            <div class="swiper-wrapper">
+            {% set max_roi = plans|map(attribute='annual_return_rate')|max if plans else 0 %}
+            {% for i in range(2) %}
             <!-- Loop through available investment plans -->
             {% for plan in plans %}
-            <div class="col-md-6 col-lg-4">
-                <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative" 
-                     style="transition: all 0.3s ease; {% if loop.index == 2 %}transform: scale(1.05); z-index: 2; border: 1px solid #ffc107; box-shadow: 0 0 20px rgba(255, 193, 7, 0.2) !important;{% endif %}">
+            {% set is_best = (plan.annual_return_rate == max_roi) %}
+            <div class="swiper-slide h-auto">
+                <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative {{ 'best-plan-card' if is_best else '' }}">
                     
                     <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
                     {% if plan.risk_level == 'low' %}
@@ -90,7 +94,7 @@
                         
                         <div class="mt-auto">
                             <!-- Call to Action Button: Directs users to the signup page -->
-                            <a href="{{ url_for('auth.signup') }}" class="btn {% if loop.index == 2 %}btn-warning fw-bold{% else %}btn-primary{% endif %} w-100 btn-lg">
+                            <a href="{{ url_for('auth.signup') }}" class="btn {{ 'btn-highlight btn-lg' if is_best else 'btn-primary btn-lg' }} w-100">
                                 {{ _('Choose Plan & Sign Up') }}
                             </a>
                         </div>
@@ -103,6 +107,32 @@
                 <h4 class="text-muted">{{ _('No investment plans available at the moment.') }}</h4>
             </div>
             {% endfor %}
+            <div class="swiper-slide h-auto">
+                <div class="card plan-card h-100 rounded-4 shadow-sm border-0 position-relative" style="background: linear-gradient(145deg, #0f0f0f, #2a2a2a); border: 1px solid #ffd700 !important;">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-warning text-dark fw-bold">{{ _('Min $100k') }}</span>
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h3 class="fw-semibold text-warning"><i class="bi bi-gem me-2"></i>{{ _('VIP Managed') }}</h3>
+                        <p class="text-white-50 mb-4" style="min-height: 48px;">{{ _('Exclusive strategy for high capital. Profit-sharing model based on performance.') }}</p>
+                        <div class="mb-4">
+                            <h1 class="fw-bold display-5 text-warning">{{ _('Profit Share') }}</h1>
+                            <h5 class="text-secondary">{{ _('No Fixed Rate') }}</h5>
+                            <h6 class="fw-normal text-white-50">{{ _('Flexible Duration') }}</h6>
+                        </div>
+                        <div class="mt-auto">
+                            <button type="button" class="btn btn-outline-warning w-100 btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#vipModal">
+                                {{ _('Request Access') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+            <div class="swiper-button-next" style="color: var(--bs-primary);"></div>
+            <div class="swiper-button-prev" style="color: var(--bs-primary);"></div>
+            <div class="swiper-pagination"></div>
         </div>
 
         <!-- Profit Calculator Widget (Moved Below) -->
@@ -318,6 +348,28 @@
     </div>
 </section>
 
+<div class="modal fade" id="vipModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-secondary">
+            <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title fw-bold text-warning">
+                    <i class="bi bi-crown me-2"></i>{{ _('VIP Exclusive Access') }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <i class="bi bi-shield-lock-fill text-warning display-1 mb-3"></i>
+                <p class="lead mb-4">{{ _('VIP accounts require a minimum deposit of $100,000.') }}</p>
+                <p class="text-white-50">{{ _('This involves a dedicated account manager and a profit-sharing model (not fixed ROI). Please contact support to proceed.') }}</p>
+            </div>
+            <div class="modal-footer border-top border-secondary justify-content-center">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">{{ _('Close') }}</button>
+                <a href="{{ url_for('main.contact_us') }}" class="btn btn-warning fw-bold px-4">{{ _('Contact Support') }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize tooltips
@@ -390,4 +442,59 @@
     });
 </script>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Find the index of the FIRST highlighted plan (best plan)
+        // Since we duplicated the list in HTML, we just need the first occurrence.
+        let initialIndex = 0;
+        const slides = document.querySelectorAll('.swiper-slide');
+        
+        for (let i = 0; i < slides.length; i++) {
+            // Look for the card inside the slide that has the 'best-plan-card' class
+            if (slides[i].querySelector('.best-plan-card')) {
+                initialIndex = i;
+                break; 
+            }
+        }
+
+        // Check for RTL direction
+        const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+
+        // 2. Initialize Swiper with True Loop settings
+        var swiper = new Swiper(".myPlanSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            rtl: isRtl,
+            // Loop Settings
+            loop: true,
+            loopedSlides: 4,          // CRITICAL: Tells Swiper how many slides to clone for smooth edges
+            
+            centeredSlides: true,     // Center the active slide
+            initialSlide: initialIndex, // Start focused on the best plan
+            
+            slideToClickedSlide: true,
+            observer: true,
+            observeParents: true,
+            grabCursor: true,
+            
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }, 
+            },
+        });
+    });
+</script>
 {% endblock %}

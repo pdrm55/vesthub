@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-20 23:23+0300\n"
+"POT-Creation-Date: 2025-12-23 21:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,128 +174,192 @@ msgstr ""
 msgid "Export CSV"
 msgstr ""
 
-#: templates/admin_accounting.html:18
+#: templates/admin_accounting.html:17
+msgid "Cash Flow & Liquidity"
+msgstr ""
+
+#: templates/admin_accounting.html:22
+msgid "Profit Distribution Log"
+msgstr ""
+
+#: templates/admin_accounting.html:33
 msgid "Total Deposits"
 msgstr ""
 
-#: templates/admin_accounting.html:26
+#: templates/admin_accounting.html:41
 msgid "Total Withdrawals"
 msgstr ""
 
-#: templates/admin_accounting.html:34
-msgid "Total Profit Distributed"
-msgstr ""
-
-#: templates/admin_accounting.html:44
+#: templates/admin_accounting.html:51
 msgid "All Transactions"
 msgstr ""
 
-#: templates/admin_accounting.html:47
+#: templates/admin_accounting.html:55
 msgid "All Types"
 msgstr ""
 
-#: templates/admin_accounting.html:48
+#: templates/admin_accounting.html:56
 msgid "Deposits"
 msgstr ""
 
-#: templates/admin_accounting.html:49 templates/admin_dashboard.html:24
+#: templates/admin_accounting.html:57 templates/admin_dashboard.html:24
 #: templates/admin_layout.html:81
 msgid "Withdrawals"
 msgstr ""
 
-#: templates/admin_accounting.html:50 templates/admin_accounting.html:93
-#: templates/withdrawal.html:141
-msgid "Profit"
-msgstr ""
-
-#: templates/admin_accounting.html:51 templates/admin_accounting.html:95
-msgid "Referral"
-msgstr ""
-
-#: templates/admin_accounting.html:53
+#: templates/admin_accounting.html:61
 msgid "Search User/TxID..."
 msgstr ""
 
-#: templates/admin_accounting.html:55
+#: templates/admin_accounting.html:63 templates/admin_accounting.html:174
 msgid "Reset"
 msgstr ""
 
-#: templates/admin_accounting.html:63 templates/admin_payments.html:32
+#: templates/admin_accounting.html:71 templates/admin_accounting.html:190
+#: templates/admin_accounting.html:227 templates/admin_payments.html:32
 #: templates/admin_withdrawals.html:45 templates/withdrawal.html:127
 msgid "Date"
 msgstr ""
 
-#: templates/admin_accounting.html:64 templates/admin_kyc.html:46
-#: templates/admin_kyc.html:103 templates/admin_users.html:22
-#: templates/admin_withdrawals.html:46 templates/trader_layout.html:61
-#: templates/trader_layout.html:122
+#: templates/admin_accounting.html:72 templates/admin_accounting.html:191
+#: templates/admin_kyc.html:46 templates/admin_kyc.html:103
+#: templates/admin_users.html:22 templates/admin_withdrawals.html:46
+#: templates/trader_layout.html:61 templates/trader_layout.html:122
 msgid "User"
 msgstr ""
 
-#: templates/admin_accounting.html:65
+#: templates/admin_accounting.html:73
 msgid "TxID"
 msgstr ""
 
-#: templates/admin_accounting.html:66 templates/withdrawal.html:129
+#: templates/admin_accounting.html:74 templates/admin_accounting.html:192
+#: templates/withdrawal.html:129
 msgid "Type"
 msgstr ""
 
-#: templates/admin_accounting.html:67 templates/admin_payments.html:35
-#: templates/admin_plans.html:91 templates/admin_plans.html:140
-#: templates/admin_roles.html:34 templates/admin_roles.html:72
-#: templates/admin_roles.html:133
+#: templates/admin_accounting.html:75 templates/admin_accounting.html:194
+#: templates/admin_payments.html:35 templates/admin_plans.html:91
+#: templates/admin_plans.html:140 templates/admin_roles.html:34
+#: templates/admin_roles.html:72 templates/admin_roles.html:133
 msgid "Description"
 msgstr ""
 
-#: templates/admin_accounting.html:68 templates/admin_payments.html:34
-#: templates/admin_withdrawals.html:47 templates/withdrawal.html:128
+#: templates/admin_accounting.html:76 templates/admin_accounting.html:193
+#: templates/admin_payments.html:34 templates/admin_withdrawals.html:47
+#: templates/withdrawal.html:128
 msgid "Amount"
 msgstr ""
 
-#: templates/admin_accounting.html:69 templates/admin_kyc.html:105
-#: templates/support.html:67 templates/trader_api.html:32
-#: templates/trader_subscription.html:79 templates/withdrawal.html:130
+#: templates/admin_accounting.html:77 templates/admin_accounting.html:232
+#: templates/admin_kyc.html:105 templates/support.html:67
+#: templates/trader_api.html:32 templates/trader_subscription.html:79
+#: templates/withdrawal.html:130
 msgid "Status"
 msgstr ""
 
-#: templates/admin_accounting.html:84
+#: templates/admin_accounting.html:92
 msgid "System"
 msgstr ""
 
-#: templates/admin_accounting.html:89
+#: templates/admin_accounting.html:97
 msgid "Deposit"
 msgstr ""
 
-#: templates/admin_accounting.html:91 templates/dashboard_layout.html:53
+#: templates/admin_accounting.html:99 templates/dashboard_layout.html:53
 #: templates/dashboard_layout.html:147
 msgid "Withdrawal"
 msgstr ""
 
-#: templates/admin_accounting.html:106 templates/withdrawal.html:145
+#: templates/admin_accounting.html:101 templates/admin_accounting.html:204
+#: templates/withdrawal.html:141
+msgid "Profit"
+msgstr ""
+
+#: templates/admin_accounting.html:103 templates/admin_accounting.html:206
+msgid "Referral"
+msgstr ""
+
+#: templates/admin_accounting.html:114 templates/withdrawal.html:145
 msgid "Completed"
 msgstr ""
 
-#: templates/admin_accounting.html:108 templates/withdrawal.html:147
+#: templates/admin_accounting.html:116 templates/withdrawal.html:147
 msgid "Pending"
 msgstr ""
 
-#: templates/admin_accounting.html:110 templates/admin_kyc.html:126
-#: templates/withdrawal.html:149
+#: templates/admin_accounting.html:118 templates/admin_kyc.html:126
+#: templates/dashboard.html:101 templates/withdrawal.html:149
 msgid "Rejected"
 msgstr ""
 
-#: templates/admin_accounting.html:117
+#: templates/admin_accounting.html:125
 msgid "No transactions recorded yet."
 msgstr ""
 
-#: templates/admin_accounting.html:131 templates/risk_assessment.html:155
+#: templates/admin_accounting.html:139 templates/risk_assessment.html:155
 #: templates/risk_assessment.html:214
 msgid "Previous"
 msgstr ""
 
-#: templates/admin_accounting.html:143 templates/risk_assessment.html:98
+#: templates/admin_accounting.html:151 templates/risk_assessment.html:98
 #: templates/risk_assessment.html:156
 msgid "Next"
+msgstr ""
+
+#: templates/admin_accounting.html:162
+msgid "Daily Profit Distribution"
+msgstr ""
+
+#: templates/admin_accounting.html:165
+msgid "Search User by Email..."
+msgstr ""
+
+#: templates/admin_accounting.html:173
+msgid "Filter"
+msgstr ""
+
+#: templates/admin_accounting.html:182
+msgid "Details for Date:"
+msgstr ""
+
+#: templates/admin_accounting.html:184
+msgid "User History"
+msgstr ""
+
+#: templates/admin_accounting.html:217
+msgid "No profit records found for this user."
+msgstr ""
+
+#: templates/admin_accounting.html:228
+msgid "Total Payout"
+msgstr ""
+
+#: templates/admin_accounting.html:229
+msgid "Daily Profit"
+msgstr ""
+
+#: templates/admin_accounting.html:230 templates/dashboard.html:37
+msgid "Referral Bonus"
+msgstr ""
+
+#: templates/admin_accounting.html:231
+msgid "Beneficiaries"
+msgstr ""
+
+#: templates/admin_accounting.html:239
+msgid "View details for this day"
+msgstr ""
+
+#: templates/admin_accounting.html:244 templates/admin_layout.html:164
+msgid "Users"
+msgstr ""
+
+#: templates/admin_accounting.html:245
+msgid "Distributed"
+msgstr ""
+
+#: templates/admin_accounting.html:250
+msgid "No profit distributions recorded."
 msgstr ""
 
 #: templates/admin_dashboard.html:6
@@ -332,8 +396,9 @@ msgstr ""
 #: templates/admin_kyc.html:15 templates/admin_layout.html:155
 #: templates/admin_login.html:15 templates/admin_roles.html:13
 #: templates/admin_roles.html:150 templates/admin_withdrawals.html:15
-#: templates/invest-plans.html:62 templates/investment_pending.html:13
-#: templates/login.html:14 templates/settings.html:13 templates/signup.html:13
+#: templates/index.html:366 templates/invest-plans.html:62
+#: templates/investment_pending.html:13 templates/login.html:14
+#: templates/plans.html:100 templates/settings.html:13 templates/signup.html:13
 #: templates/trader_api.html:84 templates/trader_layout.html:90
 #: templates/two_factor_verify.html:14 templates/verify_email.html:14
 msgid "Close"
@@ -366,12 +431,12 @@ msgstr ""
 msgid "View Address"
 msgstr ""
 
-#: templates/admin_kyc.html:72 templates/admin_payments.html:58
+#: templates/admin_kyc.html:72 templates/admin_payments.html:64
 #: templates/admin_withdrawals.html:79
 msgid "Approve"
 msgstr ""
 
-#: templates/admin_kyc.html:76 templates/admin_payments.html:64
+#: templates/admin_kyc.html:76 templates/admin_payments.html:70
 #: templates/admin_withdrawals.html:85
 msgid "Reject"
 msgstr ""
@@ -456,10 +521,6 @@ msgstr ""
 msgid "Toggle theme"
 msgstr ""
 
-#: templates/admin_layout.html:164
-msgid "Users"
-msgstr ""
-
 #: templates/admin_login.html:6
 msgid "Admin Portal"
 msgstr ""
@@ -535,15 +596,19 @@ msgstr ""
 msgid "No TxID"
 msgstr ""
 
-#: templates/admin_payments.html:74
+#: templates/admin_payments.html:56
+msgid "View Proof"
+msgstr ""
+
+#: templates/admin_payments.html:80
 msgid "No pending payments to review."
 msgstr ""
 
-#: templates/admin_payments.html:86
+#: templates/admin_payments.html:92
 msgid "To see completed history, check the"
 msgstr ""
 
-#: templates/admin_payments.html:86 templates/admin_withdrawals.html:107
+#: templates/admin_payments.html:92 templates/admin_withdrawals.html:107
 msgid "Accounting Ledger"
 msgstr ""
 
@@ -892,7 +957,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:68 templates/index.html:309 templates/login.html:61
+#: templates/base.html:68 templates/index.html:345 templates/login.html:61
 #: templates/marketplace.html:255
 msgid "Sign Up Free"
 msgstr ""
@@ -1048,10 +1113,6 @@ msgstr ""
 msgid "Referrals"
 msgstr ""
 
-#: templates/dashboard.html:37
-msgid "Referral Bonus"
-msgstr ""
-
 #: templates/dashboard.html:48
 msgid "Portfolio Growth"
 msgstr ""
@@ -1084,28 +1145,32 @@ msgstr ""
 msgid "Complete Payment"
 msgstr ""
 
-#: templates/dashboard.html:107
+#: templates/dashboard.html:102
+msgid "Payment verification failed."
+msgstr ""
+
+#: templates/dashboard.html:110
 msgid "You have no active investments yet."
 msgstr ""
 
-#: templates/dashboard.html:108
+#: templates/dashboard.html:111
 msgid "Start Investing"
 msgstr ""
 
-#: templates/dashboard.html:118 templates/withdrawal.html:3
+#: templates/dashboard.html:121 templates/withdrawal.html:3
 #: templates/withdrawal.html:7
 msgid "Request Withdrawal"
 msgstr ""
 
-#: templates/dashboard.html:120
+#: templates/dashboard.html:123
 msgid "Manage Withdrawals"
 msgstr ""
 
-#: templates/dashboard.html:122
+#: templates/dashboard.html:125
 msgid "KYC Required"
 msgstr ""
 
-#: templates/dashboard.html:123
+#: templates/dashboard.html:126
 msgid "Verify Identity"
 msgstr ""
 
@@ -1122,220 +1187,268 @@ msgstr ""
 msgid "Risk Profile"
 msgstr ""
 
-#: templates/index.html:10
+#: templates/index.html:11
 msgid "Intelligent Wealth Growth. Simplified."
 msgstr ""
 
-#: templates/index.html:11
+#: templates/index.html:12
 msgid ""
 "Secure automated investment plans for everyone, or dedicated managed "
 "accounts for elite capital. No trading experience required."
 msgstr ""
 
-#: templates/index.html:14
+#: templates/index.html:15
 msgid "Start Growing (Plans)"
 msgstr ""
 
-#: templates/index.html:16
+#: templates/index.html:17
 msgid "Explore VIP Solutions"
 msgstr ""
 
-#: templates/index.html:26
+#: templates/index.html:27
 msgid "Integrated with Top Exchanges:"
 msgstr ""
 
-#: templates/index.html:52 templates/plans.html:10
+#: templates/index.html:53 templates/plans.html:10
 msgid "Our Investment Plans"
 msgstr ""
 
-#: templates/index.html:53
+#: templates/index.html:54
 msgid "Select a plan that matches your financial goals. Returns are annualized."
 msgstr ""
 
-#: templates/index.html:68 templates/invest-plans.html:17
+#: templates/index.html:72 templates/invest-plans.html:17
 #: templates/plans.html:25
 msgid "Low Risk"
 msgstr ""
 
-#: templates/index.html:72 templates/invest-plans.html:21
+#: templates/index.html:76 templates/invest-plans.html:21
 #: templates/plans.html:29
 msgid "Medium Risk"
 msgstr ""
 
-#: templates/index.html:76 templates/invest-plans.html:25
+#: templates/index.html:80 templates/invest-plans.html:25
 #: templates/plans.html:33
 msgid "High Risk"
 msgstr ""
 
-#: templates/index.html:87 templates/invest-plans.html:35
+#: templates/index.html:91 templates/invest-plans.html:35
 #: templates/plans.html:44
 msgid "Annual Return"
 msgstr ""
 
-#: templates/index.html:88
+#: templates/index.html:92 templates/plans.html:45
 msgid "Months Duration"
 msgstr ""
 
-#: templates/index.html:94 templates/plans.html:50
+#: templates/index.html:98 templates/plans.html:50
 msgid "Choose Plan & Sign Up"
 msgstr ""
 
-#: templates/index.html:103 templates/plans.html:58
+#: templates/index.html:107 templates/plans.html:58
 msgid "No investment plans available at the moment."
 msgstr ""
 
-#: templates/index.html:111
+#: templates/index.html:113 templates/plans.html:64
+msgid "Min $100k"
+msgstr ""
+
+#: templates/index.html:116 templates/plans.html:67
+msgid "VIP Managed"
+msgstr ""
+
+#: templates/index.html:117 templates/plans.html:68
+msgid ""
+"Exclusive strategy for high capital. Profit-sharing model based on "
+"performance."
+msgstr ""
+
+#: templates/index.html:119 templates/plans.html:70
+msgid "Profit Share"
+msgstr ""
+
+#: templates/index.html:120 templates/plans.html:71
+msgid "No Fixed Rate"
+msgstr ""
+
+#: templates/index.html:121 templates/plans.html:72
+msgid "Flexible Duration"
+msgstr ""
+
+#: templates/index.html:125 templates/plans.html:76
+msgid "Request Access"
+msgstr ""
+
+#: templates/index.html:141
 msgid "Profit Calculator"
 msgstr ""
 
-#: templates/index.html:114
+#: templates/index.html:144
 msgid "Select Plan"
 msgstr ""
 
-#: templates/index.html:116
+#: templates/index.html:146
 msgid "Choose a plan..."
 msgstr ""
 
-#: templates/index.html:125
+#: templates/index.html:155
 msgid "Investment Amount ($)"
 msgstr ""
 
-#: templates/index.html:134
+#: templates/index.html:164
 msgid "Total Return (Simple):"
 msgstr ""
 
-#: templates/index.html:138
+#: templates/index.html:168
 msgid "Net Profit (Simple):"
 msgstr ""
 
-#: templates/index.html:142
+#: templates/index.html:172
 msgid "Potential with Compound Interest:"
 msgstr ""
 
-#: templates/index.html:142
+#: templates/index.html:172
 msgid "Assumes monthly reinvestment"
 msgstr ""
 
-#: templates/index.html:156
+#: templates/index.html:186
 msgid "View More Plans"
 msgstr ""
 
-#: templates/index.html:168
+#: templates/index.html:198
 msgid "Our Intelligent Solutions"
 msgstr ""
 
-#: templates/index.html:177
+#: templates/index.html:207
 msgid "Automated Growth Plans"
 msgstr ""
 
-#: templates/index.html:178
+#: templates/index.html:208
 msgid ""
 "Join our secure liquidity pools. Our AI trades, you receive passive "
 "profit based on your plan. Ideal for secure, hands-off growth."
 msgstr ""
 
-#: templates/index.html:180
+#: templates/index.html:210
 msgid "View Plans & Calculate Profit"
 msgstr ""
 
-#: templates/index.html:192
+#: templates/index.html:222
 msgid "Private Managed Accounts (VIP)"
 msgstr ""
 
-#: templates/index.html:193
+#: templates/index.html:223
 msgid ""
 "For capital over $100k. Our AI trades directly in your NinjaTrader "
 "account. Full transparency, profit-share model."
 msgstr ""
 
-#: templates/index.html:195
+#: templates/index.html:225
 msgid "Request Consultation"
 msgstr ""
 
-#: templates/index.html:204
+#: templates/index.html:234
 msgid "COMING SOON"
 msgstr ""
 
-#: templates/index.html:210
+#: templates/index.html:240
 msgid "Developer API & Lab"
 msgstr ""
 
-#: templates/index.html:211
+#: templates/index.html:241
 msgid ""
 "Access our low-latency infrastructure and historical data to build your "
 "own tools."
 msgstr ""
 
-#: templates/index.html:213
+#: templates/index.html:243
 msgid "Join Waitlist"
 msgstr ""
 
-#: templates/index.html:225
+#: templates/index.html:255
 msgid "Simple, Secure Growth. How it Works."
 msgstr ""
 
-#: templates/index.html:233
+#: templates/index.html:269
 msgid "Your browser does not support the video tag."
 msgstr ""
 
-#: templates/index.html:236
+#: templates/index.html:272
 msgid "WATCH EXPLAINER VIDEO: How VestHub Grows Your Wealth Safely"
 msgstr ""
 
-#: templates/index.html:245
+#: templates/index.html:281
 msgid "Select Plan & Deposit"
 msgstr ""
 
-#: templates/index.html:251
+#: templates/index.html:287
 msgid "AI Manages & Trades"
 msgstr ""
 
-#: templates/index.html:257
+#: templates/index.html:293
 msgid "Withdraw Your Profits"
 msgstr ""
 
-#: templates/index.html:267
+#: templates/index.html:303
 msgid "A Platform Built for Performance"
 msgstr ""
 
-#: templates/index.html:273
+#: templates/index.html:309
 msgid "Institutional-Grade Security"
 msgstr ""
 
-#: templates/index.html:274
+#: templates/index.html:310
 msgid "Bank-level encryption & cold storage."
 msgstr ""
 
-#: templates/index.html:280
+#: templates/index.html:316
 msgid "Fully Managed Risk"
 msgstr ""
 
-#: templates/index.html:281
+#: templates/index.html:317
 msgid "AI-Driven Risk Management."
 msgstr ""
 
-#: templates/index.html:287
+#: templates/index.html:323
 msgid "Real-Time Transparency"
 msgstr ""
 
-#: templates/index.html:288
+#: templates/index.html:324
 msgid "Real-time performance dashboards."
 msgstr ""
 
-#: templates/index.html:294
+#: templates/index.html:330
 msgid "Future-Ready Infrastructure"
 msgstr ""
 
-#: templates/index.html:295
+#: templates/index.html:331
 msgid "API Coming Soon."
 msgstr ""
 
-#: templates/index.html:307
+#: templates/index.html:343
 msgid "Join the Future of Automated Trading."
 msgstr ""
 
-#: templates/index.html:308
+#: templates/index.html:344
 msgid "Sign up for free and get access to your new trading dashboard."
+msgstr ""
+
+#: templates/index.html:356 templates/plans.html:90
+msgid "VIP Exclusive Access"
+msgstr ""
+
+#: templates/index.html:362 templates/plans.html:96
+msgid "VIP accounts require a minimum deposit of $100,000."
+msgstr ""
+
+#: templates/index.html:363 templates/plans.html:97
+msgid ""
+"This involves a dedicated account manager and a profit-sharing model (not"
+" fixed ROI). Please contact support to proceed."
+msgstr ""
+
+#: templates/index.html:367 templates/plans.html:101
+msgid "Contact Support"
 msgstr ""
 
 #: templates/invest-plans.html:6
@@ -1455,38 +1568,46 @@ msgid "USDT (Polygon):"
 msgstr ""
 
 #: templates/investment_pending.html:84
-msgid "Pay Securely with Gateway"
+msgid "Online payment is currently under maintenance."
 msgstr ""
 
-#: templates/investment_pending.html:87
-msgid "Pay Now"
-msgstr ""
-
-#: templates/investment_pending.html:96
+#: templates/investment_pending.html:92
 msgid "Bank Account Details"
 msgstr ""
 
-#: templates/investment_pending.html:110
+#: templates/investment_pending.html:106
 msgid "Step 2: Submit Proof (Manual Only)"
 msgstr ""
 
-#: templates/investment_pending.html:115
+#: templates/investment_pending.html:111
 msgid "Proof Submitted!"
 msgstr ""
 
-#: templates/investment_pending.html:116
+#: templates/investment_pending.html:112
 msgid "Transaction ID:"
 msgstr ""
 
-#: templates/investment_pending.html:117
+#: templates/investment_pending.html:114
+msgid "Receipt Document Uploaded"
+msgstr ""
+
+#: templates/investment_pending.html:116
 msgid "Return to Dashboard"
 msgstr ""
 
-#: templates/investment_pending.html:123
+#: templates/investment_pending.html:122
 msgid "Crypto TxID (or Bank Ref)"
 msgstr ""
 
-#: templates/investment_pending.html:127
+#: templates/investment_pending.html:126
+msgid "Upload Receipt"
+msgstr ""
+
+#: templates/investment_pending.html:128
+msgid "Upload receipt (Max 5MB)"
+msgstr ""
+
+#: templates/investment_pending.html:131
 msgid "Submit Proof"
 msgstr ""
 
@@ -3265,5 +3386,488 @@ msgstr ""
 
 #: templates/withdrawal.html:156
 msgid "No withdrawal history found."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/_termui_impl.py:608
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/_termui_impl.py:612
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1104
+#: venv/lib/python3.13/site-packages/click/core.py:1141
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1160
+msgid "Options"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1222
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1241
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1425
+msgid "Aborted!"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1799
+msgid "Commands"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1830
+msgid "Missing command."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1908
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2332
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2355
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2505
+#, python-brace-format
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is "
+"deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2956
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2959
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2963
+msgid "required"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:3023
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:50
+#: venv/lib/python3.13/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:199
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:381
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:719
+#, python-brace-format
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:747
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:937
+msgid "file"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:939
+msgid "directory"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:941
+msgid "path"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:997
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1005
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1014
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1023
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1032
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/flask_wtf/file.py:55
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:293
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:323
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/flask_wtf/file.py:94
+#, python-brace-format
+msgid "File does not have an approved extension: {extensions}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/flask_wtf/file.py:101
+msgid "File does not have an approved extension."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:86
+#, python-format
+msgid "Invalid field name '%s'."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:99
+#, python-format
+msgid "Field must be equal to %(other_name)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:146
+#, python-format
+msgid "Field must be at least %(min)d character long."
+msgid_plural "Field must be at least %(min)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:152
+#, python-format
+msgid "Field cannot be longer than %(max)d character."
+msgid_plural "Field cannot be longer than %(max)d characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:158
+#, python-format
+msgid "Field must be exactly %(max)d character long."
+msgid_plural "Field must be exactly %(max)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:164
+#, python-format
+msgid "Field must be between %(min)d and %(max)d characters long."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:216
+#, python-format
+msgid "Number must be at least %(min)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:219
+#, python-format
+msgid "Number must be at most %(max)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:222
+#, python-format
+msgid "Number must be between %(min)s and %(max)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:358
+msgid "Invalid input."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:422
+msgid "Invalid email address."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:460
+msgid "Invalid IP address."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:503
+msgid "Invalid Mac address."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:540
+msgid "Invalid URL."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:561
+msgid "Invalid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:595
+#, python-format
+msgid "Invalid value, must be one of: %(values)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:631
+#, python-format
+msgid "Invalid value, can't be any of: %(values)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:700
+msgid "This field cannot be edited."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:716
+msgid "This field is disabled and cannot have a value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/core.py:96
+msgid "Invalid CSRF Token."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/session.py:64
+msgid "CSRF token missing."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/session.py:72
+msgid "CSRF failed."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/session.py:77
+msgid "CSRF token expired."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:142
+msgid "Invalid Choice: could not coerce."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:149
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:203
+msgid "Choices cannot be None."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:155
+msgid "Not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:194
+msgid "Invalid choice(s): one or more data inputs could not be coerced."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:212
+#, python-format
+msgid "'%(value)s' is not a valid choice for this field."
+msgid_plural "'%(value)s' are not valid choices for this field."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:52
+msgid "Not a valid datetime value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:78
+msgid "Not a valid date value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:104
+msgid "Not a valid time value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:149
+msgid "Not a valid week value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:82
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:92
+msgid "Not a valid integer value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:168
+msgid "Not a valid decimal value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:197
+msgid "Not a valid float value."
 msgstr ""
 

@@ -124,7 +124,7 @@ def create_app(config_name='default'):
     return app
 
 # Create App instance for Gunicorn
-app = create_app('production')
+app = create_app('development')
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 if __name__ == '__main__':

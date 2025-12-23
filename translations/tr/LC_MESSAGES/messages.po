@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-20 23:23+0300\n"
+"POT-Creation-Date: 2025-12-23 21:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: tr\n"
@@ -193,136 +193,193 @@ msgstr "Ana Muhasebe Defteri"
 msgid "Export CSV"
 msgstr "CSV Dışa Aktar"
 
-#: templates/admin_accounting.html:18
-#, fuzzy
+#: templates/admin_accounting.html:17
+msgid "Cash Flow & Liquidity"
+msgstr "Nakit Akışı ve Likidite"
+
+#: templates/admin_accounting.html:22
+msgid "Profit Distribution Log"
+msgstr "Kâr Dağıtım Günlüğü"
+
+#: templates/admin_accounting.html:33
 msgid "Total Deposits"
-msgstr "Toplam Kar"
+msgstr "Toplam Yatırımlar"
 
-#: templates/admin_accounting.html:26
-#, fuzzy
+#: templates/admin_accounting.html:41
 msgid "Total Withdrawals"
-msgstr "Çekimler"
+msgstr "Toplam Çekimler"
 
-#: templates/admin_accounting.html:34
-#, fuzzy
-msgid "Total Profit Distributed"
-msgstr "Toplam Kar"
-
-#: templates/admin_accounting.html:44
+#: templates/admin_accounting.html:51
 msgid "All Transactions"
 msgstr "Tüm İşlemler"
 
-#: templates/admin_accounting.html:47
-#, fuzzy
+#: templates/admin_accounting.html:55
 msgid "All Types"
-msgstr "TAM ERİŞİM"
+msgstr "Tüm Türler"
 
-#: templates/admin_accounting.html:48
-#, fuzzy
+#: templates/admin_accounting.html:56
 msgid "Deposits"
-msgstr "Para Yatırma"
+msgstr "Yatırımlar"
 
-#: templates/admin_accounting.html:49 templates/admin_dashboard.html:24
+#: templates/admin_accounting.html:57 templates/admin_dashboard.html:24
 #: templates/admin_layout.html:81
 msgid "Withdrawals"
 msgstr "Çekimler"
 
-#: templates/admin_accounting.html:50 templates/admin_accounting.html:93
-#: templates/withdrawal.html:141
-msgid "Profit"
-msgstr "Kâr"
-
-#: templates/admin_accounting.html:51 templates/admin_accounting.html:95
-msgid "Referral"
-msgstr "Referans"
-
-#: templates/admin_accounting.html:53
-#, fuzzy
+#: templates/admin_accounting.html:61
 msgid "Search User/TxID..."
 msgstr "Kullanıcı veya TxID ile ara..."
 
-#: templates/admin_accounting.html:55
-#, fuzzy
+#: templates/admin_accounting.html:63 templates/admin_accounting.html:174
 msgid "Reset"
-msgstr "Reddedildi"
+msgstr "Sıfırla"
 
-#: templates/admin_accounting.html:63 templates/admin_payments.html:32
+#: templates/admin_accounting.html:71 templates/admin_accounting.html:190
+#: templates/admin_accounting.html:227 templates/admin_payments.html:32
 #: templates/admin_withdrawals.html:45 templates/withdrawal.html:127
 msgid "Date"
 msgstr "Tarih"
 
-#: templates/admin_accounting.html:64 templates/admin_kyc.html:46
-#: templates/admin_kyc.html:103 templates/admin_users.html:22
-#: templates/admin_withdrawals.html:46 templates/trader_layout.html:61
-#: templates/trader_layout.html:122
+#: templates/admin_accounting.html:72 templates/admin_accounting.html:191
+#: templates/admin_kyc.html:46 templates/admin_kyc.html:103
+#: templates/admin_users.html:22 templates/admin_withdrawals.html:46
+#: templates/trader_layout.html:61 templates/trader_layout.html:122
 msgid "User"
 msgstr "Kullanıcı"
 
-#: templates/admin_accounting.html:65
+#: templates/admin_accounting.html:73
 msgid "TxID"
 msgstr "TxID"
 
-#: templates/admin_accounting.html:66 templates/withdrawal.html:129
+#: templates/admin_accounting.html:74 templates/admin_accounting.html:192
+#: templates/withdrawal.html:129
 msgid "Type"
 msgstr "Tür"
 
-#: templates/admin_accounting.html:67 templates/admin_payments.html:35
-#: templates/admin_plans.html:91 templates/admin_plans.html:140
-#: templates/admin_roles.html:34 templates/admin_roles.html:72
-#: templates/admin_roles.html:133
+#: templates/admin_accounting.html:75 templates/admin_accounting.html:194
+#: templates/admin_payments.html:35 templates/admin_plans.html:91
+#: templates/admin_plans.html:140 templates/admin_roles.html:34
+#: templates/admin_roles.html:72 templates/admin_roles.html:133
 msgid "Description"
 msgstr "Açıklama"
 
-#: templates/admin_accounting.html:68 templates/admin_payments.html:34
-#: templates/admin_withdrawals.html:47 templates/withdrawal.html:128
+#: templates/admin_accounting.html:76 templates/admin_accounting.html:193
+#: templates/admin_payments.html:34 templates/admin_withdrawals.html:47
+#: templates/withdrawal.html:128
 msgid "Amount"
 msgstr "Tutar"
 
-#: templates/admin_accounting.html:69 templates/admin_kyc.html:105
-#: templates/support.html:67 templates/trader_api.html:32
-#: templates/trader_subscription.html:79 templates/withdrawal.html:130
+#: templates/admin_accounting.html:77 templates/admin_accounting.html:232
+#: templates/admin_kyc.html:105 templates/support.html:67
+#: templates/trader_api.html:32 templates/trader_subscription.html:79
+#: templates/withdrawal.html:130
 msgid "Status"
 msgstr "Durum"
 
-#: templates/admin_accounting.html:84
+#: templates/admin_accounting.html:92
 msgid "System"
 msgstr "Sistem"
 
-#: templates/admin_accounting.html:89
+#: templates/admin_accounting.html:97
 msgid "Deposit"
 msgstr "Para Yatırma"
 
-#: templates/admin_accounting.html:91 templates/dashboard_layout.html:53
+#: templates/admin_accounting.html:99 templates/dashboard_layout.html:53
 #: templates/dashboard_layout.html:147
 msgid "Withdrawal"
 msgstr "Para Çekme"
 
-#: templates/admin_accounting.html:106 templates/withdrawal.html:145
+#: templates/admin_accounting.html:101 templates/admin_accounting.html:204
+#: templates/withdrawal.html:141
+msgid "Profit"
+msgstr "Kâr"
+
+#: templates/admin_accounting.html:103 templates/admin_accounting.html:206
+msgid "Referral"
+msgstr "Referans"
+
+#: templates/admin_accounting.html:114 templates/withdrawal.html:145
 msgid "Completed"
 msgstr "Tamamlandı"
 
-#: templates/admin_accounting.html:108 templates/withdrawal.html:147
+#: templates/admin_accounting.html:116 templates/withdrawal.html:147
 msgid "Pending"
 msgstr "Beklemede"
 
-#: templates/admin_accounting.html:110 templates/admin_kyc.html:126
-#: templates/withdrawal.html:149
+#: templates/admin_accounting.html:118 templates/admin_kyc.html:126
+#: templates/dashboard.html:101 templates/withdrawal.html:149
 msgid "Rejected"
 msgstr "Reddedildi"
 
-#: templates/admin_accounting.html:117
+#: templates/admin_accounting.html:125
 msgid "No transactions recorded yet."
 msgstr "Henüz kaydedilmiş işlem yok."
 
-#: templates/admin_accounting.html:131 templates/risk_assessment.html:155
+#: templates/admin_accounting.html:139 templates/risk_assessment.html:155
 #: templates/risk_assessment.html:214
 msgid "Previous"
 msgstr "Önceki"
 
-#: templates/admin_accounting.html:143 templates/risk_assessment.html:98
+#: templates/admin_accounting.html:151 templates/risk_assessment.html:98
 #: templates/risk_assessment.html:156
 msgid "Next"
 msgstr "Sonraki"
+
+#: templates/admin_accounting.html:162
+msgid "Daily Profit Distribution"
+msgstr "Günlük Kâr Dağıtımı"
+
+#: templates/admin_accounting.html:165
+msgid "Search User by Email..."
+msgstr "E-posta ile Kullanıcı Ara..."
+
+#: templates/admin_accounting.html:173
+msgid "Filter"
+msgstr "Filtrele"
+
+#: templates/admin_accounting.html:182
+msgid "Details for Date:"
+msgstr "Tarih Detayları:"
+
+#: templates/admin_accounting.html:184
+msgid "User History"
+msgstr "Kullanıcı Geçmişi"
+
+#: templates/admin_accounting.html:217
+msgid "No profit records found for this user."
+msgstr "Bu kullanıcı için kâr kaydı bulunamadı."
+
+#: templates/admin_accounting.html:228
+msgid "Total Payout"
+msgstr "Toplam Ödeme"
+
+#: templates/admin_accounting.html:229
+msgid "Daily Profit"
+msgstr "Günlük Kâr"
+
+#: templates/admin_accounting.html:230 templates/dashboard.html:37
+msgid "Referral Bonus"
+msgstr "Referans Bonusu"
+
+#: templates/admin_accounting.html:231
+msgid "Beneficiaries"
+msgstr "Hak Sahipleri"
+
+#: templates/admin_accounting.html:239
+msgid "View details for this day"
+msgstr "Bu günün detaylarını görüntüle"
+
+#: templates/admin_accounting.html:244 templates/admin_layout.html:164
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: templates/admin_accounting.html:245
+msgid "Distributed"
+msgstr "Dağıtıldı"
+
+#: templates/admin_accounting.html:250
+msgid "No profit distributions recorded."
+msgstr "Kâr dağıtımı kaydedilmedi."
 
 #: templates/admin_dashboard.html:6
 msgid "Admin Dashboard"
@@ -358,8 +415,9 @@ msgstr "Kimlik Doğrulama (KYC)"
 #: templates/admin_kyc.html:15 templates/admin_layout.html:155
 #: templates/admin_login.html:15 templates/admin_roles.html:13
 #: templates/admin_roles.html:150 templates/admin_withdrawals.html:15
-#: templates/invest-plans.html:62 templates/investment_pending.html:13
-#: templates/login.html:14 templates/settings.html:13 templates/signup.html:13
+#: templates/index.html:366 templates/invest-plans.html:62
+#: templates/investment_pending.html:13 templates/login.html:14
+#: templates/plans.html:100 templates/settings.html:13 templates/signup.html:13
 #: templates/trader_api.html:84 templates/trader_layout.html:90
 #: templates/two_factor_verify.html:14 templates/verify_email.html:14
 msgid "Close"
@@ -392,12 +450,12 @@ msgstr "Kimliği Görüntüle"
 msgid "View Address"
 msgstr "Adresi Görüntüle"
 
-#: templates/admin_kyc.html:72 templates/admin_payments.html:58
+#: templates/admin_kyc.html:72 templates/admin_payments.html:64
 #: templates/admin_withdrawals.html:79
 msgid "Approve"
 msgstr "Onayla"
 
-#: templates/admin_kyc.html:76 templates/admin_payments.html:64
+#: templates/admin_kyc.html:76 templates/admin_payments.html:70
 #: templates/admin_withdrawals.html:85
 msgid "Reject"
 msgstr "Reddedildi"
@@ -482,10 +540,6 @@ msgstr "Çıkış Yap"
 msgid "Toggle theme"
 msgstr "Temayı Değiştir"
 
-#: templates/admin_layout.html:164
-msgid "Users"
-msgstr "Kullanıcılar"
-
 #: templates/admin_login.html:6
 msgid "Admin Portal"
 msgstr "Yönetici Portalı"
@@ -561,15 +615,19 @@ msgstr "TxID / Kanıt"
 msgid "No TxID"
 msgstr "TxID Yok"
 
-#: templates/admin_payments.html:74
+#: templates/admin_payments.html:56
+msgid "View Proof"
+msgstr "Kanıtı Görüntüle"
+
+#: templates/admin_payments.html:80
 msgid "No pending payments to review."
 msgstr "İncelenecek bekleyen ödeme yok."
 
-#: templates/admin_payments.html:86
+#: templates/admin_payments.html:92
 msgid "To see completed history, check the"
 msgstr "Tamamlanan geçmişi görmek için şuna bakın:"
 
-#: templates/admin_payments.html:86 templates/admin_withdrawals.html:107
+#: templates/admin_payments.html:92 templates/admin_withdrawals.html:107
 msgid "Accounting Ledger"
 msgstr "Muhasebe Defteri"
 
@@ -617,6 +675,7 @@ msgid "Duration (Months)"
 msgstr "Süre (Ay)"
 
 #: templates/admin_plans.html:78 templates/admin_plans.html:127
+#, python-format
 msgid "Annual Return (%%)"
 msgstr "Yıllık Getiri (%%)"
 
@@ -761,6 +820,7 @@ msgid "System Parameters"
 msgstr "Sistem Parametreleri"
 
 #: templates/admin_settings.html:53
+#, python-format
 msgid "Referral Bonus Percentage (%%)"
 msgstr "Referans Bonusu Yüzdesi (%%)"
 
@@ -916,7 +976,7 @@ msgstr "Hakkımızda"
 msgid "Logout"
 msgstr "Çıkış Yap"
 
-#: templates/base.html:68 templates/index.html:309 templates/login.html:61
+#: templates/base.html:68 templates/index.html:345 templates/login.html:61
 #: templates/marketplace.html:255
 msgid "Sign Up Free"
 msgstr "Ücretsiz Kayıt Ol"
@@ -1074,10 +1134,6 @@ msgstr "Kullanılabilir Kar"
 msgid "Referrals"
 msgstr "Referanslar"
 
-#: templates/dashboard.html:37
-msgid "Referral Bonus"
-msgstr "Referans Bonusu"
-
 #: templates/dashboard.html:48
 msgid "Portfolio Growth"
 msgstr "Portföy Büyümesi"
@@ -1110,28 +1166,32 @@ msgstr "Ödeme Bekleniyor"
 msgid "Complete Payment"
 msgstr "Ödemeyi Tamamla"
 
-#: templates/dashboard.html:107
+#: templates/dashboard.html:102
+msgid "Payment verification failed."
+msgstr "Ödeme doğrulaması başarısız."
+
+#: templates/dashboard.html:110
 msgid "You have no active investments yet."
 msgstr "Henüz aktif bir yatırımınız yok."
 
-#: templates/dashboard.html:108
+#: templates/dashboard.html:111
 msgid "Start Investing"
 msgstr "Yatırıma Başla"
 
-#: templates/dashboard.html:118 templates/withdrawal.html:3
+#: templates/dashboard.html:121 templates/withdrawal.html:3
 #: templates/withdrawal.html:7
 msgid "Request Withdrawal"
 msgstr "Para Çekme Talebi"
 
-#: templates/dashboard.html:120
+#: templates/dashboard.html:123
 msgid "Manage Withdrawals"
 msgstr "Çekimleri Yönet"
 
-#: templates/dashboard.html:122
+#: templates/dashboard.html:125
 msgid "KYC Required"
 msgstr "KYC Gerekli"
 
-#: templates/dashboard.html:123
+#: templates/dashboard.html:126
 msgid "Verify Identity"
 msgstr "Kimliği Doğrula"
 
@@ -1148,223 +1208,280 @@ msgstr "Cüzdanım"
 msgid "Risk Profile"
 msgstr "Risk Profili"
 
-#: templates/index.html:10
+#: templates/index.html:11
 msgid "Intelligent Wealth Growth. Simplified."
 msgstr "Akıllı Servet Büyümesi. Basitleştirilmiş."
 
-#: templates/index.html:11
+#: templates/index.html:12
 msgid ""
 "Secure automated investment plans for everyone, or dedicated managed "
 "accounts for elite capital. No trading experience required."
-msgstr "Herkes için güvenli otomatik yatırım planları veya seçkin sermaye için özel yönetilen hesaplar. Ticaret deneyimi gerekmez."
+msgstr ""
+"Herkes için güvenli otomatik yatırım planları veya seçkin sermaye için "
+"özel yönetilen hesaplar. Ticaret deneyimi gerekmez."
 
-#: templates/index.html:14
+#: templates/index.html:15
 msgid "Start Growing (Plans)"
 msgstr "Büyümeye Başla (Planlar)"
 
-#: templates/index.html:16
+#: templates/index.html:17
 msgid "Explore VIP Solutions"
 msgstr "VIP Çözümleri Keşfedin"
 
-#: templates/index.html:26
+#: templates/index.html:27
 msgid "Integrated with Top Exchanges:"
 msgstr "En İyi Borsalarla Entegre:"
 
-#: templates/index.html:52 templates/plans.html:10
+#: templates/index.html:53 templates/plans.html:10
 msgid "Our Investment Plans"
 msgstr "Yatırım Planlarımız"
 
-#: templates/index.html:53
+#: templates/index.html:54
 msgid "Select a plan that matches your financial goals. Returns are annualized."
 msgstr ""
 "Finansal hedeflerinize uygun bir plan seçin. Getiriler "
 "yıllıklandırılmıştır."
 
-#: templates/index.html:68 templates/invest-plans.html:17
+#: templates/index.html:72 templates/invest-plans.html:17
 #: templates/plans.html:25
 msgid "Low Risk"
 msgstr "Düşük Risk"
 
-#: templates/index.html:72 templates/invest-plans.html:21
+#: templates/index.html:76 templates/invest-plans.html:21
 #: templates/plans.html:29
 msgid "Medium Risk"
 msgstr "Orta Risk"
 
-#: templates/index.html:76 templates/invest-plans.html:25
+#: templates/index.html:80 templates/invest-plans.html:25
 #: templates/plans.html:33
 msgid "High Risk"
 msgstr "Yüksek Risk"
 
-#: templates/index.html:87 templates/invest-plans.html:35
+#: templates/index.html:91 templates/invest-plans.html:35
 #: templates/plans.html:44
 msgid "Annual Return"
 msgstr "Yıllık Getiri"
 
-#: templates/index.html:88
+#: templates/index.html:92 templates/plans.html:45
 msgid "Months Duration"
 msgstr "Aylık Süre"
 
-#: templates/index.html:94 templates/plans.html:50
+#: templates/index.html:98 templates/plans.html:50
 msgid "Choose Plan & Sign Up"
 msgstr "Plan Seç ve Kaydol"
 
-#: templates/index.html:103 templates/plans.html:58
+#: templates/index.html:107 templates/plans.html:58
 msgid "No investment plans available at the moment."
 msgstr "Şu anda uygun yatırım planı bulunmamaktadır."
 
-#: templates/index.html:111
+#: templates/index.html:113 templates/plans.html:64
+msgid "Min $100k"
+msgstr "Min $100k"
+
+#: templates/index.html:116 templates/plans.html:67
+msgid "VIP Managed"
+msgstr "VIP Yönetilen"
+
+#: templates/index.html:117 templates/plans.html:68
+msgid ""
+"Exclusive strategy for high capital. Profit-sharing model based on "
+"performance."
+msgstr "Yüksek sermaye için özel strateji. Performansa dayalı kâr paylaşım modeli."
+
+#: templates/index.html:119 templates/plans.html:70
+msgid "Profit Share"
+msgstr "Kar Paylaşımı"
+
+#: templates/index.html:120 templates/plans.html:71
+msgid "No Fixed Rate"
+msgstr "Sabit Oran Yok"
+
+#: templates/index.html:121 templates/plans.html:72
+msgid "Flexible Duration"
+msgstr "Esnek Süre"
+
+#: templates/index.html:125 templates/plans.html:76
+msgid "Request Access"
+msgstr "Erişim Talep Et"
+
+#: templates/index.html:141
 msgid "Profit Calculator"
 msgstr "Kâr Hesaplayıcı"
 
-#: templates/index.html:114
+#: templates/index.html:144
 msgid "Select Plan"
 msgstr "Plan Seç"
 
-#: templates/index.html:116
+#: templates/index.html:146
 msgid "Choose a plan..."
 msgstr "Bir plan seçin..."
 
-#: templates/index.html:125
+#: templates/index.html:155
 msgid "Investment Amount ($)"
 msgstr "Yatırım Tutarı ($)"
 
-#: templates/index.html:134
+#: templates/index.html:164
 msgid "Total Return (Simple):"
 msgstr "Toplam Getiri (Basit):"
 
-#: templates/index.html:138
+#: templates/index.html:168
 msgid "Net Profit (Simple):"
 msgstr "Net Kâr (Basit):"
 
-#: templates/index.html:142
+#: templates/index.html:172
 msgid "Potential with Compound Interest:"
 msgstr "Bileşik Faiz Potansiyeli:"
 
-#: templates/index.html:142
+#: templates/index.html:172
 msgid "Assumes monthly reinvestment"
 msgstr "Aylık yeniden yatırım varsayılır"
 
-#: templates/index.html:156
+#: templates/index.html:186
 msgid "View More Plans"
 msgstr "Daha Fazla Plan Görüntüle"
 
-#: templates/index.html:168
+#: templates/index.html:198
 msgid "Our Intelligent Solutions"
 msgstr "Akıllı Çözümlerimiz"
 
-#: templates/index.html:177
+#: templates/index.html:207
 msgid "Automated Growth Plans"
 msgstr "Otomatik Büyüme Planları"
 
-#: templates/index.html:178
+#: templates/index.html:208
 msgid ""
 "Join our secure liquidity pools. Our AI trades, you receive passive "
 "profit based on your plan. Ideal for secure, hands-off growth."
-msgstr "Güvenli likidite havuzlarımıza katılın. Yapay zekamız işlem yapar, siz planınıza göre pasif kâr elde edersiniz. Güvenli ve zahmetsiz büyüme için idealdir."
+msgstr ""
+"Güvenli likidite havuzlarımıza katılın. Yapay zekamız işlem yapar, siz "
+"planınıza göre pasif kâr elde edersiniz. Güvenli ve zahmetsiz büyüme için"
+" idealdir."
 
-#: templates/index.html:180
+#: templates/index.html:210
 msgid "View Plans & Calculate Profit"
 msgstr "Planları Görüntüle ve Kâr Hesapla"
 
-#: templates/index.html:192
+#: templates/index.html:222
 msgid "Private Managed Accounts (VIP)"
 msgstr "Özel Yönetilen Hesaplar (VIP)"
 
-#: templates/index.html:193
+#: templates/index.html:223
 msgid ""
 "For capital over $100k. Our AI trades directly in your NinjaTrader "
 "account. Full transparency, profit-share model."
-msgstr "$100k üzeri sermaye için. Yapay zekamız doğrudan NinjaTrader hesabınızda işlem yapar. Tam şeffaflık, kâr paylaşım modeli."
+msgstr ""
+"$100k üzeri sermaye için. Yapay zekamız doğrudan NinjaTrader hesabınızda "
+"işlem yapar. Tam şeffaflık, kâr paylaşım modeli."
 
-#: templates/index.html:195
+#: templates/index.html:225
 msgid "Request Consultation"
 msgstr "Danışmanlık Talep Et"
 
-#: templates/index.html:204
+#: templates/index.html:234
 msgid "COMING SOON"
 msgstr "ÇOK YAKINDA"
 
-#: templates/index.html:210
+#: templates/index.html:240
 msgid "Developer API & Lab"
 msgstr "Geliştirici API ve Laboratuvarı"
 
-#: templates/index.html:211
+#: templates/index.html:241
 msgid ""
 "Access our low-latency infrastructure and historical data to build your "
 "own tools."
-msgstr "Kendi araçlarınızı oluşturmak için düşük gecikmeli altyapımıza ve geçmiş verilerimize erişin."
+msgstr ""
+"Kendi araçlarınızı oluşturmak için düşük gecikmeli altyapımıza ve geçmiş "
+"verilerimize erişin."
 
-#: templates/index.html:213
+#: templates/index.html:243
 msgid "Join Waitlist"
 msgstr "Bekleme Listesine Katıl"
 
-#: templates/index.html:225
+#: templates/index.html:255
 msgid "Simple, Secure Growth. How it Works."
 msgstr "Basit, Güvenli Büyüme. Nasıl Çalışır."
 
-#: templates/index.html:233
+#: templates/index.html:269
 msgid "Your browser does not support the video tag."
 msgstr "Tarayıcınız video etiketini desteklemiyor."
 
-#: templates/index.html:236
+#: templates/index.html:272
 msgid "WATCH EXPLAINER VIDEO: How VestHub Grows Your Wealth Safely"
 msgstr "AÇIKLAYICI VİDEOYU İZLE: VestHub Servetinizi Nasıl Güvenle Büyütür"
 
-#: templates/index.html:245
+#: templates/index.html:281
 msgid "Select Plan & Deposit"
 msgstr "Plan Seç ve Yatır"
 
-#: templates/index.html:251
+#: templates/index.html:287
 msgid "AI Manages & Trades"
 msgstr "Yapay Zeka Yönetir ve İşlem Yapar"
 
-#: templates/index.html:257
+#: templates/index.html:293
 msgid "Withdraw Your Profits"
 msgstr "Kârlarınızı Çekin"
 
-#: templates/index.html:267
+#: templates/index.html:303
 msgid "A Platform Built for Performance"
 msgstr "Performans İçin Tasarlanmış Bir Platform"
 
-#: templates/index.html:273
+#: templates/index.html:309
 msgid "Institutional-Grade Security"
 msgstr "Kurumsal Düzeyde Güvenlik"
 
-#: templates/index.html:274
+#: templates/index.html:310
 msgid "Bank-level encryption & cold storage."
 msgstr "Banka düzeyinde şifreleme ve soğuk depolama."
 
-#: templates/index.html:280
+#: templates/index.html:316
 msgid "Fully Managed Risk"
 msgstr "Tamamen Yönetilen Risk"
 
-#: templates/index.html:281
+#: templates/index.html:317
 msgid "AI-Driven Risk Management."
 msgstr "Yapay Zeka Destekli Risk Yönetimi."
 
-#: templates/index.html:287
+#: templates/index.html:323
 msgid "Real-Time Transparency"
 msgstr "Gerçek Zamanlı Şeffaflık"
 
-#: templates/index.html:288
+#: templates/index.html:324
 msgid "Real-time performance dashboards."
 msgstr "Gerçek zamanlı performans gösterge tabloları."
 
-#: templates/index.html:294
+#: templates/index.html:330
 msgid "Future-Ready Infrastructure"
 msgstr "Geleceğe Hazır Altyapı"
 
-#: templates/index.html:295
+#: templates/index.html:331
 msgid "API Coming Soon."
 msgstr "API Çok Yakında."
 
-#: templates/index.html:307
+#: templates/index.html:343
 msgid "Join the Future of Automated Trading."
 msgstr "Otomatik Ticaretin Geleceğine Katılın."
 
-#: templates/index.html:308
+#: templates/index.html:344
 msgid "Sign up for free and get access to your new trading dashboard."
 msgstr "Ücretsiz kaydolun ve yeni ticaret kontrol panelinize erişim sağlayın."
+
+#: templates/index.html:356 templates/plans.html:90
+msgid "VIP Exclusive Access"
+msgstr "VIP Özel Erişim"
+
+#: templates/index.html:362 templates/plans.html:96
+msgid "VIP accounts require a minimum deposit of $100,000."
+msgstr "VIP hesaplar minimum 100.000$ depozito gerektirir."
+
+#: templates/index.html:363 templates/plans.html:97
+msgid ""
+"This involves a dedicated account manager and a profit-sharing model (not"
+" fixed ROI). Please contact support to proceed."
+msgstr "Bu, özel bir hesap yöneticisi ve kâr paylaşım modeli (sabit ROI değil) içerir. Devam etmek için lütfen destekle iletişime geçin."
+
+#: templates/index.html:367 templates/plans.html:101
+msgid "Contact Support"
+msgstr "Destekle İletişime Geç"
 
 #: templates/invest-plans.html:6
 msgid "Choose Your Investment Plan"
@@ -1483,38 +1600,46 @@ msgid "USDT (Polygon):"
 msgstr "USDT (Polygon):"
 
 #: templates/investment_pending.html:84
-msgid "Pay Securely with Gateway"
-msgstr "Gateway ile Güvenli Öde"
+msgid "Online payment is currently under maintenance."
+msgstr "Online ödeme şu anda bakımda."
 
-#: templates/investment_pending.html:87
-msgid "Pay Now"
-msgstr "Şimdi Öde"
-
-#: templates/investment_pending.html:96
+#: templates/investment_pending.html:92
 msgid "Bank Account Details"
 msgstr "Banka Hesap Detayları"
 
-#: templates/investment_pending.html:110
+#: templates/investment_pending.html:106
 msgid "Step 2: Submit Proof (Manual Only)"
 msgstr "2. Adım: Kanıt Gönder (Sadece Manuel)"
 
-#: templates/investment_pending.html:115
+#: templates/investment_pending.html:111
 msgid "Proof Submitted!"
 msgstr "Kanıt Gönderildi!"
 
-#: templates/investment_pending.html:116
+#: templates/investment_pending.html:112
 msgid "Transaction ID:"
 msgstr "İşlem Kimliği (TxID):"
 
-#: templates/investment_pending.html:117
+#: templates/investment_pending.html:114
+msgid "Receipt Document Uploaded"
+msgstr "Dekont Belgesi Yüklendi"
+
+#: templates/investment_pending.html:116
 msgid "Return to Dashboard"
 msgstr "Kontrol Paneline Dön"
 
-#: templates/investment_pending.html:123
+#: templates/investment_pending.html:122
 msgid "Crypto TxID (or Bank Ref)"
 msgstr "Kripto TxID (veya Banka Ref)"
 
-#: templates/investment_pending.html:127
+#: templates/investment_pending.html:126
+msgid "Upload Receipt"
+msgstr "Dekont Yükle"
+
+#: templates/investment_pending.html:128
+msgid "Upload receipt (Max 5MB)"
+msgstr "Dekont yükle (Maks 5MB)"
+
+#: templates/investment_pending.html:131
 msgid "Submit Proof"
 msgstr "Kanıt Gönder"
 
@@ -1726,7 +1851,9 @@ msgstr "Kurumsal Düzeyde Getiri. Sizin İçin Erişilebilir."
 
 #: templates/marketplace.html:12
 msgid "Stop trading against the house. Trade WITH the house using Vetrix 1."
-msgstr "Kasaya karşı işlem yapmayı bırakın. Vetrix 1 kullanarak kasa İLE işlem yapın."
+msgstr ""
+"Kasaya karşı işlem yapmayı bırakın. Vetrix 1 kullanarak kasa İLE işlem "
+"yapın."
 
 #: templates/marketplace.html:15
 msgid "Start Trading Now"
@@ -1744,7 +1871,10 @@ msgstr "Sözlere Değil, Verilere Güvenin."
 msgid ""
 "Vetrix 1 is backtested over 10 years of tick-data and forward-tested in "
 "live markets. Transparency is our core value."
-msgstr "Vetrix 1, 10 yılı aşkın tick verisi üzerinde geriye dönük test edilmiş ve canlı piyasalarda ileriye dönük test edilmiştir. Şeffaflık temel değerimizdir."
+msgstr ""
+"Vetrix 1, 10 yılı aşkın tick verisi üzerinde geriye dönük test edilmiş ve"
+" canlı piyasalarda ileriye dönük test edilmiştir. Şeffaflık temel "
+"değerimizdir."
 
 #: templates/marketplace.html:34
 msgid "Total Return"
@@ -1763,6 +1893,7 @@ msgid "Aligned Profit Model"
 msgstr "Hizalanmış Kar Modeli"
 
 #: templates/marketplace.html:58
+#, python-format
 msgid ""
 "We win when you win. Unlike subscription-based bots that don't care if "
 "you profit, Vetrix operates on a **Profit-Sharing** model. Our incentives"
@@ -2356,18 +2487,22 @@ msgid "5. How much of your income do you save monthly?"
 msgstr "5. Gelirinizin ne kadarını aylık olarak biriktiriyorsunuz?"
 
 #: templates/risk_assessment.html:89
+#, python-format
 msgid "Less than 10%%"
 msgstr "%10'dan az"
 
 #: templates/risk_assessment.html:90
+#, python-format
 msgid "10%% - 25%%"
 msgstr "%10 - %25"
 
 #: templates/risk_assessment.html:91
+#, python-format
 msgid "25%% - 50%%"
 msgstr "%25 - %50"
 
 #: templates/risk_assessment.html:92
+#, python-format
 msgid "More than 50%%"
 msgstr "%50'den fazla"
 
@@ -2464,6 +2599,7 @@ msgid "I want maximum returns and can accept large losses."
 msgstr "Maksimum getiri istiyorum ve büyük kayıpları kabul edebilirim."
 
 #: templates/risk_assessment.html:177
+#, python-format
 msgid "12. If your portfolio drops 20%% in a month, what do you do?"
 msgstr "12. Portföyünüz bir ayda %20 düşerse ne yaparsınız?"
 
@@ -2484,14 +2620,17 @@ msgid "13. Which scenario do you prefer?"
 msgstr "13. Hangi senaryoyu tercih edersiniz?"
 
 #: templates/risk_assessment.html:188
+#, python-format
 msgid "Guaranteed 3%% return."
 msgstr "Garantili %3 getiri."
 
 #: templates/risk_assessment.html:189
+#, python-format
 msgid "50%% chance of 10%% return, 50%% chance of 0%%."
 msgstr "%50 ihtimalle %10 getiri, %50 ihtimalle %0."
 
 #: templates/risk_assessment.html:190
+#, python-format
 msgid "50%% chance of 50%% return, 50%% chance of -20%% loss."
 msgstr "%50 ihtimalle %50 getiri, %50 ihtimalle -%20 kayıp."
 
@@ -2500,18 +2639,22 @@ msgid "14. Allocation to high-risk assets?"
 msgstr "14. Yüksek riskli varlıklara ayrılan pay?"
 
 #: templates/risk_assessment.html:197
+#, python-format
 msgid "0%% - 10%%"
 msgstr "%0 - %10"
 
 #: templates/risk_assessment.html:198
+#, python-format
 msgid "10%% - 30%%"
 msgstr "%10 - %30"
 
 #: templates/risk_assessment.html:199
+#, python-format
 msgid "30%% - 60%%"
 msgstr "%30 - %60"
 
 #: templates/risk_assessment.html:200
+#, python-format
 msgid "More than 60%%"
 msgstr "%60'tan fazla"
 
@@ -2736,6 +2879,7 @@ msgid "Referral Code"
 msgstr "Referans Kodu"
 
 #: templates/signup.html:63
+#, python-format
 msgid "Min 8 chars, 1 Uppercase, 1 Number, 1 Symbol (!@#$%%)"
 msgstr "En az 8 karakter, 1 büyük harf, 1 rakam, 1 sembol (!@#$%)"
 
@@ -3425,6 +3569,480 @@ msgstr "Çekim Geçmişi"
 msgid "No withdrawal history found."
 msgstr "Çekim geçmişi bulunamadı."
 
+#: venv/lib/python3.13/site-packages/click/_termui_impl.py:608
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/_termui_impl.py:612
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1104
+#: venv/lib/python3.13/site-packages/click/core.py:1141
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1160
+#, fuzzy
+msgid "Options"
+msgstr "İsteğe Bağlı"
+
+#: venv/lib/python3.13/site-packages/click/core.py:1222
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1241
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1425
+msgid "Aborted!"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1799
+msgid "Commands"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1830
+msgid "Missing command."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1908
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2332
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2355
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2505
+#, python-brace-format
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is "
+"deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2956
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2959
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2963
+#, fuzzy
+msgid "required"
+msgstr "KYC Gerekli"
+
+#: venv/lib/python3.13/site-packages/click/core.py:3023
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:50
+#: venv/lib/python3.13/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr "Hata: {message}"
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr "Eksik seçenek"
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr "Eksik parametre"
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr "Kullanım:"
+
+#: venv/lib/python3.13/site-packages/click/parser.py:199
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:381
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr "Onay için tekrarla"
+
+#: venv/lib/python3.13/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr "Hata: {e.message}"
+
+#: venv/lib/python3.13/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:719
+#, python-brace-format
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:747
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:937
+msgid "file"
+msgstr "dosya"
+
+#: venv/lib/python3.13/site-packages/click/types.py:939
+msgid "directory"
+msgstr "dizin"
+
+#: venv/lib/python3.13/site-packages/click/types.py:941
+msgid "path"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:997
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1005
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1014
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1023
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1032
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/flask_wtf/file.py:55
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:293
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:323
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/flask_wtf/file.py:94
+#, python-brace-format
+msgid "File does not have an approved extension: {extensions}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/flask_wtf/file.py:101
+msgid "File does not have an approved extension."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:86
+#, python-format
+msgid "Invalid field name '%s'."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:99
+#, python-format
+msgid "Field must be equal to %(other_name)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:146
+#, python-format
+msgid "Field must be at least %(min)d character long."
+msgid_plural "Field must be at least %(min)d characters long."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:152
+#, python-format
+msgid "Field cannot be longer than %(max)d character."
+msgid_plural "Field cannot be longer than %(max)d characters."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:158
+#, python-format
+msgid "Field must be exactly %(max)d character long."
+msgid_plural "Field must be exactly %(max)d characters long."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:164
+#, python-format
+msgid "Field must be between %(min)d and %(max)d characters long."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:216
+#, python-format
+msgid "Number must be at least %(min)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:219
+#, python-format
+msgid "Number must be at most %(max)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:222
+#, python-format
+msgid "Number must be between %(min)s and %(max)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:358
+msgid "Invalid input."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:422
+msgid "Invalid email address."
+msgstr "Geçersiz e-posta adresi."
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:460
+msgid "Invalid IP address."
+msgstr "Geçersiz IP adresi."
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:503
+msgid "Invalid Mac address."
+msgstr "Geçersiz Mac adresi."
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:540
+msgid "Invalid URL."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:561
+msgid "Invalid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:595
+#, python-format
+msgid "Invalid value, must be one of: %(values)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:631
+#, python-format
+msgid "Invalid value, can't be any of: %(values)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:700
+msgid "This field cannot be edited."
+msgstr "Bu alan düzenlenemez."
+
+#: venv/lib/python3.13/site-packages/wtforms/validators.py:716
+msgid "This field is disabled and cannot have a value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/core.py:96
+msgid "Invalid CSRF Token."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/session.py:64
+msgid "CSRF token missing."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/session.py:72
+msgid "CSRF failed."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/csrf/session.py:77
+msgid "CSRF token expired."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:142
+msgid "Invalid Choice: could not coerce."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:149
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:203
+msgid "Choices cannot be None."
+msgstr "Seçenekler None olamaz."
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:155
+msgid "Not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:194
+msgid "Invalid choice(s): one or more data inputs could not be coerced."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/choices.py:212
+#, python-format
+msgid "'%(value)s' is not a valid choice for this field."
+msgid_plural "'%(value)s' are not valid choices for this field."
+msgstr[0] ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:52
+msgid "Not a valid datetime value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:78
+msgid "Not a valid date value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:104
+msgid "Not a valid time value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/datetime.py:149
+msgid "Not a valid week value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:82
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:92
+msgid "Not a valid integer value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:168
+msgid "Not a valid decimal value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:197
+msgid "Not a valid float value."
+msgstr ""
+
 #~ msgid "Live Ledger View"
 #~ msgstr "Canlı Defter Görünümü"
 
@@ -3547,3 +4165,9 @@ msgstr "Çekim geçmişi bulunamadı."
 
 #~ msgid "Next (Step 2)"
 #~ msgstr "Sonraki (2. Adım)"
+
+#~ msgid "Pay Securely with Gateway"
+#~ msgstr "Gateway ile Güvenli Öde"
+
+#~ msgid "Pay Now"
+#~ msgstr "Şimdi Öde"
