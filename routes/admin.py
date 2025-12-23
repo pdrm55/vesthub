@@ -1,7 +1,7 @@
 from decimal import Decimal
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, current_app
 from flask_login import login_required, current_user
-from sqlalchemy import func, or_
+from sqlalchemy import func, or_, case, desc
 from datetime import datetime, timedelta
 from extensions import db
 from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog, Investment
@@ -398,72 +398,112 @@ def logs():
 @login_required
 @permission_required('view_ledger')
 def accounting():
-    # 1. Base Query
-    query = Transaction.query.join(User)
-
-    # 2. Filtering
+    tab = request.args.get('tab', 'cash_flow')
+    
+    # Common Filters
     search = request.args.get('search')
-    tx_type = request.args.get('type')
     start_date_str = request.args.get('start_date')
     end_date_str = request.args.get('end_date')
     
-    if search:
-        # Search by User Email, TxHash, or ID
-        search_condition = or_(
-            User.email.ilike(f'%{search}%'),
-            Transaction.tx_hash.ilike(f'%{search}%'),
-            Transaction.description.ilike(f'%{search}%')
-        )
-        if search.isdigit():
-            search_condition = or_(search_condition, Transaction.id == int(search))
-        query = query.filter(search_condition)
+    start_date = None
+    end_date = None
     
-    if tx_type and tx_type != 'all':
-        query = query.filter(Transaction.type == tx_type)
-
     if start_date_str:
         start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-        query = query.filter(Transaction.timestamp >= start_date)
-
     if end_date_str:
         end_date = datetime.strptime(end_date_str, '%Y-%m-%d') + timedelta(hours=23, minutes=59, seconds=59)
-        query = query.filter(Transaction.timestamp <= end_date)
 
-    # 3. Sorting & Pagination
-    page = request.args.get('page', 1, type=int)
-    # The main paginated query for the table
-    pagination = query.order_by(Transaction.timestamp.desc()).paginate(page=page, per_page=20, error_out=False)
+    # Initialize variables
+    pagination = None
+    transactions = None
+    profit_logs = None
+    total_deposits = 0
+    total_withdrawals = 0
+    is_detailed_view = False
+    users = User.query.with_entities(User.id, User.email).order_by(User.email.asc()).all()
 
-    # 4. Financial Totals (Calculated on DB side for performance)
-    # Use the filtered query as the base for calculations
-    filtered_query_for_stats = query
+    if tab == 'cash_flow':
+        # Mode 1: Cash Flow (Deposits & Withdrawals)
+        query = Transaction.query.join(User).filter(Transaction.type.in_(['deposit', 'withdrawal']))
+        
+        if search:
+            search_condition = or_(
+                User.email.ilike(f'%{search}%'),
+                Transaction.tx_hash.ilike(f'%{search}%'),
+                Transaction.description.ilike(f'%{search}%')
+            )
+            if search.isdigit():
+                search_condition = or_(search_condition, Transaction.id == int(search))
+            query = query.filter(search_condition)
+        
+        if start_date:
+            query = query.filter(Transaction.timestamp >= start_date)
+        if end_date:
+            query = query.filter(Transaction.timestamp <= end_date)
+            
+        # Calculate Totals
+        total_deposits = query.with_entities(func.sum(Transaction.amount)).filter(
+            Transaction.type == 'deposit', Transaction.status == 'completed'
+        ).scalar() or 0
+        
+        total_withdrawals = query.with_entities(func.sum(Transaction.amount)).filter(
+            Transaction.type == 'withdrawal', Transaction.status == 'completed'
+        ).scalar() or 0
+        
+        page = request.args.get('page', 1, type=int)
+        pagination = query.order_by(Transaction.timestamp.desc()).paginate(page=page, per_page=20, error_out=False)
+        transactions = pagination.items
 
-    # Total Deposits (Completed)
-    total_deposits = filtered_query_for_stats.with_entities(func.sum(Transaction.amount)).filter(
-        Transaction.type == 'deposit', Transaction.status == 'completed'
-    ).scalar() or 0
-    
-    # Total Withdrawals (Completed)
-    total_withdrawals = filtered_query_for_stats.with_entities(func.sum(Transaction.amount)).filter(
-        Transaction.type == 'withdrawal', Transaction.status == 'completed'
-    ).scalar() or 0
-    
-    # Total Profit Distributed
-    total_profit = filtered_query_for_stats.with_entities(func.sum(Transaction.amount)).filter(
-        Transaction.type == 'profit'
-    ).scalar() or 0
+    elif tab == 'profit_logs':
+        user_id = request.args.get('user_id')
+        
+        if user_id:
+            # Scenario A: Detailed View for specific user
+            is_detailed_view = True
+            query = Transaction.query.filter(
+                Transaction.user_id == user_id,
+                Transaction.type.in_(['profit', 'referral_bonus'])
+            )
+            
+            if start_date:
+                query = query.filter(Transaction.timestamp >= start_date)
+            if end_date:
+                query = query.filter(Transaction.timestamp <= end_date)
+                
+            profit_logs = query.order_by(Transaction.timestamp.desc()).all()
+        else:
+            # Scenario B: Aggregate View (Default)
+            query = db.session.query(
+                func.date(Transaction.timestamp).label('day'),
+                func.count(Transaction.id).label('daily_count'),
+                func.sum(Transaction.amount).label('daily_total'),
+                func.sum(case((Transaction.type == 'profit', Transaction.amount), else_=0)).label('profit_sum'),
+                func.sum(case((Transaction.type == 'referral_bonus', Transaction.amount), else_=0)).label('ref_sum')
+            ).filter(
+                Transaction.type.in_(['profit', 'referral_bonus'])
+            )
+            
+            if start_date:
+                query = query.filter(Transaction.timestamp >= start_date)
+            if end_date:
+                query = query.filter(Transaction.timestamp <= end_date)
+                
+            profit_logs = query.group_by(func.date(Transaction.timestamp))\
+                               .order_by(desc('day')).all()
 
     return render_template(
-        'admin_accounting.html', 
+        'admin_accounting.html',
+        tab=tab,
         pagination=pagination,
-        transactions=pagination.items,
+        transactions=transactions,
+        profit_logs=profit_logs,
         total_deposits=total_deposits,
         total_withdrawals=total_withdrawals,
-        total_profit=total_profit,
         search=search,
-        tx_type=tx_type,
         start_date=start_date_str,
-        end_date=end_date_str
+        end_date=end_date_str,
+        users=users,
+        is_detailed_view=is_detailed_view
     )
 
 # --- Test Route ---
