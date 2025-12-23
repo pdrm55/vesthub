@@ -1,4 +1,6 @@
 import os
+import sys
+import fcntl
 import atexit
 import logging
 from logging.handlers import RotatingFileHandler
@@ -102,16 +104,22 @@ def create_app(config_name='default'):
 
     # Scheduler
     if not app.debug or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        if not scheduler.running:
-            scheduler.add_job(
-                func=lambda: run_profit_distribution(app), 
-                trigger="cron", hour=0, minute=0, id='profit_distribution_job', replace_existing=True
-            )
-            try:
+        try:
+            f = open("scheduler.lock", "wb")
+            fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            # Keep the file open: Do not close f inside the function
+            app.scheduler_lock_file = f
+
+            if not scheduler.running:
+                scheduler.add_job(
+                    func=lambda: run_profit_distribution(app), 
+                    trigger="cron", hour=0, minute=0, id='profit_distribution_job', replace_existing=True
+                )
                 scheduler.start()
                 atexit.register(lambda: scheduler.shutdown())
-            except:
-                pass
+                app.logger.info(f"Scheduler started by worker PID: {os.getpid()}")
+        except (BlockingIOError, Exception):
+            app.logger.info("Scheduler already running in another worker.")
 
     return app
 

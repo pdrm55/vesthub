@@ -31,46 +31,57 @@ def run_profit_distribution(app):
         count = 0
         
         for inv in active_investments:
-            if inv.last_profit_date == today: 
-                continue
+            try:
+                # Fresh Fetch & Lock
+                locked_inv = db.session.query(Investment).filter_by(id=inv.id).with_for_update().first()
+                if not locked_inv:
+                    continue
 
-            # محاسبه سود روزانه با استفاده از Decimal برای دقت بالا
-            annual_rate = inv.plan.annual_return_rate # Already Decimal from DB
-            inv_amount = inv.amount # Already Decimal
-            
-            # فرمول: (مبلغ سرمایه‌گذاری * (نرخ سود / ۱۰۰)) / ۳۶۵
-            daily_profit = (inv_amount * (annual_rate / Decimal('100.0'))) / Decimal('365.0')
-            # گرد کردن نتیجه به ۴ رقم اعشار
-            daily_profit = daily_profit.quantize(Decimal('0.0001'))
-            
-            user_tx = Transaction(
-                user_id=inv.user_id,
-                type='profit',
-                amount=daily_profit,
-                description=f"Daily profit for plan {inv.plan.name}",
-                status='completed',
-                timestamp=datetime.utcnow()
-            )
-            db.session.add(user_tx)
-            
-            # محاسبه و ثبت پاداش معرف (در صورت وجود)
-            if inv.user.referrer_id:
-                bonus = (daily_profit * (ref_percent / Decimal('100.0'))).quantize(Decimal('0.0001'))
-                if bonus > Decimal('0'):
-                    ref_tx = Transaction(
-                        user_id=inv.user.referrer_id,
-                        type='referral_bonus',
-                        amount=bonus,
-                        description=f"Referral bonus from ({inv.user.email})",
-                        status='completed',
-                        timestamp=datetime.utcnow()
-                    )
-                    db.session.add(ref_tx)
-            
-            # به‌روزرسانی تاریخ آخرین پرداخت سود برای جلوگیری از پرداخت مجدد در همان روز
-            inv.last_profit_date = today
-            count += 1
+                # Critical Check
+                if locked_inv.last_profit_date == today:
+                    db.session.commit()
+                    continue
+
+                # محاسبه سود روزانه با استفاده از Decimal برای دقت بالا
+                annual_rate = locked_inv.plan.annual_return_rate # Already Decimal from DB
+                inv_amount = locked_inv.amount # Already Decimal
+                
+                # فرمول: (مبلغ سرمایه‌گذاری * (نرخ سود / ۱۰۰)) / ۳۶۵
+                daily_profit = (inv_amount * (annual_rate / Decimal('100.0'))) / Decimal('365.0')
+                # گرد کردن نتیجه به ۴ رقم اعشار
+                daily_profit = daily_profit.quantize(Decimal('0.0001'))
+                
+                user_tx = Transaction(
+                    user_id=locked_inv.user_id,
+                    type='profit',
+                    amount=daily_profit,
+                    description=f"Daily profit for plan {locked_inv.plan.name}",
+                    status='completed',
+                    timestamp=datetime.utcnow()
+                )
+                db.session.add(user_tx)
+                
+                # محاسبه و ثبت پاداش معرف (در صورت وجود)
+                if locked_inv.user.referrer_id:
+                    bonus = (daily_profit * (ref_percent / Decimal('100.0'))).quantize(Decimal('0.0001'))
+                    if bonus > Decimal('0'):
+                        ref_tx = Transaction(
+                            user_id=locked_inv.user.referrer_id,
+                            type='referral_bonus',
+                            amount=bonus,
+                            description=f"Referral bonus from ({locked_inv.user.email})",
+                            status='completed',
+                            timestamp=datetime.utcnow()
+                        )
+                        db.session.add(ref_tx)
+                
+                # به‌روزرسانی تاریخ آخرین پرداخت سود برای جلوگیری از پرداخت مجدد در همان روز
+                locked_inv.last_profit_date = today
+                db.session.commit()
+                count += 1
+            except Exception as e:
+                print(f"Error processing investment {inv.id}: {e}")
+                db.session.rollback()
         
-        db.session.commit()
         print(f"--- Profit Distribution Completed. Total payouts: {count} ---")
         return count
