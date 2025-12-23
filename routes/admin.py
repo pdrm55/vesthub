@@ -421,6 +421,7 @@ def accounting():
     total_withdrawals = 0
     is_detailed_view = False
     users = User.query.with_entities(User.id, User.email).order_by(User.email.asc()).all()
+    date_filter = None
 
     if tab == 'cash_flow':
         # Mode 1: Cash Flow (Deposits & Withdrawals)
@@ -456,6 +457,7 @@ def accounting():
 
     elif tab == 'profit_logs':
         user_id = request.args.get('user_id')
+        date_filter = request.args.get('date')
         
         if user_id:
             # Scenario A: Detailed View for specific user
@@ -471,8 +473,16 @@ def accounting():
                 query = query.filter(Transaction.timestamp <= end_date)
                 
             profit_logs = query.order_by(Transaction.timestamp.desc()).all()
+        elif date_filter:
+            # Scenario B: Detailed View for specific date
+            is_detailed_view = True
+            query = Transaction.query.filter(
+                Transaction.type.in_(['profit', 'referral_bonus']),
+                func.date(Transaction.timestamp) == date_filter
+            )
+            profit_logs = query.order_by(Transaction.timestamp.desc()).all()
         else:
-            # Scenario B: Aggregate View (Default)
+            # Scenario C: Aggregate View (Default)
             query = db.session.query(
                 func.date(Transaction.timestamp).label('day'),
                 func.count(Transaction.id).label('daily_count'),
@@ -503,7 +513,8 @@ def accounting():
         start_date=start_date_str,
         end_date=end_date_str,
         users=users,
-        is_detailed_view=is_detailed_view
+        is_detailed_view=is_detailed_view,
+        date_filter=date_filter
     )
 
 # --- Test Route ---

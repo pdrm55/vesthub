@@ -171,12 +171,19 @@
             <input type="date" name="start_date" class="form-control form-control-sm" value="{{ start_date or '' }}">
             <input type="date" name="end_date" class="form-control form-control-sm" value="{{ end_date or '' }}">
             <button type="submit" class="btn btn-sm btn-primary">{{ _('Filter') }}</button>
-            {% if request.args.get('user_id') or start_date or end_date %}<a href="{{ url_for('admin.accounting', tab='profit_logs') }}" class="btn btn-sm btn-outline-secondary">{{ _('Reset') }}</a>{% endif %}
+            {% if request.args.get('user_id') or request.args.get('date') or start_date or end_date %}<a href="{{ url_for('admin.accounting', tab='profit_logs') }}" class="btn btn-sm btn-outline-secondary">{{ _('Reset') }}</a>{% endif %}
         </form>
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             {% if is_detailed_view %}
+            <div class="p-3 bg-dark bg-opacity-50 border-bottom border-secondary">
+                {% if request.args.get('date') %}
+                    <h5 class="mb-0 text-info"><i class="bi bi-calendar-event me-2"></i>{{ _('Details for Date:') }} {{ request.args.get('date') }}</h5>
+                {% elif request.args.get('user_id') %}
+                    <h5 class="mb-0 text-info"><i class="bi bi-person-lines-fill me-2"></i>{{ _('User History') }}</h5>
+                {% endif %}
+            </div>
             <table class="table table-dark table-striped mb-0 align-middle">
                 <thead>
                     <tr>
@@ -228,7 +235,9 @@
                 <tbody>
                     {% for log in profit_logs %}
                     <tr>
-                        <td>{{ log.day }}</td>
+                        <td>
+                            <a href="{{ url_for('admin.accounting', tab='profit_logs', date=log.day) }}" class="text-decoration-none fw-bold" title="{{ _('View details for this day') }}">{{ log.day }}</a>
+                        </td>
                         <td class="fw-bold text-success">${{ "{:,.2f}".format(log.daily_total) }}</td>
                         <td class="text-success-emphasis">+${{ "{:,.2f}".format(log.profit_sum) }}</td>
                         <td class="text-warning-emphasis">+${{ "{:,.2f}".format(log.ref_sum) }}</td>
