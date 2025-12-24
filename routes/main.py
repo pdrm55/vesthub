@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, session, flash, redirect, url_for, current_app
+from flask import Blueprint, render_template, request, session, flash, redirect, url_for, current_app, jsonify
 from models import InvestmentPlan
+import yfinance as yf
 from utils import send_system_email
 
 # تعریف Blueprint
@@ -30,6 +31,51 @@ def marketplace():
 @main_bp.route('/invest')
 def invest_learn():
     return render_template('learn.html')
+
+# --- Market Data API ---
+@main_bp.route('/api/market-data')
+def get_market_data():
+    symbols_map = {
+        'NASDAQ': '^IXIC',
+        'DOW JONES': '^DJI',
+        'S&P 500': '^GSPC',
+        'GOLD': 'GC=F',
+        'OIL (WTI)': 'CL=F',
+        'EUR/USD': 'EURUSD=X',
+        'GBP/USD': 'GBPUSD=X',
+        'BITCOIN': 'BTC-USD',
+        'ETHEREUM': 'ETH-USD'
+    }
+    
+    market_data = []
+    for name, ticker in symbols_map.items():
+        try:
+            data = yf.Ticker(ticker).history(period="2d")
+            if not data.empty:
+                price = data['Close'].iloc[-1]
+                previous_close = data['Close'].iloc[0]
+                change = price - previous_close
+                percent_change = (change / previous_close) * 100
+                
+                market_data.append({
+                    'name': name,
+                    'ticker': ticker,
+                    'price': round(price, 2),
+                    'change': round(change, 2),
+                    'percent_change': round(percent_change, 2)
+                })
+            else:
+                current_app.logger.warning(f"No data found for {name} ({ticker})")
+        except Exception as e:
+            current_app.logger.error(f"Error fetching data for {name} ({ticker}): {e}")
+            market_data.append({
+                'name': name,
+                'ticker': ticker,
+                'price': 'N/A',
+                'change': 'N/A',
+                'percent_change': 'N/A'
+            })
+    return jsonify(market_data)
 
 # --- Contact Us Routes ---
 

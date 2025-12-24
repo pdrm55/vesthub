@@ -21,26 +21,10 @@
     </div>
 </header>
 
-<!-- Trusted By / Logo Strip -->
-<div class="trusted-by-section py-3">
-    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
-        <span class="me-md-4 mb-3 mb-md-0 fw-medium">{{ _('Integrated with Top Exchanges:') }}</span>
-        <div class="d-flex align-items-center gap-4 flex-wrap justify-content-center">
-            <a href="https://ninjatrader.com" target="_blank" rel="noopener noreferrer">
-                <img src="{{ url_for('static', filename='images/ninjatrader.png') }}" alt="NinjaTrader" class="exchange-logo">
-            </a>
-            <a href="https://www.ampfutures.com" target="_blank" rel="noopener noreferrer">
-                <img src="{{ url_for('static', filename='images/amp.png') }}" alt="AMP" class="exchange-logo">
-            </a>
-            <a href="https://optimusfutures.com" target="_blank" rel="noopener noreferrer">
-                <img src="{{ url_for('static', filename='images/optimus.png') }}" alt="Optimus" class="exchange-logo">
-            </a>
-            <a href="https://www.tradovate.com" target="_blank" rel="noopener noreferrer">
-                <img src="{{ url_for('static', filename='images/tradovate.png') }}" alt="Tradovate" class="exchange-logo">
-            </a>
-            <a href="https://www.ironbeam.com" target="_blank" rel="noopener noreferrer">
-                <img src="{{ url_for('static', filename='images/ironbeam.png') }}" alt="IronBeam" class="exchange-logo">
-            </a>
+<div class="market-ticker-section py-2 bg-black border-bottom border-secondary" style="overflow: hidden; white-space: nowrap; height: 40px;">
+    <div class="container-fluid h-100 p-0">
+        <div class="ticker-track d-flex align-items-center h-100" id="ticker-track">
+            <span class="text-white-50 small ms-3">Loading market data...</span>
         </div>
     </div>
 </div>
@@ -495,6 +479,41 @@
                 1024: { slidesPerView: 3 }, 
             },
         });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const track = document.getElementById('ticker-track');
+        
+        function fetchMarketData() {
+            fetch('/api/market-data')
+                .then(response => response.json())
+                .then(data => {
+                    if(!data || data.length === 0) return;
+                    
+                    let htmlContent = '';
+                    data.forEach(item => {
+                        const colorClass = item.change >= 0 ? 'text-success' : 'text-danger';
+                        const arrow = item.change >= 0 ? '▲' : '▼';
+                        htmlContent += `
+                            <div class="d-inline-block px-4 border-end border-secondary border-opacity-25">
+                                <span class="fw-bold text-white small me-2">${item.name}</span>
+                                <span class="text-white small me-2">$${item.price}</span>
+                                <span class="${colorClass} small fw-bold">${arrow} ${Math.abs(item.percent_change)}%</span>
+                            </div>
+                        `;
+                    });
+
+                    // Duplicate content to ensure smooth scrolling
+                    track.innerHTML = htmlContent + htmlContent + htmlContent + htmlContent;
+                })
+                .catch(err => console.error('Error loading market data:', err));
+        }
+
+        // Initial Load
+        fetchMarketData();
+        // Refresh every 60 seconds
+        setInterval(fetchMarketData, 60000);
     });
 </script>
 {% endblock %}

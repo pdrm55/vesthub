@@ -627,3 +627,31 @@ input[type=range]::-webkit-slider-runnable-track {
 .plan-card, .btn-primary {
     transition: all 0.3s ease-out;
 }
+
+/* Market Ticker Animation */
+.market-ticker-section {
+    position: relative;
+    background-color: #000 !important; /* Pure black */
+    z-index: 100;
+}
+
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: scrollTicker 100s linear infinite; /* Slow smooth scroll */
+}
+
+.ticker-track:hover {
+    animation-play-state: paused; /* Pause on hover */
+}
+
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Move half way (since we duplicated content) */
+}
+
+/* Ensure ticker text is legible */
+.market-ticker-section span {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+}
