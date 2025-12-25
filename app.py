@@ -3,6 +3,7 @@ import sys
 import fcntl
 import atexit
 import logging
+import requests
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template, request, session
 from flask_wtf.csrf import CSRFError
@@ -43,18 +44,53 @@ def create_app(config_name='default'):
     
     # --- Babel Configuration ---
     def get_locale():
-        # 1. Check URL parameter
+        # 1. Check URL parameter (Priority 1)
         lang = request.args.get('lang')
         if lang in app.config['LANGUAGES']:
             session['lang'] = lang
             return lang
         
-        # 2. Check Session
+        # 2. Check Session (Priority 2 - Persistence)
         if session.get('lang'):
             return session.get('lang')
+
+        # 3. IP Geolocation Check (Priority 3 - For First Time Visitors)
+        # We perform this check only if session is not set to avoid API latency on every request
+        try:
+            # Check Cloudflare Header first (Best for Production)
+            country = request.headers.get('CF-IPCountry')
             
-        # 3. Check Browser Headers
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
+            # If not behind Cloudflare, try basic API (with short timeout)
+            if not country:
+                user_ip = request.remote_addr
+                # Skip local development IPs
+                if user_ip not in ['127.0.0.1', 'localhost']:
+                    # Use a free lightweight API with 1s timeout to prevent hanging
+                    response = requests.get('http://ip-api.com/json/{}?fields=countryCode'.format(user_ip), timeout=1)
+                    if response.status_code == 200:
+                        country = response.json().get('countryCode')
+
+            # Logic for Specific Countries
+            if country == 'IR':
+                session['lang'] = 'fa'
+                return 'fa'
+            elif country == 'TR':
+                session['lang'] = 'tr'
+                return 'tr'
+                
+        except Exception:
+            # If API fails or times out, silently fall back to browser
+            pass
+
+        # 4. Check Browser Headers (Priority 4 - Fallback)
+        # This handles cases like VPN users or standard browser preferences
+        best_match = request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+        if best_match:
+            session['lang'] = best_match
+            return best_match
+            
+        # 5. Default
+        return 'en'
 
     # Initialize Babel
     babel.init_app(app, locale_selector=get_locale)
@@ -83,11 +119,11 @@ def create_app(config_name='default'):
 
     @app.errorhandler(CSRFError)
     def handle_csrf_error(e):
-        return render_template('base.html', content=f"<h3>Security Error (400)</h3><p>{e.description}</p>"), 400
+        return render_template('base.html', content="<h3>Security Error (400)</h3><p>{}</p>".format(e.description)), 400
 
     @app.errorhandler(500)
     def internal_server_error(e):
-        app.logger.error(f'Server Error: {e}')
+        app.logger.error('Server Error: {}'.format(e))
         # Note: Ensure get_locale is available or base.html handles its absence
         return render_template('base.html', content="<h3>Internal Server Error (500)</h3><p>We are experiencing technical difficulties. Please try again later.</p>"), 500
 
@@ -117,7 +153,7 @@ def create_app(config_name='default'):
                 )
                 scheduler.start()
                 atexit.register(lambda: scheduler.shutdown())
-                app.logger.info(f"Scheduler started by worker PID: {os.getpid()}")
+                app.logger.info("Scheduler started by worker PID: {}".format(os.getpid()))
         except (BlockingIOError, Exception):
             app.logger.info("Scheduler already running in another worker.")
 
