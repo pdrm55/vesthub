@@ -46,8 +46,16 @@
                     
                     <!-- Language Switcher -->
                     <div class="dropdown me-2">
-                        <button class="btn btn-outline-secondary dropdown-toggle border-0" type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-globe"></i>
+                        <button class="btn btn-outline-light dropdown-toggle border-0 fw-bold" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if get_locale() == 'en' %}
+                                EN
+                            {% elif get_locale() == 'tr' %}
+                                TR
+                            {% elif get_locale() == 'fa' %}
+                                FA
+                            {% else %}
+                                {{ get_locale()|upper }}
+                            {% endif %}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ url_for(request.endpoint or 'main.home', lang='en') }}">English</a></li>
