@@ -12,7 +12,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from config import config
 # FIX: Added 'babel' to imports
 from extensions import db, login_manager, mail, scheduler, csrf, babel, oauth
-from tasks import run_profit_distribution
+from tasks import run_profit_distribution, process_missed_profits
 from utils import has_permission
 
 from routes.auth import auth_bp
@@ -156,6 +156,24 @@ def create_app(config_name='default'):
                 app.logger.info("Scheduler started by worker PID: {}".format(os.getpid()))
         except (BlockingIOError, Exception):
             app.logger.info("Scheduler already running in another worker.")
+
+    # Register CLI Commands
+    @app.cli.command('recover-profits')
+    def recover_profits_command():
+        """Manually trigger profit backfill and recovery."""
+        process_missed_profits(app)
+        
+    # ... کدهای قبلی ...
+    # ... کدهای قبلی ...
+
+    # Register CLI Commands
+    @app.cli.command('recover-profits')
+    def recover_profits_command():
+        """Manually trigger profit backfill and recovery."""
+        print("Starting recovery process...")
+        count = process_missed_profits(app)
+        print(f"Recovery finished. Total transactions created: {count}")
+
 
     return app
 
