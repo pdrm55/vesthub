@@ -216,6 +216,10 @@ p.lead { font-size: 1.1rem !important; line-height: 1.6; }
     overflow: hidden;
 }
 
+canvas {
+    max-width: 100%;
+}
+
 .sidebar {
     width: 280px;
     background-color: var(--bs-tertiary-bg);
