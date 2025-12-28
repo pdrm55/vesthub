@@ -47,7 +47,9 @@
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Portfolio Growth') }}</h5></div>
             <div class="card-body">
-                <canvas id="growthChart" style="height: 300px;"></canvas>
+                <div class="chart-responsive-wrapper">
+                    <canvas id="growthChart" style="height: 300px;"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -55,7 +57,9 @@
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Asset Allocation') }}</h5></div>
             <div class="card-body">
-                <canvas id="assetChart" style="height: 250px;"></canvas>
+                <div class="chart-responsive-wrapper">
+                    <canvas id="assetChart" style="height: 250px;"></canvas>
+                </div>
             </div>
         </div>
     </div>

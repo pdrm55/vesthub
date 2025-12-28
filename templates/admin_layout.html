@@ -157,15 +157,84 @@
                 <div class="offcanvas-body">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="{{ url_for('admin.dashboard') }}" class="nav-link" style="color: var(--bs-body-color);">
+                            <a href="{{ url_for('admin.dashboard') }}" class="nav-link">
                                 <i class="bi bi-grid-fill me-2"></i>{{ _('Dashboard') }}</a>
                         </li>
+
                         {% if has_permission('manage_users') %}
-                        <li><a href="{{ url_for('admin.users') }}" class="nav-link" style="color: var(--bs-body-color);">{{ _('Users') }}</a></li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('admin.users') }}" class="nav-link"> 
+                                <i class="bi bi-people-fill me-2"></i>{{ _('User Management') }}</a>
+                        </li>
                         {% endif %}
-                        <!-- بقیه لینک‌های موبایل هم مشابه بالا... -->
                         
-                        <li><a href="{{ url_for('auth.logout') }}" class="nav-link" style="color: var(--bs-body-color);">{{ _('Log out') }}</a></li>
+                        {% if has_permission('manage_roles') %}
+                        <li>
+                            <a href="{{ url_for('admin.roles') }}" class="nav-link">
+                                <i class="bi bi-shield-lock-fill me-2"></i>{{ _('Roles & Permissions') }}</a>
+                        </li>
+                        {% endif %}
+
+                        {% if has_permission('manage_plans') %}
+                        <li>
+                            <a href="{{ url_for('admin.plans') }}" class="nav-link">
+                                <i class="bi bi-collection-fill me-2"></i>{{ _('Investment Plans') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('view_ledger') %}
+                        <li>
+                            <a href="{{ url_for('admin.accounting') }}" class="nav-link">
+                                <i class="bi bi-journal-album me-2"></i>{{ _('Accounting') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('manage_payments') %}
+                        <li>
+                            <a href="{{ url_for('admin.payments') }}" class="nav-link">
+                                <i class="bi bi-box-arrow-in-down me-2"></i>{{ _('Payments') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('manage_withdrawals') %}
+                        <li>
+                            <a href="{{ url_for('admin.withdrawals') }}" class="nav-link">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>{{ _('Withdrawals') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('manage_tickets') %}
+                        <li>
+                            <a href="{{ url_for('admin.support') }}" class="nav-link">
+                                <i class="bi bi-envelope-paper-fill me-2"></i>{{ _('Support') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('manage_kyc') %}
+                        <li>
+                            <a href="{{ url_for('admin.kyc') }}" class="nav-link">
+                                <i class="bi bi-person-check-fill me-2"></i>{{ _('KYC Review') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('manage_settings') %}
+                        <li>
+                            <a href="{{ url_for('admin.settings') }}" class="nav-link">
+                                <i class="bi bi-gear-fill me-2"></i>{{ _('Settings') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if has_permission('view_logs') %}
+                        <li>
+                            <a href="{{ url_for('admin.logs') }}" class="nav-link">
+                                <i class="bi bi-activity me-2"></i>{{ _('Logs') }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        <li>
+                            <a href="{{ url_for('auth.logout') }}" class="nav-link">
+                                <i class="bi bi-box-arrow-right me-2"></i>{{ _('Log out') }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

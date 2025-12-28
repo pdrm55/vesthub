@@ -17,11 +17,15 @@
 
 html {
   font-size: 15px; /* Scale down base typography for a more professional look */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* تنظیمات پایه برای حالت روشن */
@@ -200,6 +204,18 @@ p.lead { font-size: 1.1rem !important; line-height: 1.6; }
 /* Dashboard Styles */
 .dashboard-body { min-height: 100vh; overflow-x: hidden; }
 
+.main-content-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Wrapper for charts to prevent overflow */
+.chart-responsive-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
 .sidebar {
     width: 280px;
     background-color: var(--bs-tertiary-bg);
@@ -231,6 +247,20 @@ p.lead { font-size: 1.1rem !important; line-height: 1.6; }
 
 @media (max-width: 991.98px) { .sidebar { display: none !important; } }
 @media (min-width: 992px) { .top-bar { display: none !important; } }
+
+/* Mobile Offcanvas Menu Styles */
+.offcanvas-body .nav-link {
+    color: var(--bs-body-color);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+.offcanvas-body .nav-link:hover {
+    background-color: var(--bs-secondary-bg);
+}
+.offcanvas-body .nav-link.active {
+    background-color: var(--bs-primary);
+    color: white !important;
+}
 
 [data-bs-theme="dark"] .admin-sidebar { background-color: #111 !important; }
 
