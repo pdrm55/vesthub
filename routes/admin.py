@@ -119,13 +119,35 @@ def delete_user(user_id):
         return redirect(url_for('admin.users'))
 
     try:
+        # 1. Delete AuditLogs
+        AuditLog.query.filter_by(user_id=user.id).delete()
+        
+        # 2. Delete KYCRequests
+        KYCRequest.query.filter_by(user_id=user.id).delete()
+        
+        # 3. Delete Tickets & Messages
+        user_tickets = Ticket.query.filter_by(user_id=user.id).all()
+        ticket_ids = [t.id for t in user_tickets]
+        if ticket_ids:
+            TicketMessage.query.filter(TicketMessage.ticket_id.in_(ticket_ids)).delete(synchronize_session=False)
+            Ticket.query.filter(Ticket.id.in_(ticket_ids)).delete(synchronize_session=False)
+            
+        # 4. Delete Transactions
+        Transaction.query.filter_by(user_id=user.id).delete()
+        
+        # 5. Delete Investments
+        Investment.query.filter_by(user_id=user.id).delete()
+        
+        # 6. Handle Referrals
+        User.query.filter_by(referrer_id=user.id).update({'referrer_id': None})
+        
         db.session.delete(user)
         db.session.commit()
         log_admin_activity('Delete User', f'Deleted user: {user.email}')
         flash('User deleted successfully.', 'success')
     except Exception as e:
         db.session.rollback()
-        flash('Error deleting user. They may have related records (investments, etc.).', 'danger')
+        flash(f'Error deleting user: {str(e)}', 'danger')
     return redirect(url_for('admin.users'))
 
 # --- Plans Management ---
