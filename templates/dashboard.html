@@ -47,8 +47,8 @@
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Portfolio Growth') }}</h5></div>
             <div class="card-body">
-                <div class="chart-responsive-wrapper">
-                    <canvas id="growthChart" style="height: 300px;"></canvas>
+                <div class="chart-responsive-wrapper" style="height: 300px;">
+                    <canvas id="growthChart"></canvas>
                 </div>
             </div>
         </div>
@@ -57,8 +57,8 @@
         <div class="card shadow-sm rounded-4 h-100">
             <div class="card-header bg-dark-subtle p-3"><h5 class="fw-bold mb-0">{{ _('Asset Allocation') }}</h5></div>
             <div class="card-body">
-                <div class="chart-responsive-wrapper">
-                    <canvas id="assetChart" style="height: 250px;"></canvas>
+                <div class="chart-responsive-wrapper" style="height: 250px;">
+                    <canvas id="assetChart"></canvas>
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
                         borderWidth: 0
                     }]
                 },
-                options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
             });
         }
 
@@ -176,7 +176,7 @@
                         tension: 0.4
                     }]
                 },
-                options: { responsive: true }
+                options: { responsive: true, maintainAspectRatio: false }
             });
         }
     }
