@@ -19,14 +19,14 @@
     <div class="card-body p-0 d-flex flex-column" style="height: 70vh;">
         
         <!-- Chat Messages Area -->
-        <div class="flex-grow-1 p-4 overflow-auto" style="background-color: #212529;">
+        <div class="flex-grow-1 p-3 p-md-4 overflow-auto" style="background-color: #212529;">
             <!-- Loop through all messages in the ticket -->
             {% for msg in ticket.messages %}
                 {% if msg.sender_type == 'user' %}
                     <!-- User's Message (aligned to the right) -->
                     <div class="d-flex justify-content-end mb-3">
                         <div style="max-width: 75%;">
-                            <div class="bg-primary text-white p-3 rounded-3 rounded-bottom-end-0">
+                            <div class="bg-primary text-white p-3 rounded-3 rounded-bottom-end-0 text-break">
                                 {{ msg.message }}
                             </div>
                             <small class="text-muted d-block text-end mt-1">{{ msg.timestamp.strftime('%H:%M | %b %d') }}</small>
@@ -36,7 +36,7 @@
                     <!-- Admin/Support Message (aligned to the left) -->
                     <div class="d-flex justify-content-start mb-3">
                         <div style="max-width: 75%;">
-                            <div class="bg-dark-subtle text-white p-3 rounded-3 rounded-bottom-start-0 border border-secondary">
+                            <div class="bg-dark-subtle text-white p-3 rounded-3 rounded-bottom-start-0 border border-secondary text-break">
                                 {{ msg.message }}
                             </div>
                             <small class="text-muted d-block mt-1">Support Agent • {{ msg.timestamp.strftime('%H:%M | %b %d') }}</small>
