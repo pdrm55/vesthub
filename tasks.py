@@ -3,20 +3,16 @@
 شامل توزیع سود روزانه و سیستم بازیابی سودهای عقب‌افتاده.
 """
 
-import logging
 from datetime import datetime, timedelta, date
 from decimal import Decimal
 from sqlalchemy import func
 from extensions import db
 
-# تنظیم لاگر
-logger = logging.getLogger(__name__)
-
 def run_profit_distribution(app):
     """وظیفه توزیع سود روزانه (اجرا توسط Scheduler)."""
     # تغییر استراتژی: استفاده از تابع Backfill برای اطمینان از محاسبه روزهای از قلم افتاده
     # این کار باعث می‌شود حتی اگر اسکریپت چند روز اجرا نشود، در اجرای بعدی همه را جبران کند.
-    logger.info("--- Scheduler Triggered: Delegating to process_missed_profits ---")
+    app.logger.info("--- Scheduler Triggered: Delegating to process_missed_profits ---")
     return process_missed_profits(app)
 
 def process_missed_profits(app):
@@ -26,7 +22,7 @@ def process_missed_profits(app):
     with app.app_context():
         from models import Investment, Transaction, SystemSetting
         
-        logger.info("--- Starting Profit Backfill & Recovery ---")
+        app.logger.info("--- Starting Profit Backfill & Recovery ---")
         
         ref_setting = db.session.get(SystemSetting, 'referral_percentage')
         ref_percent = Decimal(ref_setting.value) if ref_setting else Decimal('2.0')
@@ -101,14 +97,14 @@ def process_missed_profits(app):
                         locked_inv.last_profit_date = current_date
                         
                     db.session.commit()
-                    logger.info(f"Recovered profit for Investment {locked_inv.id} on {current_date}")
+                    app.logger.info(f"Recovered profit for Investment {locked_inv.id} on {current_date}")
                     total_recovered += 1
                     
                     current_date += timedelta(days=1)
                     
             except Exception as e:
-                logger.error(f"Error recovering investment {inv.id}: {e}")
+                app.logger.error(f"Error recovering investment {inv.id}: {e}")
                 db.session.rollback()
                 
-        logger.info(f"--- Backfill Completed. Total recovered payouts: {total_recovered} ---")
+        app.logger.info(f"--- Backfill Completed. Total recovered payouts: {total_recovered} ---")
         return total_recovered
