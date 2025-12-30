@@ -1,7 +1,4 @@
 import os
-import sys
-import fcntl
-import atexit
 import logging
 import requests
 from logging.handlers import RotatingFileHandler
@@ -11,8 +8,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 from config import config
 # FIX: Added 'babel' to imports
-from extensions import db, login_manager, mail, scheduler, csrf, babel, oauth
-from tasks import run_profit_distribution, process_missed_profits
+from extensions import db, login_manager, mail, csrf, babel, oauth
+from tasks import process_missed_profits
 from utils import has_permission
 
 from routes.auth import auth_bp
@@ -137,25 +134,6 @@ def create_app(config_name='default'):
         app.logger.addHandler(file_handler)
         app.logger.setLevel(logging.INFO)
         app.logger.info('VestHub startup')
-
-    # Scheduler
-    if not app.debug or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        try:
-            f = open("scheduler.lock", "wb")
-            fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            # Keep the file open: Do not close f inside the function
-            app.scheduler_lock_file = f
-
-            if not scheduler.running:
-                scheduler.add_job(
-                    func=lambda: run_profit_distribution(app), 
-                    trigger="cron", hour=0, minute=0, id='profit_distribution_job', replace_existing=True
-                )
-                scheduler.start()
-                atexit.register(lambda: scheduler.shutdown())
-                app.logger.info("Scheduler started by worker PID: {}".format(os.getpid()))
-        except (BlockingIOError, Exception):
-            app.logger.info("Scheduler already running in another worker.")
 
     # Register CLI Commands
     @app.cli.command('recover-profits')
