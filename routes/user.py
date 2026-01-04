@@ -14,7 +14,7 @@ user_bp = Blueprint('user', __name__)
 @user_bp.route('/dashboard')
 @login_required
 def dashboard():
-    total_invested = sum(inv.amount for inv in current_user.investments if inv.status in ['active', 'pending_payment'])
+    total_invested = sum(inv.amount for inv in current_user.investments if inv.status == 'active')
     total_profit = get_withdrawable_balance(current_user.id)
     referral_count = len(current_user.referrals)
     
@@ -397,7 +397,7 @@ def ticket_view(ticket_id):
 @login_required
 def api_user_data():
     # محاسبه مجموع سرمایه‌گذاری‌های فعال
-    total_invested = sum(inv.amount for inv in current_user.investments if inv.status in ['active', 'pending_payment'])
+    total_invested = sum(inv.amount for inv in current_user.investments if inv.status == 'active')
     
     # محاسبه سود قابل برداشت
     total_profit = get_withdrawable_balance(current_user.id)
