@@ -106,6 +106,10 @@ def users():
         # محاسبه سود کل کسب شده برای هر سرمایه‌گذاری خاص
         for inv in user.investments:
             inv.total_earned = sum(t.amount for t in user.profit_history if t.investment_id == inv.id and t.type == 'profit')
+            if inv.start_date:
+                inv.days_elapsed = (datetime.utcnow() - inv.start_date).days
+            else:
+                inv.days_elapsed = 0
             
     return render_template('admin_users.html', users=users_list, roles=Role.query.all())
 

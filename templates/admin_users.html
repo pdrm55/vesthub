@@ -86,8 +86,8 @@
                                                         <tr>
                                                             <th>{{ _('Plan') }}</th>
                                                             <th>{{ _('Amount') }}</th>
-                                                            <th>{{ _('Start Date') }}</th>
-                                                            <th>{{ _('Total Earned') }}</th>
+                                                            <th>{{ _('Start Date') }} / {{ _('Days') }}</th>
+                                                            <th>{{ _('Total Benefit') }}</th>
                                                             <th>{{ _('Status') }}</th>
                                                         </tr>
                                                     </thead>
@@ -96,7 +96,12 @@
                                                         <tr>
                                                             <td>{{ inv.plan.name }}</td>
                                                             <td>${{ "{:,.2f}".format(inv.amount) }}</td>
-                                                            <td>{{ inv.start_date.strftime('%Y-%m-%d') if inv.start_date else '-' }}</td>
+                                                            <td>
+                                                                {{ inv.start_date.strftime('%Y-%m-%d') if inv.start_date else '-' }}
+                                                                {% if inv.start_date %}
+                                                                    <small class="text-muted d-block">({{ inv.days_elapsed }} {{ _('days') }})</small>
+                                                                {% endif %}
+                                                            </td>
                                                             <td class="text-success">+${{ "{:,.2f}".format(inv.total_earned) }}</td>
                                                             <td><span class="badge bg-secondary">{{ inv.status }}</span></td>
                                                         </tr>
