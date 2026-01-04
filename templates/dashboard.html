@@ -102,6 +102,12 @@
                             {% if inv.status == 'pending_payment' %}
                                 <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">{{ _('Pending Payment') }}</span>
                                 <a href="{{ url_for('user.investment_pending', investment_id=inv.id) }}" class="btn btn-sm btn-outline-warning ms-2">{{ _('Complete Payment') }}</a>
+                                <form action="{{ url_for('user.delete_investment', investment_id=inv.id) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ _('Are you sure you want to cancel this investment?') }}');">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger ms-1" title="{{ _('Cancel Investment') }}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
                             {% elif inv.status == 'active' %}
                                 <span class="badge bg-success-subtle text-success-emphasis rounded-pill">{{ _('Active') }}</span>
                             {% elif inv.status == 'rejected' %}

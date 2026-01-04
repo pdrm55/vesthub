@@ -154,6 +154,28 @@ def process_online_payment(investment_id):
     flash('Online payment processed successfully.', 'success')
     return redirect(url_for('user.dashboard'))
 
+@user_bp.route('/investment/delete/<int:investment_id>', methods=['POST'])
+@login_required
+def delete_investment(investment_id):
+    inv = Investment.query.get_or_404(investment_id)
+    
+    if inv.user_id != current_user.id:
+        flash('Unauthorized access.', 'danger')
+        return redirect(url_for('user.dashboard'))
+        
+    if inv.status == 'pending_payment':
+        try:
+            db.session.delete(inv)
+            db.session.commit()
+            flash('Investment request cancelled successfully.', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash('Error cancelling investment.', 'danger')
+    else:
+        flash('Cannot cancel active or processed investments.', 'warning')
+        
+    return redirect(url_for('user.dashboard'))
+
 @user_bp.route('/withdrawal', methods=['GET', 'POST'])
 @login_required
 def withdrawal():
