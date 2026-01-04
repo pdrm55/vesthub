@@ -96,6 +96,9 @@
                         <div>
                             <h3 class="fw-bold text-primary mb-1">{{ inv.plan.name }} (#{{ inv.id }})</h3>
                             <p class="text-body-secondary">Amount: ${{ "{:,.2f}".format(inv.amount) }}</p>
+                            {% if inv.start_date %}
+                                <p class="text-body-secondary small mb-2"><i class="bi bi-calendar-check me-1"></i>{{ _('Start Date') }}: {{ inv.start_date.strftime('%Y-%m-%d') }}</p>
+                            {% endif %}
                             {% if inv.status == 'pending_payment' %}
                                 <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">{{ _('Pending Payment') }}</span>
                                 <a href="{{ url_for('user.investment_pending', investment_id=inv.id) }}" class="btn btn-sm btn-outline-warning ms-2">{{ _('Complete Payment') }}</a>
