@@ -92,7 +92,8 @@ def delete_role(role_id):
 @login_required
 @permission_required('manage_users')
 def users():
-    users_list = User.query.all()
+    # فیلتر کردن کاربر فعلی (ادمین) از لیست کاربران
+    users_list = User.query.filter(User.id != current_user.id).all()
     for user in users_list:
         user.total_invested = sum(inv.amount for inv in user.investments if inv.status == 'active')
         user.total_benefit = get_withdrawable_balance(user.id)
