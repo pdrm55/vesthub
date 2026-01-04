@@ -50,12 +50,107 @@
                             {% endif %}
                         </td>
                         <td>
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#detailsModal{{ user.id }}">
+                                <i class="bi bi-eye-fill"></i> {{ _('Details') }}</button>
                             <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#roleModal{{ user.id }}">
                                 <i class="bi bi-person-gear"></i>{{ _('Change Role') }}</button>
                             <button class="btn btn-sm btn-outline-danger ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ user.id }}">
                                 <i class="bi bi-trash-fill"></i></button>
                         </td>
                     </tr>
+
+                    <!-- User Details Modal (Investments & Profit History) -->
+                    <div class="modal fade" id="detailsModal{{ user.id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                            <div class="modal-content bg-dark text-white">
+                                <div class="modal-header border-secondary">
+                                    <h5 class="modal-title">{{ _('User Details') }}: {{ user.first_name }} {{ user.last_name }}</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Nav Tabs -->
+                                    <ul class="nav nav-tabs border-secondary" id="userTab{{ user.id }}" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active text-white" id="investments-tab{{ user.id }}" data-bs-toggle="tab" data-bs-target="#investments{{ user.id }}" type="button" role="tab">{{ _('Investments') }}</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link text-white" id="history-tab{{ user.id }}" data-bs-toggle="tab" data-bs-target="#history{{ user.id }}" type="button" role="tab">{{ _('Profit History') }}</button>
+                                        </li>
+                                    </ul>
+                                    
+                                    <!-- Tab Content -->
+                                    <div class="tab-content p-3" id="userTabContent{{ user.id }}">
+                                        <!-- Investments Tab -->
+                                        <div class="tab-pane fade show active" id="investments{{ user.id }}" role="tabpanel">
+                                            <div class="table-responsive">
+                                                <table class="table table-dark table-sm table-hover mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>{{ _('Plan') }}</th>
+                                                            <th>{{ _('Amount') }}</th>
+                                                            <th>{{ _('Start Date') }}</th>
+                                                            <th>{{ _('Total Earned') }}</th>
+                                                            <th>{{ _('Status') }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for inv in user.investments %}
+                                                        <tr>
+                                                            <td>{{ inv.plan.name }}</td>
+                                                            <td>${{ "{:,.2f}".format(inv.amount) }}</td>
+                                                            <td>{{ inv.start_date.strftime('%Y-%m-%d') if inv.start_date else '-' }}</td>
+                                                            <td class="text-success">+${{ "{:,.2f}".format(inv.total_earned) }}</td>
+                                                            <td><span class="badge bg-secondary">{{ inv.status }}</span></td>
+                                                        </tr>
+                                                        {% else %}
+                                                        <tr><td colspan="5" class="text-center text-muted">{{ _('No investments found.') }}</td></tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Profit History Tab -->
+                                        <div class="tab-pane fade" id="history{{ user.id }}" role="tabpanel">
+                                            <div class="table-responsive">
+                                                <table class="table table-dark table-sm table-hover mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>{{ _('Date') }}</th>
+                                                            <th>{{ _('Amount') }}</th>
+                                                            <th>{{ _('Type') }}</th>
+                                                            <th>{{ _('Description') }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for tx in user.profit_history %}
+                                                        <tr>
+                                                            <td>{{ tx.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                                                            <td class="text-success">+${{ "{:,.2f}".format(tx.amount) }}</td>
+                                                            <td>
+                                                                {% if tx.type == 'profit' %}
+                                                                    <span class="badge bg-success-subtle text-success-emphasis">{{ _('Daily Profit') }}</span>
+                                                                {% else %}
+                                                                    <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Referral Bonus') }}</span>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td class="small text-muted">{{ tx.description }}</td>
+                                                        </tr>
+                                                        {% else %}
+                                                        <tr><td colspan="4" class="text-center text-muted">{{ _('No profit history found.') }}</td></tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-secondary">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Close') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Change Role Modal -->
                     <div class="modal fade" id="roleModal{{ user.id }}" tabindex="-1" aria-hidden="true">

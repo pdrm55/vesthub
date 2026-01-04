@@ -96,6 +96,17 @@ def users():
     for user in users_list:
         user.total_invested = sum(inv.amount for inv in user.investments if inv.status == 'active')
         user.total_benefit = get_withdrawable_balance(user.id)
+        
+        # دریافت تاریخچه سودها برای نمایش در مودال
+        user.profit_history = Transaction.query.filter(
+            Transaction.user_id == user.id,
+            Transaction.type.in_(['profit', 'referral_bonus'])
+        ).order_by(Transaction.timestamp.desc()).all()
+        
+        # محاسبه سود کل کسب شده برای هر سرمایه‌گذاری خاص
+        for inv in user.investments:
+            inv.total_earned = sum(t.amount for t in user.profit_history if t.investment_id == inv.id and t.type == 'profit')
+            
     return render_template('admin_users.html', users=users_list, roles=Role.query.all())
 
 @admin_bp.route('/users/change-role/<int:user_id>', methods=['POST'])
