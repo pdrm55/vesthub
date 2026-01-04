@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from extensions import db
 from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog, Investment
 from decorators import permission_required
-from utils import log_admin_activity, set_setting
+from utils import log_admin_activity, set_setting, get_withdrawable_balance
 from tasks import run_profit_distribution
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
@@ -92,7 +92,11 @@ def delete_role(role_id):
 @login_required
 @permission_required('manage_users')
 def users():
-    return render_template('admin_users.html', users=User.query.all(), roles=Role.query.all())
+    users_list = User.query.all()
+    for user in users_list:
+        user.total_invested = sum(inv.amount for inv in user.investments if inv.status == 'active')
+        user.total_benefit = get_withdrawable_balance(user.id)
+    return render_template('admin_users.html', users=users_list, roles=Role.query.all())
 
 @admin_bp.route('/users/change-role/<int:user_id>', methods=['POST'])
 @login_required

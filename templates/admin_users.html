@@ -21,6 +21,8 @@
                         <th>{{ _('ID') }}</th>
                         <th>{{ _('User') }}</th>
                         <th>{{ _('Current Role') }}</th>
+                        <th>{{ _('Total Invested') }}</th>
+                        <th>{{ _('Total Benefit') }}</th>
                         <th>{{ _('KYC') }}</th>
                         <th>{{ _('Actions') }}</th>
                     </tr>
@@ -38,6 +40,8 @@
                                 {{ user.role.name }}
                             </span>
                         </td>
+                        <td>${{ "{:,.2f}".format(user.total_invested) }}</td>
+                        <td class="text-success">${{ "{:,.2f}".format(user.total_benefit) }}</td>
                         <td>
                             {% if user.kyc_status == 'verified' %}
                                 <span class="badge bg-success-subtle text-success-emphasis">{{ _('Verified') }}</span>
