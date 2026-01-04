@@ -56,8 +56,6 @@
                                 <i class="bi bi-person-gear"></i>{{ _('Change Role') }}</button>
                             <button class="btn btn-sm btn-outline-danger ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ user.id }}">
                                 <i class="bi bi-trash-fill"></i></button>
-                        </td>
-                    </tr>
 
                     <!-- User Details Modal (Investments & Profit History) -->
                     <div class="modal fade" id="detailsModal{{ user.id }}" tabindex="-1" aria-hidden="true">
@@ -203,6 +201,8 @@
                             </div>
                         </div>
                     </div>
+                        </td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
