@@ -5,7 +5,7 @@
 # ==========================================
 
 # 1. Define Paths (Adjust if your production path differs)
-PROJECT_DIR="/Users/pedrammotlagh/Projects/VestHub/vesthub"
+PROJECT_DIR="/home/ubuntu/vesthub/"
 LOG_FILE="$PROJECT_DIR/logs/cron_profit.log"
 VENV_ACTIVATE="$PROJECT_DIR/venv/bin/activate"
 
