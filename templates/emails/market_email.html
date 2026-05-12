@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .email-container { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: auto; background: #1a1a1a; color: #ffffff; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        .header { text-align: center; padding-bottom: 20px; border-bottom: 1px solid #333; }
+        .content { padding: 20px 0; line-height: 1.6; color: #cccccc; }
+        .highlight { color: #00b0f0; font-weight: bold; }
+        .btn-box { text-align: center; margin: 30px 0; }
+        .btn { background-color: #00b0f0; color: #000000 !important; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; }
+        .support-box { background: #222; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #00b0f0; }
+        .footer { font-size: 0.8rem; color: #666; border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; }
+    </style>
+</head>
+<body style="background-color: #000; padding: 20px; margin: 0;">
+    <div class="email-container">
+        <div class="header">
+            <h2 style="color: #00b0f0; margin: 0;">VestHub</h2>
+        </div>
+        <div class="content">
+            <p>Hello <span class="highlight">{{ user.first_name }}</span>,</p>
+            <p>It's been a few days since you joined <strong>VestHub</strong>, and we wanted to check in on you.</p>
+            <p>We noticed you haven't started your first investment yet. We know that automated trading can seem complex, but we are here to make it simple.</p>
+            
+            <div class="support-box">
+                <p style="margin: 0; color: #fff;"><strong>Need a helping hand?</strong></p>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem;">You can <strong>reply directly to this email</strong> or open a <strong>support ticket</strong> in your dashboard. Our experts are ready to guide you.</p>
+            </div>
+
+            <div class="btn-box">
+                <a href="https://vesthub.com/invest" class="btn">Explore Investment Plans</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Best regards,<br>The VestHub Team</p>
+            <p style="font-size: 0.7rem;">&copy; 2025 VestHub. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

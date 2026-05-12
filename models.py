@@ -62,6 +62,7 @@ class User(UserMixin, db.Model):
     tickets = db.relationship('Ticket', backref='user', lazy=True)
     kyc_requests = db.relationship('KYCRequest', backref='user', lazy=True)
     logs = db.relationship('AuditLog', backref='user', lazy=True)
+    marketing_email_sent = db.Column(db.Boolean, default=False)
 
 # ==========================================
 # 4. Investment Plans

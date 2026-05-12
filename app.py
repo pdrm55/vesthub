@@ -1,8 +1,11 @@
 import os
 import logging
 import requests
+import click
+from datetime import datetime, timedelta
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template, request, session
+from flask_mail import Message
 from flask_wtf.csrf import CSRFError
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -152,6 +155,77 @@ def create_app(config_name='default'):
         count = process_missed_profits(app)
         print(f"Recovery finished. Total transactions created: {count}")
 
+    @app.cli.command('send-marketing-reminders')
+    def send_marketing_reminders_command():
+        """Send marketing emails to users who haven't invested after 3 days."""
+        from models import User, Investment
+        print("Starting marketing reminders process...")
+        
+        threshold_date = datetime.utcnow() - timedelta(days=3)
+        users = User.query.filter(User.created_at <= threshold_date, User.marketing_email_sent == False).all()
+        
+        sent_count = 0
+        for user in users:
+            try:
+                # Check if the user has any investments
+                has_investment = Investment.query.filter_by(user_id=user.id).first()
+                
+                if not has_investment:
+                    # Send the marketing email
+                    msg = Message("Start Your Journey with VestHub", recipients=[user.email])
+                    
+                    rendered_html = render_template('emails/market_email.html', user=user)
+                    if not rendered_html or not rendered_html.strip():
+                        app.logger.warning(f"Template rendered empty for {user.email}. Check market_email.html on the server.")
+                        
+                    msg.html = rendered_html
+                    msg.body = (
+                        f"Hello {user.first_name},\n\n"
+                        "It's been a few days since you joined VestHub, and we wanted to check in on you. "
+                        "We noticed you haven't started your first investment yet.\n\n"
+                        "Explore Investment Plans: https://vesthub.com/invest\n\n"
+                        "Best regards,\nThe VestHub Team"
+                    )
+                    
+                    mail.send(msg)
+                    sent_count += 1
+                    app.logger.info(f"Successfully sent marketing email to {user.email}")
+                
+                # چه ایمیل ارسال شده باشد و چه کاربر قبلاً سرمایه‌گذاری کرده باشد، 
+                # وضعیت را True می‌کنیم تا در روزهای آینده دوباره بررسی نشود.
+                user.marketing_email_sent = True
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                app.logger.error(f"Error processing marketing email for {user.email}: {str(e)}")
+                
+        print(f"Marketing reminders process completed. Sent {sent_count} emails.")
+
+    @app.cli.command('test-email')
+    @click.argument('target_email')
+    def test_email_command(target_email):
+        """Send a test marketing email to a specific address."""
+        from models import User
+        print(f"Preparing test email for: {target_email} ...")
+        
+        # سعی می‌کنیم کاربر را از دیتابیس پیدا کنیم تا نام او در قالب قرار گیرد
+        user = User.query.filter_by(email=target_email).first()
+        if not user:
+            # اگر کاربر وجود نداشت، یک آبجکت موقت می‌سازیم تا خطای رندر ندهد
+            class MockUser:
+                first_name = "TestUser"
+                email = target_email
+            user = MockUser()
+            print("User not found in database. Using mock data (Name: TestUser).")
+            
+        try:
+            msg = Message("Test: Start Your Journey with VestHub", recipients=[target_email])
+            msg.html = render_template('emails/market_email.html', user=user)
+            msg.body = "This is a test email. Please view in an HTML-compatible client."
+            mail.send(msg)
+            print(f"✅ Test email successfully sent to {target_email}")
+        except Exception as e:
+            print(f"❌ Error sending test email: {str(e)}")
 
     return app
 
