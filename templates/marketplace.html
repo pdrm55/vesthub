@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
                 <h1 class="display-3 fw-bold mb-4">{{ _('Institutional-Grade Alpha. Available to You.') }}</h1>
-                <p class="lead mb-4">{{ _('Stop trading against the house. Trade WITH the house using Vetrix 1.') }}</p>
+                <p class="lead mb-4">{{ _('Vetrix 1 is a systematic, algorithm-driven trading strategy built for consistent risk-managed performance.') }}</p>
                 <!-- Call to Action Buttons -->
                 <div>
                     <a href="{{ url_for('auth.signup') }}" class="btn btn-primary btn-lg mx-2 my-1 px-4">{{ _('Start Trading Now') }}</a>
@@ -31,9 +31,9 @@
             <div class="col-lg-6">
                 <!-- Mock Chart Card -->
                 <div class="card bg-dark-subtle border-0 shadow-lg p-4 position-relative overflow-hidden">
-                    <h5 class="text-secondary mb-1">{{ _('Total Return') }}</h5>
+                    <h5 class="text-secondary mb-1">{{ _('Cumulative Return') }}</h5>
                     <h2 class="text-success fw-bold mb-0 display-4">+80%</h2>
-                    <p class="text-secondary small mb-4 mt-2">{{ _('Approved based on real market data backed testing.') }}</p>
+                    <p class="text-secondary small mb-4 mt-2">{{ _('Cumulative return based on backtesting and months of live trading performance') }}</p>
                     <!-- Animated SVG Chart -->
                     <svg viewBox="0 0 500 150" class="w-100" style="height: 150px; filter: drop-shadow(0 0 8px rgba(0, 208, 132, 0.5));">
                         <path d="M0,150 C50,120 100,140 150,80 C200,20 250,100 300,60 C350,20 400,40 500,10" fill="none" stroke="#00d084" stroke-width="4" class="chart-path" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,7 +89,6 @@
                     <tr class="table-secondary">
                         <th scope="col">{{ _('Feature') }}</th>
                         <th scope="col" class="bg-dark text-white highlight-th">
-                            <span class="badge bg-success best-choice-badge shadow-sm">{{ _('Best Choice') }}</span>
                             {{ _('Vetrix 1 (VestHub)') }}
                         </th>
                         <th scope="col">{{ _('Retail Bot Marketplaces') }}</th>

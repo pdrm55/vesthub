@@ -12,6 +12,15 @@
         </div>
     </div>
 
+    <!-- Disclaimer -->
+    <div class="disclaimer-box">
+        {{ _('Returns shown are based on months of live trading performance and historical backtesting. Actual results may vary. Capital is subject to market risk.') }}
+    </div>
+
+    <p class="text-center small text-body-secondary mb-4">
+        <a href="{{ url_for('main.risk_disclosure') }}" class="text-body-secondary">{{ _('Please read our Risk Disclosure before investing.') }}</a>
+    </p>
+
     <!-- Plans Grid -->
     <div class="row g-4">
         <!-- Loop through available investment plans -->
@@ -19,21 +28,6 @@
         <div class="col-md-6 col-lg-4">
             <!-- Plan Card -->
             <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative">
-                <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
-                {% if plan.risk_level == 'low' %}
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge bg-info-subtle text-info-emphasis">{{ _('Low Risk') }}</span>
-                    </div>
-                {% elif plan.risk_level == 'medium' %}
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Medium Risk') }}</span>
-                    </div>
-                {% else %}
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge bg-danger-subtle text-danger-emphasis">{{ _('High Risk') }}</span>
-                    </div>
-                {% endif %}
-
                 <!-- Card Body with Plan Details -->
                 <div class="card-body p-4 d-flex flex-column">
                     <h3 class="fw-semibold">{{ plan.name }}</h3>

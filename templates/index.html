@@ -9,7 +9,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
                 <h1 class="display-3 fw-bold mb-4">{{ _('Intelligent Wealth Growth. Simplified.') }}</h1>
-                <p class="lead mb-5">{{ _('Secure automated investment plans for everyone, or dedicated managed accounts for elite capital. No trading experience required.') }}</p>
+                <p class="lead mb-5">{{ _('Algorithmically managed investment plans for everyone, or dedicated managed accounts for elite capital. No trading experience required.') }}</p>
+                <p class="small mb-3" style="opacity: 0.75;">
+                    <a href="{{ url_for('main.risk_disclosure') }}" class="text-white-50">{{ _('Please read our Risk Disclosure before investing.') }}</a>
+                </p>
                 <!-- Call to Action Buttons -->
                 <div>
                     <a href="{{ url_for('main.plans') }}" class="btn btn-primary btn-lg mx-2 my-1 px-5 py-3 fw-semibold">{{ _('Start Growing (Plans)') }}</a>
@@ -36,6 +39,7 @@
             <div class="col-lg-8 text-center">
                 <h2 class="fw-bold">{{ _('Our Investment Plans') }}</h2>
                 <p class="text-body-secondary" style="line-height: 1.6;">{{ _('Select a plan that matches your financial goals. Returns are annualized.') }}</p>
+                <p class="text-body-secondary small mt-2">{{ _('Returns shown are based on months of live trading performance and historical backtesting. Actual results may vary. Capital is subject to market risk.') }}</p>
             </div>
         </div>
 
@@ -50,21 +54,6 @@
             <div class="swiper-slide h-auto">
                 <div class="card plan-card h-100 rounded-4 shadow-sm bg-dark-subtle border-0 position-relative {{ 'best-plan-card' if is_best else '' }}">
                     
-                    <!-- Risk Level Badge: Display a badge based on the plan's risk level -->
-                    {% if plan.risk_level == 'low' %}
-                        <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-success text-white fw-bold">{{ _('Low Risk') }}</span>
-                        </div>
-                    {% elif plan.risk_level == 'medium' %}
-                        <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Medium Risk') }}</span>
-                        </div>
-                    {% else %}
-                        <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-danger-subtle text-danger-emphasis">{{ _('High Risk') }}</span>
-                        </div>
-                    {% endif %}
-
                     <!-- Card Body with Plan Details -->
                     <div class="card-body p-4 d-flex flex-column">
                         <h3 class="fw-semibold">{{ plan.name }}</h3>
@@ -326,6 +315,9 @@
             <div class="col-lg-8">
                     <h2 class="fw-bold mb-4">{{ _('Join the Future of Automated Trading.') }}</h2>
                 <p class="lead mb-4">{{ _('Sign up for free and get access to your new trading dashboard.') }}</p>
+                <p class="small mb-3" style="opacity: 0.75;">
+                    <a href="{{ url_for('main.risk_disclosure') }}" class="text-white-50">{{ _('Please read our Risk Disclosure before investing.') }}</a>
+                </p>
                 <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">{{ _('Sign Up Free') }}</a>
             </div>
         </div>

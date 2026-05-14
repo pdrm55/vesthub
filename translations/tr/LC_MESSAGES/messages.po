@@ -1213,12 +1213,8 @@ msgid "Intelligent Wealth Growth. Simplified."
 msgstr "Akıllı Servet Büyümesi. Basitleştirilmiş."
 
 #: templates/index.html:12
-msgid ""
-"Secure automated investment plans for everyone, or dedicated managed "
-"accounts for elite capital. No trading experience required."
-msgstr ""
-"Herkes için güvenli otomatik yatırım planları veya seçkin sermaye için "
-"özel yönetilen hesaplar. Ticaret deneyimi gerekmez."
+msgid "Algorithmically managed investment plans for everyone, or dedicated managed accounts for elite capital. No trading experience required."
+msgstr "Herkes için algoritmik olarak yönetilen yatırım planları veya seçkin sermaye için özel yönetilen hesaplar. Ticaret deneyimi gerekmez."
 
 #: templates/index.html:15
 msgid "Start Growing (Plans)"
@@ -1256,6 +1252,14 @@ msgstr "Orta Risk"
 #: templates/plans.html:33
 msgid "High Risk"
 msgstr "Yüksek Risk"
+
+#: templates/plans.html
+msgid "Returns shown are based on months of live trading performance and historical backtesting. Actual results may vary. Capital is subject to market risk."
+msgstr "Gösterilen getiriler, aylarca süren canlı işlem performansına ve geçmiş testlere dayanmaktadır. Gerçek sonuçlar farklılık gösterebilir. Sermaye piyasa riskine tabidir."
+
+#: templates/index.html templates/plans.html
+msgid "Please read our Risk Disclosure before investing."
+msgstr "Yatırım yapmadan önce lütfen Risk Açıklamamızı okuyun."
 
 #: templates/index.html:91 templates/invest-plans.html:35
 #: templates/plans.html:44
@@ -4042,6 +4046,14 @@ msgstr ""
 #: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:197
 msgid "Not a valid float value."
 msgstr ""
+
+#: templates/marketplace.html
+msgid "Vetrix 1 is a systematic, algorithm-driven trading strategy built for consistent risk-managed performance."
+msgstr "Vetrix 1, tutarlı risk yönetimli performans için tasarlanmış sistematik, algoritma odaklı bir ticaret stratejisidir."
+
+#: templates/marketplace.html
+msgid "Cumulative return based on backtesting and months of live trading performance"
+msgstr "Geriye dönük test ve aylarca süren canlı işlem performansına dayalı kümülatif getiri"
 
 #~ msgid "Live Ledger View"
 #~ msgstr "Canlı Defter Görünümü"

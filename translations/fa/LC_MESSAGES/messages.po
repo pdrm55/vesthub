@@ -1214,12 +1214,8 @@ msgid "Intelligent Wealth Growth. Simplified."
 msgstr "مدیریت هوشمند رشد سرمایه، ساده و شفاف"
 
 #: templates/index.html:12
-msgid ""
-"Secure automated investment plans for everyone, or dedicated managed "
-"accounts for elite capital. No trading experience required."
-msgstr ""
-"طرح‌های سرمایه‌گذاری خودکار و امن برای همه، یا حساب‌های مدیریت شده "
-"اختصاصی برای سرمایه‌های کلان. بدون نیاز به تجربه معاملاتی."
+msgid "Algorithmically managed investment plans for everyone, or dedicated managed accounts for elite capital. No trading experience required."
+msgstr "طرح‌های سرمایه‌گذاری مبتنی بر الگوریتم برای همه، یا حساب‌های مدیریت شده اختصاصی برای سرمایه‌های کلان. بدون نیاز به تجربه معاملاتی."
 
 #: templates/index.html:15
 msgid "Start Growing (Plans)"
@@ -1257,6 +1253,14 @@ msgstr "ریسک متوسط"
 #: templates/plans.html:33
 msgid "High Risk"
 msgstr "ریسک زیاد"
+
+#: templates/plans.html
+msgid "Returns shown are based on months of live trading performance and historical backtesting. Actual results may vary. Capital is subject to market risk."
+msgstr "بازده‌های نمایش داده شده بر اساس ماه‌ها عملکرد معاملاتی واقعی و بک‌تست تاریخی هستند. نتایج واقعی ممکن است متفاوت باشند. سرمایه در معرض ریسک بازار است."
+
+#: templates/index.html templates/plans.html
+msgid "Please read our Risk Disclosure before investing."
+msgstr "لطفاً قبل از سرمایه‌گذاری، افشای ریسک ما را مطالعه کنید."
 
 #: templates/index.html:91 templates/invest-plans.html:35
 #: templates/plans.html:44
@@ -4022,6 +4026,14 @@ msgstr ""
 #: venv/lib/python3.13/site-packages/wtforms/fields/numeric.py:197
 msgid "Not a valid float value."
 msgstr ""
+
+#: templates/marketplace.html
+msgid "Vetrix 1 is a systematic, algorithm-driven trading strategy built for consistent risk-managed performance."
+msgstr "وتریکس ۱ یک استراتژی معاملاتی سیستماتیک و الگوریتم‌محور است که برای عملکرد پایدار با مدیریت ریسک طراحی شده است."
+
+#: templates/marketplace.html
+msgid "Cumulative return based on backtesting and months of live trading performance"
+msgstr "بازده تجمعی بر اساس بک‌تست و ماه‌ها عملکرد معاملاتی واقعی"
 
 #~ msgid "Live Ledger View"
 #~ msgstr "نمای زنده دفتر کل"

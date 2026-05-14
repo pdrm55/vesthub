@@ -12,11 +12,7 @@
         <!-- Add special styling for high value or recommended plans if needed -->
         <div class="card plan-card h-100 rounded-4 shadow-sm border-0 bg-dark-subtle position-relative">
             
-            {% if plan.risk_level == 'low' %}
-                <div class="position-absolute top-0 end-0 m-3">
-                    <span class="badge bg-info-subtle text-info-emphasis">{{ _('Low Risk') }}</span>
-                </div>
-            {% elif plan.risk_level == 'medium' %}
+            {% if plan.risk_level == 'medium' %}
                 <div class="position-absolute top-0 end-0 m-3">
                     <span class="badge bg-warning-subtle text-warning-emphasis">{{ _('Medium Risk') }}</span>
                 </div>
