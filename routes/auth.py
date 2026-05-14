@@ -94,6 +94,8 @@ def signup():
         db.session.commit()
         
         send_system_email("Verify Account", email, f"Your Code: {ver_code}")
+        send_system_email("New User Registration", "info@vesthub.org",
+            f"New user registered: {first_name} {last_name} | Email: {email}")
         session['unverified_user_id'] = new_user.id
         return redirect(url_for('auth.verify_email'))
         
@@ -202,7 +204,9 @@ def social_auth_callback(provider):
             db.session.add(user)
             db.session.commit()
             log_admin_activity('Signup', f'User signed up via {provider}')
-            
+            send_system_email("New User Registration (Google)", "info@vesthub.org",
+                f"New user registered via {provider}: {first_name} {last_name} | Email: {email}")
+
         login_user(user)
         return redirect(url_for('user.dashboard'))
         

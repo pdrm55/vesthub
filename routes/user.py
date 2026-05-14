@@ -128,6 +128,8 @@ def submit_proof(investment_id):
         investment_id=inv.id
     ))
     db.session.commit()
+    send_system_email("New Payment Submitted", "info@vesthub.org",
+        f"User {current_user.email} submitted payment proof for Investment #{inv.id} | Amount: {inv.amount} | TxID: {tx_hash}")
     flash('Payment proof submitted and awaiting approval.', 'success')
     return redirect(url_for('user.dashboard'))
 
@@ -222,6 +224,8 @@ def withdrawal():
                 db.session.add(Transaction(user_id=user.id, type='withdrawal', amount=amt, status='pending', description='User withdrawal request'))
                 db.session.commit()
                 session.pop('pending_withdrawal', None) # Clear session
+                send_system_email("New Withdrawal Request", "info@vesthub.org",
+                    f"User {user.email} requested a withdrawal of {amt}")
                 flash('Withdrawal request submitted successfully.', 'success')
                 return redirect(url_for('user.withdrawal'))
             else:
@@ -376,6 +380,19 @@ def support():
         msg = TicketMessage(ticket_id=tk.id, sender_type='user', message=request.form.get('message'))
         db.session.add(msg)
         db.session.commit()
+        send_system_email("New Support Ticket", "info@vesthub.org",
+            f"User {current_user.email} opened ticket: '{tk.subject}' | Category: {tk.category}")
+        ticket_url = url_for('user.ticket_view', ticket_id=tk.id, _external=True)
+        send_system_email(
+            f"Your Support Ticket #{tk.id} Has Been Received",
+            current_user.email,
+            f"Dear {current_user.first_name},<br><br>"
+            f"Your support ticket has been submitted successfully.<br><br>"
+            f"<strong>Ticket ID:</strong> #{tk.id}<br>"
+            f"<strong>Subject:</strong> {tk.subject}<br><br>"
+            f"You can track your ticket here: <a href='{ticket_url}'>{ticket_url}</a><br><br>"
+            f"Our team will respond as soon as possible."
+        )
         flash('New ticket created.', 'success')
         return redirect(url_for('user.support'))
     tickets = Ticket.query.filter_by(user_id=current_user.id).order_by(Ticket.updated_at.desc()).all()
