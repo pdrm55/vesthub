@@ -4035,6 +4035,146 @@ msgstr "وتریکس ۱ یک استراتژی معاملاتی سیستماتی�
 msgid "Cumulative return based on backtesting and months of live trading performance"
 msgstr "بازده تجمعی بر اساس بک‌تست و ماه‌ها عملکرد معاملاتی واقعی"
 
+#: templates/about.html
+msgid "Our Story"
+msgstr "داستان ما"
+
+#: templates/about.html
+msgid "Built by Traders."
+msgstr "ساخته شده توسط معامله‌گران."
+
+#: templates/about.html
+msgid "Engineered for Performance."
+msgstr "مهندسی شده برای عملکرد."
+
+#: templates/about.html
+msgid "VestHub is the result of two disciplines converging: decades of live market experience and deep financial software engineering — united by a single purpose."
+msgstr "VestHub حاصل همگرایی دو رشته است: دهه‌ها تجربه زنده بازار و مهندسی نرم‌افزار مالی عمیق — متحد شده برای یک هدف واحد."
+
+#: templates/about.html
+msgid "Strategy & Markets"
+msgstr "استراتژی و بازارها"
+
+#: templates/about.html
+msgid "Real Market Experience, Not Just Theory"
+msgstr "تجربه واقعی بازار، نه فقط نظریه"
+
+#: templates/about.html
+msgid "Our quantitative trading strategy is built by professionals with years of active, in-the-trenches experience across futures, equities, and derivatives markets. The algorithms powering VestHub are designed, tested, and continuously refined by those who have traded through real market cycles — not simulations."
+msgstr "استراتژی معاملاتی کمی ما توسط متخصصانی با سال‌ها تجربه عملی در بازارهای آتی، سهام و مشتقات ساخته شده است. الگوریتم‌های VestHub توسط کسانی طراحی، آزمایش و بهبود مستمر می‌یابند که در چرخه‌های واقعی بازار معامله کرده‌اند — نه شبیه‌سازی."
+
+#: templates/about.html
+msgid "Technology & Infrastructure"
+msgstr "فناوری و زیرساخت"
+
+#: templates/about.html
+msgid "Enterprise-Grade FinTech Architecture"
+msgstr "معماری فین‌تک درجه سازمانی"
+
+#: templates/about.html
+msgid "Our engineering team brings decades of experience building financial software infrastructure — from brokerage platforms and automated KYC systems to banking automation and ATM software. VestHub is built on the same principles used in high-availability financial systems serving tens of thousands of users."
+msgstr "تیم مهندسی ما دهه‌ها تجربه در ساخت زیرساخت نرم‌افزار مالی دارد — از پلتفرم‌های کارگزاری و سیستم‌های KYC خودکار تا اتوماسیون بانکی و نرم‌افزار ATM. VestHub بر اساس همان اصولی ساخته شده که در سیستم‌های مالی با دسترس‌پذیری بالا برای ده‌ها هزار کاربر استفاده می‌شود."
+
+#: templates/about.html
+msgid "The People Behind VestHub"
+msgstr "افراد پشت VestHub"
+
+#: templates/about.html
+msgid "Meet the Founders"
+msgstr "با بنیان‌گذاران آشنا شوید"
+
+#: templates/about.html
+msgid "Two specialists. One platform."
+msgstr "دو متخصص. یک پلتفرم."
+
+#: templates/about.html
+msgid "Strategy & Quant"
+msgstr "استراتژی و کمی"
+
+#: templates/about.html
+msgid "Co-Founder & Head of Quantitative Strategy"
+msgstr "هم‌بنیان‌گذار و رئیس استراتژی کمی"
+
+#: templates/about.html
+msgid "8+ years designing and developing algorithmic trading systems for futures markets. Founder and lead architect of Vetrix — a fully automated C#-based trading system built on NinjaTrader. Published researcher in behavioral finance and market bubble detection."
+msgstr "بیش از ۸ سال تجربه در طراحی و توسعه سیستم‌های معاملاتی الگوریتمی در بازارهای آتی. بنیان‌گذار و معمار اصلی Vetrix — یک سیستم معاملاتی کاملاً خودکار مبتنی بر C# در پلتفرم NinjaTrader. پژوهشگر در حوزه مالی رفتاری و شناسایی حباب‌های بازار."
+
+#: templates/about.html
+msgid "Technology & Architecture"
+msgstr "فناوری و معماری"
+
+#: templates/about.html
+msgid "Co-Founder & Chief Technology Officer"
+msgstr "هم‌بنیان‌گذار و مدیر ارشد فناوری"
+
+#: templates/about.html
+msgid "23+ years building financial software infrastructure. Formerly Deputy CEO and Software Manager at a licensed brokerage, where he led development of trading platforms, automated KYC, and CRM systems for 50,000+ users. Architect of the VestHub platform."
+msgstr "بیش از ۲۳ سال تجربه در توسعه زیرساخت نرم‌افزارهای مالی. پیش‌تر به عنوان معاون مدیرعامل و مدیر نرم‌افزار در یک کارگزاری دارای مجوز، پلتفرم معاملاتی، سیستم احراز هویت خودکار و CRM برای بیش از ۵۰٬۰۰۰ کاربر فعال را توسعه داده است. معمار پلتفرم VestHub."
+
+#: templates/about.html
+msgid "Our Track Record"
+msgstr "سوابق ما"
+
+#: templates/about.html
+msgid "Proven at the Highest Level"
+msgstr "اثبات شده در بالاترین سطح"
+
+#: templates/about.html
+msgid "Our experience isn't theoretical. It's been deployed in production financial systems at scale."
+msgstr "تجربه ما نظری نیست. در سیستم‌های مالی تولیدی در مقیاس واقعی پیاده‌سازی شده است."
+
+#: templates/about.html
+msgid "Designed and deployed a full ERP system for a licensed brokerage serving tens of thousands of active users."
+msgstr "طراحی و استقرار یک سیستم ERP کامل برای یک کارگزاری دارای مجوز که به ده‌ها هزار کاربر فعال خدمت می‌کند."
+
+#: templates/about.html
+msgid "Architected an entire CFD brokerage platform infrastructure from the ground up, including automated KYC and government API integration."
+msgstr "طراحی کل زیرساخت پلتفرم کارگزاری CFD از صفر، شامل KYC خودکار و یکپارچه‌سازی API دولتی."
+
+#: templates/about.html
+msgid "Vetrix Trading System"
+msgstr "سیستم معاملاتی Vetrix"
+
+#: templates/about.html
+msgid "Developed and forward-tested Vetrix — a fully automated futures trading algorithm with integrated drawdown control and adaptive risk management."
+msgstr "توسعه و آزمایش واقعی Vetrix — یک الگوریتم معاملاتی آتی کاملاً خودکار با کنترل drawdown یکپارچه و مدیریت ریسک تطبیقی."
+
+#: templates/about.html
+msgid "Our Approach"
+msgstr "رویکرد ما"
+
+#: templates/about.html
+msgid "A 360° Market Perspective"
+msgstr "دیدگاه ۳۶۰ درجه‌ای بازار"
+
+#: templates/about.html
+msgid "Every decision at VestHub is backed by three layers of analysis."
+msgstr "هر تصمیم در VestHub با سه لایه تحلیل پشتیبانی می‌شود."
+
+#: templates/about.html
+msgid "Real-time monitoring of economic indicators, data releases, and macro events that drive market direction."
+msgstr "پایش بلادرنگ شاخص‌های اقتصادی، انتشار داده‌ها و رویدادهای کلان که جهت بازار را هدایت می‌کنند."
+
+#: templates/about.html
+msgid "Systematic identification of market patterns, trends, and structural levels to time entries and exits with precision."
+msgstr "شناسایی سیستماتیک الگوهای بازار، روندها و سطوح ساختاری برای زمان‌بندی دقیق ورود و خروج."
+
+#: templates/about.html
+msgid "AI & Algorithmic Execution"
+msgstr "اجرای هوش مصنوعی و الگوریتمی"
+
+#: templates/about.html
+msgid "Rule-based algorithms that remove emotion from execution — running the strategy with speed, consistency, and discipline."
+msgstr "الگوریتم‌های مبتنی بر قانون که احساسات را از اجرا حذف می‌کنند — اجرای استراتژی با سرعت، ثبات و نظم."
+
+#: templates/about.html
+msgid "Ready to Get Started?"
+msgstr "آماده شروع هستید؟"
+
+#: templates/about.html
+msgid "Join investors who trust VestHub to manage their capital with discipline and transparency."
+msgstr "به سرمایه‌گذارانی بپیوندید که به VestHub برای مدیریت سرمایه‌شان با نظم و شفافیت اعتماد می‌کنند."
+
 #~ msgid "Live Ledger View"
 #~ msgstr "نمای زنده دفتر کل"
 

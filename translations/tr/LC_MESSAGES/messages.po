@@ -4055,6 +4055,146 @@ msgstr "Vetrix 1, tutarlı risk yönetimli performans için tasarlanmış sistem
 msgid "Cumulative return based on backtesting and months of live trading performance"
 msgstr "Geriye dönük test ve aylarca süren canlı işlem performansına dayalı kümülatif getiri"
 
+#: templates/about.html
+msgid "Our Story"
+msgstr "Hikayemiz"
+
+#: templates/about.html
+msgid "Built by Traders."
+msgstr "Traderlar Tarafından İnşa Edildi."
+
+#: templates/about.html
+msgid "Engineered for Performance."
+msgstr "Performans İçin Mühendislik."
+
+#: templates/about.html
+msgid "VestHub is the result of two disciplines converging: decades of live market experience and deep financial software engineering — united by a single purpose."
+msgstr "VestHub, iki disiplinin birleşiminin ürünüdür: onlarca yıllık canlı piyasa deneyimi ve derin finansal yazılım mühendisliği — tek bir amaç etrafında buluştu."
+
+#: templates/about.html
+msgid "Strategy & Markets"
+msgstr "Strateji & Piyasalar"
+
+#: templates/about.html
+msgid "Real Market Experience, Not Just Theory"
+msgstr "Gerçek Piyasa Deneyimi, Sadece Teori Değil"
+
+#: templates/about.html
+msgid "Our quantitative trading strategy is built by professionals with years of active, in-the-trenches experience across futures, equities, and derivatives markets. The algorithms powering VestHub are designed, tested, and continuously refined by those who have traded through real market cycles — not simulations."
+msgstr "Kantitatif ticaret stratejimiz, vadeli işlemler, hisse senetleri ve türev piyasalarında yıllarca aktif, sahada deneyim kazanmış profesyoneller tarafından oluşturulmuştur. VestHub'ı besleyen algoritmalar, gerçek piyasa döngülerinde işlem yapmış kişiler tarafından tasarlanmış, test edilmiş ve sürekli geliştirilmektedir — simülasyonlarda değil."
+
+#: templates/about.html
+msgid "Technology & Infrastructure"
+msgstr "Teknoloji & Altyapı"
+
+#: templates/about.html
+msgid "Enterprise-Grade FinTech Architecture"
+msgstr "Kurumsal Düzeyde FinTech Mimarisi"
+
+#: templates/about.html
+msgid "Our engineering team brings decades of experience building financial software infrastructure — from brokerage platforms and automated KYC systems to banking automation and ATM software. VestHub is built on the same principles used in high-availability financial systems serving tens of thousands of users."
+msgstr "Mühendislik ekibimiz, aracılık platformları ve otomatik KYC sistemlerinden bankacılık otomasyonu ve ATM yazılımına kadar finansal yazılım altyapısı oluşturmada onlarca yıllık deneyim getiriyor. VestHub, on binlerce kullanıcıya hizmet veren yüksek erişilebilirlikli finansal sistemlerde kullanılan aynı ilkeler üzerine inşa edilmiştir."
+
+#: templates/about.html
+msgid "The People Behind VestHub"
+msgstr "VestHub'ın Arkasındaki İnsanlar"
+
+#: templates/about.html
+msgid "Meet the Founders"
+msgstr "Kurucularla Tanışın"
+
+#: templates/about.html
+msgid "Two specialists. One platform."
+msgstr "İki uzman. Bir platform."
+
+#: templates/about.html
+msgid "Strategy & Quant"
+msgstr "Strateji & Nicel"
+
+#: templates/about.html
+msgid "Co-Founder & Head of Quantitative Strategy"
+msgstr "Kurucu Ortak & Nicel Strateji Başkanı"
+
+#: templates/about.html
+msgid "8+ years designing and developing algorithmic trading systems for futures markets. Founder and lead architect of Vetrix — a fully automated C#-based trading system built on NinjaTrader. Published researcher in behavioral finance and market bubble detection."
+msgstr "Vadeli işlem piyasaları için algoritmik ticaret sistemleri tasarlama ve geliştirmede 8+ yıl. Vetrix'in kurucusu ve baş mimarı — NinjaTrader üzerine inşa edilmiş tamamen otomatik C# tabanlı bir ticaret sistemi. Davranışsal finans ve piyasa balonu tespiti alanında yayınlanmış araştırmacı."
+
+#: templates/about.html
+msgid "Technology & Architecture"
+msgstr "Teknoloji & Mimari"
+
+#: templates/about.html
+msgid "Co-Founder & Chief Technology Officer"
+msgstr "Kurucu Ortak & Teknoloji Direktörü"
+
+#: templates/about.html
+msgid "23+ years building financial software infrastructure. Formerly Deputy CEO and Software Manager at a licensed brokerage, where he led development of trading platforms, automated KYC, and CRM systems for 50,000+ users. Architect of the VestHub platform."
+msgstr "Finansal yazılım altyapısı oluşturmada 23+ yıl. Daha önce lisanslı bir aracı kurumda Genel Müdür Yardımcısı ve Yazılım Müdürü olarak 50.000+ kullanıcı için ticaret platformları, otomatik KYC ve CRM sistemlerinin geliştirilmesine liderlik etti. VestHub platformunun mimarı."
+
+#: templates/about.html
+msgid "Our Track Record"
+msgstr "Geçmiş Performansımız"
+
+#: templates/about.html
+msgid "Proven at the Highest Level"
+msgstr "En Yüksek Düzeyde Kanıtlanmış"
+
+#: templates/about.html
+msgid "Our experience isn't theoretical. It's been deployed in production financial systems at scale."
+msgstr "Deneyimimiz teorik değil. Ölçekte üretim finansal sistemlerinde hayata geçirilmiştir."
+
+#: templates/about.html
+msgid "Designed and deployed a full ERP system for a licensed brokerage serving tens of thousands of active users."
+msgstr "On binlerce aktif kullanıcıya hizmet veren lisanslı bir aracı kurum için tam ERP sistemi tasarlanıp kuruldu."
+
+#: templates/about.html
+msgid "Architected an entire CFD brokerage platform infrastructure from the ground up, including automated KYC and government API integration."
+msgstr "Otomatik KYC ve hükümet API entegrasyonu dahil olmak üzere sıfırdan tüm CFD aracılık platformu altyapısı tasarlandı."
+
+#: templates/about.html
+msgid "Vetrix Trading System"
+msgstr "Vetrix Ticaret Sistemi"
+
+#: templates/about.html
+msgid "Developed and forward-tested Vetrix — a fully automated futures trading algorithm with integrated drawdown control and adaptive risk management."
+msgstr "Vetrix geliştirildi ve ileri test edildi — entegre düşüş kontrolü ve uyarlamalı risk yönetimine sahip tamamen otomatik bir vadeli işlem ticaret algoritması."
+
+#: templates/about.html
+msgid "Our Approach"
+msgstr "Yaklaşımımız"
+
+#: templates/about.html
+msgid "A 360° Market Perspective"
+msgstr "360° Piyasa Perspektifi"
+
+#: templates/about.html
+msgid "Every decision at VestHub is backed by three layers of analysis."
+msgstr "VestHub'daki her karar üç katmanlı analizle desteklenmektedir."
+
+#: templates/about.html
+msgid "Real-time monitoring of economic indicators, data releases, and macro events that drive market direction."
+msgstr "Piyasa yönünü belirleyen ekonomik göstergelerin, veri yayınlarının ve makro olayların gerçek zamanlı izlenmesi."
+
+#: templates/about.html
+msgid "Systematic identification of market patterns, trends, and structural levels to time entries and exits with precision."
+msgstr "Giriş ve çıkışları hassasiyetle zamanlamak için piyasa kalıplarının, trendlerin ve yapısal seviyelerin sistematik olarak belirlenmesi."
+
+#: templates/about.html
+msgid "AI & Algorithmic Execution"
+msgstr "YZ & Algoritmik Uygulama"
+
+#: templates/about.html
+msgid "Rule-based algorithms that remove emotion from execution — running the strategy with speed, consistency, and discipline."
+msgstr "Duygusallığı uygulamadan kaldıran kural tabanlı algoritmalar — stratejiyi hız, tutarlılık ve disiplinle yürütür."
+
+#: templates/about.html
+msgid "Ready to Get Started?"
+msgstr "Başlamaya Hazır mısınız?"
+
+#: templates/about.html
+msgid "Join investors who trust VestHub to manage their capital with discipline and transparency."
+msgstr "Sermayelerini disiplin ve şeffaflıkla yönetmek için VestHub'a güvenen yatırımcılara katılın."
+
 #~ msgid "Live Ledger View"
 #~ msgstr "Canlı Defter Görünümü"
 

@@ -1,55 +1,388 @@
 {% extends 'base.html' %}
 
-{% block title %}About Us - VestHub{% endblock %}
+{% block title %}{{ _('About Us') }} - VestHub{% endblock %}
+
+{% block head %}
+<style>
+    /* -- Hero -- */
+    .about-hero {
+        position: relative;
+        padding: 100px 0 80px;
+        background: linear-gradient(135deg, rgba(10,25,47,0.97) 0%, rgba(13,37,63,0.95) 100%),
+                    url('{{ url_for("static", filename="images/about-hero-fusion.png") }}') center/cover no-repeat;
+        overflow: hidden;
+    }
+    .about-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(0,123,255,0.08) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .hero-eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #4da3ff;
+        border: 1px solid rgba(77,163,255,0.35);
+        border-radius: 2rem;
+        padding: 5px 16px;
+        margin-bottom: 1.25rem;
+    }
+    .about-hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.15;
+        color: #fff;
+    }
+    .about-hero .lead {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.65);
+        max-width: 680px;
+    }
+
+    /* -- Advantage section -- */
+    .advantage-section { padding: 90px 0; }
+    .section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #4da3ff;
+        margin-bottom: 0.5rem;
+    }
+    .advantage-img {
+        border-radius: 16px;
+        width: 100%;
+        max-height: 420px;
+        object-fit: cover;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .advantage-text h3 {
+        font-size: 1.9rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    .advantage-text p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--bs-secondary-color);
+    }
+
+    /* -- Team Cards -- */
+    .team-section { padding: 90px 0; background: var(--bs-tertiary-bg); }
+    .team-card {
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 20px;
+        overflow: hidden;
+        background: var(--bs-body-bg);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+    }
+    .team-card-img-wrap {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+        background: linear-gradient(160deg, #0d253f, #0d6efd22);
+    }
+    .team-card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+    }
+    .team-card-body { padding: 1.75rem; }
+    .team-role-badge {
+        display: inline-block;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #4da3ff;
+        background: rgba(13,110,253,0.1);
+        border: 1px solid rgba(13,110,253,0.25);
+        border-radius: 2rem;
+        padding: 4px 12px;
+        margin-bottom: 0.65rem;
+    }
+    .team-name {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 0.3rem;
+    }
+    .team-title {
+        font-size: 0.9rem;
+        color: var(--bs-secondary-color);
+        margin-bottom: 1rem;
+    }
+    .team-bio {
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: var(--bs-secondary-color);
+        margin-bottom: 1.25rem;
+    }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+    .team-tag {
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 2rem;
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-secondary-color);
+        border: 1px solid var(--bs-border-color);
+    }
+    .team-linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #4da3ff;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    .team-linkedin:hover { opacity: 0.75; color: #4da3ff; }
+    .team-linkedin i { font-size: 1rem; }
+
+    /* -- Track Record -- */
+    .track-section { padding: 90px 0; }
+    .track-card {
+        border-radius: 16px;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        height: 100%;
+        transition: border-color 0.25s, transform 0.25s;
+    }
+    .track-card:hover {
+        border-color: rgba(13,110,253,0.4);
+        transform: translateY(-4px);
+    }
+    .track-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(13,110,253,0.1);
+        border-radius: 14px;
+        font-size: 1.5rem;
+        color: #4da3ff;
+    }
+
+    /* -- 360 section -- */
+    .perspective-section { padding: 90px 0; background: var(--bs-tertiary-bg); }
+    .perspective-card {
+        border-radius: 16px;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        padding: 2rem;
+        text-align: center;
+        height: 100%;
+        transition: transform 0.25s;
+    }
+    .perspective-card:hover { transform: translateY(-4px); }
+    .perspective-icon {
+        font-size: 2rem;
+        color: #4da3ff;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    /* -- CTA -- */
+    .about-cta {
+        padding: 90px 0;
+        background: linear-gradient(135deg, #0d253f 0%, #0d6efd 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .about-cta::before {
+        content: '';
+        position: absolute;
+        width: 500px; height: 500px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.04);
+        top: -200px; right: -100px;
+        pointer-events: none;
+    }
+
+    /* RTL tweaks */
+    [dir="rtl"] .hero-divider { margin-right: 0; }
+    [dir="rtl"] .team-linkedin i { transform: scaleX(-1); }
+</style>
+{% endblock %}
 
 {% block content %}
 
-<!-- Section 1: Hero -->
-<header class="py-5 text-center text-white page-header-dark" style="background: linear-gradient(rgba(13, 37, 63, 0.9), rgba(13, 37, 63, 0.9)), url('{{ url_for('static', filename='images/about-hero-fusion.png') }}') center/cover;">
-    <div class="container py-5">
-        <h1 class="display-3 fw-bold mb-4">{{ _('About VestHub') }}</h1>
-        <!-- FIX: Wrapped text in translation function -->
-        <p class="lead mb-0 mx-auto" style="max-width: 800px;">
-            {{ _('Where Deep Market Experience Meets Future Technology. We are a collective of veteran traders and engineers building the tools real traders need.') }}
-        </p>
+<!-- Hero -->
+<header class="about-hero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <span class="hero-eyebrow">{{ _('Our Story') }}</span>
+                <h1>{{ _('Built by Traders.') }}<br>{{ _('Engineered for Performance.') }}</h1>
+<p class="lead mx-auto">
+                    {{ _('VestHub is the result of two disciplines converging: decades of live market experience and deep financial software engineering — united by a single purpose.') }}
+                </p>
+            </div>
+        </div>
     </div>
 </header>
 
-<!-- Section 2: Our Unique Advantage -->
-<section class="py-5 bg-body-tertiary">
+<!-- Unique Advantage -->
+<section class="advantage-section">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">{{ _('Our Unique Advantage') }}</h2>
-            <p class="text-body-secondary lead">{{ _('A Team Forged by Experience') }}</p>
-        </div>
 
-        <!-- Advantage 1: Market Experts -->
-        <div class="row align-items-center mb-5 g-5">
+        <!-- Market Experience -->
+        <div class="row align-items-center g-5 mb-5 pb-md-4">
             <div class="col-lg-6 order-lg-2">
-                <img src="{{ url_for('static', filename='images/about-icon-experts.png') }}" alt="{{ _('Market Experts') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+                <img src="{{ url_for('static', filename='images/about-icon-experts.png') }}"
+                     alt="{{ _('Market Experts') }}" class="advantage-img">
             </div>
-            <div class="col-lg-6 order-lg-1">
-                <div class="p-4">
-                    <h3 class="fw-bold mb-3">{{ _('The Market Experts (20+ Years)') }}</h3>
-                    <!-- FIX: Wrapped text in translation function using double quotes for "don't" -->
-                    <p class="text-body-secondary fs-5">
-                        {{ _("Our core strategy is driven by senior analysts and quantitative traders with over two decades of active, in-the-trenches market experience. They are the architects of the trading algorithms (bots) tested and proven profitable in diverse market conditions. They don't just follow trends; they anticipate them.") }}
-                    </p>
-                </div>
+            <div class="col-lg-6 order-lg-1 advantage-text">
+                <p class="section-label">{{ _('Strategy & Markets') }}</p>
+                <h3>{{ _('Real Market Experience, Not Just Theory') }}</h3>
+                <p>
+                    {{ _('Our quantitative trading strategy is built by professionals with years of active, in-the-trenches experience across futures, equities, and derivatives markets. The algorithms powering VestHub are designed, tested, and continuously refined by those who have traded through real market cycles — not simulations.') }}
+                </p>
             </div>
         </div>
 
-        <!-- Advantage 2: Innovative Engineers -->
+        <!-- Technology -->
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <img src="{{ url_for('static', filename='images/about-icon-engineers.png') }}" alt="{{ _('Innovative Engineers') }}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+                <img src="{{ url_for('static', filename='images/about-icon-engineers.png') }}"
+                     alt="{{ _('Innovative Engineers') }}" class="advantage-img">
             </div>
-            <div class="col-lg-6">
-                <div class="p-4">
-                    <h3 class="fw-bold mb-3">{{ _('The Innovative Engineers (AI Prowess)') }}</h3>
-                    <!-- FIX: Wrapped text in translation function -->
-                    <p class="text-body-secondary fs-5">
-                        {{ _('Complementing this experience is our senior development team, fluent in the latest software methodologies and AI. This team translates the complex strategies of our analysts into fast, secure, and intelligent tools. We build the tools that we ourselves use every single day.') }}
+            <div class="col-lg-6 advantage-text">
+                <p class="section-label">{{ _('Technology & Infrastructure') }}</p>
+                <h3>{{ _('Enterprise-Grade FinTech Architecture') }}</h3>
+                <p>
+                    {{ _('Our engineering team brings decades of experience building financial software infrastructure — from brokerage platforms and automated KYC systems to banking automation and ATM software. VestHub is built on the same principles used in high-availability financial systems serving tens of thousands of users.') }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Team -->
+<section class="team-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-label">{{ _('The People Behind VestHub') }}</p>
+            <h2 class="fw-bold fs-1">{{ _('Meet the Founders') }}</h2>
+            <p class="text-body-secondary lead col-lg-6 mx-auto mt-2">
+                {{ _('Two specialists. One platform.') }}
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- Amirhossein -->
+            <div class="col-lg-5 col-md-6">
+                <div class="team-card">
+                    <div class="team-card-img-wrap">
+                        <img src="{{ url_for('static', filename='images/amir.png') }}"
+                             alt="Amirhossein Afsharian"
+                             style="object-position: center 10%;">
+                    </div>
+                    <div class="team-card-body">
+                        <span class="team-role-badge">{{ _('Strategy & Quant') }}</span>
+                        <div class="team-name">Amirhossein Afsharian</div>
+                        <div class="team-title">{{ _('Co-Founder & Head of Quantitative Strategy') }}</div>
+                        <p class="team-bio">
+                            {{ _('8+ years designing and developing algorithmic trading systems for futures markets. Founder and lead architect of Vetrix — a fully automated C#-based trading system built on NinjaTrader. Published researcher in behavioral finance and market bubble detection.') }}
+                        </p>
+                        <div class="team-tags">
+                            <span class="team-tag">Algorithmic Trading</span>
+                            <span class="team-tag">C# / NinjaTrader</span>
+                            <span class="team-tag">Futures Markets</span>
+                            <span class="team-tag">Risk Management</span>
+                            <span class="team-tag">Quant Strategy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pedram -->
+            <div class="col-lg-5 col-md-6">
+                <div class="team-card">
+                    <div class="team-card-img-wrap">
+                        <img src="{{ url_for('static', filename='images/pedram-edited.png') }}"
+                             alt="Pedram Khalili Motlagh">
+                    </div>
+                    <div class="team-card-body">
+                        <span class="team-role-badge">{{ _('Technology & Architecture') }}</span>
+                        <div class="team-name">Pedram Khalili Motlagh</div>
+                        <div class="team-title">{{ _('Co-Founder & Chief Technology Officer') }}</div>
+                        <p class="team-bio">
+                            {{ _('23+ years building financial software infrastructure. Formerly Deputy CEO and Software Manager at a licensed brokerage, where he led development of trading platforms, automated KYC, and CRM systems for 50,000+ users. Architect of the VestHub platform.') }}
+                        </p>
+                        <div class="team-tags">
+                            <span class="team-tag">Python / Flask</span>
+                            <span class="team-tag">FinTech Architecture</span>
+                            <span class="team-tag">Brokerage Systems</span>
+                            <span class="team-tag">Banking Automation</span>
+                            <span class="team-tag">M.Sc. IT — IUST</span>
+                        </div>
+                        <a href="https://www.linkedin.com/in/pedram-khalili-motlagh-0a390983"
+                           target="_blank" rel="noopener" class="team-linkedin">
+                            <i class="bi bi-linkedin"></i> LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Track Record -->
+<section class="track-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-label">{{ _('Our Track Record') }}</p>
+            <h2 class="fw-bold fs-1">{{ _('Proven at the Highest Level') }}</h2>
+            <p class="text-body-secondary lead col-lg-7 mx-auto mt-2">
+                {{ _("Our experience isn't theoretical. It's been deployed in production financial systems at scale.") }}
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="track-card">
+                    <div class="track-icon"><i class="bi bi-building"></i></div>
+                    <h5 class="fw-bold mb-2">{{ _('Complete Brokerage ERP') }}</h5>
+                    <p class="text-body-secondary small mb-0">
+                        {{ _('Designed and deployed a full ERP system for a licensed brokerage serving tens of thousands of active users.') }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="track-card">
+                    <div class="track-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h5 class="fw-bold mb-2">{{ _('Ground-Up CFD Platform') }}</h5>
+                    <p class="text-body-secondary small mb-0">
+                        {{ _('Architected an entire CFD brokerage platform infrastructure from the ground up, including automated KYC and government API integration.') }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="track-card">
+                    <div class="track-icon"><i class="bi bi-cpu"></i></div>
+                    <h5 class="fw-bold mb-2">{{ _('Vetrix Trading System') }}</h5>
+                    <p class="text-body-secondary small mb-0">
+                        {{ _('Developed and forward-tested Vetrix — a fully automated futures trading algorithm with integrated drawdown control and adaptive risk management.') }}
                     </p>
                 </div>
             </div>
@@ -57,104 +390,59 @@
     </div>
 </section>
 
-<!-- Section 3: Proven Track Record -->
-<section class="py-5">
+<!-- 360 Perspective -->
+<section class="perspective-section">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">{{ _('Beyond Theory: A Proven Track Record') }}</h2>
-            <!-- FIX: Wrapped text in translation function using double quotes for "don't" -->
-            <p class="text-body-secondary lead col-lg-8 mx-auto">
-                {{ _("We don't just talk about technology; we have implemented it at the highest levels.") }}
+            <p class="section-label">{{ _('Our Approach') }}</p>
+            <h2 class="fw-bold fs-1">{{ _('A 360° Market Perspective') }}</h2>
+            <p class="text-body-secondary lead col-lg-7 mx-auto mt-2">
+                {{ _('Every decision at VestHub is backed by three layers of analysis.') }}
             </p>
         </div>
-        
-        <div class="row g-4 text-center">
-            <!-- Record 1 -->
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 py-4">
-                    <div class="card-body">
-                        <img src="{{ url_for('static', filename='images/about-icon-erp.png') }}" class="about-icon mb-3" alt="{{ _('ERP System') }}">
-                        <h4 class="fw-semibold">{{ _('Complete Brokerage ERP') }}</h4>
-                        <p class="text-body-secondary">{{ _('Successfully built and deployed a complete ERP system for a licensed brokerage.') }}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Record 2 -->
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 py-4">
-                    <div class="card-body">
-                        <img src="{{ url_for('static', filename='images/about-icon-cfd.png') }}" class="about-icon mb-3" alt="{{ _('CFD Platform') }}">
-                        <h4 class="fw-semibold">{{ _('Ground-Up CFD Platform') }}</h4>
-                        <p class="text-body-secondary">{{ _('Designed and developed an entire CFD Brokerage platform infrastructure.') }}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Record 3 -->
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 py-4">
-                    <div class="card-body">
-                        <img src="{{ url_for('static', filename='images/about-icon-integration.png') }}" class="about-icon mb-3" alt="{{ _('Integration') }}">
-                        <h4 class="fw-semibold">{{ _('Enterprise Integration') }}</h4>
-                        <p class="text-body-secondary">{{ _('Executed enterprise-level integration systems for high-availability processes.') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Section 4: 360-Degree View -->
-<section class="py-5 bg-body-tertiary">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">{{ _('A 360-Degree Market Perspective') }}</h2>
-            <!-- FIX: Wrapped text in translation function -->
-            <p class="text-body-secondary lead col-lg-8 mx-auto">
-                {{ _('At VestHub, nothing is left to chance. Our team structure covers every angle.') }}
-            </p>
-        </div>
-        
         <div class="row g-4 justify-content-center">
-            <!-- Team 1 -->
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body p-4 text-center">
-                        <img src="{{ url_for('static', filename='images/about-icon-fundamental.png') }}" class="img-fluid rounded-3 mb-4" alt="{{ _('Fundamental Analysis') }}">
-                        <h4 class="fw-bold">{{ _('Fundamental Analysis') }}</h4>
-                        <p class="text-body-secondary">{{ _('Monitoring real-time economic news, data releases, and geopolitical events.') }}</p>
-                    </div>
+                <div class="perspective-card">
+                    <i class="bi bi-newspaper perspective-icon"></i>
+                    <h5 class="fw-bold mb-2">{{ _('Fundamental Analysis') }}</h5>
+                    <p class="text-body-secondary small mb-0">
+                        {{ _('Real-time monitoring of economic indicators, data releases, and macro events that drive market direction.') }}
+                    </p>
                 </div>
             </div>
-            <!-- Team 2 -->
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body p-4 text-center">
-                        <img src="{{ url_for('static', filename='images/about-icon-technical.png') }}" class="img-fluid rounded-3 mb-4" alt="{{ _('Technical Analysis') }}">
-                        <h4 class="fw-bold">{{ _('Technical Analysis') }}</h4>
-                        <p class="text-body-secondary">{{ _('Identifying market patterns, trends, support, and resistance levels.') }}</p>
-                    </div>
+                <div class="perspective-card">
+                    <i class="bi bi-bar-chart-line perspective-icon"></i>
+                    <h5 class="fw-bold mb-2">{{ _('Technical Analysis') }}</h5>
+                    <p class="text-body-secondary small mb-0">
+                        {{ _('Systematic identification of market patterns, trends, and structural levels to time entries and exits with precision.') }}
+                    </p>
                 </div>
             </div>
-            <!-- Team 3 -->
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body p-4 text-center">
-                        <img src="{{ url_for('static', filename='images/about-icon-ai.png') }}" class="img-fluid rounded-3 mb-4" alt="{{ _('AI & Algorithmic') }}">
-                        <h4 class="fw-bold">{{ _('AI & Algorithmic') }}</h4>
-                        <p class="text-body-secondary">{{ _('Developing the next generation of advanced bots and analytical tools.') }}</p>
-                    </div>
+                <div class="perspective-card">
+                    <i class="bi bi-robot perspective-icon"></i>
+                    <h5 class="fw-bold mb-2">{{ _('AI & Algorithmic Execution') }}</h5>
+                    <p class="text-body-secondary small mb-0">
+                        {{ _('Rule-based algorithms that remove emotion from execution — running the strategy with speed, consistency, and discipline.') }}
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Section 5: Call to Action -->
-<section class="py-5 bg-primary text-white text-center">
-    <div class="container">
-        <h2 class="fw-bold mb-3">{{ _('Ready to Join the Platform?') }}</h2>
-        <p class="lead mb-4">{{ _('Our tools are the product of thousands of hours of experience.') }}</p>
-        <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">{{ _('Get Started Now') }}</a>
+<!-- CTA -->
+<section class="about-cta text-white text-center">
+    <div class="container position-relative">
+        <h2 class="fw-bold mb-3 fs-1">{{ _('Ready to Get Started?') }}</h2>
+        <p class="lead mb-4 opacity-75 col-lg-6 mx-auto">
+            {{ _('Join investors who trust VestHub to manage their capital with discipline and transparency.') }}
+        </p>
+        <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg fw-bold px-5">
+            {{ _('Create Your Account') }}
+        </a>
     </div>
 </section>
 

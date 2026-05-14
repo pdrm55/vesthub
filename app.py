@@ -82,14 +82,7 @@ def create_app(config_name='default'):
             # If API fails or times out, silently fall back to browser
             pass
 
-        # 4. Check Browser Headers (Priority 4 - Fallback)
-        # This handles cases like VPN users or standard browser preferences
-        best_match = request.accept_languages.best_match(app.config['LANGUAGES'].keys())
-        if best_match:
-            session['lang'] = best_match
-            return best_match
-            
-        # 5. Default
+        # 4. Default — all other IPs get English
         return 'en'
 
     # Initialize Babel
