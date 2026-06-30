@@ -11,11 +11,15 @@ from tasks import run_profit_distribution
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
+def _is_staff(user):
+    """فقط ادمین یا نقش‌هایی که حداقل یک permission دارند، کارمند محسوب می‌شوند."""
+    return bool(user.role and (user.role.name == 'Admin' or user.role.permissions))
+
 @admin_bp.route('/dashboard')
 @login_required
 def dashboard():
-    if not current_user.role: 
-        return redirect(url_for('main.home'))
+    if not _is_staff(current_user):
+        return redirect(url_for('user.dashboard'))
     return render_template('admin_dashboard.html')
 
 # --- Role Management ---
@@ -318,11 +322,13 @@ def withdrawals():
 @permission_required('manage_withdrawals')
 def approve_withdrawal(tx_id):
     tx = db.session.get(Transaction, tx_id)
-    if tx:
+    if tx and tx.type == 'withdrawal' and tx.status == 'pending':
         tx.status = 'completed'
         db.session.commit()
         log_admin_activity('Approve Withdrawal', f'Approved WD {tx.id}')
         flash('Withdrawal approved.', 'success')
+    else:
+        flash('Withdrawal request is not in a pending state.', 'warning')
     return redirect(url_for('admin.withdrawals'))
 
 @admin_bp.route('/withdrawals/reject/<int:tx_id>', methods=['POST'])
@@ -330,11 +336,13 @@ def approve_withdrawal(tx_id):
 @permission_required('manage_withdrawals')
 def reject_withdrawal(tx_id):
     tx = db.session.get(Transaction, tx_id)
-    if tx:
+    if tx and tx.type == 'withdrawal' and tx.status == 'pending':
         tx.status = 'rejected'
         db.session.commit()
         log_admin_activity('Reject Withdrawal', f'Rejected WD {tx.id}')
         flash('Withdrawal rejected.', 'warning')
+    else:
+        flash('Withdrawal request is not in a pending state.', 'warning')
     return redirect(url_for('admin.withdrawals'))
 
 # --- KYC Management ---
@@ -571,6 +579,8 @@ def distribute_test_profit():
 @admin_bp.route('/api/chart/admin-stats')
 @login_required
 def api_admin_stats():
+    if not _is_staff(current_user):
+        return jsonify({'error': 'forbidden'}), 403
     # آمار ثبت‌نام کاربران در ۷ روز گذشته
     today = datetime.utcnow().date()
     labels = []

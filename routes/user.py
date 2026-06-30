@@ -133,28 +133,12 @@ def submit_proof(investment_id):
     flash('Payment proof submitted and awaiting approval.', 'success')
     return redirect(url_for('user.dashboard'))
 
-@user_bp.route('/payment/process/<int:investment_id>', methods=['POST'])
-@login_required
-def process_online_payment(investment_id):
-    inv = Investment.query.get_or_404(investment_id)
-    if inv.user_id != current_user.id: return redirect(url_for('user.dashboard'))
-
-    inv.status = 'active'
-    inv.start_date = datetime.utcnow()
-    inv.payment_tx_id = f"ONLINE-{random.randint(1000,9999)}"
-    
-    db.session.add(Transaction(
-        user_id=current_user.id, 
-        type='deposit', 
-        amount=inv.amount, 
-        status='completed', 
-        tx_hash=inv.payment_tx_id,
-        description="Online Payment Gateway",
-        investment_id=inv.id
-    ))
-    db.session.commit()
-    flash('Online payment processed successfully.', 'success')
-    return redirect(url_for('user.dashboard'))
+# NOTE (security): The previous `process_online_payment` route was REMOVED.
+# It allowed any logged-in user to self-activate a pending investment and create a
+# `completed` deposit transaction WITHOUT any real payment, which then accrued
+# withdrawable daily profit. Until a real, verified payment gateway is integrated,
+# the ONLY way to activate an investment must be admin approval via
+# `admin.approve_payment` (after the user submits proof through `submit_proof`).
 
 @user_bp.route('/investment/delete/<int:investment_id>', methods=['POST'])
 @login_required
@@ -167,6 +151,9 @@ def delete_investment(investment_id):
         
     if inv.status == 'pending_payment':
         try:
+            # Remove any pending deposit transactions linked to this investment
+            # (created by submit_proof) to avoid orphaned/FK-violating rows.
+            Transaction.query.filter_by(investment_id=inv.id, type='deposit').delete()
             db.session.delete(inv)
             db.session.commit()
             flash('Investment request cancelled successfully.', 'success')
@@ -199,17 +186,31 @@ def withdrawal():
         if not pending_data:
             flash('Withdrawal session expired. Please try again.', 'danger')
             return redirect(url_for('user.withdrawal'))
-            
+
+        # انقضای کد تأیید بعد از ۱۰ دقیقه
+        if datetime.utcnow().timestamp() - pending_data.get('timestamp', 0) > 600:
+            session.pop('pending_withdrawal', None)
+            flash('Verification code expired. Please request a new withdrawal.', 'danger')
+            return redirect(url_for('user.withdrawal'))
+
+        # محدودیت تعداد تلاش برای جلوگیری از brute-force کد ۶ رقمی
+        pending_data['attempts'] = pending_data.get('attempts', 0) + 1
+        if pending_data['attempts'] > 5:
+            session.pop('pending_withdrawal', None)
+            flash('Too many invalid attempts. Please request a new withdrawal.', 'danger')
+            return redirect(url_for('user.withdrawal'))
+        session['pending_withdrawal'] = pending_data
+
         email_code_input = request.form.get('email_code')
         ga_code_input = request.form.get('ga_code')
-        
+
         # 1. Validate Email Code
         if email_code_input != pending_data['code']:
             flash('Invalid Email Verification Code.', 'danger')
             return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history, verify_mode=True)
-            
+
         # 2. Validate Google Authenticator Code
-        if not pyotp.TOTP(current_user.two_factor_secret).verify(ga_code_input):
+        if not current_user.two_factor_secret or not pyotp.TOTP(current_user.two_factor_secret).verify(ga_code_input):
             flash('Invalid Google Authenticator Code.', 'danger')
             return render_template('withdrawal.html', available_balance=available, locked_balance=Decimal('0'), history=history, verify_mode=True)
             
