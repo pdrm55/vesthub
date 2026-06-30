@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from flask_login import login_required, current_user
 from sqlalchemy import func, or_, case, desc
 from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 from extensions import db
 from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog, Investment
 from decorators import permission_required
@@ -282,7 +283,12 @@ def approve_payment(tx_id):
                 inv.status = 'active'
                 inv.start_date = datetime.utcnow()
                 tx.investment = inv # Link them for future
-        
+
+        # تنظیم تاریخ سررسید بر اساس مدت پلن تا سود بعد از پایان دوره متوقف شود
+        if tx.investment and tx.investment.status == 'active' and tx.investment.plan:
+            tx.investment.end_date = tx.investment.start_date + relativedelta(
+                months=tx.investment.plan.duration_months)
+
         db.session.commit()
         log_admin_activity('Approve Payment', f'Approved TX {tx.id}')
         flash('Payment approved successfully.', 'success')
