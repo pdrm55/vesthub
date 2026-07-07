@@ -1,4 +1,5 @@
 import os
+import secrets
 from dotenv import load_dotenv
 
 # بارگذاری متغیرها از فایل .env
@@ -7,7 +8,14 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 class Config:
     """تنظیمات پایه که در همه محیط‌ها مشترک است"""
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard-to-guess-fallback-key'
+    # امنیتی: هرگز از یک کلید ثابت قابل‌حدس به‌عنوان fallback استفاده نمی‌کنیم.
+    # اگر SECRET_KEY در محیط تنظیم نشده باشد، یک کلید تصادفی تولید می‌شود
+    # (برای پایداری سشن‌ها در production باید SECRET_KEY در .env تنظیم شود).
+    SECRET_KEY = os.environ.get('SECRET_KEY') or secrets.token_hex(32)
+
+    # سخت‌سازی کوکی‌ها (در همه محیط‌ها)
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Lax'
     
     # تنظیمات دیتابیس
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \

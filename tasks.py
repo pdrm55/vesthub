@@ -5,6 +5,7 @@
 
 from datetime import datetime, timedelta, date
 from decimal import Decimal
+from dateutil.relativedelta import relativedelta
 from sqlalchemy import func
 from extensions import db
 
@@ -44,9 +45,23 @@ def process_missed_profits(app):
                     current_date = locked_inv.last_profit_date + timedelta(days=1)
                 else:
                     current_date = locked_inv.start_date.date()
-                
-                # حلقه برای تک تک روزهای عقب افتاده تا امروز
-                while current_date <= today:
+
+                # تاریخ سررسید (پایان دوره) — سود فقط تا این تاریخ تعلق می‌گیرد.
+                # رکوردهای قدیمی end_date ندارند؛ آن را از روی مدت پلن محاسبه و ذخیره می‌کنیم.
+                if locked_inv.end_date:
+                    maturity_date = locked_inv.end_date.date()
+                else:
+                    months = locked_inv.plan.duration_months if locked_inv.plan else 0
+                    maturity_dt = locked_inv.start_date + relativedelta(months=months)
+                    locked_inv.end_date = maturity_dt
+                    maturity_date = maturity_dt.date()
+                    db.session.commit()
+
+                # آخرین روزی که سود پرداخت می‌شود: کمینه‌ی «امروز» و «سررسید»
+                last_payable_date = min(today, maturity_date)
+
+                # حلقه برای تک تک روزهای عقب افتاده تا پایان دوره
+                while current_date <= last_payable_date:
                     # 1. چک کردن اینکه آیا برای این روز خاص قبلاً سود واریز شده؟ (بسیار مهم)
                     existing_tx = Transaction.query.filter(
                         Transaction.investment_id == locked_inv.id,

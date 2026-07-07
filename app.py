@@ -1,6 +1,5 @@
 import os
 import logging
-import requests
 import click
 from datetime import datetime, timedelta
 from logging.handlers import RotatingFileHandler
@@ -55,31 +54,17 @@ def create_app(config_name='default'):
             return session.get('lang')
 
         # 3. IP Geolocation Check (Priority 3 - For First Time Visitors)
-        # We perform this check only if session is not set to avoid API latency on every request
+        # امنیتی/کارایی: هیچ فراخوانی HTTP خارجی مسدودکننده‌ای در مسیر درخواست انجام نمی‌دهیم.
+        # فقط به هدر Cloudflare (CF-IPCountry) که در production در دسترس است اتکا می‌کنیم.
         try:
-            # Check Cloudflare Header first (Best for Production)
             country = request.headers.get('CF-IPCountry')
-            
-            # If not behind Cloudflare, try basic API (with short timeout)
-            if not country:
-                user_ip = request.remote_addr
-                # Skip local development IPs
-                if user_ip not in ['127.0.0.1', 'localhost']:
-                    # Use a free lightweight API with 1s timeout to prevent hanging
-                    response = requests.get('http://ip-api.com/json/{}?fields=countryCode'.format(user_ip), timeout=1)
-                    if response.status_code == 200:
-                        country = response.json().get('countryCode')
-
-            # Logic for Specific Countries
             if country == 'IR':
                 session['lang'] = 'fa'
                 return 'fa'
             elif country == 'TR':
                 session['lang'] = 'tr'
                 return 'tr'
-                
         except Exception:
-            # If API fails or times out, silently fall back to browser
             pass
 
         # 4. Default — all other IPs get English
@@ -222,8 +207,12 @@ def create_app(config_name='default'):
 
     return app
 
-# Create App instance for Gunicorn
-app = create_app('development')
+# Create App instance for Gunicorn.
+# پیکربندی از متغیر محیطی APP_ENV خوانده می‌شود و پیش‌فرض 'production' است
+# تا روی سرور زنده، کوکی‌های امن و DEBUG=False به‌صورت پیش‌فرض فعال باشند.
+# برای توسعه‌ی محلی، APP_ENV=development را تنظیم کنید.
+config_name = os.environ.get('APP_ENV', 'production')
+app = create_app(config_name)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 if __name__ == '__main__':

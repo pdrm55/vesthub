@@ -30,14 +30,19 @@ def login():
             if not user.is_email_verified:
                 session['unverified_user_id'] = user.id
                 return redirect(url_for('auth.verify_email'))
-            
+
+            # If 2FA is enabled, defer login until the TOTP code is verified.
+            if user.is_2fa_enabled and user.two_factor_secret:
+                session['2fa_user_id'] = user.id
+                return redirect(url_for('auth.verify_2fa_login'))
+
             login_user(user)
             log_admin_activity('Login', 'User logged in via standard form')
-            
-            if user.role.name == 'Admin' or user.role.permissions:
+
+            if user.role and (user.role.name == 'Admin' or user.role.permissions):
                 return redirect(url_for('admin.dashboard'))
             return redirect(url_for('user.dashboard'))
-            
+
         flash('Invalid email or password.', 'danger')
         
     return render_template('login.html')
@@ -107,12 +112,22 @@ def verify_email():
         return redirect(url_for('auth.login'))
     
     if request.method == 'POST':
+        # محدودیت تلاش برای جلوگیری از brute-force کد تأیید ۶ رقمی
+        attempts = session.get('verify_email_attempts', 0) + 1
+        session['verify_email_attempts'] = attempts
+        if attempts > 10:
+            session.pop('unverified_user_id', None)
+            session.pop('verify_email_attempts', None)
+            flash('Too many invalid attempts. Please log in again to resend the code.', 'danger')
+            return redirect(url_for('auth.login'))
+
         user = db.session.get(User, session['unverified_user_id'])
         if user and user.email_verification_code == request.form.get('code'):
             user.is_email_verified = True
             db.session.commit()
             login_user(user)
             session.pop('unverified_user_id', None)
+            session.pop('verify_email_attempts', None)
             flash('Your email has been verified. Welcome!', 'success')
             return redirect(url_for('user.dashboard'))
         flash('Invalid code.', 'danger')
@@ -125,10 +140,11 @@ def verify_2fa_login():
     
     if request.method == 'POST':
         user = db.session.get(User, session['2fa_user_id'])
-        if user.two_factor_secret and pyotp.TOTP(user.two_factor_secret).verify(request.form.get('code')):
+        if user and user.two_factor_secret and pyotp.TOTP(user.two_factor_secret).verify(request.form.get('code')):
             login_user(user)
             session.pop('2fa_user_id', None)
-            if user.role.name == 'Admin': 
+            log_admin_activity('Login', 'User logged in with 2FA')
+            if user.role and (user.role.name == 'Admin' or user.role.permissions):
                 return redirect(url_for('admin.dashboard'))
             return redirect(url_for('user.dashboard'))
         flash('Incorrect authentication code.', 'danger')

@@ -1,3 +1,5 @@
+import time
+import threading
 from flask import Blueprint, render_template, request, session, flash, redirect, url_for, current_app, jsonify
 from models import InvestmentPlan
 import yfinance as yf
@@ -5,6 +7,11 @@ from utils import send_system_email
 
 # تعریف Blueprint
 main_bp = Blueprint('main', __name__)
+
+# کش ساده‌ی درون‌حافظه‌ای برای داده‌های بازار تا از فراخوانی خارجی به‌ازای هر درخواست جلوگیری شود.
+_MARKET_CACHE = {'data': None, 'ts': 0.0}
+_MARKET_CACHE_TTL = 60  # ثانیه
+_MARKET_LOCK = threading.Lock()
 
 @main_bp.route('/')
 def home():
@@ -35,6 +42,30 @@ def invest_learn():
 # --- Market Data API ---
 @main_bp.route('/api/market-data')
 def get_market_data():
+    # سرو از کش در صورت تازه بودن (جلوگیری از فراخوانی خارجی به‌ازای هر درخواست/DoS تقویتی)
+    now = time.time()
+    if _MARKET_CACHE['data'] is not None and (now - _MARKET_CACHE['ts']) < _MARKET_CACHE_TTL:
+        return jsonify(_MARKET_CACHE['data'])
+
+    # فقط یک درخواست هم‌زمان اجازه‌ی واکشی دارد؛ بقیه از کش قبلی استفاده می‌کنند.
+    if not _MARKET_LOCK.acquire(blocking=False):
+        if _MARKET_CACHE['data'] is not None:
+            return jsonify(_MARKET_CACHE['data'])
+        _MARKET_LOCK.acquire()  # کش خالی است؛ منتظر اولین واکشی می‌مانیم
+    try:
+        # ممکن است در حین انتظار قفل، رشته‌ی دیگری کش را تازه کرده باشد
+        now = time.time()
+        if _MARKET_CACHE['data'] is not None and (now - _MARKET_CACHE['ts']) < _MARKET_CACHE_TTL:
+            return jsonify(_MARKET_CACHE['data'])
+        data = _fetch_market_data()
+        _MARKET_CACHE['data'] = data
+        _MARKET_CACHE['ts'] = time.time()
+        return jsonify(data)
+    finally:
+        _MARKET_LOCK.release()
+
+
+def _fetch_market_data():
     symbols_map = {
         'NASDAQ': '^IXIC',
         'DOW JONES': '^DJI',
@@ -75,7 +106,7 @@ def get_market_data():
                 'change': 'N/A',
                 'percent_change': 'N/A'
             })
-    return jsonify(market_data)
+    return market_data
 
 # --- Contact Us Routes ---
 

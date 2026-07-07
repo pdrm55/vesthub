@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from flask_login import login_required, current_user
 from sqlalchemy import func, or_, case, desc
 from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 from extensions import db
 from models import User, Role, Transaction, KYCRequest, Ticket, TicketMessage, SystemSetting, InvestmentPlan, AuditLog, Investment
 from decorators import permission_required
@@ -11,11 +12,15 @@ from tasks import run_profit_distribution
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
+def _is_staff(user):
+    """فقط ادمین یا نقش‌هایی که حداقل یک permission دارند، کارمند محسوب می‌شوند."""
+    return bool(user.role and (user.role.name == 'Admin' or user.role.permissions))
+
 @admin_bp.route('/dashboard')
 @login_required
 def dashboard():
-    if not current_user.role: 
-        return redirect(url_for('main.home'))
+    if not _is_staff(current_user):
+        return redirect(url_for('user.dashboard'))
     return render_template('admin_dashboard.html')
 
 # --- Role Management ---
@@ -278,7 +283,12 @@ def approve_payment(tx_id):
                 inv.status = 'active'
                 inv.start_date = datetime.utcnow()
                 tx.investment = inv # Link them for future
-        
+
+        # تنظیم تاریخ سررسید بر اساس مدت پلن تا سود بعد از پایان دوره متوقف شود
+        if tx.investment and tx.investment.status == 'active' and tx.investment.plan:
+            tx.investment.end_date = tx.investment.start_date + relativedelta(
+                months=tx.investment.plan.duration_months)
+
         db.session.commit()
         log_admin_activity('Approve Payment', f'Approved TX {tx.id}')
         flash('Payment approved successfully.', 'success')
@@ -318,11 +328,13 @@ def withdrawals():
 @permission_required('manage_withdrawals')
 def approve_withdrawal(tx_id):
     tx = db.session.get(Transaction, tx_id)
-    if tx:
+    if tx and tx.type == 'withdrawal' and tx.status == 'pending':
         tx.status = 'completed'
         db.session.commit()
         log_admin_activity('Approve Withdrawal', f'Approved WD {tx.id}')
         flash('Withdrawal approved.', 'success')
+    else:
+        flash('Withdrawal request is not in a pending state.', 'warning')
     return redirect(url_for('admin.withdrawals'))
 
 @admin_bp.route('/withdrawals/reject/<int:tx_id>', methods=['POST'])
@@ -330,11 +342,13 @@ def approve_withdrawal(tx_id):
 @permission_required('manage_withdrawals')
 def reject_withdrawal(tx_id):
     tx = db.session.get(Transaction, tx_id)
-    if tx:
+    if tx and tx.type == 'withdrawal' and tx.status == 'pending':
         tx.status = 'rejected'
         db.session.commit()
         log_admin_activity('Reject Withdrawal', f'Rejected WD {tx.id}')
         flash('Withdrawal rejected.', 'warning')
+    else:
+        flash('Withdrawal request is not in a pending state.', 'warning')
     return redirect(url_for('admin.withdrawals'))
 
 # --- KYC Management ---
@@ -571,6 +585,8 @@ def distribute_test_profit():
 @admin_bp.route('/api/chart/admin-stats')
 @login_required
 def api_admin_stats():
+    if not _is_staff(current_user):
+        return jsonify({'error': 'forbidden'}), 403
     # آمار ثبت‌نام کاربران در ۷ روز گذشته
     today = datetime.utcnow().date()
     labels = []
